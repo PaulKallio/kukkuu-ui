@@ -53,6 +53,7 @@ export const AppRoutes: FunctionComponent = () => {
           path="/silent_renew"
           render={() => {
             userManager.signinSilentCallback();
+            // should this be processSilentRenew() instead?
             return null;
           }}
         />
