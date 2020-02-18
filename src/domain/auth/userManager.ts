@@ -14,7 +14,7 @@ const settings: UserManagerSettings = {
   //includeIdTokenInSilentRenew: true,
   filterProtocolClaims: true,
   loadUserInfo: true,
-  accessTokenExpiringNotificationTime: 59 * 60, // This calculates to 1 minute, good for debugging
+  accessTokenExpiringNotificationTime: 59.65 * 60, // This calculates to 1 minute, good for debugging
   authority: process.env.REACT_APP_OIDC_AUTHORITY,
   automaticSilentRenew: true,
   client_id: process.env.REACT_APP_OIDC_CLIENT_ID,
