@@ -7,6 +7,10 @@
   },
   "appName": "Kulturens fadderbarn",
   "authentication": {
+    "deviceTimeError": {
+      "message": "Tro det eller inte, men vi kan inte låta dig logga in eftersom klockan på din enhet är avstängd mer än fem minuter. Ställ in tiden och försök igen.",
+      "shortMessage": "Log in error. Check your device time and try again."
+    },
     "errorMessage": "Ett fel uppstod. Försök igen",
     "loadUserError": {
       "message": "Ett fel uppstod. Försök att logga in igen."

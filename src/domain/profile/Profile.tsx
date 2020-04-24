@@ -20,6 +20,7 @@ import Button from '../../common/components/button/Button';
 import EditProfileModal from './modal/EditProfileModal';
 import { clearEvent, saveChildrenEvents } from '../event/state/EventActions';
 import { defaultProfileData } from './state/ProfileReducers';
+import ErrorMessage from '../../common/components/error/Error';
 
 const Profile: FunctionComponent = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -38,11 +39,7 @@ const Profile: FunctionComponent = () => {
     console.error(error);
     dispatch(clearProfile());
     Sentry.captureException(error);
-    return (
-      <PageWrapper>
-        <div className={styles.profile}>{t('api.errorMessage')}</div>
-      </PageWrapper>
-    );
+    return <ErrorMessage message={t('api.errorMessage')} />;
   }
 
   if (!data?.myProfile) {

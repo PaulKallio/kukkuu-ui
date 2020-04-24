@@ -22,6 +22,7 @@ import {
 import profileQuery from '../../profile/queries/ProfileQuery';
 import { childByIdQuery } from '../../child/queries/ChildQueries';
 import { saveChildEvents, justEnrolled } from '../state/EventActions';
+import ErrorMessage from '../../../common/components/error/Error';
 
 const Enrol: FunctionComponent = () => {
   const history = useHistory();
@@ -78,11 +79,7 @@ const Enrol: FunctionComponent = () => {
       type: toast.TYPE.ERROR,
     });
     Sentry.captureException(error);
-    return (
-      <PageWrapper>
-        <div className={styles.event}>{t('api.errorMessage')}</div>
-      </PageWrapper>
-    );
+    return <ErrorMessage message={t('api.errorMessage')} />;
   }
   if (!data?.occurrence?.id) return <div>no data</div>;
   const enrol = async () => {

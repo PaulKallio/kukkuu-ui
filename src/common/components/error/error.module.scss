@@ -1,0 +1,10 @@
+@import 'styles/layout';
+@import 'styles/variables';
+
+.error {
+  margin: $baseMargin;
+  @include respond-above(sm) {
+    grid-column: 2;
+    margin: $baseMargin 0;
+  }
+}
