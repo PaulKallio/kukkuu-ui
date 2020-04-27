@@ -8,8 +8,8 @@
   "appName": "Kulttuurin kummilapset",
   "authentication": {
     "deviceTimeError": {
-      "message": "Usko tai et usko mutta et voi kirjaudua sisään koska laitteesi kello on yli 5 minuuttia väärässä. Säätää kelloa ja kokeile uudestaan. ",
-      "shortMessage": "Log in error. Check your device time and try again."
+      "message": "Usko tai älä usko mutta et voi kirjautua sisään koska laitteesi kello on yli 5 minuuttia väärässä. Säädä kelloa ja kokeile uudestaan.",
+      "shortMessage": "Virhe kirjautuessa. Tarkista laitteesi kello ja kokeile uudestaan."
     },
     "errorMessage": "Tapahtui virhe. Yritä uudestaan",
     "loadUserError": {
