@@ -5,7 +5,6 @@ import * as Sentry from '@sentry/browser';
 import { useQuery } from '@apollo/react-hooks';
 
 import styles from './event.module.scss';
-import PageWrapper from '../app/layout/PageWrapper';
 import Button from '../../common/components/button/Button';
 import occurrenceQuery from './queries/occurrenceQuery';
 import { occurrenceQuery as OccurrenceQueryType } from '../api/generatedTypes/occurrenceQuery';
@@ -16,6 +15,7 @@ import VenueFeatures from './VenueFeatures';
 import Paragraph from '../../common/components/paragraph/Paragraph';
 import EventPage from './EventPage';
 import SuccessToast from './enrol/SuccessToast';
+import ErrorMessage from '../../common/components/error/Error';
 
 const EventIsEnrolled = () => {
   const { t } = useTranslation();
@@ -31,11 +31,7 @@ const EventIsEnrolled = () => {
     }
   );
 
-  const errorMessage = (
-    <PageWrapper>
-      <div className={styles.event}>{t('api.errorMessage')}</div>
-    </PageWrapper>
-  );
+  const errorMessage = <ErrorMessage message={t('api.errorMessage')} />;
 
   if (loading) return <LoadingSpinner isLoading={true} />;
   if (error) {

@@ -31,6 +31,7 @@ import profileQuery from '../../queries/ProfileQuery';
 import { childByIdQuery } from '../../../child/queries/ChildQueries';
 import LoadingSpinner from '../../../../common/components/spinner/LoadingSpinner';
 import { childByIdQuery as ChildByIdResponse } from '../../../api/generatedTypes/childByIdQuery';
+import ErrorMessage from '../../../../common/components/error/Error';
 export type ChildDetailEditModalPayload = Omit<EditChildInput, 'id'>;
 
 const ProfileChildDetail: React.FunctionComponent = () => {
@@ -62,11 +63,7 @@ const ProfileChildDetail: React.FunctionComponent = () => {
   if (error) {
     console.error(error);
     Sentry.captureException(error);
-    return (
-      <PageWrapper>
-        <div className={styles.profile}>{t('api.errorMessage')}</div>
-      </PageWrapper>
-    );
+    return <ErrorMessage message={t('api.errorMessage')} />;
   }
 
   const child = data?.child;
