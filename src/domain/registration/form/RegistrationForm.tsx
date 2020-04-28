@@ -32,6 +32,7 @@ import profileQuery from '../../profile/queries/ProfileQuery';
 import { profileQuery as ProfileQueryType } from '../../api/generatedTypes/profileQuery';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
+import { GuardianInput, Language } from '../../api/generatedTypes/globalTypes';
 
 const RegistrationForm: FunctionComponent = () => {
   const { i18n, t } = useTranslation();
@@ -91,11 +92,17 @@ const RegistrationForm: FunctionComponent = () => {
                 getSupportedChildData(child)
               );
 
-              const backendSupportGuardian = {
+              // Convert from language as a string ('fi', 'en') to the corresponding enum
+              const language: Language =
+                Language[
+                  values.preferLanguage.toUpperCase() as keyof typeof Language
+                ];
+
+              const backendSupportGuardian: GuardianInput = {
                 firstName: values.guardian.firstName,
                 lastName: values.guardian.lastName,
                 phoneNumber: values.guardian.phoneNumber,
-                language: values.preferLanguage.toUpperCase(), // Uppercase to support backend's use of Enum
+                language: language,
               };
 
               submitChildrenAndGuardian({
