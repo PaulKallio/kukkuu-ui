@@ -35,6 +35,16 @@ function OidcCallback(props: RouteChildrenProps) {
         <ErrorMessage message={t('authentication.deviceTimeError.message')} />
       );
       shortMessage = t('authentication.deviceTimeError.shortMessage');
+    } else if (
+      // Handle error caused by end user choosing Deny in Tunnistamo's Permission Request:
+      // We could send an event to Analytics for this.
+      error.message ===
+      'The resource owner or authorization server denied the request'
+    ) {
+      message = (
+        <ErrorMessage message={t('authentication.permRequestDenied.message')} />
+      );
+      shortMessage = t('authentication.permRequestDenied.shortMessage');
     } else {
       // Send other errors to Sentry for analysis - they might be bugs:
       Sentry.captureException(error);

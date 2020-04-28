@@ -24,6 +24,10 @@
     "networkError": {
       "message": "Login error: Check your network connection or try again later"
     },
+    "permRequestDenied": {
+      "message": "You need to approve our request to access your Tunnistamo profile in order to use this service. Please try logging in again.",
+      "shortMessage": "Login error: Authentication request denied"
+    },
     "redirect": {
       "text": "Redirecting..."
     },
