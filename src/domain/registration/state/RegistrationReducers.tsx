@@ -12,7 +12,7 @@ export const defaultRegistrationData: RegistrationData = {
         homeCity: '',
         lastName: '',
         postalCode: '',
-        relationship: { type: undefined },
+        relationship: { type: null },
       },
     ],
     guardian: {

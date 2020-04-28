@@ -1,4 +1,4 @@
-import React, { FunctionComponent /*, useState */ } from 'react';
+import React, { FunctionComponent } from 'react';
 import { Formik, FieldArray, FormikErrors } from 'formik';
 import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
@@ -173,6 +173,7 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
             name="relationship.type"
             label={t('registration.form.child.relationship.input.label')}
             autoSelect={isChildHavingRelationship}
+            required={true}
             component={SelectField}
             options={getTranslatedRelationshipOptions(t)}
             placeholder={t(
