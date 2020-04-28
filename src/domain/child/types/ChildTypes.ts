@@ -1,4 +1,3 @@
-import { ChildrenQuery_children_edges_node as GeneratedChildType } from '../../api/generatedTypes/ChildrenQuery';
 import {
   ChildInput,
   AddChildMutationInput,
@@ -16,7 +15,5 @@ export interface AddChild extends AddChildMutationInput {
 export interface UpdateChild extends UpdateChildMutationInput {
   homeCity: string;
 }
-
-export type ChildResponse = Partial<GeneratedChildType>;
 
 export type Children = Child[];
