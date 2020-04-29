@@ -17,7 +17,10 @@ exports[`renders snapshot correctly 1`] = `
         partners={
           Array [
             Object {
-              "icon": "hel.png",
+              "altLangIcons": Object {
+                "sv": "helsinki-sv.svg",
+              },
+              "icon": "helsinki-fi.svg",
               "name": "hel",
             },
             Object {
