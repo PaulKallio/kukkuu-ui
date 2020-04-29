@@ -3,7 +3,8 @@ import cirkoIcon from '../../../../assets/icons/partners/cirko.png';
 import designmuseumIcon from '../../../../assets/icons/partners/designmuseum.png';
 import dotIcon from '../../../../assets/icons/partners/dotdot.png';
 import hamhelsinkiIcon from '../../../../assets/icons/partners/hamhelsinki.png';
-import helIcon from '../../../../assets/icons/partners/hel.png';
+import helIcon from '../../../../assets/icons/svg/helsinki-fi.svg';
+import helIconSv from '../../../../assets/icons/svg/helsinki-sv.svg';
 import helsinginkaupunginmuseoIcon from '../../../../assets/icons/partners/helsinginkaupunginmuseo.png';
 import helsinginkaupunginorkesteriIcon from '../../../../assets/icons/partners/helsinginkaupunginorkesteri.png';
 import hktIcon from '../../../../assets/icons/partners/hkt.png';
@@ -31,7 +32,7 @@ import { Partner } from '../types/partner';
 // teatteri-ilmio.fi -> teatteriilmio
 // hel.fi -> hel
 export const mainPartnerList: Partner[] = [
-  { name: 'hel', icon: helIcon },
+  { name: 'hel', icon: helIcon, altLangIcons: { sv: helIconSv } },
   { name: 'jaes', icon: jaesIcon },
 ];
 

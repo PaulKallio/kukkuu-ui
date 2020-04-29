@@ -1,18 +1,22 @@
 import React, { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import joinClassNames from 'classnames';
 
 import styles from './footer.module.scss';
 import Container from '../layout/Container';
+import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
 
 const Footer: FunctionComponent = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLocale = getCurrentLanguage(i18n);
+  const logoLang = currentLocale === 'sv' ? styles.sv : styles.fi;
 
   return (
     <footer className={styles.footerWrapper}>
       <Container>
         <div className={styles.footer}>
-          <div className={styles.helsinkiLogo}></div>
+          <div className={joinClassNames(styles.helsinkiLogo, logoLang)}></div>
           <div className={styles.copyright}>
             <p>{t('footer.copyrightText')}</p>
           </div>
