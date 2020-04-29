@@ -67,7 +67,7 @@ const ProfileChildrenList: FunctionComponent = () => {
             {getProjectsFromProfileQuery(children).map((project) => (
               <Fragment key={project}>
                 <div className={styles.thisYearPartner}>
-                  <h3>{project} TODO: Project name</h3>
+                  <h3>{project}</h3>
                 </div>
                 {children.edges.map((childEdge) =>
                   childEdge?.node?.id &&
