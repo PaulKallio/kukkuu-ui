@@ -15,7 +15,7 @@ const Navbar: FunctionComponent = (props) => {
 
   const currentLocale = getCurrentLanguage(i18n);
   const logoLang = currentLocale === 'sv' ? styles.sv : styles.fi;
-  console.log(currentLocale);
+
   const isSmallScreen = window.innerWidth <= 768;
   return (
     <div className={styles.navbarTop}>
