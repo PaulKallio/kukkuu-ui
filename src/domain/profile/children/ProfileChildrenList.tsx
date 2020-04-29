@@ -18,6 +18,7 @@ import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import profileQuery from '../queries/ProfileQuery';
 import Button from '../../../common/components/button/Button';
 import { getProjectsFromProfileQuery } from '../ProfileUtil';
+import { UpdateChildMutationInput } from '../../api/generatedTypes/globalTypes';
 
 const ProfileChildrenList: FunctionComponent = () => {
   const { t } = useTranslation();
@@ -41,7 +42,10 @@ const ProfileChildrenList: FunctionComponent = () => {
           <AddNewChildFormModal
             setIsOpen={setIsOpen}
             addChild={(payload) => {
-              const supportedChildData = getSupportedChildData(payload);
+              const supportedChildData: Omit<
+                UpdateChildMutationInput,
+                'id'
+              > = getSupportedChildData(payload);
               addChild({ variables: { input: supportedChildData } })
                 .then(() => {
                   trackEvent({ category: 'action', action: 'Add child' });

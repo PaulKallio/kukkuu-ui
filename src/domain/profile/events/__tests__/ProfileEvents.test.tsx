@@ -6,19 +6,23 @@ import ProfileEvents from '../ProfileEvents';
 import ProfileNoEvent from '../ProfileNoEvent';
 import ProfileEventsList from '../ProfileEventsList';
 import {
-  childByIdQuery_child as Child,
+  childByIdQuery_child as ChildByIdResponse,
   childByIdQuery_child_availableEvents as AvailableEvents,
   childByIdQuery_child_pastEvents as PastEvents,
   childByIdQuery_child_occurrences as Occurrences,
 } from '../../../api/generatedTypes/childByIdQuery';
 import { EventParticipantsPerInvite } from '../../../api/generatedTypes/globalTypes';
 
-const childData: Child = {
+const childData: ChildByIdResponse = {
   id: '',
   firstName: '',
   lastName: '',
   birthdate: '',
   postalCode: '',
+  project: {
+    id: '',
+    year: 0,
+  },
   relationships: {
     edges: [],
   },
@@ -98,14 +102,14 @@ const pastEvents: PastEvents = {
   ],
 };
 
-const childWithEvents: Child = {
+const childWithEvents: ChildByIdResponse = {
   ...childData,
   availableEvents: availableEvents,
   occurrences: occurrences,
   pastEvents: pastEvents,
 };
 
-const childOnlyAvailableEvents: Child = {
+const childOnlyAvailableEvents: ChildByIdResponse = {
   ...childData,
   availableEvents: availableEvents,
   occurrences: {
@@ -114,7 +118,7 @@ const childOnlyAvailableEvents: Child = {
   pastEvents: null,
 };
 
-const childOnlyEnrolments: Child = {
+const childOnlyEnrolments: ChildByIdResponse = {
   ...childData,
   availableEvents: null,
   occurrences: {

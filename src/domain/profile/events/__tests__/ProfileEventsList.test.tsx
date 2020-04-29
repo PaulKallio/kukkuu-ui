@@ -5,22 +5,27 @@ import toJson from 'enzyme-to-json';
 import ProfileEventsList from '../ProfileEventsList';
 import Card from '../../../../common/components/card/Card';
 import {
-  childByIdQuery_child as ChildType,
+  childByIdQuery_child as ChildByIdResponse,
   childByIdQuery_child_availableEvents as AvailableEventsType,
   childByIdQuery_child_pastEvents as PastEventsType,
   childByIdQuery_child_occurrences as OccurrencesType,
 } from '../../../api/generatedTypes/childByIdQuery';
 import { EventParticipantsPerInvite } from '../../../api/generatedTypes/globalTypes';
 
-const childData = {
+const childData: ChildByIdResponse = {
   id: '',
   firstName: '',
   lastName: '',
   birthdate: '',
   postalCode: '',
-  relationships: {
-    edges: [],
+  project: {
+    id: '',
+    year: 0,
   },
+  relationships: { edges: [] },
+  availableEvents: { edges: [] },
+  occurrences: { edges: [] },
+  pastEvents: { edges: [] },
 };
 
 const eventData = {
@@ -70,23 +75,24 @@ const pastEvents: PastEventsType = {
   ],
 };
 
-const childWithEvents: ChildType = {
+const childWithEvents: ChildByIdResponse = {
+  ...childData,
   availableEvents: availableEvents,
   occurrences: occurrences,
   pastEvents: pastEvents,
-  ...childData,
 };
 
 const childOnlyAvailableEvents = {
+  ...childData,
   availableEvents: availableEvents,
   occurrences: {
     edges: [],
   },
   pastEvents: null,
-  ...childData,
 };
 
-const childOnlyEnrolments: ChildType = {
+const childOnlyEnrolments: ChildByIdResponse = {
+  ...childData,
   availableEvents: null,
   occurrences: {
     edges: [
@@ -101,16 +107,15 @@ const childOnlyEnrolments: ChildType = {
     ],
   },
   pastEvents: null,
-  ...childData,
 };
 
-const childOnlyPastEvents: ChildType = {
+const childOnlyPastEvents: ChildByIdResponse = {
+  ...childData,
   availableEvents: null,
   occurrences: {
     edges: [],
   },
   pastEvents: pastEvents,
-  ...childData,
 };
 
 test('Renders snapshot correctly', () => {

@@ -1,19 +1,34 @@
 import { normalizeProfileChild } from '../ProfileUtil';
 import { RelationshipTypeEnum } from '../../api/generatedTypes/globalTypes';
+import { childByIdQuery_child as ChildByIdResponse } from '../../api/generatedTypes/childByIdQuery';
 
 describe('ProfileUtils', () => {
   describe('normalizeProfileChild', () => {
     test('input a fetched child and return a child for mutation', () => {
-      const child = {
+      const child: ChildByIdResponse = {
         id: 'foo',
         firstName: 'foo',
         lastName: 'bar',
         birthdate: '2020-01-01',
         postalCode: '00100',
+        project: {
+          id: '1',
+          year: 2020,
+        },
+        occurrences: {
+          edges: [],
+        },
+        availableEvents: {
+          edges: [],
+        },
+        pastEvents: {
+          edges: [],
+        },
         relationships: {
           edges: [
             {
               node: {
+                id: '1',
                 type: RelationshipTypeEnum.PARENT,
               },
             },
@@ -29,6 +44,10 @@ describe('ProfileUtils', () => {
         homeCity: 'Helsinki',
         birthdate: '2020-01-01',
         postalCode: '00100',
+        project: { id: '1', year: 2020 },
+        occurrences: { edges: [] },
+        availableEvents: { edges: [] },
+        pastEvents: { edges: [] },
         relationship: {
           type: 'PARENT',
         },
