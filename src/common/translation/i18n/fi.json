@@ -24,6 +24,10 @@
     "networkError": {
       "message": "Virhe kirjautumisessa: Tarkista verkkoyhteytesi ja yritä uudestaan"
     },
+    "permRequestDenied": {
+      "message": "You need to approve our request to access your Tunnistamo profile in order to use this service. Please try logging in again.",
+      "shortMessage": "Login error: Authentication request denied"
+    },
     "redirect": {
       "text": "Ohjataan tunnistautumiseen..."
     },
