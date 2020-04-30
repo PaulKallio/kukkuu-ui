@@ -60,8 +60,8 @@ const Home: FunctionComponent = () => {
           userIsAuthenticated={userIsAuthenticated}
           scrollToForm={() => scrollToForm(formRef)}
         />
-        <HomeInstructions />
         <HomeMoreInfo />
+        <HomeInstructions />
         {!userHasProfile && <HomePreliminaryForm forwardRef={formRef} />}
         <HomeVideo />
         <HomePartners />
