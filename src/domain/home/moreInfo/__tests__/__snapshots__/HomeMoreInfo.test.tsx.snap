@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders snapshot correctly 1`] = `
+<section
+  className="wrapper"
+>
+  <div
+    className="innerwrapper"
+  >
+    <h2>
+      Lisätietoa palvelusta eri kielillä
+    </h2>
+    <p>
+      Lataa lisätietoa Kultuurin kummilapset -palvelusta omalla kielelläsi.
+    </p>
+    <MoreInfoLinkList
+      links={
+        Array [
+          Object {
+            "langCode": "fr",
+            "langName": "Français",
+            "url": "fr",
+          },
+          Object {
+            "langCode": "ru",
+            "langName": "Русский",
+            "url": "ru",
+          },
+          Object {
+            "langCode": "es",
+            "langName": "Español",
+            "url": "es",
+          },
+          Object {
+            "langCode": "ja",
+            "langName": "日本語",
+            "url": "fixme",
+          },
+          Object {
+            "langCode": "ne",
+            "langName": "नेपाली गण",
+            "url": "fixme",
+          },
+          Object {
+            "langCode": "so",
+            "langName": "Somali",
+            "url": "fixme",
+          },
+          Object {
+            "langCode": "fa",
+            "langName": "زبان فارسی",
+            "url": "fixme",
+          },
+          Object {
+            "langCode": "et",
+            "langName": "Eesti",
+            "url": "fixme",
+          },
+          Object {
+            "langCode": "tr",
+            "langName": "Türkçe",
+            "url": "fixme",
+          },
+          Object {
+            "langCode": "ar",
+            "langName": "اَلْعَرَبِيَّةُ",
+            "url": "fixme",
+          },
+          Object {
+            "langCode": "ku",
+            "langName": "كوردي",
+            "url": "uuu",
+          },
+          Object {
+            "langCode": "vi",
+            "langName": "Tiếng Việt",
+            "url": "aaa",
+          },
+          Object {
+            "langCode": "en",
+            "langName": "English",
+            "url": "https://en",
+          },
+          Object {
+            "langCode": "sv",
+            "langName": "Svenska",
+            "url": "https://sv",
+          },
+          Object {
+            "langCode": "fi",
+            "langName": "Suomi",
+            "url": "https://fi",
+          },
+        ]
+      }
+    />
+  </div>
+</section>
+`;

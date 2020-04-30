@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders snapshot correctly 1`] = `
+<div
+  className="link"
+>
+  <a
+    href="fr"
+    key="0"
+    lang="fr"
+  >
+    Français
+  </a>
+  <a
+    href="ru"
+    key="1"
+    lang="ru"
+  >
+    Русский
+  </a>
+  <a
+    href="es"
+    key="2"
+    lang="es"
+  >
+    Español
+  </a>
+  <a
+    href="fixme"
+    key="3"
+    lang="ja"
+  >
+    日本語
+  </a>
+  <a
+    href="fixme"
+    key="4"
+    lang="ne"
+  >
+    नेपाली गण
+  </a>
+  <a
+    href="fixme"
+    key="5"
+    lang="so"
+  >
+    Somali
+  </a>
+  <a
+    href="fixme"
+    key="6"
+    lang="fa"
+  >
+    زبان فارسی
+  </a>
+  <a
+    href="fixme"
+    key="7"
+    lang="et"
+  >
+    Eesti
+  </a>
+  <a
+    href="fixme"
+    key="8"
+    lang="tr"
+  >
+    Türkçe
+  </a>
+  <a
+    href="fixme"
+    key="9"
+    lang="ar"
+  >
+    اَلْعَرَبِيَّةُ
+  </a>
+  <a
+    href="uuu"
+    key="10"
+    lang="ku"
+  >
+    كوردي
+  </a>
+  <a
+    href="aaa"
+    key="11"
+    lang="vi"
+  >
+    Tiếng Việt
+  </a>
+  <a
+    href="https://en"
+    key="12"
+    lang="en"
+  >
+    English
+  </a>
+  <a
+    href="https://sv"
+    key="13"
+    lang="sv"
+  >
+    Svenska
+  </a>
+  <a
+    href="https://fi"
+    key="14"
+    lang="fi"
+  >
+    Suomi
+  </a>
+</div>
+`;

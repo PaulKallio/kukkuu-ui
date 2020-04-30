@@ -12,7 +12,7 @@ const MoreInfoLinkList = ({ links }: MoreInfoLinkListProps) => {
     <div className={styles.link}>
       {links.map((link, index: number) => {
         return (
-          <a href={link.url} lang={link.langCode}>
+          <a href={link.url} lang={link.langCode} key={index}>
             {link.langName}
           </a>
         );
