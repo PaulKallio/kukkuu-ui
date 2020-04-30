@@ -8,7 +8,6 @@ import { moreInfoLinks } from './constants/MoreInfoConstants';
 const HomeMoreInfo = () => {
   const { t } = useTranslation();
 
-  // <Partners size="big" partners={mainPartnerList} />
   return (
     <section className={styles.wrapper}>
       <div className={styles.innerwrapper}>
