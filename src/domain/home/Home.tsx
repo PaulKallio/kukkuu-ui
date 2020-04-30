@@ -17,6 +17,7 @@ import profileQuery from '../profile/queries/ProfileQuery';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import { clearProfile, saveProfile } from '../profile/state/ProfileActions';
 import { defaultProfileData } from '../profile/state/ProfileReducers';
+import HomeMoreInfo from './moreInfo/HomeMoreInfo';
 
 const Home: FunctionComponent = () => {
   const dispatch = useDispatch();
@@ -60,6 +61,7 @@ const Home: FunctionComponent = () => {
           scrollToForm={() => scrollToForm(formRef)}
         />
         <HomeInstructions />
+        <HomeMoreInfo />
         {!userHasProfile && <HomePreliminaryForm forwardRef={formRef} />}
         <HomeVideo />
         <HomePartners />

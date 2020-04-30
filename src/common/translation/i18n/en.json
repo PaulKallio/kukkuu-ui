@@ -227,6 +227,14 @@
         }
       }
     },
+    "moreInfo": {
+      "description": {
+        "text": "Download more information about Culture Kids -service in your own language."
+      },
+      "heading": {
+        "text": "Information about the service on different languages"
+      }
+    },
     "partners": {
       "heading": {
         "text": "Cooperation partners"
