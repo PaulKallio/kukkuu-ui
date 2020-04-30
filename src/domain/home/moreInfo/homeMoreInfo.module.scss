@@ -2,17 +2,6 @@
 @import 'styles/variables';
 
 .wrapper {
-  h2 {
-    margin-top: 0;
-  }
-  p {
-    margin-bottom: $largeMargin;
-  }
-  h2,
-  p {
-    text-align: center;
-  }
-
   padding: 2 * $largeMargin 0;
 
   display: grid;
@@ -20,6 +9,15 @@
 }
 
 .innerwrapper {
+  h2 {
+    margin-top: 0;
+  }
+  p {
+    margin-bottom: $largeMargin;
+  }
+
+  text-align: center;
+
   grid-column: 2;
   display: grid;
   justify-content: center;
