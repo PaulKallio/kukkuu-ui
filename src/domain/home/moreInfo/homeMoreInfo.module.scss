@@ -1,7 +1,9 @@
+@import 'styles/mixins';
 @import 'styles/layout';
 @import 'styles/variables';
 
 .wrapper {
+  @include background($hel-light);
   padding: 2 * $largeMargin 0;
 
   display: grid;
