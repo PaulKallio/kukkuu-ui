@@ -1,13 +1,9 @@
 import { createUserManager } from 'redux-oidc';
-import { UserManagerSettings, Log } from 'oidc-client';
+import { UserManagerSettings } from 'oidc-client';
 
 const location = `${window.location.protocol}//${window.location.hostname}${
   window.location.port ? `:${window.location.port}` : ''
 }`;
-
-// Show a lot of info in the console about oidc!
-Log.logger = console;
-Log.level = Log.DEBUG;
 
 /* eslint-disable @typescript-eslint/camelcase */
 const settings: UserManagerSettings = {
