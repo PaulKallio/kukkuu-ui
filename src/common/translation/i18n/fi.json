@@ -227,6 +227,14 @@
         }
       }
     },
+    "moreInfo": {
+      "description": {
+        "text": "Lataa lisätietoa Kultuurin kummilapset -palvelusta omalla kielelläsi."
+      },
+      "heading": {
+        "text": "Lisätietoa palvelusta eri kielillä"
+      }
+    },
     "partners": {
       "heading": {
         "text": "Yhteistyökumppanit"

@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders snapshot correctly 1`] = `
+<section
+  className="wrapper"
+>
+  <div
+    className="innerwrapper"
+  >
+    <h2>
+      Lisätietoa palvelusta eri kielillä
+    </h2>
+    <p>
+      Lataa lisätietoa Kultuurin kummilapset -palvelusta omalla kielelläsi.
+    </p>
+    <MoreInfoLinkList
+      links={
+        Array [
+          Object {
+            "langCode": "fr",
+            "langName": "Français",
+            "url": "/brochures/fr.pdf",
+          },
+          Object {
+            "langCode": "ru",
+            "langName": "Русский",
+            "url": "/brochures/ru.pdf",
+          },
+          Object {
+            "langCode": "es",
+            "langName": "Español",
+            "url": "/brochures/es.pdf",
+          },
+          Object {
+            "langCode": "zh",
+            "langName": "中文",
+            "url": "/brochures/zh.pdf",
+          },
+          Object {
+            "langCode": "npi",
+            "langName": "नेपाली गण",
+            "url": "/brochures/npi.pdf",
+          },
+          Object {
+            "langCode": "som",
+            "langName": "Somali",
+            "url": "/brochures/som.pdf",
+          },
+          Object {
+            "langCode": "fas",
+            "langName": "زبان فارسی",
+            "url": "/brochures/fas.pdf",
+          },
+          Object {
+            "langCode": "et",
+            "langName": "Eesti",
+            "url": "/brochures/et.pdf",
+          },
+          Object {
+            "langCode": "tur",
+            "langName": "Türkçe",
+            "url": "/brochures/tur.pdf",
+          },
+          Object {
+            "langCode": "ar",
+            "langName": "اَلْعَرَبِيَّةُ",
+            "url": "/brochures/ara.pdf",
+          },
+          Object {
+            "langCode": "ckb",
+            "langName": "کوردی",
+            "url": "/brochures/ckb.pdf",
+          },
+          Object {
+            "langCode": "vi",
+            "langName": "Tiếng Việt",
+            "url": "/brochures/vi.pdf",
+          },
+          Object {
+            "langCode": "en",
+            "langName": "English",
+            "url": "/brochures/en.pdf",
+          },
+          Object {
+            "langCode": "sv",
+            "langName": "Svenska",
+            "url": "/brochures/sv.pdf",
+          },
+          Object {
+            "langCode": "fi",
+            "langName": "Suomi",
+            "url": "/brochures/fi.pdf",
+          },
+        ]
+      }
+    />
+  </div>
+</section>
+`;

@@ -8,7 +8,7 @@
   "appName": "Kulturens fadderbarn",
   "authentication": {
     "deviceTimeError": {
-      "message": "Tro det eller inte, men vi kan inte låta dig logga in eftersom klockan på din enhet är avstängd mer än fem minuter. Ställ in tiden och försök igen.",
+      "message": "Tro det eller inte, men vi kan inte låta dig logga in eftersom klockan på din enhet är mer än fem minuter fel. Ställ in tiden och försök igen.",
       "shortMessage": "Log in error. Check your device time and try again."
     },
     "errorMessage": "Ett fel uppstod. Försök igen",
@@ -225,6 +225,14 @@
         "ticket": {
           "text": "Du får en inbjudan per e-post två gånger om året och kan i tjänsten anmäla dig till de evenemang som bäst passar dig."
         }
+      }
+    },
+    "moreInfo": {
+      "description": {
+        "text": "Ladda ner mer information om Kulturens fadderbarn-service på ditt eget språk."
+      },
+      "heading": {
+        "text": "Information om tjänsten på olika språk"
       }
     },
     "partners": {

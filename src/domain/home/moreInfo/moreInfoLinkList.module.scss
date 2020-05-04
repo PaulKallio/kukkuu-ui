@@ -1,0 +1,17 @@
+@import 'styles/colors';
+@import 'styles/layout';
+@import 'styles/variables';
+
+.link {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  width: 100vw;
+  max-width: $containerMaxWidth;
+  a {
+    color: $hel-black;
+    margin: $baseMargin;
+    text-decoration: none;
+    font-weight: 500;
+  }
+}
