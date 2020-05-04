@@ -1,4 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
+import { SILENT_RENEW_ERROR } from 'redux-oidc';
 
 import { UI_ACTIONS } from './UIActionsConstants';
 import { UIData } from '../../types/ui/UITypes';
@@ -10,6 +11,9 @@ export const defaultUIState: UIData = {
 };
 
 export default createReducer(defaultUIState, {
+  [SILENT_RENEW_ERROR]: (state) => {
+    state.sessionExpiredPrompt.isOpen = true;
+  },
   [UI_ACTIONS.SESSION_EXPIRED_PROMPT.SHOW]: (state) => {
     state.sessionExpiredPrompt.isOpen = true;
   },

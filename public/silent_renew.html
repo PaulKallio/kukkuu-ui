@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="oidc-client.min.js"></script>
 </head>
 <body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/oidc-client/1.10.1/oidc-client.min.js"></script>
 <script>
-      new Oidc.UserManager().signinSilentCallback().then()
-</script>
-</body>
+  var mgr = new Oidc.UserManager();
+  mgr.signinSilentCallback().catch(error => {
+    console.error('silent_renew.html error', error);
+  });
+</script></body>
 </html>

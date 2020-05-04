@@ -4,8 +4,6 @@ import * as Sentry from '@sentry/browser';
 import './assets/styles/main.scss';
 import 'hds-core/lib/helsinki.css';
 import Modal from 'react-modal';
-import { processSilentRenew } from 'redux-oidc';
-import { Log } from 'oidc-client';
 
 import BrowserApp from './domain/app/BrowserApp';
 import * as serviceWorker from './serviceWorker';
@@ -21,14 +19,8 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-if (window.location.pathname === '/silent_renew') {
-  Log.logger = console;
-  Log.level = Log.DEBUG;
-  console.log('processSilentRenew');
-  processSilentRenew();
-} else {
-  ReactDOM.render(<BrowserApp />, document.getElementById('root'));
-}
+ReactDOM.render(<BrowserApp />, document.getElementById('root'));
+
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA

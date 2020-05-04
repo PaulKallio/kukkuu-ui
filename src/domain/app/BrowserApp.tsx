@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Switch, Route, Redirect } from 'react-router';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
-import { OidcProvider, processSilentRenew } from 'redux-oidc';
+import { OidcProvider } from 'redux-oidc';
 import { useTranslation } from 'react-i18next';
 import { ToastContainer } from 'react-toastify';
 import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react';
@@ -48,17 +48,6 @@ export const AppRoutes: FunctionComponent = () => {
   return (
     <PageLayout>
       <Switch>
-        <Route
-          exact
-          path="/silent_renew"
-          render={() => {
-            console.log('processing from BrowserApp');
-            processSilentRenew();
-            //userManager.signinSilentCallback();
-            // should this be processSilentRenew() instead?
-            return null;
-          }}
-        />
         <Route exact path="/callback" component={OidcCallback} />
         <Redirect exact path="/" to={`/${currentLocale}/home`} />
         <Route path={`/${localeParam}/*`} component={App} />
