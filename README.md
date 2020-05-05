@@ -131,7 +131,7 @@ After you've got tunnistamo running locally, ssh to the tunnistamo docker contai
 and execute the following four commands inside your docker container:
 
 ```bash
-./manage.py add_oidc_client -n kukkuu-ui -t "id_token token" -u "http://localhost:3000/callback" "http://localhost:3000/silent_renew" -i https://api.hel.fi/auth/kukkuu-ui -m github -s dev
+./manage.py add_oidc_client -n kukkuu-ui -t "id_token token" -u "http://localhost:3000/callback" "http://localhost:3000/silent_renew.html" -i https://api.hel.fi/auth/kukkuu-ui -m github -s dev
 ./manage.py add_oidc_client -n kukkuu-api -t "code" -u http://localhost:8081/return -i https://api.hel.fi/auth/kukkuu -m github -s dev -c
 ./manage.py add_oidc_api -n kukkuu -d https://api.hel.fi/auth -s email,profile -c https://api.hel.fi/auth/kukkuu
 ./manage.py add_oidc_api_scope -an kukkuu -c https://api.hel.fi/auth/kukkuu-ui -n "Kulttuurin kummilapset" -d"Lorem ipsum"

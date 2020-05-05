@@ -7,8 +7,8 @@ import Modal from 'react-modal';
 
 import BrowserApp from './domain/app/BrowserApp';
 import * as serviceWorker from './serviceWorker';
-
 import './common/translation/i18n/i18nInit';
+
 Modal.setAppElement('#root');
 
 if (process.env.NODE_ENV === 'production') {
