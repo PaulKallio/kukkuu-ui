@@ -14,6 +14,7 @@ export interface submitChildrenAndGuardian_submitChildrenAndGuardian_guardian_ch
    * The ID of the object.
    */
   id: string;
+  name: string | null;
   year: number;
 }
 

@@ -14,6 +14,7 @@ export interface childByIdQuery_child_project {
    * The ID of the object.
    */
   id: string;
+  name: string | null;
   year: number;
 }
 

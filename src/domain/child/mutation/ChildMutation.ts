@@ -11,6 +11,7 @@ export const addChildMutation = gql`
         postalCode
         project {
           id
+          name
           year
         }
       }
@@ -37,6 +38,7 @@ export const editChildMutation = gql`
         postalCode
         project {
           id
+          name
           year
         }
         relationships {
