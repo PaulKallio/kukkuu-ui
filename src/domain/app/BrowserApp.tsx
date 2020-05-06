@@ -23,7 +23,7 @@ import { ScrollToTop } from '../../common/route/RouteUtils';
 
 const localeParam = `:locale(${SUPPORT_LANGUAGES.EN}|${SUPPORT_LANGUAGES.FI}|${SUPPORT_LANGUAGES.SV})`;
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'development') {
   enableOidcLogging();
 }
 
