@@ -84,9 +84,9 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### `yarn update-translations`
 
-Fetches translation data from our Google Spreadsheet and updates translation files. See `.env` for configuration.
+Fetches translation data from our Google Spreadsheet and updates translation files. See `package.json` for configuration.
 
-You still need to update jest snapshots and add the translation files to the git repository manually.
+You need to update jest snapshots and add the translation files to the git repository manually after updating translations.
 
 ### `yarn graphql-types`
 
