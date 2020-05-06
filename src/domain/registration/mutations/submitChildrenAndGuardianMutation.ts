@@ -25,6 +25,7 @@ const submitChildrenAndGuardianMutation = gql`
               postalCode
               project {
                 id
+                name
                 year
               }
               relationships {

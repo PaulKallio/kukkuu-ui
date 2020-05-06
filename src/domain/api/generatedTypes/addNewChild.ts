@@ -14,6 +14,7 @@ export interface addNewChild_addChild_child_project {
    * The ID of the object.
    */
   id: string;
+  name: string | null;
   year: number;
 }
 

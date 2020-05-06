@@ -19,6 +19,7 @@ const profileQuery = gql`
             postalCode
             project {
               id
+              name
               year
             }
             relationships {

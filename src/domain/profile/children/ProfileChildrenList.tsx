@@ -62,16 +62,18 @@ const ProfileChildrenList: FunctionComponent = () => {
       </div>
 
       <div className={styles.childrenList}>
-        {children ? (
+        {children.edges ? (
           <>
             {getProjectsFromProfileQuery(children).map((project) => (
-              <Fragment key={project}>
+              <Fragment key={project.id}>
                 <div className={styles.thisYearPartner}>
-                  <h3>{project}</h3>
+                  <h3>
+                    {project.year} {project.name}
+                  </h3>
                 </div>
                 {children.edges.map((childEdge) =>
                   childEdge?.node?.id &&
-                  childEdge.node.project.year === project ? (
+                  childEdge.node.project.year === project.year ? (
                     <ProfileChild
                       key={childEdge.node.id}
                       child={childEdge.node}

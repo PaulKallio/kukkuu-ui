@@ -14,6 +14,7 @@ export interface profileQuery_myProfile_children_edges_node_project {
    * The ID of the object.
    */
   id: string;
+  name: string | null;
   year: number;
 }
 
