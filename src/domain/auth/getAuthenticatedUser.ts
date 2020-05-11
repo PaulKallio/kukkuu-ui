@@ -21,6 +21,8 @@ export default function (): Promise<User> {
         reject();
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
       toast(i18n.t('api.errorMessage'), {
         type: toast.TYPE.ERROR,
       });

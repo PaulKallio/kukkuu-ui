@@ -74,6 +74,7 @@ const Enrol: FunctionComponent = () => {
 
   if (loading) return <LoadingSpinner isLoading={true} />;
   if (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
     toast(t('api.errorMessage'), {
       type: toast.TYPE.ERROR,
@@ -98,7 +99,7 @@ const Enrol: FunctionComponent = () => {
         `/profile/child/${params.childId}/occurrence/${data.occurrence.id}`
       );
     } catch (error) {
-      // TODO: KK-280 Handle errors nicely
+      // eslint-disable-next-line no-console
       console.error(error);
       toast(t('registration.submitMutation.errorMessage'), {
         type: toast.TYPE.ERROR,
