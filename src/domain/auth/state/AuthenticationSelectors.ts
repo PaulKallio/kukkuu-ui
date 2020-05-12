@@ -6,11 +6,21 @@ export const userAccessTokenSelector = (state: StoreState) =>
 export const apiTokenSelector = (state: StoreState) =>
   state.authentication.backend.apiToken;
 
+export const mustRenewApiTokenSelector = (state: StoreState) =>
+  state.authentication.backend.mustRenewToken;
+
 export const isLoadingUserSelector = (state: StoreState) =>
   state.authentication.tunnistamo.isLoadingUser ||
   state.authentication.backend.isFetchingToken;
 
+export const isLoggedInSelector = (state: StoreState) =>
+  !!state.authentication.tunnistamo.user?.access_token;
+
 export const isAuthenticatedSelector = (state: StoreState) =>
+  state.authentication.backend.hasProfile;
+
+export const isAuthenticatedWithApiTokenSelector = (state: StoreState) =>
+  state.authentication.tunnistamo.user?.access_token &&
   !!state.authentication.backend.apiToken;
 
 export const userSelector = (state: StoreState) =>

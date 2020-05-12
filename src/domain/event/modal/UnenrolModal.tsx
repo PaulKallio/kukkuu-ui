@@ -71,6 +71,7 @@ const UnenrolModal = ({
         },
       });
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
       // TODO: KK-280 Handle errors nicely
       toast(t('registration.submitMutation.errorMessage'), {

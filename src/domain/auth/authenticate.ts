@@ -32,14 +32,20 @@ export const loginTunnistamo = (path?: string) => {
         });
         Sentry.captureException(error);
       }
+      // eslint-disable-next-line no-console
+      console.error(error);
     });
+  document.cookie = 'loggedOut; expires=Thu, 01 Jan 1970 00:00:00 GMT';
 };
 
 export const logoutTunnistamo = async () => {
   try {
+    document.cookie = 'loggedOut=1; max-age=10';
     await userManager.signoutRedirect();
-  } catch (e) {
-    Sentry.captureException(e);
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
+    Sentry.captureException(error);
   }
 };
 
@@ -61,6 +67,8 @@ export const authenticateWithBackend = (
 
     dispatch(fetchTokenSuccess(res.data));
   } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
     dispatch(fetchTokenError(error));
     toast(i18n.t('authentication.errorMessage'), {
       type: toast.TYPE.ERROR,

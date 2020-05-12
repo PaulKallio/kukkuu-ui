@@ -1,13 +1,19 @@
 import { createUserManager } from 'redux-oidc';
-import { UserManagerSettings } from 'oidc-client';
+import { UserManagerSettings, Log, WebStorageStateStore } from 'oidc-client';
 
 const location = `${window.location.protocol}//${window.location.hostname}${
   window.location.port ? `:${window.location.port}` : ''
 }`;
 
+if (process.env.NODE_ENV === 'development') {
+  Log.logger = console;
+  Log.level = Log.INFO;
+}
+
 /* eslint-disable @typescript-eslint/camelcase */
 const settings: UserManagerSettings = {
   loadUserInfo: true,
+  userStore: new WebStorageStateStore({ store: window.localStorage }),
   // This calculates to 1 minute, good for debugging:
   // accessTokenExpiringNotificationTime: 59.65 * 60,
   authority: process.env.REACT_APP_OIDC_AUTHORITY,

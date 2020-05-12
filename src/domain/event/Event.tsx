@@ -98,6 +98,7 @@ const Event = () => {
 
   if (loading) return <LoadingSpinner isLoading={true} />;
   if (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
     Sentry.captureException(error);
     return (

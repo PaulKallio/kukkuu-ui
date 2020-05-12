@@ -36,6 +36,7 @@ const Profile: FunctionComponent = () => {
 
   if (loading) return <LoadingSpinner isLoading={true} />;
   if (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
     dispatch(clearProfile());
     Sentry.captureException(error);

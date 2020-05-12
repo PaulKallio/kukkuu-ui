@@ -1,6 +1,8 @@
 export type BackendAuthenticationData = {
   isFetchingToken: boolean;
   apiToken: string | null;
+  hasProfile: boolean;
+  mustRenewToken: boolean;
   errors: object;
 };
 

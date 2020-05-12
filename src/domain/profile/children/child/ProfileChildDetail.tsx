@@ -61,6 +61,7 @@ const ProfileChildDetail: React.FunctionComponent = () => {
   }
 
   if (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
     Sentry.captureException(error);
     return <ErrorMessage message={t('api.errorMessage')} />;
