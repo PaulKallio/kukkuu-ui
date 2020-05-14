@@ -123,8 +123,8 @@ const RegistrationForm: FunctionComponent = () => {
                   history.push('/registration/success');
                 })
                 .catch((error) => {
-                  toast(t('registration.submitMutation.errorMessage'), {
-                    type: toast.TYPE.ERROR,
+                  toast.error(t('registration.submitMutation.errorMessage'), {
+                    type: error,
                   });
                   Sentry.captureException(error);
                 });

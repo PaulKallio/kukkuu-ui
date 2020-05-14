@@ -76,9 +76,7 @@ const Enrol: FunctionComponent = () => {
   if (error) {
     // eslint-disable-next-line no-console
     console.error(error);
-    toast(t('api.errorMessage'), {
-      type: toast.TYPE.ERROR,
-    });
+    toast.error(t('api.errorMessage'));
     Sentry.captureException(error);
     return <ErrorMessage message={t('api.errorMessage')} />;
   }
@@ -101,9 +99,7 @@ const Enrol: FunctionComponent = () => {
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
-      toast(t('registration.submitMutation.errorMessage'), {
-        type: toast.TYPE.ERROR,
-      });
+      toast.error(t('registration.submitMutation.errorMessage'));
     }
   };
 

@@ -51,9 +51,7 @@ function OidcCallback(props: RouteChildrenProps) {
     }
 
     setCallbackMessage({ message });
-    toast(shortMessage, {
-      type: toast.TYPE.ERROR,
-    });
+    toast.error(shortMessage);
   };
 
   return (

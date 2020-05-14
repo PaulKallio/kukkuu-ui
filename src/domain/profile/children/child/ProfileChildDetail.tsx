@@ -130,9 +130,9 @@ const ProfileChildDetail: React.FunctionComponent = () => {
                         },
                       });
                     } catch (error) {
-                      toast(t('registration.submitMutation.errorMessage'), {
-                        type: toast.TYPE.ERROR,
-                      });
+                      toast.error(
+                        t('registration.submitMutation.errorMessage')
+                      );
                       Sentry.captureException(error);
                     }
                   }}
@@ -150,9 +150,9 @@ const ProfileChildDetail: React.FunctionComponent = () => {
                         history.push('/profile');
                       }
                     } catch (error) {
-                      toast(t('registration.submitMutation.errorMessage'), {
-                        type: toast.TYPE.ERROR,
-                      });
+                      toast.error(
+                        t('registration.submitMutation.errorMessage')
+                      );
                       Sentry.captureException(error);
                     }
                   }}
