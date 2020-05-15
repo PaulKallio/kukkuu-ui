@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router';
@@ -34,7 +34,7 @@ import { childByIdQuery as ChildByIdResponse } from '../../../api/generatedTypes
 import ErrorMessage from '../../../../common/components/error/Error';
 export type ChildDetailEditModalPayload = Omit<EditChildInput, 'id'>;
 
-const ProfileChildDetail: React.FunctionComponent = () => {
+const ProfileChildDetail: FunctionComponent = () => {
   const { t } = useTranslation();
   const params = useParams<{ childId: string }>();
   const guardian = useSelector(profileSelector);
@@ -55,7 +55,7 @@ const ProfileChildDetail: React.FunctionComponent = () => {
     ],
   });
 
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   if (loading) {
     return <LoadingSpinner isLoading={true} />;
   }
