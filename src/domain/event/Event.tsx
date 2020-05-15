@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams, useHistory, useLocation } from 'react-router-dom';
+import { useParams, useLocation, Redirect } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import * as Sentry from '@sentry/browser';
 import { useSelector } from 'react-redux';
@@ -39,7 +39,6 @@ export interface FilterOptions {
 
 const Event = () => {
   const { t } = useTranslation();
-  const history = useHistory();
   const location = useLocation();
 
   const params = useParams<{
@@ -66,19 +65,6 @@ const Event = () => {
     id: params.eventId,
   };
 
-  // Child is already registered for this event. Only way to come to this
-  // page is through 1. back button, 2. bookmark / history
-
-  // FIXME: Move this logic into a selector - IF you ever need it somewhere else.
-  // Why not now? Because I don't want to move childId & eventId into state right now.
-  const isRegistered = useSelector(childrenEventSelector)
-    .filter((c) => c.childId === params.childId)
-    .pop()
-    ?.eventIds.some((e) => e === params.eventId);
-  if (isRegistered && !past) {
-    history.replace(`/profile/child/${params.childId}`);
-  }
-
   const { loading, error, data, refetch } = useQuery<EventQueryType>(
     eventQuery,
     { variables }
@@ -96,6 +82,28 @@ const Event = () => {
     refetch({ ...filterValues, ...variables });
   };
 
+  // This page should not be available for children who are already
+  // registered for this event (unless it is in the past, when it shows as archived)
+  // The only way to come to this page is by using one of:
+  // 1. back arrow button (shown on the page in desktop mode)
+  // 2. browser back button
+  // 3. bookmark / history
+
+  // In this case we want to redirect back to the child detail page.
+
+  // FIXME: Move this logic into a selector - IF you ever need it somewhere else.
+  // Why not now? Because I don't want to move childId & eventId into state right now.
+  const isRegistered = useSelector(childrenEventSelector)
+    .filter((c) => c.childId === params.childId)
+    .pop()
+    ?.eventIds.some((e) => e === params.eventId);
+
+  // Child is registered for this event, redirect back to profile.
+  // If the event is in the past, we show it as an "archive event".
+  if (isRegistered && !past) {
+    return <Redirect to={`/profile/child/${params.childId}`} />;
+  }
+
   if (loading) return <LoadingSpinner isLoading={true} />;
   if (error) {
     // eslint-disable-next-line no-console
@@ -109,7 +117,6 @@ const Event = () => {
   }
 
   if (!data?.event) {
-    console.log('no event ffs');
     return <div>No event</div>;
   }
 
