@@ -23,19 +23,14 @@ export const loginTunnistamo = (path?: string) => {
     })
     .catch((error) => {
       if (error.message === 'Network Error') {
-        toast(i18n.t('authentication.networkError.message'), {
-          type: toast.TYPE.ERROR,
-        });
+        toast.error(i18n.t('authentication.networkError.message'));
       } else {
-        toast(i18n.t('authentication.errorMessage'), {
-          type: toast.TYPE.ERROR,
-        });
+        toast.error(i18n.t('authentication.errorMessage'));
         Sentry.captureException(error);
       }
       // eslint-disable-next-line no-console
       console.error(error);
     });
-  document.cookie = 'loggedOut; expires=Thu, 01 Jan 1970 00:00:00 GMT';
 };
 
 export const logoutTunnistamo = async () => {
@@ -70,8 +65,6 @@ export const authenticateWithBackend = (
     // eslint-disable-next-line no-console
     console.error(error);
     dispatch(fetchTokenError(error));
-    toast(i18n.t('authentication.errorMessage'), {
-      type: toast.TYPE.ERROR,
-    });
+    toast.error(i18n.t('authentication.errorMessage'));
   }
 };
