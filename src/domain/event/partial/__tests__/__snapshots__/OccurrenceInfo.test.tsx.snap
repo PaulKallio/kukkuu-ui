@@ -6,24 +6,28 @@ exports[`renders childByIdQuery occurrence snapshot correctly 1`] = `
 >
   <InfoItem
     className="label"
+    iconAlt="Päivämäärä"
     iconSrc="calendar.svg"
     key="0"
     label="08.03.2020"
   />
   <InfoItem
     className="label"
+    iconAlt="Kellonaika"
     iconSrc="clock.svg"
     key="1"
     label="06.00 - 06.12"
   />
   <InfoItem
     className="label"
+    iconAlt="Osallistujat"
     iconSrc="person.svg"
     key="2"
     label="Perhe"
   />
   <InfoItem
     className="label"
+    iconAlt="Tapahtumapaikka"
     iconSrc="location.svg"
     key="3"
     label="Musiikkitalo"
@@ -37,24 +41,28 @@ exports[`renders occurrence snapshot correctly 1`] = `
 >
   <InfoItem
     className="label"
+    iconAlt="Päivämäärä"
     iconSrc="calendar.svg"
     key="0"
     label="08.03.2020"
   />
   <InfoItem
     className="label"
+    iconAlt="Kellonaika"
     iconSrc="clock.svg"
     key="1"
     label="06.00 - 06.12"
   />
   <InfoItem
     className="label"
+    iconAlt="Osallistujat"
     iconSrc="person.svg"
     key="2"
     label="Perhe"
   />
   <InfoItem
     className="label"
+    iconAlt="Tapahtumapaikka"
     iconSrc="location.svg"
     key="3"
     label="Musiikkitalo"

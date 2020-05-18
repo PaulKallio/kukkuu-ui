@@ -39,16 +39,19 @@ const OccurrenceInfo: FunctionComponent<Props> = ({
     {
       id: 'time',
       iconSrc: calendarIcon,
+      iconAlt: t('event.register.occurrenceTableHeader.date'),
       label: formatTime(newMoment(occurrence.time), DEFAULT_DATE_FORMAT),
     },
     {
       id: 'duration',
       iconSrc: clockIcon,
+      iconAlt: t('event.register.occurrenceTableHeader.time'),
       label: formatOccurrenceTime(occurrence.time, occurrence.event.duration),
     },
     {
       id: 'participants',
       iconSrc: personIcon,
+      iconAlt: t('event.register.participants'),
       label: t(
         `event.participantsPerInviteEnum.${occurrence.event.participantsPerInvite}`
       ),
@@ -56,6 +59,7 @@ const OccurrenceInfo: FunctionComponent<Props> = ({
     {
       id: 'venue',
       iconSrc: locationIcon,
+      iconAlt: t('event.register.occurrenceTableHeader.venue'),
       label: occurrence.venue.name || '',
     },
   ];

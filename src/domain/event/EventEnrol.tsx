@@ -43,7 +43,11 @@ const EventEnrol = ({
       <div className={styles.register}>
         <h2>{t('event.register.form.header')}</h2>
         <div className={styles.attendees}>
-          <Icon src={personIcon} className={styles.icon} />
+          <Icon
+            src={personIcon}
+            alt={t('event.register.participants')}
+            className={styles.icon}
+          />
           {participantsPerInvite}
         </div>
         <div className={styles.signup}>

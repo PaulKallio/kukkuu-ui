@@ -188,6 +188,7 @@
       "form": {
         "header": "Anmäl dig"
       },
+      "participants": "Deltagare",
       "occurrenceTableHeader": {
         "buttonText": "Välj",
         "date": "Datum",
@@ -362,6 +363,7 @@
         "edit": {
           "text": "Uppdatera barnets uppgifter"
         },
+        "guardiansName": "Närstående vuxens namn",
         "page": {
           "title": "Barnets uppgifter"
         },
