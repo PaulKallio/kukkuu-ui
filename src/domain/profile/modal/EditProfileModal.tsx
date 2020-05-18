@@ -60,9 +60,7 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
       trackEvent({ category: 'action', action: 'Edit profile' });
       setIsOpen(false);
     } catch (error) {
-      toast.error(t('registration.submitMutation.errorMessage'), {
-        type: error,
-      });
+      toast.error(t('registration.submitMutation.errorMessage'));
       Sentry.captureException(error);
     }
   };
