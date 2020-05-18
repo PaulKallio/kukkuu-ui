@@ -51,9 +51,7 @@ const ProfileChildrenList: FunctionComponent = () => {
                   trackEvent({ category: 'action', action: 'Add child' });
                 })
                 .catch((error) => {
-                  toast.error(t('profile.addChildMutation.errorMessage'), {
-                    type: error,
-                  });
+                  toast.error(t('profile.addChildMutation.errorMessage'));
                   Sentry.captureException(error);
                 });
             }}
