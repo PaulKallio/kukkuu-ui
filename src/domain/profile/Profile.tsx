@@ -75,7 +75,10 @@ const Profile: FunctionComponent = () => {
             )}
             <div className={styles.guardianInfo}>
               <div className={styles.guardianInfoRow}>
-                <Icon src={emailIcon} />
+                <Icon
+                  src={emailIcon}
+                  alt={t('registration.form.guardian.email.input.label')}
+                />
                 <span>{data.myProfile.email}</span>
               </div>
               <div className={styles.guardianInfoRow}>

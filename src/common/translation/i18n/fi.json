@@ -188,6 +188,7 @@
       "form": {
         "header": "Ilmoittaudu"
       },
+      "participants": "Osallistujat",
       "occurrenceTableHeader": {
         "buttonText": "Valitse",
         "date": "Päivämäärä",
@@ -362,6 +363,7 @@
         "edit": {
           "text": "Päivitä kummilapsen tiedot"
         },
+        "guardiansName": "Lähiaikuisen nimi",
         "page": {
           "title": "Kummilapsen tiedot"
         },
