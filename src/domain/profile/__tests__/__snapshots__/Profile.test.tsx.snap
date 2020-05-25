@@ -214,7 +214,7 @@ exports[`renders snapshot correctly 1`] = `
         },
       },
       "typeDefs": undefined,
-      "version": "2.6.8",
+      "version": "2.6.10",
       "watchQuery": [Function],
     }
   }

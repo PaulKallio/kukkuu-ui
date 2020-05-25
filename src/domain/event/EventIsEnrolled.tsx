@@ -1,11 +1,10 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import * as Sentry from '@sentry/browser';
 import { useQuery } from '@apollo/react-hooks';
 
 import styles from './event.module.scss';
-import PageWrapper from '../app/layout/PageWrapper';
 import Button from '../../common/components/button/Button';
 import occurrenceQuery from './queries/occurrenceQuery';
 import { occurrenceQuery as OccurrenceQueryType } from '../api/generatedTypes/occurrenceQuery';
@@ -15,8 +14,10 @@ import UnenrolModal from './modal/UnenrolModal';
 import VenueFeatures from './VenueFeatures';
 import Paragraph from '../../common/components/paragraph/Paragraph';
 import EventPage from './EventPage';
+import SuccessToast from './enrol/SuccessToast';
+import ErrorMessage from '../../common/components/error/Error';
 
-const EventIsEnrolled: FunctionComponent = () => {
+const EventIsEnrolled = () => {
   const { t } = useTranslation();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -30,11 +31,7 @@ const EventIsEnrolled: FunctionComponent = () => {
     }
   );
 
-  const errorMessage = (
-    <PageWrapper>
-      <div className={styles.event}>{t('api.errorMessage')}</div>
-    </PageWrapper>
-  );
+  const errorMessage = <ErrorMessage message={t('api.errorMessage')} />;
 
   if (loading) return <LoadingSpinner isLoading={true} />;
   if (error) {
@@ -45,7 +42,7 @@ const EventIsEnrolled: FunctionComponent = () => {
   if (!data?.occurrence) return errorMessage;
 
   return (
-    <EventPage event={data.occurrence.event}>
+    <EventPage event={data.occurrence.event} success={<SuccessToast />}>
       <OccurrenceInfo
         className={styles.occurrenceInfo}
         occurrence={data.occurrence}

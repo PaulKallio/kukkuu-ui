@@ -1,7 +1,7 @@
-@import 'layout';
-@import 'variables';
-@import 'fonts';
-@import 'colors';
+@import 'styles/layout';
+@import 'styles/variables';
+@import 'styles/fonts';
+@import 'styles/colors';
 
 .birthdateField {
   text-align: left;
@@ -12,6 +12,11 @@
     font-weight: $font-weight-bold;
     margin-bottom: $baseMargin * 0.25;
     display: inline-block;
+  }
+
+  .immutableField {
+    margin-top: 0px;
+    font-size: var(--hds-text-md);
   }
 
   .inputWrapper {

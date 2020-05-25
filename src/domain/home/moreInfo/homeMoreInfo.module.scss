@@ -1,0 +1,26 @@
+@import 'styles/mixins';
+@import 'styles/layout';
+@import 'styles/variables';
+
+.wrapper {
+  @include background($hel-light);
+  padding: 2rem 0 2 * $largeMargin 0;
+
+  display: grid;
+  grid-template-columns: 1fr minmax(auto, $containerMaxWidth) 1fr;
+}
+
+.innerwrapper {
+  h2 {
+    margin-top: 0;
+  }
+  p {
+    margin-bottom: $largeMargin;
+  }
+
+  text-align: center;
+
+  grid-column: 2;
+  display: grid;
+  justify-content: center;
+}

@@ -6,8 +6,8 @@ import { QRCode } from 'react-qrcode-logo';
 import Card from '../../../common/components/card/Card';
 import {
   childByIdQuery_child_availableEvents as AvailableEventsTypes,
-  childByIdQuery_child_enrolments as EnrolmentsTypes,
   childByIdQuery_child_pastEvents as PastEventsTypes,
+  childByIdQuery_child_occurrences as Occurrences,
 } from '../../api/generatedTypes/childByIdQuery';
 import styles from './profileEventsList.module.scss';
 import OccurrenceInfo from '../../event/partial/OccurrenceInfo';
@@ -16,23 +16,24 @@ import Paragraph from '../../../common/components/paragraph/Paragraph';
 interface ProfileEventsListProps {
   availableEvents: AvailableEventsTypes | null;
   childId: string;
-  enrolments: EnrolmentsTypes;
   pastEvents: PastEventsTypes | null;
+  occurrences: Occurrences | null;
 }
 
-const QR_CODE_SIZE_PX = 180;
+const QR_CODE_SIZE_PX = 300;
 
 const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
   availableEvents,
   childId,
-  enrolments,
+  occurrences,
   pastEvents,
 }) => {
   const history = useHistory();
   const { t } = useTranslation();
 
-  const gotoEventPage = (eventId: string) => {
-    history.push(`/profile/child/${childId}/event/${eventId}`);
+  const gotoEventPage = (eventId: string, past = false) => {
+    const pastUrl = past ? '/past' : '';
+    history.push(`/profile/child/${childId}/event/${eventId}${pastUrl}`);
   };
 
   const gotoOccurrencePage = (occurrenceId: string) => {
@@ -63,32 +64,35 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
           )}
         </div>
       )}
-      {enrolments.edges?.[0] && (
+      {occurrences?.edges?.[0] && (
         <div className={styles.eventsList}>
           <h2>{t('profile.events.upcoming.heading')}</h2>
-          {enrolments.edges.map(
-            (enrolmentEdge) =>
-              enrolmentEdge?.node?.occurrence && (
+          {occurrences.edges.map(
+            (occurrenceEdge) =>
+              occurrenceEdge?.node && (
                 <Card
-                  key={enrolmentEdge.node.occurrence.event.id}
-                  title={enrolmentEdge.node.occurrence.event.name || ''}
+                  key={occurrenceEdge.node.event.id}
+                  title={occurrenceEdge.node.event.name || ''}
                   imageElement={
                     <div className={styles.qrWrapper}>
                       <QRCode
                         quietZone={0}
                         size={QR_CODE_SIZE_PX}
-                        value={'Hello World - this works'}
+                        value={occurrenceEdge.node.event.name || ''}
                         ecLevel={'H'}
                       />
                     </div>
                   }
                   action={() =>
-                    gotoOccurrencePage(enrolmentEdge.node?.occurrence.id || '')
+                    gotoOccurrencePage(occurrenceEdge.node?.id || '')
                   }
                   actionText={t('enrollment.showEventInfo.buttonText')}
-                  focalContent={OccurrenceInfo(enrolmentEdge.node)}
+                  focalContent={OccurrenceInfo({
+                    occurrence: occurrenceEdge.node,
+                    show: ['time', 'duration', 'venue'],
+                  })}
                 >
-                  <p>{enrolmentEdge.node.occurrence.event.shortDescription}</p>
+                  <p>{occurrenceEdge.node.event.shortDescription}</p>
                 </Card>
               )
           )}
@@ -104,7 +108,9 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
                   key={pastEventEdge.node.id}
                   imageSrc={pastEventEdge.node.image}
                   title={pastEventEdge.node.name || ''}
-                  action={() => gotoEventPage(pastEventEdge.node?.id || '')}
+                  action={() =>
+                    gotoEventPage(pastEventEdge.node?.id || '', true)
+                  }
                   actionText={t('enrollment.showEventInfo.buttonText')}
                 >
                   <p>{pastEventEdge.node.shortDescription}</p>

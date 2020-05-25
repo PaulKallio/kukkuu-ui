@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import * as Sentry from '@sentry/browser';
-import classnames from 'classnames';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import joinClassNames from 'classnames';
 
 import PageWrapper from '../../app/layout/PageWrapper';
 import styles from './enrol.module.scss';
@@ -14,13 +15,20 @@ import { occurrenceQuery as OccurrenceQueryType } from '../../api/generatedTypes
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import OccurrenceInfo from '../partial/OccurrenceInfo';
 import enrolOccurrenceMutation from '../mutations/enrolOccurrenceMutation';
-import { EnrolOccurrenceMutationInput } from '../../api/generatedTypes/globalTypes';
+import {
+  enrolOccurrenceMutation as EnrolOccurrenceMutationData,
+  enrolOccurrenceMutationVariables as EnrolOccurrenceMutationVariables,
+} from '../../api/generatedTypes/enrolOccurrenceMutation';
 import profileQuery from '../../profile/queries/ProfileQuery';
 import { childByIdQuery } from '../../child/queries/ChildQueries';
+import { saveChildEvents, justEnrolled } from '../state/EventActions';
+import ErrorMessage from '../../../common/components/error/Error';
 
 const Enrol: FunctionComponent = () => {
   const history = useHistory();
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
   const params = useParams<{
     childId: string;
     eventId: string;
@@ -38,62 +46,67 @@ const Enrol: FunctionComponent = () => {
 
   // If redirect to /profile, need to do refetchquery
   // Might need to refetch myProfile in any case
-  const [enrolOccurrence] = useMutation<EnrolOccurrenceMutationInput>(
-    enrolOccurrenceMutation,
-    {
-      refetchQueries: [
-        { query: profileQuery },
-        {
-          query: childByIdQuery,
-          variables: {
-            id: params.childId,
-          },
+  const [enrolOccurrence] = useMutation<
+    EnrolOccurrenceMutationData,
+    EnrolOccurrenceMutationVariables
+  >(enrolOccurrenceMutation, {
+    refetchQueries: [
+      { query: profileQuery },
+      {
+        query: childByIdQuery,
+        variables: {
+          id: params.childId,
         },
-      ],
-    }
-  );
+      },
+    ],
+    onCompleted: (data) => {
+      if (data?.enrolOccurrence?.enrolment?.child.occurrences.edges) {
+        dispatch(
+          saveChildEvents({
+            childId: params.childId,
+            occurrences: data.enrolOccurrence.enrolment.child.occurrences,
+          })
+        );
+        dispatch(justEnrolled());
+      }
+    },
+  });
 
   if (loading) return <LoadingSpinner isLoading={true} />;
   if (error) {
-    toast(t('api.errorMessage'), {
-      type: toast.TYPE.ERROR,
-    });
+    // eslint-disable-next-line no-console
+    console.error(error);
+    toast.error(t('api.errorMessage'));
     Sentry.captureException(error);
-    return (
-      <PageWrapper>
-        <div className={styles.event}>{t('api.errorMessage')}</div>
-      </PageWrapper>
-    );
+    return <ErrorMessage message={t('api.errorMessage')} />;
   }
-
   if (!data?.occurrence?.id) return <div>no data</div>;
-
   const enrol = async () => {
     try {
+      if (!data?.occurrence?.id) throw Error('No result');
       await enrolOccurrence({
         variables: {
           input: {
-            occurrenceId: data?.occurrence?.id,
+            occurrenceId: data.occurrence.id,
             childId: params.childId,
           },
         },
       });
+
       history.replace(
-        `/profile/child/${params.childId}/occurrence/${data?.occurrence?.id}`
+        `/profile/child/${params.childId}/occurrence/${data.occurrence.id}`
       );
     } catch (error) {
-      // TODO: KK-280 Handle errors nicely
+      // eslint-disable-next-line no-console
       console.error(error);
-      toast(t('registration.submitMutation.errorMessage'), {
-        type: toast.TYPE.ERROR,
-      });
+      toast.error(t('registration.submitMutation.errorMessage'));
     }
   };
 
   return (
     <PageWrapper
       className={styles.wrapper}
-      containerClassName={classnames(styles.enrolContainer)}
+      containerClassName={joinClassNames(styles.enrolContainer)}
       title={'Enrol'}
     >
       <div className={styles.enrolWrapper} role="main">
@@ -102,9 +115,12 @@ const Enrol: FunctionComponent = () => {
             data.occurrence.event.name
           }`}</h1>
         </div>
+        <div className={styles.text}>
+          {t('enrollment.confirmationPage.text')}
+        </div>
         <OccurrenceInfo
           occurrence={data.occurrence}
-          className={styles.occurrenceInfo}
+          className={joinClassNames(styles.occurrenceInfo, styles.wrap)}
         />
 
         <div className={styles.actions}>

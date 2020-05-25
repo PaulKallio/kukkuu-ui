@@ -7,6 +7,14 @@
 // GraphQL query operation: ChildrenQuery
 // ====================================================
 
+export interface ChildrenQuery_children_edges_node_project {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  year: number;
+}
+
 export interface ChildrenQuery_children_edges_node_guardians_edges_node {
   /**
    * The ID of the object.
@@ -60,6 +68,7 @@ export interface ChildrenQuery_children_edges_node {
   lastName: string;
   birthdate: any;
   postalCode: string;
+  project: ChildrenQuery_children_edges_node_project;
   guardians: ChildrenQuery_children_edges_node_guardians;
   relationships: ChildrenQuery_children_edges_node_relationships;
 }

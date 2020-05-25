@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FunctionComponent, Fragment, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useMutation } from '@apollo/react-hooks';
@@ -17,11 +17,13 @@ import { getSupportedChildData } from '../../child/ChildUtils';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import profileQuery from '../queries/ProfileQuery';
 import Button from '../../../common/components/button/Button';
+import { getProjectsFromProfileQuery } from '../ProfileUtil';
+import { UpdateChildMutationInput } from '../../api/generatedTypes/globalTypes';
 
-const ProfileChildrenList: React.FunctionComponent = () => {
+const ProfileChildrenList: FunctionComponent = () => {
   const { t } = useTranslation();
   const children = useSelector(profileChildrenSelector);
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [addChild, { loading: mutationLoading }] = useMutation(
     addChildMutation,
     {
@@ -38,18 +40,18 @@ const ProfileChildrenList: React.FunctionComponent = () => {
         <h2>{t('profile.heading')}</h2>
         {isOpen && (
           <AddNewChildFormModal
-            isOpen={isOpen}
             setIsOpen={setIsOpen}
             addChild={(payload) => {
-              const supportedChildData = getSupportedChildData(payload);
+              const supportedChildData: Omit<
+                UpdateChildMutationInput,
+                'id'
+              > = getSupportedChildData(payload);
               addChild({ variables: { input: supportedChildData } })
                 .then(() => {
                   trackEvent({ category: 'action', action: 'Add child' });
                 })
                 .catch((error) => {
-                  toast(t('profile.addChildMutation.errorMessage'), {
-                    type: toast.TYPE.ERROR,
-                  });
+                  toast.error(t('profile.addChildMutation.errorMessage'));
                   Sentry.captureException(error);
                 });
             }}
@@ -58,17 +60,26 @@ const ProfileChildrenList: React.FunctionComponent = () => {
       </div>
 
       <div className={styles.childrenList}>
-        {children ? (
+        {children.edges ? (
           <>
-            <div className={styles.thisYearPartner}>
-              <h3>{t('partners.2020')}</h3>
-              {/* TODO: make me dynamic partners after more data came */}
-            </div>
-            {children.edges.map((childEdge) =>
-              childEdge?.node ? (
-                <ProfileChild key={childEdge.node.id} child={childEdge.node} />
-              ) : null
-            )}
+            {getProjectsFromProfileQuery(children).map((project) => (
+              <Fragment key={project.id}>
+                <div className={styles.thisYearPartner}>
+                  <h3>
+                    {project.year} {project.name}
+                  </h3>
+                </div>
+                {children.edges.map((childEdge) =>
+                  childEdge?.node?.id &&
+                  childEdge.node.project.year === project.year ? (
+                    <ProfileChild
+                      key={childEdge.node.id}
+                      child={childEdge.node}
+                    />
+                  ) : null
+                )}
+              </Fragment>
+            ))}
           </>
         ) : (
           <div className={styles.noChild}>

@@ -11,7 +11,7 @@ import RegistrationForm from '../registration/form/RegistrationForm';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import {
   isLoadingUserSelector,
-  apiTokenSelector,
+  mustRenewApiTokenSelector,
   userSelector,
 } from '../auth/state/AuthenticationSelectors';
 import Welcome from '../registration/welcome/Welcome';
@@ -28,23 +28,20 @@ import ProfileRoute from '../profile/route/ProfileRoute';
 import EventRoute from '../event/route/EventRoute';
 import SessionAlert from './sessionAlert/SessionAlert';
 
-const App: React.FunctionComponent = (props) => {
+const App = () => {
   const isLoadingUser = useSelector(isLoadingUserSelector);
   const { locale } = useParams<{ locale: string }>();
   const userHasProfile = useSelector(userHasProfileSelector);
   const isSessionPromptOpen = useSelector(isSessionExpiredPromptOpen);
-  const apiToken = useSelector(apiTokenSelector);
+  const mustRenewApiToken = useSelector(mustRenewApiTokenSelector);
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
 
   useEffect(() => {
-    if (apiToken) {
-      // Skip token fetch if token already existed
+    if (!mustRenewApiToken) {
       dispatch(tokenFetched());
-
-      // If no token but access token is ready for exchange
-      // start to fetch apiToken
-    } else if (user?.access_token) {
+      // Start fetching apiToken when logged in
+    } else if (user?.access_token && mustRenewApiToken) {
       dispatch(authenticateWithBackend(user.access_token));
     } else {
       // No access token, usually first time user
@@ -57,10 +54,7 @@ const App: React.FunctionComponent = (props) => {
         })
       );
     }
-    // TODO: useEffect subscribe for changes from apiToken and user data
-    // When silent-renew is fixed here in KK-261
-    // !apiToken can be removed so silent-renew will auto make api token exchange
-  }, [apiToken, dispatch, user]);
+  }, [mustRenewApiToken, dispatch, user]);
 
   return (
     <LoadingSpinner isLoading={isLoadingUser}>

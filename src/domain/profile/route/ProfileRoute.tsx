@@ -27,6 +27,11 @@ const ProfileRoute: FunctionComponent = () => {
       />
       <Route
         exact
+        component={Event}
+        path={`/${currentLocale}/profile/child/:childId/event/:eventId/past`}
+      />
+      <Route
+        exact
         component={EventIsEnrolled}
         path={`/${currentLocale}/profile/child/:childId/occurrence/:occurrenceId`}
       />

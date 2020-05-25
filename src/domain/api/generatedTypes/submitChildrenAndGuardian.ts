@@ -9,6 +9,15 @@ import { ChildInput, GuardianInput, Language, RelationshipTypeEnum } from "./glo
 // GraphQL mutation operation: submitChildrenAndGuardian
 // ====================================================
 
+export interface submitChildrenAndGuardian_submitChildrenAndGuardian_guardian_children_edges_node_project {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string | null;
+  year: number;
+}
+
 export interface submitChildrenAndGuardian_submitChildrenAndGuardian_guardian_children_edges_node_relationships_edges_node {
   /**
    * The ID of the object.
@@ -40,6 +49,7 @@ export interface submitChildrenAndGuardian_submitChildrenAndGuardian_guardian_ch
   lastName: string;
   birthdate: any;
   postalCode: string;
+  project: submitChildrenAndGuardian_submitChildrenAndGuardian_guardian_children_edges_node_project;
   relationships: submitChildrenAndGuardian_submitChildrenAndGuardian_guardian_children_edges_node_relationships;
 }
 

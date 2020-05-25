@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
 
@@ -17,12 +17,12 @@ export interface EventEnrolProps {
   onFilterUpdate: (filterValues: FilterValues) => void;
 }
 
-const EventEnrol: FunctionComponent<EventEnrolProps> = ({
+const EventEnrol = ({
   data,
   filterValues,
   options,
   onFilterUpdate,
-}) => {
+}: EventEnrolProps) => {
   const { t } = useTranslation();
 
   const handleSubmit = (filterValues: FilterValues) => {

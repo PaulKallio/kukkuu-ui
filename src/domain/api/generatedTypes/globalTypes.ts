@@ -7,9 +7,6 @@
 // START Enums and Input Objects
 //==============================================================
 
-/**
- * An enumeration.
- */
 export enum EventParticipantsPerInvite {
   CHILD_AND_GUARDIAN = "CHILD_AND_GUARDIAN",
   FAMILY = "FAMILY",

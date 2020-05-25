@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useRef, RefObject } from 'react';
+import React, { FunctionComponent, useRef, RefObject, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import classnames from 'classnames';
 import { useQuery } from '@apollo/react-hooks';
@@ -9,12 +9,15 @@ import PageWrapper from '../app/layout/PageWrapper';
 import HomeHero from './hero/HomeHero';
 import HomeInstructions from './instructions/HomeInstructions';
 import HomePartners from './partners/HomePartners';
+import HomeVideo from './video/HomeVideo';
 import HomeContact from './contact/HomeContact';
 import { isAuthenticatedSelector } from '../auth/state/AuthenticationSelectors';
 import { profileQuery as ProfileQueryType } from '../api/generatedTypes/profileQuery';
 import profileQuery from '../profile/queries/ProfileQuery';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import { clearProfile, saveProfile } from '../profile/state/ProfileActions';
+import { defaultProfileData } from '../profile/state/ProfileReducers';
+import HomeMoreInfo from './moreInfo/HomeMoreInfo';
 
 const Home: FunctionComponent = () => {
   const dispatch = useDispatch();
@@ -33,12 +36,13 @@ const Home: FunctionComponent = () => {
     }
   };
 
+  useEffect(() => {
+    dispatch(saveProfile(data?.myProfile || defaultProfileData));
+  }, [data, dispatch]);
+
   if (loading) return <LoadingSpinner isLoading={true} />;
   if (error) {
     dispatch(clearProfile());
-  }
-  if (data?.myProfile) {
-    dispatch(saveProfile(data.myProfile));
   }
 
   const userHasProfile = !!data?.myProfile;
@@ -56,8 +60,10 @@ const Home: FunctionComponent = () => {
           userIsAuthenticated={userIsAuthenticated}
           scrollToForm={() => scrollToForm(formRef)}
         />
+        <HomeMoreInfo />
         <HomeInstructions />
         {!userHasProfile && <HomePreliminaryForm forwardRef={formRef} />}
+        <HomeVideo />
         <HomePartners />
         <HomeContact />
       </div>

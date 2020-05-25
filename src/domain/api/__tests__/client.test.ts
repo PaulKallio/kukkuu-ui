@@ -1,5 +1,5 @@
 import client from '../client';
-import { childrenQuery } from '../../child/queries/ChildQueries';
+import profileQuery from '../../profile/queries/ProfileQuery';
 
 jest.mock('../../auth/state/AuthenticationSelectors', () => ({
   apiTokenSelector: () => 'foo',
@@ -21,11 +21,13 @@ describe('graphql client', () => {
 
     try {
       await client.query({
-        query: childrenQuery,
+        query: profileQuery,
       });
-    } catch (e) {}
+    } catch (e) {
+      throw e;
+    }
 
     const fetchOptions = global.fetch.mock.calls[0][1];
-    expect(fetchOptions.headers).toHaveProperty('authorization', 'Bearer foo');
+    expect(fetchOptions?.headers).toHaveProperty('authorization', 'Bearer foo');
   });
 });

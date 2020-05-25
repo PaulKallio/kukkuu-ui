@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders snapshot correctly 1`] = `
+<section
+  className="wrapper"
+>
+  <div
+    className="innerwrapper"
+  >
+    <h2>
+      Yhteistyökumppanit
+    </h2>
+    <div
+      className="partners"
+    >
+      <Partners
+        partners={
+          Array [
+            Object {
+              "altLangIcons": Object {
+                "sv": "helsinki-sv.svg",
+              },
+              "icon": "helsinki-fi.svg",
+              "name": "hel",
+            },
+            Object {
+              "icon": "jaes.png",
+              "name": "jaes",
+            },
+          ]
+        }
+        size="big"
+      />
+      <Partners
+        partners={
+          Array [
+            Object {
+              "icon": "amosrex.png",
+              "name": "amosrex",
+            },
+            Object {
+              "icon": "cirko.png",
+              "name": "cirko",
+            },
+            Object {
+              "icon": "dotdot.png",
+              "name": "dot",
+            },
+            Object {
+              "icon": "designmuseum.png",
+              "name": "designmuseum",
+            },
+            Object {
+              "icon": "hamhelsinki.png",
+              "name": "hamhelsinki",
+            },
+            Object {
+              "icon": "helsinginkaupunginmuseo.png",
+              "name": "helsinginkaupunginmuseo",
+            },
+            Object {
+              "icon": "helsinginkaupunginorkesteri.png",
+              "name": "helsinginkaupunginorkesteri",
+            },
+            Object {
+              "icon": "hkt.png",
+              "name": "hkt",
+            },
+            Object {
+              "icon": "hotellijaravintolamuseo.png",
+              "name": "hotellijaravintolamuseo",
+            },
+            Object {
+              "icon": "hurjaruuth.png",
+              "name": "hurjaruuth",
+            },
+            Object {
+              "icon": "kansallismuseo.png",
+              "name": "kansallismuseo",
+            },
+            Object {
+              "icon": "kansallisteatteri.png",
+              "name": "kansallisteatteri",
+            },
+            Object {
+              "icon": "kavi.png",
+              "name": "kavi",
+            },
+            Object {
+              "icon": "kulttuuriperintokasvatus.png",
+              "name": "kulttuuriperintokasvatus",
+            },
+            Object {
+              "icon": "mfa.png",
+              "name": "mfa",
+            },
+            Object {
+              "icon": "nukketeatterisampo.png",
+              "name": "nukketeatterisampo",
+            },
+            Object {
+              "icon": "oopperabaletti.png",
+              "name": "oopperabaletti",
+            },
+            Object {
+              "icon": "qteatteri.png",
+              "name": "qteatteri",
+            },
+            Object {
+              "icon": "svenskateatern.png",
+              "name": "svenskateatern",
+            },
+            Object {
+              "icon": "tanssintalo.png",
+              "name": "tanssintalo",
+            },
+            Object {
+              "icon": "teatteriilmio.png",
+              "name": "teatteriilmio",
+            },
+            Object {
+              "icon": "teatterimuseo.png",
+              "name": "teatterimuseo",
+            },
+            Object {
+              "icon": "valokuvataiteenmuseo.png",
+              "name": "valokuvataiteenmuseo",
+            },
+          ]
+        }
+        size="small"
+      />
+    </div>
+  </div>
+</section>
+`;

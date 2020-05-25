@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router';
@@ -31,9 +31,10 @@ import profileQuery from '../../queries/ProfileQuery';
 import { childByIdQuery } from '../../../child/queries/ChildQueries';
 import LoadingSpinner from '../../../../common/components/spinner/LoadingSpinner';
 import { childByIdQuery as ChildByIdResponse } from '../../../api/generatedTypes/childByIdQuery';
+import ErrorMessage from '../../../../common/components/error/Error';
 export type ChildDetailEditModalPayload = Omit<EditChildInput, 'id'>;
 
-const ProfileChildDetail: React.FunctionComponent = () => {
+const ProfileChildDetail: FunctionComponent = () => {
   const { t } = useTranslation();
   const params = useParams<{ childId: string }>();
   const guardian = useSelector(profileSelector);
@@ -54,18 +55,16 @@ const ProfileChildDetail: React.FunctionComponent = () => {
     ],
   });
 
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   if (loading) {
     return <LoadingSpinner isLoading={true} />;
   }
 
   if (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
     Sentry.captureException(error);
-    return (
-      <PageWrapper>
-        <div className={styles.profile}>{t('api.errorMessage')}</div>
-      </PageWrapper>
-    );
+    return <ErrorMessage message={t('api.errorMessage')} />;
   }
 
   const child = data?.child;
@@ -131,9 +130,9 @@ const ProfileChildDetail: React.FunctionComponent = () => {
                         },
                       });
                     } catch (error) {
-                      toast(t('registration.submitMutation.errorMessage'), {
-                        type: toast.TYPE.ERROR,
-                      });
+                      toast.error(
+                        t('registration.submitMutation.errorMessage')
+                      );
                       Sentry.captureException(error);
                     }
                   }}
@@ -151,9 +150,9 @@ const ProfileChildDetail: React.FunctionComponent = () => {
                         history.push('/profile');
                       }
                     } catch (error) {
-                      toast(t('registration.submitMutation.errorMessage'), {
-                        type: toast.TYPE.ERROR,
-                      });
+                      toast.error(
+                        t('registration.submitMutation.errorMessage')
+                      );
                       Sentry.captureException(error);
                     }
                   }}

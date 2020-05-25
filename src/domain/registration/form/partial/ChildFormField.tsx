@@ -95,6 +95,7 @@ const ChildFormField: React.FunctionComponent<ChildFormFieldProps> = ({
           id={`children[${childIndex}].relationship.type`}
           name={`children[${childIndex}].relationship.type`}
           label={t('registration.form.child.relationship.input.label')}
+          required={true}
           component={SelectField}
           options={getTranslatedRelationshipOptions(t)}
           placeholder={t(

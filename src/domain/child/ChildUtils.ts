@@ -2,9 +2,10 @@ import { TFunction } from 'i18next';
 import omit from 'lodash/omit';
 
 import { RelationshipTypeEnum } from '../api/generatedTypes/globalTypes';
-import { Child } from './types/ChildTypes';
+import { Child, UpdateChild, AddChild } from './types/ChildTypes';
 import { newMoment } from '../../common/time/utils';
 import { defaultChildFormBirthdate } from './ChildConstants';
+
 interface ChildRelationshipOptions {
   label: string;
   value: RelationshipTypeEnum;
@@ -37,8 +38,18 @@ export const getTranslatedRelationshipOptions = (
  * have the same types as the child data received from backend
  * TODO: Fix reducer default data to match backend typing
  */
-export const getSupportedChildData = (child: Child) => {
-  return omit(child, 'homeCity');
+export const getSupportedChildData = (
+  child: Child | AddChild | UpdateChild
+) => {
+  return omit(child, [
+    'project',
+    'homeCity',
+    'occurrences',
+    'availableEvents',
+    'enrolments',
+    'pastEvents',
+    '__typename',
+  ]);
 };
 
 /**

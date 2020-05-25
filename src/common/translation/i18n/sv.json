@@ -7,6 +7,10 @@
   },
   "appName": "Kulturens fadderbarn",
   "authentication": {
+    "deviceTimeError": {
+      "message": "Tro det eller inte, men vi kan inte låta dig logga in eftersom klockan på din enhet är mer än fem minuter fel. Ställ in tiden och försök igen.",
+      "shortMessage": "Log in error. Check your device time and try again."
+    },
     "errorMessage": "Ett fel uppstod. Försök igen",
     "loadUserError": {
       "message": "Ett fel uppstod. Försök att logga in igen."
@@ -19,6 +23,10 @@
     },
     "networkError": {
       "message": "Inloggningsfel: Kontrollera din nätverksanslutning eller försök igen senare"
+    },
+    "permRequestDenied": {
+      "message": "You need to approve our request to access your Tunnistamo profile in order to use this service. Please try logging in again.",
+      "shortMessage": "Login error: Authentication request denied"
     },
     "redirect": {
       "text": "Omdirigerar till inloggning..."
@@ -121,55 +129,52 @@
   "email": {
     "title": "Välkommen som kulturens fadderbarn!"
   },
-  "enrollment ": {
-    "successToast": {
-      "paragraph": ""
-    }
-  },
   "enrollment": {
     "button": {
-      "occurenceFull": "",
-      "queue": "",
-      "selectOccurence": ""
+      "occurenceFull": "Fullt",
+      "queue": "Ställ dig i kö",
+      "selectOccurence": "Välj"
     },
     "confirmationPage": {
       "cancel": {
-        "button": ""
+        "button": "Tillbaka till val av evenemang"
       },
       "confirm": {
-        "button": ""
+        "button": "Anmäl dig till evenemanget"
       },
-      "heading": ""
+      "heading": "Anmäl dig till evenemanget",
+      "text": "Kontrollera att informationen nedan motsvarar de evenemang du vill delta i."
     },
     "enroll": {
-      "buttonText": ""
+      "buttonText": "Anmäl dig till evenemanget"
     },
-    "heading": "",
-    "selectDate": "",
-    "selectLanguage": "",
-    "selectlocation": "",
-    "selectTime": "",
+    "heading": "Anmäl dig",
+    "selectDate": "Välj datum",
+    "selectLanguage": "Välj språk",
+    "selectlocation": "Välj plats",
+    "selectTime": "Välj klockslag",
     "showEventInfo": {
-      "buttonText": ""
+      "buttonText": "Visa evenemangets information"
     },
-    "successToas": {
-      "heading": ""
+    "successToast": {
+      "heading": "Anmälan till evenemanget lyckades!",
+      "paragraph": "Vi skickade en bekräftelse till din epost, den innehåller mer information om evenemanget"
     }
   },
   "event": {
     "cancellation": {
-      "buttonText": "",
+      "buttonText": "Avboka anmälan",
       "confirmationModal": {
         "cancel": {
-          "buttonText": ""
+          "buttonText": "Tillbaka till evenemangssidan"
         },
         "confirm": {
-          "buttonText": ""
+          "buttonText": "Avboka anmälan"
         },
-        "heading": ""
+        "heading": "Vill du säkert avboka diin anmälan?"
       },
-      "heading": "",
-      "paragraph": ""
+      "heading": "Avbokning av anmälan",
+      "paragraph": "Kom ihåg att avboka din plats Ifall du inte kan delta i evenemanget. Då får istället något annat barn möjligheten att delta. Tack för din omtanke!"
     },
     "participantsPerInviteEnum": {
       "CHILD_AND_GUARDIAN": "1 barn + 1 närstående",
@@ -187,9 +192,9 @@
         "buttonText": "Välj",
         "date": "Datum",
         "eventInformation": "Information on evenemanget",
-        "freePlaces": "Free places",
-        "time": "Time",
-        "venue": "Venue"
+        "freePlaces": "Lediga platser",
+        "time": "Klockslag",
+        "venue": "Plats"
       }
     }
   },
@@ -220,6 +225,14 @@
         "ticket": {
           "text": "Du får en inbjudan per e-post två gånger om året och kan i tjänsten anmäla dig till de evenemang som bäst passar dig."
         }
+      }
+    },
+    "moreInfo": {
+      "description": {
+        "text": "Ladda ner mer information om Kulturens fadderbarn-service på ditt eget språk."
+      },
+      "heading": {
+        "text": "Information om tjänsten på olika språk"
       }
     },
     "partners": {
@@ -256,6 +269,9 @@
     },
     "registration": {
       "text": "Börja genom att uppge hemort och födelsedag för barnet som deltar i verksamheten. Därefter kan du logga in i tjänsten och komplettera barnets fadderbarnsprofil. Det tar några minuter."
+    },
+    "video": {
+      "youtubeId": "cDB8iN3bVnY"
     }
   },
   "homePage": {
@@ -373,10 +389,10 @@
         "heading": "Eventinbjudningar"
       },
       "past": {
-        "heading": ""
+        "heading": "Gångna evenemang"
       },
       "upcoming": {
-        "heading": ""
+        "heading": "Kommande evenemang"
       }
     },
     "heading": "Fadderbarn",
@@ -512,16 +528,16 @@
   "venue": {
     "features": {
       "accessibility": {
-        "heading": ""
+        "heading": "Tillgänglighet"
       },
       "additionalInformation": {
-        "heading": ""
+        "heading": "Tilläggsinformation"
       },
       "arrival": {
-        "heading": ""
+        "heading": "Ankomst"
       },
       "wcAndFacilities": {
-        "heading": ""
+        "heading": "Toaletter och skötrum för barn"
       }
     }
   }

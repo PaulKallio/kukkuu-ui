@@ -22,7 +22,6 @@ import AddNewChildFormModal from '../modal/AddNewChildFormModal';
 import Icon from '../../../common/components/icon/Icon';
 import addIcon from '../../../assets/icons/svg/delete.svg';
 import happyAdultIcon from '../../../assets/icons/svg/adultFaceHappy.svg';
-import NavigationPropmt from '../../../common/components/prompt/NavigationPrompt';
 import PageWrapper from '../../app/layout/PageWrapper';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
 import { getSupportedChildData } from '../../child/ChildUtils';
@@ -32,6 +31,8 @@ import { saveProfile, clearProfile } from '../../profile/state/ProfileActions';
 import profileQuery from '../../profile/queries/ProfileQuery';
 import { profileQuery as ProfileQueryType } from '../../api/generatedTypes/profileQuery';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
+import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
+import { GuardianInput, Language } from '../../api/generatedTypes/globalTypes';
 
 const RegistrationForm: FunctionComponent = () => {
   const { i18n, t } = useTranslation();
@@ -69,7 +70,7 @@ const RegistrationForm: FunctionComponent = () => {
       className={styles.grayBackground}
       title={'registration.heading'}
     >
-      <NavigationPropmt
+      <NavigationConfirm
         isHalfFilling={isFilling}
         warningMessage={t('common.form.leave.warning.text')}
       />
@@ -91,11 +92,17 @@ const RegistrationForm: FunctionComponent = () => {
                 getSupportedChildData(child)
               );
 
-              const backendSupportGuardian = {
+              // Convert from language as a string ('fi', 'en') to the corresponding enum
+              const language: Language =
+                Language[
+                  values.preferLanguage.toUpperCase() as keyof typeof Language
+                ];
+
+              const backendSupportGuardian: GuardianInput = {
                 firstName: values.guardian.firstName,
                 lastName: values.guardian.lastName,
                 phoneNumber: values.guardian.phoneNumber,
-                language: values.preferLanguage.toUpperCase(), // Uppercase to support backend's use of Enum
+                language: language,
               };
 
               submitChildrenAndGuardian({
@@ -116,9 +123,7 @@ const RegistrationForm: FunctionComponent = () => {
                   history.push('/registration/success');
                 })
                 .catch((error) => {
-                  toast(t('registration.submitMutation.errorMessage'), {
-                    type: toast.TYPE.ERROR,
-                  });
+                  toast.error(t('registration.submitMutation.errorMessage'));
                   Sentry.captureException(error);
                 });
             }}
@@ -140,18 +145,19 @@ const RegistrationForm: FunctionComponent = () => {
                     render={(arrayHelpers) => {
                       return (
                         <>
-                          <AddNewChildFormModal
-                            isOpen={isOpen}
-                            setIsOpen={setIsOpen}
-                            addChild={(payload) => {
-                              // When user add child first instead of other input
-                              // validate wont be invoked -> isFilling still false but
-                              // user do have unfinished work
-                              // this function was invoked here to make sure in that case
-                              setFormIsFilling(true);
-                              arrayHelpers.push(payload);
-                            }}
-                          />
+                          {isOpen && (
+                            <AddNewChildFormModal
+                              setIsOpen={setIsOpen}
+                              addChild={(payload) => {
+                                // When user add child first instead of other input
+                                // validate wont be invoked -> isFilling still false but
+                                // user do have unfinished work
+                                // this function was invoked here to make sure in that case
+                                setFormIsFilling(true);
+                                arrayHelpers.push(payload);
+                              }}
+                            />
+                          )}
                           {values.children &&
                             values.children.map((child, index) => (
                               <ChildFormField

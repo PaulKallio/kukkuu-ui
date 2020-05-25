@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/react-hooks';
@@ -18,6 +18,9 @@ import emailIcon from '../../assets/icons/svg/envelope.svg';
 import settingsIcon from '../../assets/icons/svg/gear.svg';
 import Button from '../../common/components/button/Button';
 import EditProfileModal from './modal/EditProfileModal';
+import { clearEvent, saveChildrenEvents } from '../event/state/EventActions';
+import { defaultProfileData } from './state/ProfileReducers';
+import ErrorMessage from '../../common/components/error/Error';
 
 const Profile: FunctionComponent = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -25,20 +28,22 @@ const Profile: FunctionComponent = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(saveProfile(data?.myProfile || defaultProfileData));
+    dispatch(clearEvent());
+    dispatch(saveChildrenEvents(data?.myProfile?.children || undefined));
+  }, [data, dispatch]);
+
   if (loading) return <LoadingSpinner isLoading={true} />;
   if (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
     dispatch(clearProfile());
     Sentry.captureException(error);
-    return (
-      <PageWrapper>
-        <div className={styles.profile}>{t('api.errorMessage')}</div>
-      </PageWrapper>
-    );
+    return <ErrorMessage message={t('api.errorMessage')} />;
   }
 
-  if (data?.myProfile) {
-    dispatch(saveProfile(data.myProfile));
-  } else {
+  if (!data?.myProfile) {
     // User has logged in, but not created a profile, send them to front page for registration.
     return <Redirect to="/" />;
   }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CallbackComponent } from 'redux-oidc';
 import { User } from 'oidc-client';
 import { RouteChildrenProps } from 'react-router';
@@ -8,22 +8,52 @@ import * as Sentry from '@sentry/browser';
 
 import userManager from './userManager';
 import PageWrapper from '../app/layout/PageWrapper';
+import ErrorMessage from '../../common/components/error/Error';
 
 function OidcCallback(props: RouteChildrenProps) {
   const { t } = useTranslation();
 
+  const [callbackMessage, setCallbackMessage] = useState({
+    message: <p>{t('authentication.redirect.text')}</p>,
+  });
+
   const onSuccess = (user: User) => {
     if (user.state.path) props.history.push(user.state.path);
-    else props.history.push('/profile');
+    else props.history.replace('/profile');
   };
-  const onError = (error: object) => {
-    toast(t('authentication.errorMessage'), {
-      type: toast.TYPE.ERROR,
-    });
-    // TODO: Make sure that we only send errors to Sentry that are actual
-    // programming/system errors, not end users's network errors.
-    Sentry.captureException(error);
+
+  const onError = (error: Error) => {
+    let message = <ErrorMessage message={t('authentication.errorMessage')} />;
+    let shortMessage = t('authentication.errorMessage');
+
+    // Handle error caused by device time being more than 5 minutes off:
+    if (
+      error.message.includes('iat is in the future') ||
+      error.message.includes('exp is in the past')
+    ) {
+      message = (
+        <ErrorMessage message={t('authentication.deviceTimeError.message')} />
+      );
+      shortMessage = t('authentication.deviceTimeError.shortMessage');
+    } else if (
+      // Handle error caused by end user choosing Deny in Tunnistamo's Permission Request:
+      // We could send an event to Analytics for this.
+      error.message ===
+      'The resource owner or authorization server denied the request'
+    ) {
+      message = (
+        <ErrorMessage message={t('authentication.permRequestDenied.message')} />
+      );
+      shortMessage = t('authentication.permRequestDenied.shortMessage');
+    } else {
+      // Send other errors to Sentry for analysis - they might be bugs:
+      Sentry.captureException(error);
+    }
+
+    setCallbackMessage({ message });
+    toast.error(shortMessage);
   };
+
   return (
     <PageWrapper>
       <CallbackComponent
@@ -31,7 +61,7 @@ function OidcCallback(props: RouteChildrenProps) {
         errorCallback={onError}
         userManager={userManager}
       >
-        <p>{t('authentication.redirect.text')}</p>
+        {callbackMessage.message}
       </CallbackComponent>
     </PageWrapper>
   );

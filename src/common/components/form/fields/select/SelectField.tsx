@@ -19,11 +19,11 @@ const SelectField: FunctionComponent<SelectProps & FieldProps> = ({
   return (
     <div className={styles.selectFieldWrapper}>
       <Select
+        {...rest}
         name={name}
         value={value}
         onChange={onChange}
         onBlur={onBlur}
-        {...rest}
       />
       <div className={styles.selectError}>{t(inputError)}</div>
     </div>

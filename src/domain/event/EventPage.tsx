@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 
@@ -7,23 +7,18 @@ import styles from './event.module.scss';
 import PageWrapper from '../app/layout/PageWrapper';
 import backIcon from '../../assets/icons/svg/arrowLeft.svg';
 import Button from '../../common/components/button/Button';
-import { eventQuery as EventQueryType } from '../api/generatedTypes/eventQuery';
-import {
-  occurrenceQuery_occurrence_event as OccurrenceQueryTypeEvent,
-  occurrenceQuery_occurrence as OccurrenceQueryType,
-} from '../api/generatedTypes/occurrenceQuery';
+import { eventQuery_event as EventQueryType } from '../api/generatedTypes/eventQuery';
+import { occurrenceQuery_occurrence_event as OccurrenceQueryType } from '../api/generatedTypes/occurrenceQuery';
 
-export interface EventProps {
-  eventData: EventQueryType | OccurrenceQueryTypeEvent;
-  children: ReactNode;
-}
+type EventProps = {
+  event: EventQueryType | OccurrenceQueryType;
+  children?: ReactElement | Array<ReactElement | false>;
+  success?: ReactElement;
+};
 
-const EventPage: FunctionComponent<
-  EventQueryType | Pick<OccurrenceQueryType, 'event'>
-> = ({ event, children }) => {
+const EventPage = ({ event, children, success }: EventProps) => {
   const history = useHistory();
   const { t } = useTranslation();
-
   if (!event) return <></>;
 
   const backgroundImageStyle = event.image
@@ -39,6 +34,7 @@ const EventPage: FunctionComponent<
         style={backgroundImageStyle}
         title={event.imageAltText || ''}
       >
+        {success}
         <div className={styles.backButtonWrapper}>
           <Button
             aria-label={t('common.backButton.label')}

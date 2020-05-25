@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import styles from './homePartners.module.scss';
 import Partners from './PartnerLogoList';
 import { mainPartnerList, partnerList } from './constants/PartnersConstants';
 
-const HomePartners: React.FunctionComponent = (props) => {
+const HomePartners = () => {
   const { t } = useTranslation();
 
   return (

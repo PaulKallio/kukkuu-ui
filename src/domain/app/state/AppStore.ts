@@ -9,7 +9,7 @@ import userManager from '../../auth/userManager';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['profile', 'registration'],
+  whitelist: ['profile', 'registration', 'event'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

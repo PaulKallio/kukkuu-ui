@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders snapshot correctly 1`] = `
+<div
+  className="link"
+>
+  <a
+    href="/brochures/fr.pdf"
+    key="0"
+    lang="fr"
+  >
+    Français
+  </a>
+  <a
+    href="/brochures/ru.pdf"
+    key="1"
+    lang="ru"
+  >
+    Русский
+  </a>
+  <a
+    href="/brochures/es.pdf"
+    key="2"
+    lang="es"
+  >
+    Español
+  </a>
+  <a
+    href="/brochures/zh.pdf"
+    key="3"
+    lang="zh"
+  >
+    中文
+  </a>
+  <a
+    href="/brochures/npi.pdf"
+    key="4"
+    lang="npi"
+  >
+    नेपाली गण
+  </a>
+  <a
+    href="/brochures/som.pdf"
+    key="5"
+    lang="som"
+  >
+    Somali
+  </a>
+  <a
+    href="/brochures/fas.pdf"
+    key="6"
+    lang="fas"
+  >
+    زبان فارسی
+  </a>
+  <a
+    href="/brochures/et.pdf"
+    key="7"
+    lang="et"
+  >
+    Eesti
+  </a>
+  <a
+    href="/brochures/tur.pdf"
+    key="8"
+    lang="tur"
+  >
+    Türkçe
+  </a>
+  <a
+    href="/brochures/ara.pdf"
+    key="9"
+    lang="ar"
+  >
+    اَلْعَرَبِيَّةُ
+  </a>
+  <a
+    href="/brochures/ckb.pdf"
+    key="10"
+    lang="ckb"
+  >
+    کوردی
+  </a>
+  <a
+    href="/brochures/vi.pdf"
+    key="11"
+    lang="vi"
+  >
+    Tiếng Việt
+  </a>
+  <a
+    href="/brochures/en.pdf"
+    key="12"
+    lang="en"
+  >
+    English
+  </a>
+  <a
+    href="/brochures/sv.pdf"
+    key="13"
+    lang="sv"
+  >
+    Svenska
+  </a>
+  <a
+    href="/brochures/fi.pdf"
+    key="14"
+    lang="fi"
+  >
+    Suomi
+  </a>
+</div>
+`;

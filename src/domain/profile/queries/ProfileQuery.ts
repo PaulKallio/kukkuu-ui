@@ -17,6 +17,11 @@ const profileQuery = gql`
             lastName
             birthdate
             postalCode
+            project {
+              id
+              name
+              year
+            }
             relationships {
               edges {
                 node {
@@ -32,6 +37,17 @@ const profileQuery = gql`
                   name
                   duration
                   participantsPerInvite
+                }
+              }
+            }
+            occurrences {
+              edges {
+                node {
+                  id
+                  event {
+                    id
+                    name
+                  }
                 }
               }
             }

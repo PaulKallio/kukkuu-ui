@@ -1,9 +1,8 @@
-@import 'layout';
-@import 'mixins';
-@import 'variables';
+@import 'styles/layout';
+@import 'styles/mixins';
+@import 'styles/variables';
 
 .wrapper {
-  @include background($hel-light);
   text-align: center;
   padding-bottom: 2 * $largeMargin;
 

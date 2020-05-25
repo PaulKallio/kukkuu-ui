@@ -9,6 +9,15 @@ import { AddChildMutationInput } from "./globalTypes";
 // GraphQL mutation operation: addNewChild
 // ====================================================
 
+export interface addNewChild_addChild_child_project {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string | null;
+  year: number;
+}
+
 export interface addNewChild_addChild_child {
   /**
    * The ID of the object.
@@ -18,6 +27,7 @@ export interface addNewChild_addChild_child {
   lastName: string;
   birthdate: any;
   postalCode: string;
+  project: addNewChild_addChild_child_project;
 }
 
 export interface addNewChild_addChild {

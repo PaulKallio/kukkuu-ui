@@ -5,22 +5,27 @@ import toJson from 'enzyme-to-json';
 import ProfileEventsList from '../ProfileEventsList';
 import Card from '../../../../common/components/card/Card';
 import {
-  childByIdQuery_child as ChildType,
+  childByIdQuery_child as ChildByIdResponse,
   childByIdQuery_child_availableEvents as AvailableEventsType,
-  childByIdQuery_child_enrolments as EnrolmentsType,
   childByIdQuery_child_pastEvents as PastEventsType,
+  childByIdQuery_child_occurrences as OccurrencesType,
 } from '../../../api/generatedTypes/childByIdQuery';
 import { EventParticipantsPerInvite } from '../../../api/generatedTypes/globalTypes';
 
-const childData = {
+const childData: ChildByIdResponse = {
   id: '',
   firstName: '',
   lastName: '',
   birthdate: '',
   postalCode: '',
-  relationships: {
-    edges: [],
+  project: {
+    id: '',
+    year: 0,
   },
+  relationships: { edges: [] },
+  availableEvents: { edges: [] },
+  occurrences: { edges: [] },
+  pastEvents: { edges: [] },
 };
 
 const eventData = {
@@ -49,16 +54,14 @@ const venueData = {
   address: 'ssfas uus 12',
 };
 
-const enrolments: EnrolmentsType = {
+const occurrences: OccurrencesType = {
   edges: [
     {
       node: {
-        occurrence: {
-          id: '',
-          time: '2020-02-24T07:07:18+00:00', // 09.07
-          venue: venueData,
-          event: eventData,
-        },
+        id: '',
+        time: '2020-02-24T07:07:18+00:00', // 09.07
+        venue: venueData,
+        event: eventData,
       },
     },
   ],
@@ -72,56 +75,54 @@ const pastEvents: PastEventsType = {
   ],
 };
 
-const childWithEvents = {
-  availableEvents: availableEvents,
-  enrolments: enrolments,
-  pastEvents: pastEvents,
+const childWithEvents: ChildByIdResponse = {
   ...childData,
+  availableEvents: availableEvents,
+  occurrences: occurrences,
+  pastEvents: pastEvents,
 };
 
 const childOnlyAvailableEvents = {
+  ...childData,
   availableEvents: availableEvents,
-  enrolments: {
+  occurrences: {
     edges: [],
   },
   pastEvents: null,
-  ...childData,
 };
 
-const childOnlyEnrolments: ChildType = {
+const childOnlyEnrolments: ChildByIdResponse = {
+  ...childData,
   availableEvents: null,
-  enrolments: {
+  occurrences: {
     edges: [
       {
         node: {
-          occurrence: {
-            id: 'uu',
-            time: '2020-02-24T09:09:09+00:00',
-            venue: venueData,
-            event: eventData,
-          },
+          id: 'uu',
+          time: '2020-02-24T09:09:09+00:00',
+          venue: venueData,
+          event: eventData,
         },
       },
     ],
   },
   pastEvents: null,
-  ...childData,
 };
 
-const childOnlyPastEvents = {
+const childOnlyPastEvents: ChildByIdResponse = {
+  ...childData,
   availableEvents: null,
-  enrolments: {
+  occurrences: {
     edges: [],
   },
   pastEvents: pastEvents,
-  ...childData,
 };
 
 test('Renders snapshot correctly', () => {
   const wrapper = shallow(
     <ProfileEventsList
       availableEvents={childWithEvents.availableEvents}
-      enrolments={childWithEvents.enrolments}
+      occurrences={childWithEvents.occurrences}
       pastEvents={childWithEvents.pastEvents}
       childId="zzaf"
     />
@@ -133,7 +134,7 @@ test('Renders only available events when no other events', () => {
   const wrapper = shallow(
     <ProfileEventsList
       availableEvents={childOnlyAvailableEvents.availableEvents}
-      enrolments={childOnlyAvailableEvents.enrolments}
+      occurrences={childOnlyAvailableEvents.occurrences}
       pastEvents={childOnlyAvailableEvents.pastEvents}
       childId="zzaf"
     />
@@ -146,7 +147,7 @@ test('Renders only enrolments when no other events', () => {
   const wrapper = shallow(
     <ProfileEventsList
       availableEvents={childOnlyEnrolments.availableEvents}
-      enrolments={childOnlyEnrolments.enrolments}
+      occurrences={childOnlyEnrolments.occurrences}
       pastEvents={childOnlyEnrolments.pastEvents}
       childId="zzaf"
     />
@@ -159,7 +160,7 @@ test('Renders only past events when no other events', () => {
   const wrapper = shallow(
     <ProfileEventsList
       availableEvents={childOnlyPastEvents.availableEvents}
-      enrolments={childOnlyPastEvents.enrolments}
+      occurrences={childOnlyPastEvents.occurrences}
       pastEvents={childOnlyPastEvents.pastEvents}
       childId="zzaf"
     />

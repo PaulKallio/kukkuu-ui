@@ -11,7 +11,7 @@ interface ProfileEventsProps {
 const ProfileEvents: FunctionComponent<ProfileEventsProps> = ({ child }) => {
   const hasEvents = (child: ChildByIdResponse) => {
     return child.availableEvents?.edges?.[0] ||
-      child.enrolments.edges?.[0] ||
+      child.occurrences.edges?.[0] ||
       child.pastEvents?.edges?.[0]
       ? true
       : false;
@@ -21,8 +21,8 @@ const ProfileEvents: FunctionComponent<ProfileEventsProps> = ({ child }) => {
     <ProfileEventsList
       availableEvents={child.availableEvents}
       childId={child.id}
-      enrolments={child.enrolments}
       pastEvents={child.pastEvents}
+      occurrences={child.occurrences}
     />
   ) : (
     <ProfileNoEvent />

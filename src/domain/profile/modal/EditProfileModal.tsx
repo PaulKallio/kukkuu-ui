@@ -18,8 +18,8 @@ import Button from '../../../common/components/button/Button';
 import profileQuery from '../queries/ProfileQuery';
 import updateMyProfileMutation from '../mutations/updateMyProfileMutation';
 import { updateMyProfile as UpdateMyProfileData } from '../../api/generatedTypes/updateMyProfile';
-import NavigationPropmt from '../../../common/components/prompt/NavigationPrompt';
 import adultIcon from '../../../assets/icons/svg/adultFaceHappy.svg';
+import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
 
 export type EditProfileModalValues = Omit<ProfileType, 'children'>;
 
@@ -60,9 +60,7 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
       trackEvent({ category: 'action', action: 'Edit profile' });
       setIsOpen(false);
     } catch (error) {
-      toast(t('registration.submitMutation.errorMessage'), {
-        type: toast.TYPE.ERROR,
-      });
+      toast.error(t('registration.submitMutation.errorMessage'));
       Sentry.captureException(error);
     }
   };
@@ -80,7 +78,7 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
   return (
     <div>
       {isOpen && (
-        <NavigationPropmt
+        <NavigationConfirm
           warningMessage={t('common.form.leave.warning.text')}
           isHalfFilling={isFilling}
         />

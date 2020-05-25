@@ -7,6 +7,10 @@
   },
   "appName": "Kulttuurin kummilapset",
   "authentication": {
+    "deviceTimeError": {
+      "message": "Usko tai älä usko mutta et voi kirjautua sisään koska laitteesi kello on yli 5 minuuttia väärässä. Säädä kelloa ja kokeile uudestaan.",
+      "shortMessage": "Virhe kirjautuessa. Tarkista laitteesi kello ja kokeile uudestaan."
+    },
     "errorMessage": "Tapahtui virhe. Yritä uudestaan",
     "loadUserError": {
       "message": "Tapahtui virhe. Yritä kirjautua uudelleen."
@@ -19,6 +23,10 @@
     },
     "networkError": {
       "message": "Virhe kirjautumisessa: Tarkista verkkoyhteytesi ja yritä uudestaan"
+    },
+    "permRequestDenied": {
+      "message": "You need to approve our request to access your Tunnistamo profile in order to use this service. Please try logging in again.",
+      "shortMessage": "Login error: Authentication request denied"
     },
     "redirect": {
       "text": "Ohjataan tunnistautumiseen..."
@@ -121,11 +129,6 @@
   "email": {
     "title": "Tervetuloa Kulttuurin kummilapsiin!"
   },
-  "enrollment ": {
-    "successToast": {
-      "paragraph": "Lähetimme varmistusviestin sähköpostiisi, löydät sieltä tapahtuman lisätiedot"
-    }
-  },
   "enrollment": {
     "button": {
       "occurenceFull": "Täynnä",
@@ -139,7 +142,8 @@
       "confirm": {
         "button": "Ilmoittaudu tapahtumaan"
       },
-      "heading": "Ilmoittaudu tapahtumaan"
+      "heading": "Ilmoittaudu tapahtumaan",
+      "text": "Tarkista, että alla olevat tiedot vastaavat tapahtumaa, johon haluat osallistua."
     },
     "enroll": {
       "buttonText": "Ilmoittaudu tapahtumaan"
@@ -152,8 +156,9 @@
     "showEventInfo": {
       "buttonText": "Näytä tapahtuman tiedot"
     },
-    "successToas": {
-      "heading": "Tapahtumaan ilmoittautuminen onnistui! "
+    "successToast": {
+      "heading": "Tapahtumaan ilmoittautuminen onnistui! ",
+      "paragraph": "Lähetimme varmistusviestin sähköpostiisi, löydät sieltä tapahtuman lisätiedot"
     }
   },
   "event": {
@@ -222,6 +227,14 @@
         }
       }
     },
+    "moreInfo": {
+      "description": {
+        "text": "Lataa lisätietoa Kultuurin kummilapset -palvelusta omalla kielelläsi."
+      },
+      "heading": {
+        "text": "Lisätietoa palvelusta eri kielillä"
+      }
+    },
     "partners": {
       "heading": {
         "text": "Yhteistyökumppanit"
@@ -256,6 +269,9 @@
     },
     "registration": {
       "text": "Aloita syöttämällä toimintaan osallistuvan lapsen kotipaikkakunta ja syntymäpäivä. Tämän jälkeen pääset kirjautumaan palveluun ja täydentämään lapsesi kummilapsiprofiilin. Tähän menee muutama minuutti."
+    },
+    "video": {
+      "youtubeId": "jYteckzo1uA"
     }
   },
   "homePage": {

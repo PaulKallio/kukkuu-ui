@@ -1,8 +1,8 @@
-@import 'colors';
-@import 'fonts';
-@import 'layout';
-@import 'mixins';
-@import 'variables';
+@import 'styles/colors';
+@import 'styles/fonts';
+@import 'styles/layout';
+@import 'styles/mixins';
+@import 'styles/variables';
 
 $logoHeight: 2.5rem;
 
@@ -29,6 +29,9 @@ $logoHeight: 2.5rem;
 
 .logo {
   @include helsinki-logo($hel-black);
+  &.sv {
+    @include helsinki-logo($hel-black, 'sv');
+  }
   background-position: center;
   height: $logoHeight;
   width: $logoWidth;

@@ -6,24 +6,28 @@ import ProfileEvents from '../ProfileEvents';
 import ProfileNoEvent from '../ProfileNoEvent';
 import ProfileEventsList from '../ProfileEventsList';
 import {
-  childByIdQuery_child as Child,
-  childByIdQuery_child_enrolments as Enrolments,
+  childByIdQuery_child as ChildByIdResponse,
   childByIdQuery_child_availableEvents as AvailableEvents,
   childByIdQuery_child_pastEvents as PastEvents,
+  childByIdQuery_child_occurrences as Occurrences,
 } from '../../../api/generatedTypes/childByIdQuery';
 import { EventParticipantsPerInvite } from '../../../api/generatedTypes/globalTypes';
 
-const childData: Child = {
+const childData: ChildByIdResponse = {
   id: '',
   firstName: '',
   lastName: '',
   birthdate: '',
   postalCode: '',
+  project: {
+    id: '',
+    year: 0,
+  },
   relationships: {
     edges: [],
   },
   availableEvents: { edges: [] },
-  enrolments: { edges: [] },
+  occurrences: { edges: [] },
   pastEvents: { edges: [] },
 };
 
@@ -52,30 +56,27 @@ const availableEvents: AvailableEvents = {
   ],
 };
 
-const enrolments: Enrolments = {
+const occurrences: Occurrences = {
   edges: [
     {
       node: {
-        occurrence: {
+        id: '',
+        time: '',
+        venue: {
           id: '',
-          time: '',
-          venue: {
-            id: '',
-            address: '',
-            description: '',
-            name: '',
-          },
-          event: {
-            id: 'RXZlbnROb2RlOjE=',
-            duration: 12,
-            name: 'pentti',
-            participantsPerInvite:
-              EventParticipantsPerInvite.CHILD_AND_GUARDIAN,
-            shortDescription: 'eventti',
-            image:
-              'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
-            imageAltText: 'uooo',
-          },
+          address: '',
+          description: '',
+          name: '',
+        },
+        event: {
+          id: 'RXZlbnROb2RlOjE=',
+          duration: 12,
+          name: 'pentti',
+          participantsPerInvite: EventParticipantsPerInvite.CHILD_AND_GUARDIAN,
+          shortDescription: 'eventti',
+          image:
+            'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
+          imageAltText: 'uooo',
         },
       },
     },
@@ -101,48 +102,46 @@ const pastEvents: PastEvents = {
   ],
 };
 
-const childWithEvents: Child = {
+const childWithEvents: ChildByIdResponse = {
   ...childData,
   availableEvents: availableEvents,
-  enrolments: enrolments,
+  occurrences: occurrences,
   pastEvents: pastEvents,
 };
 
-const childOnlyAvailableEvents: Child = {
+const childOnlyAvailableEvents: ChildByIdResponse = {
   ...childData,
   availableEvents: availableEvents,
-  enrolments: {
+  occurrences: {
     edges: [],
   },
   pastEvents: null,
 };
 
-const childOnlyEnrolments: Child = {
+const childOnlyEnrolments: ChildByIdResponse = {
   ...childData,
   availableEvents: null,
-  enrolments: {
+  occurrences: {
     edges: [
       {
         node: {
-          occurrence: {
+          id: '',
+          time: '',
+          venue: {
             id: '',
-            time: '',
-            venue: {
-              id: '',
-              address: '',
-              description: '',
-              name: '',
-            },
-            event: {
-              id: 'RXZlbnROb2RlOjE=',
-              name: 'pentti',
-              shortDescription: 'eventti',
-              duration: null,
-              participantsPerInvite: EventParticipantsPerInvite.FAMILY,
-              imageAltText: 'uooo',
-              image:
-                'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
-            },
+            address: '',
+            description: '',
+            name: '',
+          },
+          event: {
+            id: 'RXZlbnROb2RlOjE=',
+            name: 'pentti',
+            shortDescription: 'eventti',
+            duration: null,
+            participantsPerInvite: EventParticipantsPerInvite.FAMILY,
+            imageAltText: 'uooo',
+            image:
+              'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
           },
         },
       },
@@ -173,7 +172,7 @@ test('Renders "No events" when no events"', () => {
       <ProfileEventsList
         childId={childWithEvents.id}
         availableEvents={childWithEvents.availableEvents}
-        enrolments={childWithEvents.enrolments}
+        occurrences={childWithEvents.occurrences}
         pastEvents={childWithEvents.pastEvents}
       />
     )
@@ -187,7 +186,7 @@ test('Renders events list when events of any type', () => {
       <ProfileEventsList
         childId={childWithEvents.id}
         availableEvents={childWithEvents.availableEvents}
-        enrolments={childWithEvents.enrolments}
+        occurrences={childWithEvents.occurrences}
         pastEvents={childWithEvents.pastEvents}
       />
     )
@@ -201,7 +200,7 @@ test('Renders events list when only availableEvents', () => {
       <ProfileEventsList
         childId={childOnlyAvailableEvents.id}
         availableEvents={childOnlyAvailableEvents.availableEvents}
-        enrolments={childOnlyAvailableEvents.enrolments}
+        occurrences={childOnlyAvailableEvents.occurrences}
         pastEvents={childOnlyAvailableEvents.pastEvents}
       />
     )
@@ -215,7 +214,7 @@ test('Renders events list when only enrolments', () => {
       <ProfileEventsList
         childId={childOnlyEnrolments.id}
         availableEvents={childOnlyEnrolments.availableEvents}
-        enrolments={childOnlyEnrolments.enrolments}
+        occurrences={childOnlyEnrolments.occurrences}
         pastEvents={childOnlyEnrolments.pastEvents}
       />
     )
@@ -229,7 +228,7 @@ test('Renders events list when only past events', () => {
       <ProfileEventsList
         childId={childOnlyPastEvents.id}
         availableEvents={childOnlyPastEvents.availableEvents}
-        enrolments={childOnlyPastEvents.enrolments}
+        occurrences={childOnlyPastEvents.enrolments}
         pastEvents={childOnlyPastEvents.pastEvents}
       />
     )

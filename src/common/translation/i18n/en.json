@@ -7,6 +7,10 @@
   },
   "appName": "Culture Kids",
   "authentication": {
+    "deviceTimeError": {
+      "message": "Believe it or not, but we can’t allow you to log in because the clock on your device is off by more than five minutes. Please set the time and try again.",
+      "shortMessage": "Log in error. Check your device time and try again."
+    },
     "errorMessage": "An error occured while logging in. Please try again",
     "loadUserError": {
       "message": "An error occurred. Please try logging in again. "
@@ -19,6 +23,10 @@
     },
     "networkError": {
       "message": "Login error: Check your network connection or try again later"
+    },
+    "permRequestDenied": {
+      "message": "You need to approve our request to access your Tunnistamo profile in order to use this service. Please try logging in again.",
+      "shortMessage": "Login error: Authentication request denied"
     },
     "redirect": {
       "text": "Redirecting..."
@@ -121,11 +129,6 @@
   "email": {
     "title": "Welcome to the Culture Kids programme!"
   },
-  "enrollment ": {
-    "successToast": {
-      "paragraph": "We sent you a confirmation message by email where you can find more information about the event"
-    }
-  },
   "enrollment": {
     "button": {
       "occurenceFull": "Full",
@@ -139,7 +142,8 @@
       "confirm": {
         "button": "Register for event"
       },
-      "heading": "Register for event"
+      "heading": "Register for event",
+      "text": "Check that the information below is correct for the event you wish to attend."
     },
     "enroll": {
       "buttonText": "Register for event"
@@ -152,8 +156,9 @@
     "showEventInfo": {
       "buttonText": "Show event details"
     },
-    "successToas": {
-      "heading": "Registration for event successful"
+    "successToast": {
+      "heading": "Registration for event successful",
+      "paragraph": "We sent you a confirmation message by email where you can find more information about the event"
     }
   },
   "event": {
@@ -222,6 +227,14 @@
         }
       }
     },
+    "moreInfo": {
+      "description": {
+        "text": "Download more information about Culture Kids -service in your own language."
+      },
+      "heading": {
+        "text": "Information about the service on different languages"
+      }
+    },
     "partners": {
       "heading": {
         "text": "Cooperation partners"
@@ -256,6 +269,9 @@
     },
     "registration": {
       "text": "Start by entering the hometown and date of birth of the child you want to register. After this you will be able to log in to the service and complete your child’s Culture Kid profile. This should only take a few minutes."
+    },
+    "video": {
+      "youtubeId": "EyNWdfA4zbM"
     }
   },
   "homePage": {

@@ -9,6 +9,11 @@ export const addChildMutation = gql`
         lastName
         birthdate
         postalCode
+        project {
+          id
+          name
+          year
+        }
       }
     }
   }
@@ -31,6 +36,11 @@ export const editChildMutation = gql`
         lastName
         birthdate
         postalCode
+        project {
+          id
+          name
+          year
+        }
         relationships {
           edges {
             node {

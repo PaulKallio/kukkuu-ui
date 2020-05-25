@@ -23,7 +23,7 @@ import { ScrollToTop } from '../../common/route/RouteUtils';
 
 const localeParam = `:locale(${SUPPORT_LANGUAGES.EN}|${SUPPORT_LANGUAGES.FI}|${SUPPORT_LANGUAGES.SV})`;
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'development') {
   enableOidcLogging();
 }
 
@@ -48,14 +48,6 @@ export const AppRoutes: FunctionComponent = () => {
   return (
     <PageLayout>
       <Switch>
-        <Route
-          exact
-          path="/silent_renew"
-          render={() => {
-            userManager.signinSilentCallback();
-            return null;
-          }}
-        />
         <Route exact path="/callback" component={OidcCallback} />
         <Redirect exact path="/" to={`/${currentLocale}/home`} />
         <Route path={`/${localeParam}/*`} component={App} />

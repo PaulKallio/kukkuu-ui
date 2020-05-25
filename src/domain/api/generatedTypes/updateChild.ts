@@ -9,6 +9,15 @@ import { UpdateChildMutationInput, RelationshipTypeEnum } from "./globalTypes";
 // GraphQL mutation operation: updateChild
 // ====================================================
 
+export interface updateChild_updateChild_child_project {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string | null;
+  year: number;
+}
+
 export interface updateChild_updateChild_child_relationships_edges_node {
   /**
    * The ID of the object.
@@ -40,6 +49,7 @@ export interface updateChild_updateChild_child {
   lastName: string;
   birthdate: any;
   postalCode: string;
+  project: updateChild_updateChild_child_project;
   relationships: updateChild_updateChild_child_relationships;
 }
 

@@ -23,6 +23,11 @@ const submitChildrenAndGuardianMutation = gql`
               lastName
               birthdate
               postalCode
+              project {
+                id
+                name
+                year
+              }
               relationships {
                 edges {
                   node {

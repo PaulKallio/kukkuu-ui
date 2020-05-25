@@ -1,37 +1,5 @@
 import gql from 'graphql-tag';
 
-export const childrenQuery = gql`
-  query ChildrenQuery {
-    children {
-      edges {
-        node {
-          id
-          createdAt
-          updatedAt
-          firstName
-          lastName
-          birthdate
-          postalCode
-          guardians {
-            edges {
-              node {
-                id
-              }
-            }
-          }
-          relationships {
-            edges {
-              node {
-                id
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
 export const childByIdQuery = gql`
   query childByIdQuery($id: ID!) {
     child(id: $id) {
@@ -40,6 +8,34 @@ export const childByIdQuery = gql`
       lastName
       birthdate
       postalCode
+      project {
+        id
+        name
+        year
+      }
+      occurrences(upcoming: true) {
+        edges {
+          node {
+            id
+            time
+            venue {
+              id
+              name
+              description
+              address
+            }
+            event {
+              id
+              name
+              shortDescription
+              duration
+              image
+              imageAltText
+              participantsPerInvite
+            }
+          }
+        }
+      }
       availableEvents {
         edges {
           node {
@@ -49,31 +45,6 @@ export const childByIdQuery = gql`
             image
             imageAltText
             participantsPerInvite
-          }
-        }
-      }
-      enrolments {
-        edges {
-          node {
-            occurrence {
-              id
-              time
-              venue {
-                id
-                name
-                description
-                address
-              }
-              event {
-                id
-                name
-                shortDescription
-                image
-                imageAltText
-                duration
-                participantsPerInvite
-              }
-            }
           }
         }
       }

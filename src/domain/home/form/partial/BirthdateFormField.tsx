@@ -6,15 +6,46 @@ import styles from './birthdateFormField.module.scss';
 import { validateRequire } from '../../../../common/components/form/validationUtils';
 import EnhancedInputField from '../../../../common/components/form/fields/input/EnhancedInputField';
 import NumberInputField from '../../../../common/components/form/fields/input/NumberInputField';
+import {
+  formatTime,
+  newMoment,
+  toZeroBasedMonth,
+} from '../../../../common/time/utils';
+import { DEFAULT_DATE_FORMAT } from '../../../../common/time/TimeConstants';
+import { Birthdate } from '../../../child/form/ChildForm';
 
-const BirthdateFormField: FunctionComponent<FieldArrayRenderProps> = ({
+interface BirthdateFormFieldProps extends FieldArrayRenderProps {
+  isImmutable?: boolean;
+  values?: Birthdate;
+}
+
+const BirthdateFormField: FunctionComponent<BirthdateFormFieldProps> = ({
   name,
+  isImmutable = false,
+  values,
   form: { errors, touched },
 }) => {
   const fieldTouched =
     getIn(touched, 'child.birthdate.day') || getIn(touched, 'birthdate.day');
   const error = getIn(errors, 'childBirthdate');
   const { t } = useTranslation();
+
+  if (isImmutable && values) {
+    const monthZeroBased = toZeroBasedMonth(values.month);
+    const birthdate = formatTime(
+      newMoment([values.year, monthZeroBased, values.day]),
+      DEFAULT_DATE_FORMAT
+    );
+
+    return (
+      <div className={styles.birthdateField}>
+        <label>{`${t(
+          'homePage.preliminaryForm.childBirthdate.input.label'
+        )}*`}</label>
+        <p className={styles.immutableField}>{birthdate}</p>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.birthdateField}>

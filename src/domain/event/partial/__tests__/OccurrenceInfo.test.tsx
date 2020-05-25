@@ -4,10 +4,10 @@ import toJson from 'enzyme-to-json';
 
 import OccurrenceInfo from '../OccurrenceInfo';
 import { mockedOccurrenceNode } from '../../__tests__/EventPage.test';
-import { childByIdQuery_child_enrolments_edges_node_occurrence as CbiOccurrenceType } from '../../../api/generatedTypes/childByIdQuery';
+import { childByIdQuery_child_occurrences_edges_node as OccurrenceNodes } from '../../../api/generatedTypes/childByIdQuery';
 import { EventParticipantsPerInvite } from '../../../api/generatedTypes/globalTypes';
 
-const z: CbiOccurrenceType = {
+const z: OccurrenceNodes = {
   id: 'aa',
   time: '2020-03-08T04:00:00+00:00',
   event: {

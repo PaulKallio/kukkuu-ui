@@ -23,6 +23,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
       const errorMessage = `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`;
       Sentry.captureMessage(errorMessage);
       if (process.env.NODE_ENV === 'development') {
+        // eslint-disable-next-line no-console
         console.error(errorMessage);
       }
 

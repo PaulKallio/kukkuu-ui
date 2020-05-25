@@ -1,0 +1,165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders snapshot correctly 1`] = `
+<div
+  className="big"
+>
+  <Icon
+    alt="home.partners.partner.hel"
+    className="icon"
+    key="0"
+    src="helsinki-fi.svg"
+  />
+  <Icon
+    alt="Jane ja Aatos Erkon säätiö"
+    className="icon"
+    key="1"
+    src="jaes.png"
+  />
+</div>
+`;
+
+exports[`renders snapshot correctly 2`] = `
+<div
+  className="small"
+>
+  <Icon
+    alt="Amos Rex"
+    className="icon"
+    key="0"
+    src="amosrex.png"
+  />
+  <Icon
+    alt="Cirko – Uuden sirkuksen keskus"
+    className="icon"
+    key="1"
+    src="cirko.png"
+  />
+  <Icon
+    alt="DOT ry"
+    className="icon"
+    key="2"
+    src="dotdot.png"
+  />
+  <Icon
+    alt="Designmuseo"
+    className="icon"
+    key="3"
+    src="designmuseum.png"
+  />
+  <Icon
+    alt="Helsingin taidemuseo HAM"
+    className="icon"
+    key="4"
+    src="hamhelsinki.png"
+  />
+  <Icon
+    alt="Helsingin kaupunginmuseo"
+    className="icon"
+    key="5"
+    src="helsinginkaupunginmuseo.png"
+  />
+  <Icon
+    alt="Helsingin kaupunginorkesteri"
+    className="icon"
+    key="6"
+    src="helsinginkaupunginorkesteri.png"
+  />
+  <Icon
+    alt="Helsingin Kaupunginteatteri"
+    className="icon"
+    key="7"
+    src="hkt.png"
+  />
+  <Icon
+    alt="Hotelli- ja ravintolamuseo"
+    className="icon"
+    key="8"
+    src="hotellijaravintolamuseo.png"
+  />
+  <Icon
+    alt="Tanssiteatteri Hurjaruuth"
+    className="icon"
+    key="9"
+    src="hurjaruuth.png"
+  />
+  <Icon
+    alt="Kansallismuseo"
+    className="icon"
+    key="10"
+    src="kansallismuseo.png"
+  />
+  <Icon
+    alt="Kansallisteatteri"
+    className="icon"
+    key="11"
+    src="kansallisteatteri.png"
+  />
+  <Icon
+    alt="Kansallinen audiovisuaalinen instituutti"
+    className="icon"
+    key="12"
+    src="kavi.png"
+  />
+  <Icon
+    alt="Suomen Kulttuuriperintökasvatuksen seura"
+    className="icon"
+    key="13"
+    src="kulttuuriperintokasvatus.png"
+  />
+  <Icon
+    alt="Arkkitehtuurimuseo"
+    className="icon"
+    key="14"
+    src="mfa.png"
+  />
+  <Icon
+    alt="Nukketeatteri Sampo"
+    className="icon"
+    key="15"
+    src="nukketeatterisampo.png"
+  />
+  <Icon
+    alt="Suomen kansallisooppera ja -baletti"
+    className="icon"
+    key="16"
+    src="oopperabaletti.png"
+  />
+  <Icon
+    alt="Q-teatteri"
+    className="icon"
+    key="17"
+    src="qteatteri.png"
+  />
+  <Icon
+    alt="Svenska Teatern"
+    className="icon"
+    key="18"
+    src="svenskateatern.png"
+  />
+  <Icon
+    alt="Tanssin talo"
+    className="icon"
+    key="19"
+    src="tanssintalo.png"
+  />
+  <Icon
+    alt="Teatteri ILMI Ö"
+    className="icon"
+    key="20"
+    src="teatteriilmio.png"
+  />
+  <Icon
+    alt="Teatterimuseo"
+    className="icon"
+    key="21"
+    src="teatterimuseo.png"
+  />
+  <Icon
+    alt="Suomen valokuvataiteen museo"
+    className="icon"
+    key="22"
+    src="valokuvataiteenmuseo.png"
+  />
+</div>
+`;
