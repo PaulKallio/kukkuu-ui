@@ -188,7 +188,6 @@
       "form": {
         "header": "Register"
       },
-      "participants": "Participants",
       "occurrenceTableHeader": {
         "buttonText": "Choose",
         "date": "Date",
@@ -196,7 +195,8 @@
         "freePlaces": "Free Places",
         "time": "Time",
         "venue": "Venue"
-      }
+      },
+      "participants": "Participants"
     }
   },
   "footer": {
@@ -457,6 +457,7 @@
       "guardian": {
         "email": {
           "input": {
+            "error": "This email address is not valid",
             "label": "E-mail address",
             "placeholder": "Please enter guardian’s e-mail address"
           }
