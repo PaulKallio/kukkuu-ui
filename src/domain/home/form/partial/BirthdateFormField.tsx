@@ -87,6 +87,7 @@ const BirthdateFormField: FunctionComponent<BirthdateFormFieldProps> = ({
           required={true}
           name={`${name}.year`}
           maxLength={4}
+          min={2019}
           component={NumberInputField}
           validate={(value: number) => validateRequire(value)}
           aria-label={t(
