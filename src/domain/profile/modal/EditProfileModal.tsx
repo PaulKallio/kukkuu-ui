@@ -5,7 +5,6 @@ import { useMutation } from '@apollo/react-hooks';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
-import isEmail from 'validator/lib/isEmail';
 
 import styles from './editProfileModal.module.scss';
 import { ProfileType } from '../type/ProfileTypes';
@@ -21,7 +20,7 @@ import updateMyProfileMutation from '../mutations/updateMyProfileMutation';
 import { updateMyProfile as UpdateMyProfileData } from '../../api/generatedTypes/updateMyProfile';
 import adultIcon from '../../../assets/icons/svg/adultFaceHappy.svg';
 import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
-import { UpdateMyProfileMutationInput } from '../../api/generatedTypes/globalTypes';
+import { validateEmail } from '../../../common/components/form/validationUtils';
 
 export type EditProfileModalValues = Omit<ProfileType, 'children'>;
 
@@ -68,14 +67,12 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
     }
   };
 
-  const validate = (values: UpdateMyProfileMutationInput) => {
+  const validate = () => {
     if (!isFilling) {
       setFormIsFilling(true);
     }
 
     const errors: FormikErrors<EditProfileModalValues> = {};
-    if (!isEmail(values.email || ''))
-      errors.email = 'registration.form.guardian.email.input.error';
     return errors;
   };
 
@@ -108,6 +105,7 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
               <EnhancedInputField
                 id="email"
                 name="email"
+                validate={validateEmail}
                 required={true}
                 label={t('registration.form.guardian.email.input.label')}
                 component={InputField}

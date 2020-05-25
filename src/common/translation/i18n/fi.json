@@ -457,7 +457,7 @@
       "guardian": {
         "email": {
           "input": {
-            "error": "Sähköpostiosoite ei kelpaa",
+            "error": "Sähköpostiosoite on virheellinen",
             "label": "Sähköpostiosoite",
             "placeholder": "Lisää sähköpostiosoite"
           }
