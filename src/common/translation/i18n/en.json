@@ -459,7 +459,7 @@
           "input": {
             "error": "This email address is not valid",
             "label": "E-mail address",
-            "placeholder": "Please enter guardian’s e-mail address"
+            "placeholder": "Enter e-mail address"
           }
         },
         "firstName": {
