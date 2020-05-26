@@ -8,7 +8,19 @@
   .inputErrorMessage {
     min-height: $font-size-sm;
   }
+
+  /* Hide number input spinners */
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
 }
+
 .inputError {
   input {
     border: 2px solid $red;
