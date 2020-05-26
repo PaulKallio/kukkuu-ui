@@ -188,7 +188,6 @@
       "form": {
         "header": "Ilmoittaudu"
       },
-      "participants": "Osallistujat",
       "occurrenceTableHeader": {
         "buttonText": "Valitse",
         "date": "Päivämäärä",
@@ -196,7 +195,8 @@
         "freePlaces": "Vapaat paikat",
         "time": "Kellonaika",
         "venue": "Tapahtumapaikka"
-      }
+      },
+      "participants": "Osallistujat"
     }
   },
   "footer": {
@@ -457,6 +457,7 @@
       "guardian": {
         "email": {
           "input": {
+            "error": "Sähköpostiosoite on virheellinen",
             "label": "Sähköpostiosoite",
             "placeholder": "Lisää sähköpostiosoite"
           }

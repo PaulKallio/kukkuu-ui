@@ -88,6 +88,7 @@ export interface UpdateMyProfileMutationInput {
   lastName?: string | null;
   phoneNumber?: string | null;
   language?: Language | null;
+  email?: string | null;
   clientMutationId?: string | null;
 }
 

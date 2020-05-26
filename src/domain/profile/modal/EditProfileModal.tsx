@@ -20,6 +20,7 @@ import updateMyProfileMutation from '../mutations/updateMyProfileMutation';
 import { updateMyProfile as UpdateMyProfileData } from '../../api/generatedTypes/updateMyProfile';
 import adultIcon from '../../../assets/icons/svg/adultFaceHappy.svg';
 import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
+import { validateEmail } from '../../../common/components/form/validationUtils';
 
 export type EditProfileModalValues = Omit<ProfileType, 'children'>;
 
@@ -54,6 +55,7 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
             lastName: payload.lastName,
             phoneNumber: payload.phoneNumber,
             language: payload.language,
+            email: payload.email,
           },
         },
       });
@@ -69,6 +71,7 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
     if (!isFilling) {
       setFormIsFilling(true);
     }
+
     const errors: FormikErrors<EditProfileModalValues> = {};
     return errors;
   };
@@ -99,12 +102,15 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
         >
           {({ isSubmitting, handleSubmit }) => (
             <form onSubmit={handleSubmit} id="editProfileForm">
-              <div className={styles.email}>
-                <label>
-                  {t('registration.form.guardian.email.input.label')}
-                </label>
-                <p className={styles.email}>{initialValues.email}</p>
-              </div>
+              <EnhancedInputField
+                id="email"
+                name="email"
+                validate={validateEmail}
+                required={true}
+                label={t('registration.form.guardian.email.input.label')}
+                component={InputField}
+                placeholder={initialValues.email}
+              />
               <EnhancedInputField
                 id="phoneNumber"
                 name="phoneNumber"
