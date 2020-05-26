@@ -109,7 +109,9 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
                 required={true}
                 label={t('registration.form.guardian.email.input.label')}
                 component={InputField}
-                placeholder={initialValues.email}
+                placeholder={t(
+                  'registration.form.guardian.email.input.placeholder'
+                )}
               />
               <EnhancedInputField
                 id="phoneNumber"
