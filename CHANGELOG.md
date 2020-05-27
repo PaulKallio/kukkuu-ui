@@ -1,5 +1,22 @@
 # Change Log
 
+# 1.0.0
+
+### Changed
+
+Some notable changes:
+
+- It should now be possble to sign up for events
+- Users should now stay logged in as long as the browser tab is open
+- Show a video on the front page
+- Add pdf files with information about the project in many languages
+- Support for Culture Kids projects coming after 2020
+- Use Helsingfors logo in Swedish
+- Upgrade all dependencies to their latest version
+- Usability improvements with usage of the back button
+
+See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/7?closed=1 for all fixes
+
 # 1.0.0-rc1
 
 See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
