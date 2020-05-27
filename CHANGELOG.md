@@ -1,5 +1,17 @@
 # Change Log
 
+# 1.1.0
+
+Some notable changes:
+
+- Users can now edit their email address
+- Accessibility is improved by adding alt texts for icons that convey meaning ([#247](https://github.com/City-of-Helsinki/kukkuu-ui/pull/247) )
+- Usability improvement on number fields: Hide confusing arrows
+
+See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/8?closed=1 for the full list of changes and fixes
+
+### Changed
+
 # 1.0.0
 
 ### Changed
