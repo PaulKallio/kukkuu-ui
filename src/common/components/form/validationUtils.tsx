@@ -1,3 +1,5 @@
+import isEmail from 'validator/lib/isEmail';
+
 import { newMoment } from '../../time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../time/TimeConstants';
 
@@ -44,4 +46,8 @@ const validateDate = (value: string | number) => {
   }
 };
 
-export { validateDate, validatePostalCode, validateRequire };
+const validateEmail = (value: string) => {
+  if (!isEmail(value)) return 'registration.form.guardian.email.input.error';
+};
+
+export { validateDate, validatePostalCode, validateRequire, validateEmail };

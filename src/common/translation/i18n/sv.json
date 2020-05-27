@@ -1,6 +1,6 @@
 {
   "accessibilityStatement": {
-    "title": "Tillgänglighetsutlåtande"
+    "title": "Tillgänglighetsredogörelse"
   },
   "api": {
     "errorMessage": "Ett fel uppstod. Försök igen senare"
@@ -8,8 +8,8 @@
   "appName": "Kulturens fadderbarn",
   "authentication": {
     "deviceTimeError": {
-      "message": "Tro det eller inte, men vi kan inte låta dig logga in eftersom klockan på din enhet är mer än fem minuter fel. Ställ in tiden och försök igen.",
-      "shortMessage": "Log in error. Check your device time and try again."
+      "message": "Tro det eller ej, men du kan inte logga in eftersom din enhets klocka går mer än 5 minuter fel. Justera klockan och försök igen.",
+      "shortMessage": "Fel vid inloggning. Kontrollera enhetens klocka och försök igen."
     },
     "errorMessage": "Ett fel uppstod. Försök igen",
     "loadUserError": {
@@ -29,7 +29,7 @@
       "shortMessage": "Login error: Authentication request denied"
     },
     "redirect": {
-      "text": "Omdirigerar till inloggning..."
+      "text": "Omdirigerar till identifiering..."
     },
     "session": {
       "expired": {
@@ -40,7 +40,7 @@
     }
   },
   "CHILD_RELATIONSHIP_OPTIONS": {
-    "ADVOCATE": "Ombud",
+    "ADVOCATE": "Förmyndare",
     "OTHER_GUARDIAN": "Annan vårdnadshavare",
     "OTHER_RELATION": "Annan närstående",
     "PARENT": "Förälder"
@@ -127,7 +127,7 @@
     "url": "https://www.hel.fi/static/liitteet/kanslia/rekisteriselosteet/Kuva/Kuva-EU-Kaupunginorkesterin-kummiperherekisteri-SV.pdf"
   },
   "email": {
-    "title": "Välkommen som kulturens fadderbarn!"
+    "title": "Välkommen som Kulturens fadderbarn!"
   },
   "enrollment": {
     "button": {
@@ -157,31 +157,31 @@
       "buttonText": "Visa evenemangets information"
     },
     "successToast": {
-      "heading": "Anmälan till evenemanget lyckades!",
+      "heading": "Din anmälan till evenemanget lyckades!",
       "paragraph": "Vi skickade en bekräftelse till din epost, den innehåller mer information om evenemanget"
     }
   },
   "event": {
     "cancellation": {
-      "buttonText": "Avboka anmälan",
+      "buttonText": "Avboka din anmälan",
       "confirmationModal": {
         "cancel": {
           "buttonText": "Tillbaka till evenemangssidan"
         },
         "confirm": {
-          "buttonText": "Avboka anmälan"
+          "buttonText": "Avboka din anmälan"
         },
-        "heading": "Vill du säkert avboka diin anmälan?"
+        "heading": "Vill du säkert avboka din anmälan?"
       },
       "heading": "Avbokning av anmälan",
-      "paragraph": "Kom ihåg att avboka din plats Ifall du inte kan delta i evenemanget. Då får istället något annat barn möjligheten att delta. Tack för din omtanke!"
+      "paragraph": "Kom ihåg att avboka din plats Ifall du inte kan delta i evenemanget. Då kan får ett annat barn möjligheten att delta istället. Tack för din omtanke!"
     },
     "participantsPerInviteEnum": {
       "CHILD_AND_GUARDIAN": "1 barn + 1 närstående",
       "FAMILY": "Familj"
     },
     "participantsPerInviteEnumLong": {
-      "CHILD_AND_GUARDIAN": "",
+      "CHILD_AND_GUARDIAN": "En vuxen kan delta tillsammans med ett fadderbarn per anmälan",
       "FAMILY": ""
     },
     "register": {
@@ -195,7 +195,8 @@
         "freePlaces": "Lediga platser",
         "time": "Klockslag",
         "venue": "Plats"
-      }
+      },
+      "participants": "Deltagare"
     }
   },
   "footer": {
@@ -217,19 +218,19 @@
       },
       "icon": {
         "kid": {
-          "text": "Om barnet bor i Helsingfors och är fött 2020, kan du anmäla hen som fadderbarn och registrera dig i tjänsten."
+          "text": "Om barnet bor i Helsingfors och är fött 2020, kan du anmäla hen som fadderbarn och registrera dig till tjänsten."
         },
         "theater": {
-          "text": "Du kan uppleva trevliga kulturstundar med barnet. Evenemangen har planerats så att de stöder barnens utveckling och välbefinnande."
+          "text": "Du kan uppleva trevliga kulturstunder tillsammans med barnet. Evenemangen har planerats så att de stöder barnens utveckling och välbefinnande."
         },
         "ticket": {
-          "text": "Du får en inbjudan per e-post två gånger om året och kan i tjänsten anmäla dig till de evenemang som bäst passar dig."
+          "text": "Du får en inbjudan till din e-post två gånger per år och via tjänsten kan du anmäla dig till de evenemang som passar dig bäst. "
         }
       }
     },
     "moreInfo": {
       "description": {
-        "text": "Ladda ner mer information om Kulturens fadderbarn-service på ditt eget språk."
+        "text": "Ladda ner mer information om tjänsten Kulturens fadderbarn på ditt eget språk."
       },
       "heading": {
         "text": "Information om tjänsten på olika språk"
@@ -257,9 +258,9 @@
         "kulttuuriperintokasvatus": "Föreningen för kulturarvsfostran i Finland",
         "mfa": "Finlands arkitekturmuseum",
         "nukketeatterisampo": "Dockteatern Sampo",
-        "oodihelsinki": "Ode Helsingfors centrumbibliotek",
+        "oodihelsinki": "Helsingfors centrumbibliotek Ode",
         "oopperabaletti": "Finlands nationalopera och -balett",
-        "qteatteri": "Q-teatteri",
+        "qteatteri": "Q-teatern",
         "svenskateatern": "Svenska Teatern",
         "tanssintalo": "Dansens hus",
         "teatteriilmio": "Ilmi Ö teater",
@@ -268,7 +269,7 @@
       }
     },
     "registration": {
-      "text": "Börja genom att uppge hemort och födelsedag för barnet som deltar i verksamheten. Därefter kan du logga in i tjänsten och komplettera barnets fadderbarnsprofil. Det tar några minuter."
+      "text": "Börja med att mata in det deltagande barnets hemort och födelsedatum. Därefter kan du registrera dig till tjänsten och komplettera ditt barns fadderbarnsprofil. Det tar några minuter. "
     },
     "video": {
       "youtubeId": "cDB8iN3bVnY"
@@ -277,11 +278,11 @@
   "homePage": {
     "hero": {
       "buttonText": "Anmäl dig",
-      "descriptionText": "Alla Helsingforsbarn födda 2020 eller senare bjuds in som Kulturens fadderbarn. Fadderbarnen bjuds årligen in till två event tills barnet börjar i skolan. Evenemangen är avgiftsfria.",
+      "descriptionText": "Alla barn i Helsingfors som är födda år 2020 eller senare bjuds in som Kulturens fadderbarn. Fadderbarnen får årligen inbjudan till två evenemang, tills barnet börjar skolan. Evenemangen är avgiftsfria. ",
       "heading": "Kulturens fadderbarn",
       "underConstruction": {
-        "heading": "Registreringen börjar 31 januari 2020",
-        "text": "Välkommen till Kulturens fadderbarn-tjänsten! Tyvärr är registreringen ännu inte öppen. Du kan anmäl ditt barn från den 31 januari 2020."
+        "heading": "Registreringen börjar den 31 januari 2020",
+        "text": "Välkommen till tjänsten Kulturens fadderbarn! Tyvärr är registreringen ännu inte öppen. Du kan anmäl ditt barn från och med den 31 januari 2020."
       }
     },
     "preliminaryForm": {
@@ -301,13 +302,13 @@
       },
       "childHomeCity": {
         "input": {
-          "label": "Barnets hemkommun",
-          "placeholder": "Uppge barnets hemkommun"
+          "label": "Barnets hemort",
+          "placeholder": "Uppge barnets hemort"
         }
       },
       "verifyInformation": {
         "checkbox": {
-          "label": "Jag intygar att de uppgifter som jag gett är korrekta",
+          "label": "Jag försäkrar att de uppgifter som jag lämnat är korrekta",
           "required": {
             "label": "Det här valet är obligatoriskt"
           }
@@ -324,7 +325,7 @@
         "text": "Open user profile on omaHelsinki"
       },
       "profile": {
-        "text": "Fadderbarnprofil"
+        "text": "Fadderbarnsprofil"
       }
     },
     "smallScreenMenu": {
@@ -335,14 +336,14 @@
     "return": {
       "text": "Tillbaka till framsidan"
     },
-    "text": "Sidan du letade efter kunde inte hittas"
+    "text": "Sidan du söker kunde inte hittas"
   },
   "partners": {
     "2020": "Födda 2020"
   },
   "profile": {
     "addChildMutation": {
-      "errorMessage": "Ett fel skedde vid sparande av barnets information. Försök pånytt."
+      "errorMessage": "Ett fel uppstod när du lade till information om barnet. Försök igen."
     },
     "child": {
       "default": {
@@ -355,15 +356,16 @@
         "delete": {
           "prompt": {
             "heading": "Är du säker på att du vill radera barnets uppgifter?",
-            "text": "Om du raderar barnets uppgifter kommer du inte längre att få inbjudningar till evenemang."
+            "text": "Om du raderar barnets uppgifter får barnet inte längre inbjudan till evenemang."
           },
           "text": "Radera barnets uppgifter"
         },
         "edit": {
           "text": "Uppdatera barnets uppgifter"
         },
+        "guardiansName": "Närstående vuxens namn",
         "page": {
-          "title": "Barnets uppgifter"
+          "title": "Fadderbarnets uppgifter"
         },
         "phoneNumber": "Telefonnummer"
       },
@@ -371,7 +373,7 @@
         "text": "Ny inbjudan!"
       },
       "navigateToDetail": {
-        "buttonLabel": "Gå till barnets uppgifter"
+        "buttonLabel": "Visa Fadderbarnets uppgifter"
       }
     },
     "children": {
@@ -386,7 +388,7 @@
     },
     "events": {
       "invitations": {
-        "heading": "Eventinbjudningar"
+        "heading": "Inbjudan till evenemang"
       },
       "past": {
         "heading": "Gångna evenemang"
@@ -398,9 +400,9 @@
     "heading": "Fadderbarn",
     "noupcomingevents": {
       "hero": {
-        "heading": "Eventinbjudningar"
+        "heading": "Inbjudan till evenemang"
       },
-      "text": "Inbjudningar till evenemang som skickats till dig visas här. Du kan också anmäla dig till evenemang och ångra anmälan om du av någon orsak inte kan delta."
+      "text": "Inbjudan till de evenemang som skickats till dig visas här. Här kan du också anmäla dig till evenemang och avboka din anmälan om du av någon orsak inte kan delta."
     }
   },
   "registration": {
@@ -415,19 +417,19 @@
         "birthdate": {
           "input": {
             "label": "Barnets födelsedatum (dd.mm.åååå)",
-            "placeholder": "Uppge barnets födelsedatum"
+            "placeholder": "Ange barnets födelsedatum"
           }
         },
         "firstName": {
           "input": {
             "label": "Barnets förnamn",
-            "placeholder": "Uppge barnets förnamn"
+            "placeholder": "Ange barnets förnamn"
           }
         },
         "homeCity": {
           "input": {
-            "label": "Barnets hemkommun",
-            "placeholder": "Uppge barnets hemkommun"
+            "label": "Barnets hemort",
+            "placeholder": "Ange barnets hemort"
           }
         },
         "info": {
@@ -436,33 +438,34 @@
         "lastName": {
           "input": {
             "label": "Barnets efternamn",
-            "placeholder": "Uppge barnets efternamn"
+            "placeholder": "Ange barnets efternamn"
           }
         },
         "postalCode": {
           "input": {
             "label": "Barnets postnummer",
-            "placeholder": "Uppge barnets postnummer"
+            "placeholder": "Ange barnets postnummer"
           }
         },
         "relationship": {
           "input": {
-            "label": "Anmälarens förhållande till barnet",
-            "placeholder": "Uppge anmälarens förhållande till barnet"
+            "label": "Relationen mellan uppgiftslämnaren och barnet",
+            "placeholder": "Ange relationen mellan uppgiftslämnaren och barnet"
           }
         }
       },
       "guardian": {
         "email": {
           "input": {
+            "error": "E-postadressen är inte giltig",
             "label": "E-postadress",
-            "placeholder": "Uppge e-postadress"
+            "placeholder": "Ange e-postadress"
           }
         },
         "firstName": {
           "input": {
             "label": "Förnamn",
-            "placeholder": "Uppge förnamn"
+            "placeholder": "Ange förnamn"
           }
         },
         "info": {
@@ -477,13 +480,13 @@
         "lastName": {
           "input": {
             "label": "Efternamn",
-            "placeholder": "Uppge efternamn"
+            "placeholder": "Ange efternamn"
           }
         },
         "phoneNumber": {
           "input": {
             "label": "Telefonnummer",
-            "placeholder": "Uppge telefonnummer"
+            "placeholder": "Ange telefonnummer"
           }
         }
       },
@@ -495,9 +498,9 @@
     },
     "heading": "Kom med",
     "notEligible": {
-      "buttonText": "Här finns lämpliga kulturevenemang för barn",
+      "buttonText": "Hitta kulturevenemang som lämpar sig för barn här",
       "otherOptionsLink": "https://www.myhelsinki.fi/sv/search?tags=barn%20(%C3%A5ldersgrupper)&category=events",
-      "text": "Tyvärr berättigar barnets födelseår eller hemkommun inte till verksamheten Kulturens fadderbarn.",
+      "text": "Tyvärr berättigar barnets födelseår eller hemort inte till att delta i verksamheten Kulturens fadderbarn.",
       "title": "Vad synd!"
     },
     "submitMutation": {
@@ -505,7 +508,7 @@
     },
     "welcome": {
       "hero": {
-        "header": "Välkommen som kulturens fadderbarn!"
+        "header": "Välkommen som Kulturens fadderbarn!"
       }
     }
   },
@@ -516,13 +519,13 @@
   "validation": {
     "date": {
       "invalidFormat": "Fel datumformat",
-      "unSupported": "Födelsedatum kan inte vara i framtiden"
+      "unSupported": "Födelsedatumet kan inte vara i framtiden"
     },
     "general": {
       "required": "Obligatoriskt fält"
     },
     "postalCode": {
-      "invalidFormat": "Inkorrekt format"
+      "invalidFormat": "Ogiltigt format"
     }
   },
   "venue": {

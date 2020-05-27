@@ -168,7 +168,10 @@ const ProfileChildDetail: FunctionComponent = () => {
                 </span>
               </div>
               <div className={styles.childInfoRow}>
-                <Icon src={personIcon} />
+                <Icon
+                  src={personIcon}
+                  alt={t('profile.child.detail.guardiansName')}
+                />
                 <span>{`${guardian.firstName} ${guardian.lastName}`}</span>
               </div>
 

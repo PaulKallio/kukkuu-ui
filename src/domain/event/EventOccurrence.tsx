@@ -16,7 +16,6 @@ const EventOccurrence: React.FunctionComponent<EventOccurrenceProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  // TODO: Ensure that date shows in correct locale.
   const date = formatTime(newMoment(occurrence.time), 'dd l');
   const time = formatTime(newMoment(occurrence.time), 'hh:mm');
 

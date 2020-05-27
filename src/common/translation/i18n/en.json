@@ -195,7 +195,8 @@
         "freePlaces": "Free Places",
         "time": "Time",
         "venue": "Venue"
-      }
+      },
+      "participants": "Participants"
     }
   },
   "footer": {
@@ -362,6 +363,7 @@
         "edit": {
           "text": "Update child information"
         },
+        "guardiansName": "Guardian's name",
         "page": {
           "title": "Child detail page"
         },
@@ -455,13 +457,14 @@
       "guardian": {
         "email": {
           "input": {
+            "error": "This email address is not valid",
             "label": "E-mail address",
-            "placeholder": "Please enter guardian’s e-mail address"
+            "placeholder": "Enter e-mail address"
           }
         },
         "firstName": {
           "input": {
-            "label": "Guardian’s first name",
+            "label": "First name",
             "placeholder": "Please enter guardian’s first name"
           }
         },
@@ -476,7 +479,7 @@
         },
         "lastName": {
           "input": {
-            "label": "Guardian’s last name",
+            "label": "Last name",
             "placeholder": "Please enter guardian’s last name"
           }
         },
