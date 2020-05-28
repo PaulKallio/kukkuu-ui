@@ -6329,10 +6329,10 @@ hash.js@^1.0.0, hash.js@^1.0.3:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
 
-hds-core@^0.6.3:
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/hds-core/-/hds-core-0.6.3.tgz#72bbb0a54ea7fa33c00f3f72c9492323456e0cfc"
-  integrity sha512-Ax7JTMGJGN6r3uj+3O0BG9NSQbj7rupnsl85qyg3XK1W0Hztn70J+kftB2fKie+FM/JVUdvCfIwP7sus8lFtbA==
+hds-core@^0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/hds-core/-/hds-core-0.10.1.tgz#ace566bb235c6fe16f8d306507e675f29588b1d7"
+  integrity sha512-2IXAs2JyC0KBYTyE9lKr6MR017XMZjPbX+578W8iQFmCOI+Q1v80CTF6bTl07U8OCJdopvVrxQyzjI9fGkg/Ag==
 
 he@^1.2.0:
   version "1.2.0"

@@ -14,11 +14,11 @@
 
     display: block;
     margin: $largeMargin auto auto auto;
-    background: $hel-summer;
+    background: var(--color-summer);
     box-sizing: border-box;
     text-decoration: none;
     padding: $basePadding;
-    color: $black;
+    color: var(--color-black);
   }
 }
 

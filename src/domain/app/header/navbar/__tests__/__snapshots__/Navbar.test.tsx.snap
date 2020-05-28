@@ -7,9 +7,9 @@ exports[`Navbar render normally 1`] = `
   <div
     className="logoWrapper"
   >
-    <div
+    <Link
       className="logo fi"
-      onClick={[Function]}
+      to="/"
     />
     <div
       className="appName"

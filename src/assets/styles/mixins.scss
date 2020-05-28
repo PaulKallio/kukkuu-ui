@@ -36,7 +36,7 @@
   }
 }
 
-@mixin divider($color: $white) {
+@mixin divider($color: $hel-light) {
   background-color: $color;
 
   &::before {
@@ -77,7 +77,7 @@
 */
 @mixin add_spinner(
   $size: $spinnerHeight,
-  $main-color: $hel-gray,
+  $main-color: var(--color-black-30),
   $alt-color: $hel-black,
   $thickness: 2px
 ) {
@@ -100,12 +100,12 @@
 @mixin button() {
   text-align: center;
   button {
-    background: $hel-summer;
+    background: var(--color-summer);
 
     border: none !important;
 
     &:disabled {
-      background: $hel-silver;
+      background: var(--color-silver);
       cursor: not-allowed;
     }
 
@@ -121,8 +121,4 @@
       width: 80%;
     }
   }
-}
-
-@mixin background($color) {
-  background: lighten($color, 3%);
 }

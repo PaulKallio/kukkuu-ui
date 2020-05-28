@@ -28,7 +28,7 @@
       border-width: 2px;
       border-style: solid;
       border-radius: 1px;
-      border-color: $hel-gray;
+      border-color: var(--color-black-30);
       font-size: var(--hds-text-md);
       width: 100%;
     }
@@ -45,7 +45,7 @@
     &:focus-within {
       // Would be great to copy style from focus so it would be consistent with other fields for each browser
       // This is better than nothing
-      outline: $hel-metro auto 2px;
+      outline: var(--color-metro) auto 2px;
     }
 
     input {
@@ -67,11 +67,11 @@
         width: $checkboxHeight;
         height: $checkboxHeight;
         position: absolute;
-        background-color: $white;
+        background-color: var(--color-white);
         border-width: 2px;
         border-style: solid;
         border-radius: 1px;
-        border-color: $hel-gray;
+        border-color: var(--color-black-30);
       }
     }
 
@@ -79,7 +79,7 @@
       background-image: url('../../../assets/icons/svg/checkbox.svg');
       background-size: contain;
       text-align: center;
-      background-color: $hel-summer;
+      background-color: var(--color-summer);
       border: none;
     }
   }

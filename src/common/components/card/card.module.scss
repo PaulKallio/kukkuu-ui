@@ -19,7 +19,7 @@ $imageMaxSize: 300px;
     margin: 0;
     padding: 0;
   }
-  background: $white;
+  background: var(--color-white);
   & + & {
     margin-top: $cardMargin;
   }
