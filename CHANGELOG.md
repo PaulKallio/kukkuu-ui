@@ -1,5 +1,17 @@
 # Change Log
 
+# 1.1.1
+
+### Known issues
+
+If a user clicks the link in the invitation email after they have signed up, the event page looks like the sign up page. It should just show
+information about the event.
+
+### Changed
+
+- [#256](https://github.com/City-of-Helsinki/kukkuu-ui/pull/256) Users can also change the email address when signing up
+- [#257](https://github.com/City-of-Helsinki/kukkuu-ui/pull/257) Fix missing focus outline after upgrading HDS
+
 # 1.1.0
 
 Some notable changes:
