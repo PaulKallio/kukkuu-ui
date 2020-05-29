@@ -133,7 +133,10 @@ export interface profileQuery_myProfile {
   id: string;
   firstName: string;
   lastName: string;
-  email: string | null;
+  /**
+   * If left blank, will be populated with the user's email.
+   */
+  email: string;
   phoneNumber: string;
   language: Language;
   children: profileQuery_myProfile_children;

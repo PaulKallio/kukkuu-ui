@@ -74,7 +74,10 @@ export interface submitChildrenAndGuardian_submitChildrenAndGuardian_guardian {
   id: string;
   firstName: string;
   lastName: string;
-  email: string | null;
+  /**
+   * If left blank, will be populated with the user's email.
+   */
+  email: string;
   phoneNumber: string;
   language: Language;
   children: submitChildrenAndGuardian_submitChildrenAndGuardian_guardian_children;

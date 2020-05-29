@@ -64,7 +64,10 @@ export interface GuardiansQuery_guardians_edges_node {
   language: Language;
   children: GuardiansQuery_guardians_edges_node_children;
   relationships: GuardiansQuery_guardians_edges_node_relationships;
-  email: string | null;
+  /**
+   * If left blank, will be populated with the user's email.
+   */
+  email: string;
 }
 
 export interface GuardiansQuery_guardians_edges {
