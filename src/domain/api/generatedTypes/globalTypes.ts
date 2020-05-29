@@ -61,6 +61,7 @@ export interface GuardianInput {
   lastName: string;
   phoneNumber?: string | null;
   language: Language;
+  email?: string | null;
 }
 
 export interface RelationshipInput {

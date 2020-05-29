@@ -9,12 +9,12 @@ $logoWidth: 5rem;
 
 .footer {
   display: grid;
-  color: $footerGray;
+  color: var(--color-black-60);
 
   .links {
     margin: $baseMargin 0;
     a {
-      color: $footerGray;
+      color: var(--color-black-60);
     }
   }
 
@@ -50,6 +50,6 @@ $logoWidth: 5rem;
 
   p {
     margin: 0;
-    color: $footerGray;
+    color: var(--color-black-60);
   }
 }

@@ -17,7 +17,10 @@ export interface updateMyProfile_updateMyProfile_myProfile {
   firstName: string;
   lastName: string;
   language: Language;
-  email: string | null;
+  /**
+   * If left blank, will be populated with the user's email.
+   */
+  email: string;
 }
 
 export interface updateMyProfile_updateMyProfile {

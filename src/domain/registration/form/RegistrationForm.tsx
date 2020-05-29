@@ -33,6 +33,7 @@ import { profileQuery as ProfileQueryType } from '../../api/generatedTypes/profi
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
 import { GuardianInput, Language } from '../../api/generatedTypes/globalTypes';
+import { validateEmail } from '../../../common/components/form/validationUtils';
 
 const RegistrationForm: FunctionComponent = () => {
   const { i18n, t } = useTranslation();
@@ -101,6 +102,7 @@ const RegistrationForm: FunctionComponent = () => {
               const backendSupportGuardian: GuardianInput = {
                 firstName: values.guardian.firstName,
                 lastName: values.guardian.lastName,
+                email: values.guardian.email,
                 phoneNumber: values.guardian.phoneNumber,
                 language: language,
               };
@@ -192,13 +194,17 @@ const RegistrationForm: FunctionComponent = () => {
                     <Icon src={happyAdultIcon} className={styles.childImage} />
                     <h2>{t('registration.form.guardian.info.heading')}</h2>
                   </div>
-                  <div className={styles.guardianEmail}>
-                    <label>
-                      {t('registration.form.guardian.email.input.label')}
-                    </label>
-                    <p>{values.guardian.email}</p>
-                  </div>
-
+                  <EnhancedInputField
+                    id="guardian.email"
+                    name="guardian.email"
+                    required={true}
+                    validate={validateEmail}
+                    label={t('registration.form.guardian.email.input.label')}
+                    component={InputField}
+                    placeholder={t(
+                      'registration.form.guardian.email.input.placeholder'
+                    )}
+                  />
                   <EnhancedInputField
                     id="guardian.phoneNumber"
                     name="guardian.phoneNumber"

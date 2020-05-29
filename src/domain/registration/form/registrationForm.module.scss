@@ -76,11 +76,11 @@ $plusIconHeight: 2rem;
 
 .grayBackground,
 .registrationGrayContainer {
-  @include background($hel-light);
+  background: $hel-lighter;
 }
 
 .registrationWhiteContainer {
-  background: $white;
+  background: var(--color-white);
 
   > * {
     grid-column: 2;

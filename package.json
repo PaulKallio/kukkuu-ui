@@ -1,6 +1,6 @@
 {
   "name": "kukkuu-ui",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "MIT",
   "contributors": [
     "Bernt Andreas Drange",
@@ -40,7 +40,7 @@
     "formik": "^2.1.4",
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.3",
-    "hds-core": "^0.6.3",
+    "hds-core": "^0.10.1",
     "helsinki-utils": "City-of-Helsinki/helsinki-utils-js.git#0.1.0",
     "i18next": "^19.4.4",
     "i18next-browser-languagedetector": "^4.2.0",

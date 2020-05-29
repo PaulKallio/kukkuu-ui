@@ -43,7 +43,8 @@
 }
 
 .wrapper {
-  @include background($hel-light);
+  background: $hel-lighter;
+
   margin-top: 20rem;
   @include respond-above(md) {
     margin-top: 12rem;
@@ -97,11 +98,11 @@
         margin-top: 0;
       }
     }
-    background-color: $white;
+    background-color: var(--color-white);
   }
   @include respond-below(md) {
     padding: 0 $basePadding;
-    background: $hel-white;
+    background: var(--color-white);
     padding-bottom: 5rem;
   }
   @include respond-above(lg) {
@@ -147,11 +148,11 @@
     justify-content: normal;
   }
   button {
-    border: 2px solid $hel-summer;
+    border: 2px solid var(--color-summer);
     max-width: 20rem;
     width: 100%;
     font-weight: $font-weight-normal;
-    background-color: $hel-white;
+    background-color: var(--color-white);
     padding: $basePadding;
   }
 }
