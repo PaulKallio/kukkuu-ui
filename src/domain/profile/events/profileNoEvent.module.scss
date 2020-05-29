@@ -7,7 +7,7 @@ $iconSize: 2 * $xlargeMargin;
 .noEvent {
   padding: $largeMargin;
   display: grid;
-  background: $white;
+  background: var(--color-white);
   @include respond-above(sm) {
     grid-template-columns: $iconSize 1fr;
     grid-gap: $baseMargin;

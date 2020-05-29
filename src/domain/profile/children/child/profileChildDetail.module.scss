@@ -6,7 +6,7 @@
 $childHeadingMargin: 0.65rem;
 
 .wrapper {
-  @include background($hel-light);
+  background: $hel-lighter;
 }
 
 .childDetailWrapper {
@@ -47,7 +47,7 @@ $childHeadingMargin: 0.65rem;
       width: $baseMargin;
     }
     &:hover {
-      background: $white;
+      background: var(--color-white);
       border-radius: 50%;
     }
   }

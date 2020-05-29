@@ -65,7 +65,7 @@
 }
 
 .wrapper {
-  @include background($hel-light);
+  background: $hel-lighter;
 }
 
 .guardianInfo {

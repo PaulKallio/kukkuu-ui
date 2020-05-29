@@ -4,7 +4,7 @@
 @import 'styles/mixins';
 
 .wrapper {
-  @include background($hel-light);
+  background: $hel-lighter;
   display: grid;
   justify-items: center;
   grid-template-rows: min-content;
@@ -14,11 +14,11 @@
 }
 
 .enrolContainer {
-  @include background($hel-white);
+  background: var(--color-white);
 }
 
 .enrolWrapper {
-  @include background($hel-white);
+  background: var(--color-white);
   padding: $basePadding;
   display: grid;
   justify-items: center;
@@ -36,7 +36,7 @@ h1 {
 }
 
 .occurrenceInfo {
-  @include background($hel-light);
+  background: $hel-lighter;
   padding: $basePadding;
 }
 
@@ -56,7 +56,7 @@ h1 {
   @include button();
   button {
     width: 100%;
-    @include background($hel-white);
-    border: 2px solid $hel-summer !important;
+    background: var(--color-white);
+    border: 2px solid var(--color-summer) !important;
   }
 }

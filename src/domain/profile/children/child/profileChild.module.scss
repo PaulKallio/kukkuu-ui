@@ -5,7 +5,7 @@
 $childProfileMargin: 0.2rem;
 
 .childWrapper {
-  background: $white;
+  background: var(--color-white);
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -17,7 +17,7 @@ $childProfileMargin: 0.2rem;
 }
 
 .invitationLabel {
-  background-color: $hel-engel;
+  background-color: var(--color-engel);
   align-self: start;
   position: absolute;
   padding: $childProfileMargin $basePadding;
