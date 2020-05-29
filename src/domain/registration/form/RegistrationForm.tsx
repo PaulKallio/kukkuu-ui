@@ -204,7 +204,6 @@ const RegistrationForm: FunctionComponent = () => {
                     placeholder={t(
                       'registration.form.guardian.email.input.placeholder'
                     )}
-                    value={values.guardian.email}
                   />
                   <EnhancedInputField
                     id="guardian.phoneNumber"
