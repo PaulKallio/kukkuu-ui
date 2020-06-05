@@ -25,7 +25,6 @@ const eventQuery = gql`
             venue {
               id
               name
-              description
               address
             }
           }

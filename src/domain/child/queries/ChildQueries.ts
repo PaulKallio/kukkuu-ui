@@ -21,7 +21,6 @@ export const childByIdQuery = gql`
             venue {
               id
               name
-              description
               address
             }
             event {
