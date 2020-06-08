@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 import { useQuery } from '@apollo/react-hooks';
+import * as Sentry from '@sentry/browser';
 
 import { profileQuery as ProfileQueryType } from '../../../api/generatedTypes/profileQuery';
 import personIcon from '../../../../assets/icons/svg/person.svg';
@@ -13,7 +14,6 @@ import { loginTunnistamo, logoutTunnistamo } from '../../../auth/authenticate';
 import UserMenu from '../userMenu/UserMenu';
 import { flushAllState } from '../../../auth/state/AuthenticationUtils';
 import profileQuery from '../../../profile/queries/ProfileQuery';
-import LoadingSpinner from '../../../../common/components/spinner/LoadingSpinner';
 import { saveProfile } from '../../../profile/state/ProfileActions';
 import {
   clearEvent,
@@ -22,7 +22,7 @@ import {
 import { defaultProfileData } from '../../../profile/state/ProfileReducers';
 
 export interface UserDropdownProps {
-  isSmallScreen?: boolean;
+  isSmallScreen: boolean;
 }
 
 const UserDropdown: FunctionComponent<UserDropdownProps> = ({
@@ -39,15 +39,16 @@ const UserDropdown: FunctionComponent<UserDropdownProps> = ({
   const { trackEvent } = useMatomo();
 
   useEffect(() => {
-    console.count('UserDropdown useEffect');
     dispatch(saveProfile(data?.myProfile || defaultProfileData));
     dispatch(clearEvent());
     dispatch(saveChildrenEvents(data?.myProfile?.children || undefined));
   }, [data, dispatch]);
 
-  if (loading) return <LoadingSpinner isLoading={true} />;
+  if (loading) return <></>;
   if (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
+    Sentry.captureException(error);
   }
 
   const logout = {
@@ -59,7 +60,7 @@ const UserDropdown: FunctionComponent<UserDropdownProps> = ({
       // Flush all cached state
       flushAllState({});
 
-      // Log out;
+      // Log out
       logoutTunnistamo();
     },
   };
