@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/react-hooks';
@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import * as Sentry from '@sentry/browser';
 
 import { profileQuery as ProfileQueryType } from '../api/generatedTypes/profileQuery';
-import { saveProfile, clearProfile } from './state/ProfileActions';
+import { clearProfile } from './state/ProfileActions';
 import profileQuery from './queries/ProfileQuery';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import ProfileChildrenList from './children/ProfileChildrenList';
@@ -18,21 +18,13 @@ import emailIcon from '../../assets/icons/svg/envelope.svg';
 import settingsIcon from '../../assets/icons/svg/gear.svg';
 import Button from '../../common/components/button/Button';
 import EditProfileModal from './modal/EditProfileModal';
-import { clearEvent, saveChildrenEvents } from '../event/state/EventActions';
-import { defaultProfileData } from './state/ProfileReducers';
 import ErrorMessage from '../../common/components/error/Error';
 
-const Profile: FunctionComponent = () => {
+const Profile = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const { loading, error, data } = useQuery<ProfileQueryType>(profileQuery);
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(saveProfile(data?.myProfile || defaultProfileData));
-    dispatch(clearEvent());
-    dispatch(saveChildrenEvents(data?.myProfile?.children || undefined));
-  }, [data, dispatch]);
 
   if (loading) return <LoadingSpinner isLoading={true} />;
   if (error) {
