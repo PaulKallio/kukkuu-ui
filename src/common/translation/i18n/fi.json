@@ -234,6 +234,23 @@
       },
       "heading": {
         "text": "Lisätietoa palvelusta eri kielillä"
+      },
+      "links": {
+        "ar": "Arabia",
+        "ckb": "Kurdi",
+        "en": "Englanti",
+        "es": "Espanja",
+        "et": "Viro",
+        "fas": "Farsi",
+        "fi": "Suomi",
+        "fr": "Ranska",
+        "npi": "Nepali",
+        "ru": "Venäjä",
+        "som": "Somali",
+        "sv": "Ruotsi",
+        "tur": "Turkki",
+        "vi": "Vietnam",
+        "zh": "Kiina"
       }
     },
     "partners": {
