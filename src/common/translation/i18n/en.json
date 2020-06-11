@@ -234,6 +234,23 @@
       },
       "heading": {
         "text": "Information about the service on different languages"
+      },
+      "links": {
+        "ar": "Arabic",
+        "ckb": "Kurdish",
+        "en": "English",
+        "es": "Spanish",
+        "et": "Estonian",
+        "fas": "Farsi",
+        "fi": "Finnish",
+        "fr": "French",
+        "npi": "Nepalese",
+        "ru": "Russian",
+        "som": "Somali",
+        "sv": "Swedish",
+        "tur": "Turkish",
+        "vi": "Vietnamese",
+        "zh": "Chinese"
       }
     },
     "partners": {

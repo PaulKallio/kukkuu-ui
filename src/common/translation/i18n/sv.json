@@ -234,6 +234,23 @@
       },
       "heading": {
         "text": "Information om tjänsten på olika språk"
+      },
+      "links": {
+        "ar": "Arabiska",
+        "ckb": "Kurdiska",
+        "en": "Engelska",
+        "es": "Spanska",
+        "et": "Estniska",
+        "fas": "Persiska",
+        "fi": "Finska",
+        "fr": "Franska",
+        "npi": "Nepali",
+        "ru": "Ryska",
+        "som": "Somaliska",
+        "sv": "Svenska",
+        "tur": "Turkiska",
+        "vi": "Vietnamesiska",
+        "zh": "Kinesiska"
       }
     },
     "partners": {
