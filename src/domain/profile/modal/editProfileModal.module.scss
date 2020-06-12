@@ -30,7 +30,7 @@
   @include button();
   button {
     width: 100%;
-    background-color: $hel-light;
+    background-color: var(--color-black-5);
   }
 }
 

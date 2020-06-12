@@ -14,14 +14,14 @@ if (process.env.NODE_ENV === 'development') {
 const settings: UserManagerSettings = {
   loadUserInfo: true,
   userStore: new WebStorageStateStore({ store: window.localStorage }),
-  // This calculates to 1 minute, good for debugging:
-  // accessTokenExpiringNotificationTime: 59.65 * 60,
   authority: process.env.REACT_APP_OIDC_AUTHORITY,
-  automaticSilentRenew: true,
   client_id: process.env.REACT_APP_OIDC_CLIENT_ID,
   redirect_uri: `${location}/callback`,
-  response_type: 'id_token token',
+  // This calculates to 1 minute, good for debugging:
+  // accessTokenExpiringNotificationTime: 59.65 * 60,
+  automaticSilentRenew: true,
   silent_redirect_uri: `${location}/silent_renew.html`,
+  response_type: 'id_token token',
   scope: process.env.REACT_APP_OIDC_SCOPE,
   post_logout_redirect_uri: `${location}/`,
 };

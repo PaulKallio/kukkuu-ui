@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import joinClassNames from 'classnames';
+import { Koros } from 'hds-react';
 
 import styles from './footer.module.scss';
 import Container from '../layout/Container';
@@ -13,7 +14,8 @@ const Footer: FunctionComponent = () => {
   const logoLang = currentLocale === 'sv' ? styles.sv : styles.fi;
 
   return (
-    <footer className={styles.footerWrapper}>
+    <div className={styles.footerWrapper}>
+      <Koros className={styles.koros} />
       <Container>
         <div className={styles.footer}>
           <div className={joinClassNames(styles.helsinkiLogo, logoLang)}></div>
@@ -39,7 +41,7 @@ const Footer: FunctionComponent = () => {
           </div>
         </div>
       </Container>
-    </footer>
+    </div>
   );
 };
 

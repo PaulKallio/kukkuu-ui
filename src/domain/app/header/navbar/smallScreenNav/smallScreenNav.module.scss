@@ -49,7 +49,10 @@ $logoWidth: 5.5rem;
 }
 
 .logo {
-  @include helsinki-logo($hel-black);
+  @include helsinki-logo();
+  &.sv {
+    @include helsinki-logo('sv');
+  }
   background-position: center;
   height: $logoHeight;
   width: $logoWidth;

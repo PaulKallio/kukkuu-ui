@@ -4,7 +4,7 @@
 @import 'styles/mixins';
 
 .wrapper {
-  background: $hel-lighter;
+  background: var(--color-black-5);
   display: grid;
   justify-items: center;
   grid-template-rows: min-content;
@@ -36,7 +36,7 @@ h1 {
 }
 
 .occurrenceInfo {
-  background: $hel-lighter;
+  background: var(--color-black-5);
   padding: $basePadding;
 }
 
