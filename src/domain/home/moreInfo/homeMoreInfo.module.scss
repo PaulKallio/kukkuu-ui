@@ -3,7 +3,7 @@
 @import 'styles/variables';
 
 .wrapper {
-  background: var(--color-black-5);
+  background: $hel-lighter;
   padding: 2rem 0 2 * $largeMargin 0;
 
   display: grid;

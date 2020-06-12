@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import joinClassNames from 'classnames';
-import { Link } from 'react-router-dom';
 
 import hamburgerMenu from '../../../../../assets/icons/svg/hamburgerMenu.svg';
 import close from '../../../../../assets/icons/svg/close.svg';
@@ -10,12 +8,9 @@ import Icon from '../../../../../common/components/icon/Icon';
 import UserDropdown from '../../userDropdown/UserDropdown';
 import LanguageBar from '../languageBar/LanguageBar';
 import Button from '../../../../../common/components/button/Button';
-import { getCurrentLanguage } from '../../../../../common/translation/TranslationUtils';
 
-const SmallScreenNav = () => {
-  const { t, i18n } = useTranslation();
-  const currentLocale = getCurrentLanguage(i18n);
-  const logoLang = currentLocale === 'sv' ? styles.sv : styles.fi;
+const SmallScreenNav: React.FunctionComponent = (props) => {
+  const { t } = useTranslation();
 
   const ref = React.useRef<HTMLDivElement>(null);
   const [isOpen, toggleNavMenu] = React.useState(false);
@@ -55,10 +50,7 @@ const SmallScreenNav = () => {
         >
           <div className={styles.smallScreenNavTop}>
             <div className={styles.logoWrapper}>
-              <Link
-                to="/"
-                className={joinClassNames(styles.logo, logoLang)}
-              ></Link>
+              <div className={styles.logo}></div>
             </div>
             <button
               aria-label={t('common.closeButton.altText')}

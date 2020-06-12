@@ -17,7 +17,7 @@
   .cancelButton {
     @include button();
     button {
-      background: var(--color-black-5);
+      background: $hel-light;
     }
   }
 

@@ -23,15 +23,8 @@ $logoWidth: 5rem;
   }
 }
 
-.koros {
-  width: 100%;
-  fill: var(--color-black-5);
-  height: 10px;
-  margin-top: -50px;
-}
-
 .footerWrapper {
-  background-color: var(--color-black-5);
+  @include divider($hel-light);
   position: relative;
   display: grid;
   align-items: center;
@@ -41,9 +34,9 @@ $logoWidth: 5rem;
 }
 
 .helsinkiLogo {
-  @include helsinki-logo();
+  @include helsinki-logo($hel-black);
   &.sv {
-    @include helsinki-logo('sv');
+    @include helsinki-logo($hel-black, 'sv');
   }
   background-position: center;
   height: $logoHeight;
@@ -52,7 +45,7 @@ $logoWidth: 5rem;
 }
 
 .copyright {
-  border-top: 1px solid var(--color-black-90);
+  border-top: 1px solid $hel-black;
   padding-top: $basePadding;
 
   p {
