@@ -43,7 +43,7 @@
 
   .error {
     text-align: left;
-    color: $red;
+    color: var(--color-error);
     margin-top: $sm-margin;
     font-size: $font-size-sm;
   }

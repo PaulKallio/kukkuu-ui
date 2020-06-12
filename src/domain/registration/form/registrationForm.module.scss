@@ -75,7 +75,7 @@ $plusIconHeight: 2rem;
 
 .grayBackground,
 .registrationGrayContainer {
-  background: $hel-lighter;
+  background: var(--color-black-5);
 }
 
 .registrationWhiteContainer {
