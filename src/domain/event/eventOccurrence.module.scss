@@ -10,7 +10,7 @@
 }
 
 tr {
-  border-bottom: 2px solid $hel-light;
+  border-bottom: 2px solid var(--color-black-5);
 }
 
 @include respond-above(md) {
