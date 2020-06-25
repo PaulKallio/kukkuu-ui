@@ -25,8 +25,8 @@
       "message": "Inloggningsfel: Kontrollera din nätverksanslutning eller försök igen senare"
     },
     "permRequestDenied": {
-      "message": "You need to approve our request to access your Tunnistamo profile in order to use this service. Please try logging in again.",
-      "shortMessage": "Login error: Authentication request denied"
+      "message": "Du måste godkänna begäran om åtkomst till din Tunnistamo-profil för att kunna använda den här tjänsten. Försök att logga in igen.",
+      "shortMessage": "Inloggningsfel: Autentiseringsbegäran nekad"
     },
     "redirect": {
       "text": "Omdirigerar till identifiering..."
