@@ -182,7 +182,7 @@
     },
     "participantsPerInviteEnumLong": {
       "CHILD_AND_GUARDIAN": "En vuxen kan delta tillsammans med ett fadderbarn per anmälan",
-      "FAMILY": ""
+      "FAMILY": "Hela familjen kan delta tillsammans med ett fadderbarn per anmälan"
     },
     "register": {
       "form": {
@@ -369,6 +369,9 @@
         }
       },
       "detail": {
+        "availableEvent": {
+          "readMoreButton": ""
+        },
         "birthdate": "Barnets födelsedatum",
         "delete": {
           "prompt": {

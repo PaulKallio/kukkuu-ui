@@ -182,7 +182,7 @@
     },
     "participantsPerInviteEnumLong": {
       "CHILD_AND_GUARDIAN": "One adult can accompany a child in this registration",
-      "FAMILY": ""
+      "FAMILY": "The whole faily is welcome to this event with this registration"
     },
     "register": {
       "form": {
@@ -369,6 +369,9 @@
         }
       },
       "detail": {
+        "availableEvent": {
+          "readMoreButton": "Read more and register for event"
+        },
         "birthdate": "Child's date of birth",
         "delete": {
           "prompt": {

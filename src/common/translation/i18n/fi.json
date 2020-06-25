@@ -181,8 +181,8 @@
       "FAMILY": "Perhe"
     },
     "participantsPerInviteEnumLong": {
-      "CHILD_AND_GUARDIAN": "Yhdellä ilmoittautumisella tapahtumaan voi kummilapsen lisäksi osallistua 1 aikuinen",
-      "FAMILY": ""
+      "CHILD_AND_GUARDIAN": "Tällä ilmoittautumisella tapahtumaan voi kummilapsen lisäksi osallistua 1 aikuinen",
+      "FAMILY": "Tällä ilmoittautumisella tapahtumaan voi kummilapsen lisäksi osallistua koko perhe"
     },
     "register": {
       "form": {
@@ -369,6 +369,9 @@
         }
       },
       "detail": {
+        "availableEvent": {
+          "readMoreButton": "Lue lisää ja ilmottaudu"
+        },
         "birthdate": "Lapsen syntymäaika",
         "delete": {
           "prompt": {
@@ -378,7 +381,7 @@
           "text": "Poista lapsen tiedot"
         },
         "edit": {
-          "text": "Päivitä kummilapsen tiedot"
+          "text": "Päivitä lapsen tiedot"
         },
         "guardiansName": "Lähiaikuisen nimi",
         "page": {
