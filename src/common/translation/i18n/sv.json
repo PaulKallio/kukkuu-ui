@@ -200,7 +200,7 @@
     }
   },
   "footer": {
-    "copyrightText": "© Copyright 2020 • Alla rättigheter förbehållna"
+    "copyrightText": "© Helsingfors stad"
   },
   "home": {
     "contact": {
@@ -370,7 +370,7 @@
       },
       "detail": {
         "availableEvent": {
-          "readMoreButton": ""
+          "readMoreButton": "Läs mer och anmäl dig till evenemang"
         },
         "birthdate": "Barnets födelsedatum",
         "delete": {
@@ -507,6 +507,13 @@
           "input": {
             "label": "Telefonnummer",
             "placeholder": "Ange telefonnummer"
+          }
+        },
+        "homeLanguage": {
+          "input": {
+            "label": "Språka hemma",
+            "placeholder": "Ange språk",
+            "assistiveText": "Ange språk som talas i ditt hem. Vi använder denna information för att förbättra vår service."
           }
         }
       },
