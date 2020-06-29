@@ -1,5 +1,17 @@
 # Change Log
 
+# 1.2.0
+
+### Changed
+
+Most notable changes:
+
+- [#267](https://github.com/City-of-Helsinki/kukkuu-ui/pull/267) Improve usability by updating UI texts
+- [#264](https://github.com/City-of-Helsinki/kukkuu-ui/pull/264) Add a title to brochure download link with the language translated
+- [#266](https://github.com/City-of-Helsinki/kukkuu-ui/pull/266) Refactor the last local colour variables and add koros from HDS
+
+See full list at https://github.com/City-of-Helsinki/kukkuu-ui/milestone/10?closed=1
+
 # 1.1.1
 
 ### Known issues
