@@ -25,8 +25,8 @@
       "message": "Inloggningsfel: Kontrollera din nätverksanslutning eller försök igen senare"
     },
     "permRequestDenied": {
-      "message": "You need to approve our request to access your Tunnistamo profile in order to use this service. Please try logging in again.",
-      "shortMessage": "Login error: Authentication request denied"
+      "message": "Du måste godkänna begäran om åtkomst till din Tunnistamo-profil för att kunna använda den här tjänsten. Försök att logga in igen.",
+      "shortMessage": "Inloggningsfel: Autentiseringsbegäran nekad"
     },
     "redirect": {
       "text": "Omdirigerar till identifiering..."
@@ -182,7 +182,7 @@
     },
     "participantsPerInviteEnumLong": {
       "CHILD_AND_GUARDIAN": "En vuxen kan delta tillsammans med ett fadderbarn per anmälan",
-      "FAMILY": ""
+      "FAMILY": "Hela familjen kan delta tillsammans med ett fadderbarn per anmälan"
     },
     "register": {
       "form": {
@@ -200,7 +200,7 @@
     }
   },
   "footer": {
-    "copyrightText": "© Copyright 2020 • Alla rättigheter förbehållna"
+    "copyrightText": "© Helsingfors stad"
   },
   "home": {
     "contact": {
@@ -234,6 +234,23 @@
       },
       "heading": {
         "text": "Information om tjänsten på olika språk"
+      },
+      "links": {
+        "ar": "Arabiska",
+        "ckb": "Kurdiska",
+        "en": "Engelska",
+        "es": "Spanska",
+        "et": "Estniska",
+        "fas": "Persiska",
+        "fi": "Finska",
+        "fr": "Franska",
+        "npi": "Nepali",
+        "ru": "Ryska",
+        "som": "Somaliska",
+        "sv": "Svenska",
+        "tur": "Turkiska",
+        "vi": "Vietnamesiska",
+        "zh": "Kinesiska"
       }
     },
     "partners": {
@@ -352,6 +369,9 @@
         }
       },
       "detail": {
+        "availableEvent": {
+          "readMoreButton": "Läs mer och anmäl dig till evenemang"
+        },
         "birthdate": "Barnets födelsedatum",
         "delete": {
           "prompt": {
@@ -487,6 +507,13 @@
           "input": {
             "label": "Telefonnummer",
             "placeholder": "Ange telefonnummer"
+          }
+        },
+        "homeLanguage": {
+          "input": {
+            "label": "Språka hemma",
+            "placeholder": "Ange språk",
+            "assistiveText": "Ange språk som talas i ditt hem. Vi använder denna information för att förbättra vår service."
           }
         }
       },

@@ -182,7 +182,7 @@
     },
     "participantsPerInviteEnumLong": {
       "CHILD_AND_GUARDIAN": "One adult can accompany a child in this registration",
-      "FAMILY": ""
+      "FAMILY": "The whole faily is welcome to this event with this registration"
     },
     "register": {
       "form": {
@@ -200,7 +200,7 @@
     }
   },
   "footer": {
-    "copyrightText": "© Copyright 2020 • All rights reserved"
+    "copyrightText": "© City of Helsinki"
   },
   "home": {
     "contact": {
@@ -234,6 +234,23 @@
       },
       "heading": {
         "text": "Information about the service on different languages"
+      },
+      "links": {
+        "ar": "Arabic",
+        "ckb": "Kurdish",
+        "en": "English",
+        "es": "Spanish",
+        "et": "Estonian",
+        "fas": "Farsi",
+        "fi": "Finnish",
+        "fr": "French",
+        "npi": "Nepalese",
+        "ru": "Russian",
+        "som": "Somali",
+        "sv": "Swedish",
+        "tur": "Turkish",
+        "vi": "Vietnamese",
+        "zh": "Chinese"
       }
     },
     "partners": {
@@ -352,6 +369,9 @@
         }
       },
       "detail": {
+        "availableEvent": {
+          "readMoreButton": "Read more and register for event"
+        },
         "birthdate": "Child's date of birth",
         "delete": {
           "prompt": {
@@ -417,13 +437,13 @@
         "birthdate": {
           "input": {
             "label": "Child's date of birth (dd.mm.yyyy)",
-            "placeholder": "Please enter child's date of birth"
+            "placeholder": "Enter child's date of birth"
           }
         },
         "firstName": {
           "input": {
             "label": "Child’s first name",
-            "placeholder": "Please enter child's first name"
+            "placeholder": "Enter child's first name"
           }
         },
         "homeCity": {
@@ -438,13 +458,13 @@
         "lastName": {
           "input": {
             "label": "Child’s last name",
-            "placeholder": "Please enter child’s last name"
+            "placeholder": "Enter child’s last name"
           }
         },
         "postalCode": {
           "input": {
             "label": "Child's postal code",
-            "placeholder": "Please enter child's postal code"
+            "placeholder": "Enter child's postal code"
           }
         },
         "relationship": {
@@ -465,7 +485,7 @@
         "firstName": {
           "input": {
             "label": "First name",
-            "placeholder": "Please enter guardian’s first name"
+            "placeholder": "Enter guardian’s first name"
           }
         },
         "info": {
@@ -474,19 +494,26 @@
         "language": {
           "input": {
             "label": "Preferred language",
-            "placeholder": "Please enter guardian’s preferred language"
+            "placeholder": "Enter guardian’s preferred language"
           }
         },
         "lastName": {
           "input": {
             "label": "Last name",
-            "placeholder": "Please enter guardian’s last name"
+            "placeholder": "Enter guardian’s last name"
           }
         },
         "phoneNumber": {
           "input": {
             "label": "Guardian’s telephone number",
             "placeholder": "Please enter guardian’s telephone number"
+          }
+        },
+        "homeLanguage": {
+          "input": {
+            "label": "Languages spoken at home",
+            "placeholder": "Enter language",
+            "assistiveText": "Enter languages that are spoken in your home. We use this infomration to improve our service."
           }
         }
       },

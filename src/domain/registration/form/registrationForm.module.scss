@@ -1,6 +1,5 @@
 @import 'styles/fonts';
 @import 'styles/variables';
-@import 'styles/colors';
 @import 'styles/layout';
 @import 'styles/mixins';
 @import './partial/childFormField.module.scss';
@@ -76,7 +75,7 @@ $plusIconHeight: 2rem;
 
 .grayBackground,
 .registrationGrayContainer {
-  background: $hel-lighter;
+  background: var(--color-black-5);
 }
 
 .registrationWhiteContainer {

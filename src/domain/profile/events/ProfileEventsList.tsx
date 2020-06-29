@@ -54,9 +54,13 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
                   alt={eventEdge.node.imageAltText || ''}
                   title={eventEdge.node.name || ''} // TODO
                   action={() => gotoEventPage(eventEdge.node?.id || '')} // TODO
-                  actionText={t('enrollment.enroll.buttonText')}
+                  actionText={t(
+                    'profile.child.detail.availableEvent.readMoreButton'
+                  )}
                   primaryAction={() => gotoEventPage(eventEdge.node?.id || '')} // TODO
-                  primaryActionText={t('enrollment.enroll.buttonText')}
+                  primaryActionText={t(
+                    'profile.child.detail.availableEvent.readMoreButton'
+                  )}
                 >
                   <Paragraph text={eventEdge.node.shortDescription || ''} />
                 </Card>

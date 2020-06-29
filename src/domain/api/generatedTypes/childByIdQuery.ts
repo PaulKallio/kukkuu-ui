@@ -24,7 +24,6 @@ export interface childByIdQuery_child_occurrences_edges_node_venue {
    */
   id: string;
   name: string | null;
-  description: string | null;
   address: string | null;
 }
 

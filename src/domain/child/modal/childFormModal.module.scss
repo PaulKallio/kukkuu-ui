@@ -41,7 +41,7 @@
   .cancelButton {
     @include button();
     button {
-      background: $hel-light;
+      background: var(--color-black-5);
     }
     @include respond-below(sm) {
       grid-row: 2;

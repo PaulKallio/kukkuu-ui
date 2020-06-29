@@ -1,5 +1,5 @@
 export interface MoreInfoLink {
-  langName: string;
   langCode: string;
+  langName: string;
   url: string;
 }

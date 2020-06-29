@@ -181,8 +181,8 @@
       "FAMILY": "Perhe"
     },
     "participantsPerInviteEnumLong": {
-      "CHILD_AND_GUARDIAN": "Yhdellä ilmoittautumisella tapahtumaan voi kummilapsen lisäksi osallistua 1 aikuinen",
-      "FAMILY": ""
+      "CHILD_AND_GUARDIAN": "Tällä ilmoittautumisella tapahtumaan voi kummilapsen lisäksi osallistua 1 aikuinen",
+      "FAMILY": "Tällä ilmoittautumisella tapahtumaan voi kummilapsen lisäksi osallistua koko perhe"
     },
     "register": {
       "form": {
@@ -200,7 +200,7 @@
     }
   },
   "footer": {
-    "copyrightText": "© Copyright 2020 • Kaikki oikeudet pidätetään"
+    "copyrightText": "© Helsingin kaupunki"
   },
   "home": {
     "contact": {
@@ -234,6 +234,23 @@
       },
       "heading": {
         "text": "Lisätietoa palvelusta eri kielillä"
+      },
+      "links": {
+        "ar": "Arabia",
+        "ckb": "Kurdi",
+        "en": "Englanti",
+        "es": "Espanja",
+        "et": "Viro",
+        "fas": "Farsi",
+        "fi": "Suomi",
+        "fr": "Ranska",
+        "npi": "Nepali",
+        "ru": "Venäjä",
+        "som": "Somali",
+        "sv": "Ruotsi",
+        "tur": "Turkki",
+        "vi": "Vietnam",
+        "zh": "Kiina"
       }
     },
     "partners": {
@@ -352,6 +369,9 @@
         }
       },
       "detail": {
+        "availableEvent": {
+          "readMoreButton": "Lue lisää ja ilmoittaudu tapahtumaan"
+        },
         "birthdate": "Lapsen syntymäaika",
         "delete": {
           "prompt": {
@@ -361,7 +381,7 @@
           "text": "Poista lapsen tiedot"
         },
         "edit": {
-          "text": "Päivitä kummilapsen tiedot"
+          "text": "Päivitä lapsen tiedot"
         },
         "guardiansName": "Lähiaikuisen nimi",
         "page": {
@@ -487,6 +507,13 @@
           "input": {
             "label": "Puhelinnumero",
             "placeholder": "Lisää puhelinnumero"
+          }
+        },
+        "homeLanguage": {
+          "input": {
+            "label": "Kotona puhutut kielet",
+            "placeholder": "Lisää kieli",
+            "assistiveText": "Voit halutessasi lisätä tiedon mitä kieliä kotonasi puhutaan. Käytämme tietoa palvelun parantamiseen."
           }
         }
       },

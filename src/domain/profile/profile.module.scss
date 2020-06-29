@@ -1,6 +1,5 @@
 @import 'styles/mixins';
 @import 'styles/layout';
-@import 'styles/colors';
 
 .profileWrapper {
   display: grid;
@@ -65,7 +64,7 @@
 }
 
 .wrapper {
-  background: $hel-lighter;
+  background: var(--color-black-5);
 }
 
 .guardianInfo {

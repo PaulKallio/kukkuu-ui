@@ -23,11 +23,11 @@
 
 .inputError {
   input {
-    border: 2px solid $red;
+    border: 2px solid var(--color-error);
   }
 
   .inputErrorMessage {
-    color: $red;
+    color: var(--color-error);
     margin-top: $sm-margin;
     font-size: $font-size-sm;
   }
