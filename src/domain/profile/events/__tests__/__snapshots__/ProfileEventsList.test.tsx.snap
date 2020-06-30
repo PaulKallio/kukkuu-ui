@@ -10,12 +10,12 @@ exports[`Renders snapshot correctly 1`] = `
     </h2>
     <Card
       action={[Function]}
-      actionText="Ilmoittaudu tapahtumaan"
+      actionText="Lue lisää ja ilmoittaudu tapahtumaan"
       alt="huhuu"
       imageSrc="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
       key="RXZlbnROb2RlOjE="
       primaryAction={[Function]}
-      primaryActionText="Ilmoittaudu tapahtumaan"
+      primaryActionText="Lue lisää ja ilmoittaudu tapahtumaan"
       title="pentti"
     >
       <Paragraph
