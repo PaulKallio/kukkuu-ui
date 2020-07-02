@@ -1,5 +1,11 @@
 # Change Log
 
+# 1.2.1
+
+### Fixed
+
+- [#270](https://github.com/City-of-Helsinki/kukkuu-ui/pull/270) Update links to rekisteriseloste/description of the file
+
 # 1.2.0
 
 ### Changed
