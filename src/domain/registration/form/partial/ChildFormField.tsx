@@ -1,33 +1,40 @@
-import * as React from 'react';
-import { ArrayHelpers } from 'formik';
+import React from 'react';
+import { ArrayHelpers, Field, getIn } from 'formik';
 import { useTranslation } from 'react-i18next';
+import { Button, TextInput } from 'hds-react';
 
 import styles from './childFormField.module.scss';
 import { formatTime, newMoment } from '../../../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../../../common/time/TimeConstants';
-import EnhancedInputField from '../../../../common/components/form/fields/input/EnhancedInputField';
-import InputField from '../../../../common/components/form/fields/input/InputField';
-import SelectField from '../../../../common/components/form/fields/select/SelectField';
 import { Child } from '../../../child/types/ChildTypes';
 import { getTranslatedRelationshipOptions } from '../../../child/ChildUtils';
 import Icon from '../../../../common/components/icon/Icon';
 import happyChildIcon from '../../../../assets/icons/svg/childFaceHappy.svg';
 import deleteIcon from '../../../../assets/icons/svg/delete.svg';
-import Button from '../../../../common/components/button/Button';
 import { validatePostalCode } from '../../../../common/components/form/validationUtils';
+import FormikDropdown, {
+  HdsOptionType,
+} from '../../../../common/components/form/fields/dropdown/FormikDropdown';
 
 interface ChildFormFieldProps {
   child: Child;
   childIndex: number;
   arrayHelpers: ArrayHelpers;
+  setFieldValue: any;
+  errors: any;
+  touched: any;
 }
 
 const ChildFormField: React.FunctionComponent<ChildFormFieldProps> = ({
   child,
   childIndex,
   arrayHelpers,
+  setFieldValue,
+  errors,
+  touched,
 }) => {
   const { t } = useTranslation();
+
   return (
     <div className={styles.childField} key={childIndex}>
       <div className={styles.childInfo}>
@@ -57,50 +64,73 @@ const ChildFormField: React.FunctionComponent<ChildFormFieldProps> = ({
         </div>
 
         <div className={styles.childName}>
-          <EnhancedInputField
+          <Field
+            as={TextInput}
             id={`children[${childIndex}].firstName`}
             name={`children[${childIndex}].firstName`}
             label={t('registration.form.child.firstName.input.label')}
             autoComplete="new-password"
-            component={InputField}
             placeholder={t(
               'registration.form.child.firstName.input.placeholder'
             )}
           />
-          <EnhancedInputField
+          <Field
+            as={TextInput}
             id={`children[${childIndex}].lastName`}
             name={`children[${childIndex}].lastName`}
             autoComplete="new-password"
             label={t('registration.form.child.lastName.input.label')}
-            component={InputField}
             placeholder={t(
               'registration.form.child.lastName.input.placeholder'
             )}
           />
         </div>
 
-        <EnhancedInputField
+        <Field
+          as={TextInput}
           id={`children[${childIndex}].postalCode`}
           name={`children[${childIndex}].postalCode`}
           label={t('registration.form.child.postalCode.input.label')}
           required={true}
-          component={InputField}
-          validate={validatePostalCode}
           placeholder={t(
             'registration.form.child.postalCode.input.placeholder'
           )}
+          // TODO: validate postcode
+          invalid={
+            getIn(touched, `children[${childIndex}].postalCode`) &&
+            getIn(errors, `children[${childIndex}].postalCode`)
+          }
+          helperText={
+            getIn(touched, `children[${childIndex}].postalCode`) &&
+            t(getIn(errors, `children[${childIndex}].postalCode`))
+          }
         />
 
-        <EnhancedInputField
+        <Field
+          as={FormikDropdown}
           id={`children[${childIndex}].relationship.type`}
           name={`children[${childIndex}].relationship.type`}
           label={t('registration.form.child.relationship.input.label')}
           required={true}
-          component={SelectField}
           options={getTranslatedRelationshipOptions(t)}
+          onBlur={console.log('TODO: set touched')}
+          onChange={(option: HdsOptionType) =>
+            setFieldValue(
+              `children[${childIndex}].relationship.type`,
+              option.value
+            )
+          }
           placeholder={t(
             'registration.form.child.relationship.input.placeholder'
           )}
+          invalid={
+            getIn(touched, `children[${childIndex}].relationship.type`) &&
+            getIn(errors, `children[${childIndex}].relationship.type`)
+          }
+          helper={
+            getIn(touched, `children[${childIndex}].relationship.type`) &&
+            t(getIn(errors, `children[${childIndex}].relationship.type`))
+          }
         />
       </div>
     </div>

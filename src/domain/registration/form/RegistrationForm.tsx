@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import { Formik, FieldArray } from 'formik';
+import { Formik, FieldArray, Field, getIn } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { useTranslation } from 'react-i18next';
@@ -7,20 +7,17 @@ import { useHistory, Redirect } from 'react-router-dom';
 import classnames from 'classnames';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
+import { Button, Checkbox, TextInput, IconPlusCircle } from 'hds-react';
+import * as yup from 'yup';
 
 import styles from './registrationForm.module.scss';
-import Button from '../../../common/components/button/Button';
-import InputField from '../../../common/components/form/fields/input/InputField';
-import SelectField from '../../../common/components/form/fields/select/SelectField';
 import submitChildrenAndGuardianMutation from '../mutations/submitChildrenAndGuardianMutation';
 import { resetFormValues, setFormValues } from '../state/RegistrationActions';
 import { initialFormDataSelector } from './RegistrationFormSelectors';
-import EnhancedInputField from '../../../common/components/form/fields/input/EnhancedInputField';
 import { SUPPORT_LANGUAGES } from '../../../common/translation/TranslationConstants';
 import ChildFormField from './partial/ChildFormField';
 import AddNewChildFormModal from '../modal/AddNewChildFormModal';
 import Icon from '../../../common/components/icon/Icon';
-import addIcon from '../../../assets/icons/svg/delete.svg';
 import happyAdultIcon from '../../../assets/icons/svg/adultFaceHappy.svg';
 import PageWrapper from '../../app/layout/PageWrapper';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
@@ -33,7 +30,40 @@ import { profileQuery as ProfileQueryType } from '../../api/generatedTypes/profi
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
 import { GuardianInput, Language } from '../../api/generatedTypes/globalTypes';
-import { validateEmail } from '../../../common/components/form/validationUtils';
+import FormikDropdown, {
+  HdsOptionType,
+} from '../../../common/components/form/fields/dropdown/FormikDropdown';
+
+const schema = yup.object().shape({
+  guardian: yup.object().shape({
+    firstName: yup
+      .string()
+      .required('validation.general.required')
+      .max(255, 'validation.maxLength'),
+    lastName: yup
+      .string()
+      .required('validation.general.required')
+      .max(255, 'validation.maxLength'),
+    email: yup
+      .string()
+      .email('registration.form.guardian.email.input.error')
+      .required('validation.general.required'),
+    phoneNumber: yup
+      .string()
+      .required('validation.general.required')
+      .max(255, 'validation.maxLength'),
+    language: yup.string().max(255, 'validation.maxLength'),
+  }),
+  children: yup.array().of(
+    yup.object().shape({
+      postalCode: yup.string().required('validation.general.required'),
+      // relationship: yup.object().shape({
+      //   type: yup.string().required('validation.general.required').nullable(),
+      // }),
+    })
+  ),
+  agree: yup.boolean().oneOf([true], 'validation.required'),
+});
 
 const RegistrationForm: FunctionComponent = () => {
   const { i18n, t } = useTranslation();
@@ -41,6 +71,7 @@ const RegistrationForm: FunctionComponent = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
+  const [checked, setChecked] = useState(false);
 
   const initialValues = useSelector(initialFormDataSelector);
   const { loading, error, data } = useQuery<ProfileQueryType>(profileQuery);
@@ -80,12 +111,14 @@ const RegistrationForm: FunctionComponent = () => {
         <div className={styles.registrationForm}>
           <Formik
             initialValues={initialValues}
+            validationSchema={schema}
             validate={() => {
               if (!isFilling) {
                 setFormIsFilling(true);
               }
             }}
             onSubmit={(values) => {
+              console.log('submitting', values);
               setFormIsFilling(false);
               dispatch(setFormValues(values));
 
@@ -130,7 +163,15 @@ const RegistrationForm: FunctionComponent = () => {
                 });
             }}
           >
-            {({ values, isSubmitting, handleSubmit }) => (
+            {({
+              values,
+              isSubmitting,
+              handleSubmit,
+              setFieldValue,
+              setFieldTouched,
+              errors,
+              touched,
+            }) => (
               <form onSubmit={handleSubmit} id="registrationForm">
                 <div className={styles.registrationGrayContainer}>
                   <h1>{t('registration.heading')}</h1>
@@ -167,6 +208,9 @@ const RegistrationForm: FunctionComponent = () => {
                                 arrayHelpers={arrayHelpers}
                                 child={child}
                                 childIndex={index}
+                                setFieldValue={setFieldValue}
+                                errors={errors}
+                                touched={touched}
                               />
                             ))}
                         </>
@@ -176,11 +220,12 @@ const RegistrationForm: FunctionComponent = () => {
                 </div>
                 <div className={styles.registrationGrayContainer}>
                   <Button
+                    variant="secondary"
                     aria-label={t('child.form.modal.add.label')}
                     className={styles.addNewChildButton}
+                    iconLeft={<IconPlusCircle />}
                     onClick={() => setIsOpen(true)}
                   >
-                    <Icon className={styles.plusIcon} src={addIcon} />
                     {t('child.form.modal.add.label')}
                   </Button>
                 </div>
@@ -194,65 +239,81 @@ const RegistrationForm: FunctionComponent = () => {
                     <Icon src={happyAdultIcon} className={styles.childImage} />
                     <h2>{t('registration.form.guardian.info.heading')}</h2>
                   </div>
-                  <EnhancedInputField
+                  <Field
+                    as={TextInput}
                     id="guardian.email"
                     name="guardian.email"
                     required={true}
-                    validate={validateEmail}
                     label={t('registration.form.guardian.email.input.label')}
-                    component={InputField}
                     placeholder={t(
                       'registration.form.guardian.email.input.placeholder'
                     )}
+                    invalid={
+                      getIn(touched, 'guardian.email') &&
+                      getIn(errors, 'guardian.email')
+                    }
+                    helperText={t(getIn(errors, 'guardian.email'))}
                   />
-                  <EnhancedInputField
+                  <Field
+                    as={TextInput}
                     id="guardian.phoneNumber"
                     name="guardian.phoneNumber"
                     required={true}
                     label={t(
                       'registration.form.guardian.phoneNumber.input.label'
                     )}
-                    component={InputField}
                     placeholder={t(
                       'registration.form.guardian.phoneNumber.input.placeholder'
                     )}
+                    invalid={
+                      getIn(touched, 'guardian.phoneNumber') &&
+                      getIn(errors, 'guardian.phoneNumber')
+                    }
+                    helperText={t(getIn(errors, 'guardian.phoneNumber'))}
                   />
                   <div className={styles.guardianName}>
-                    <EnhancedInputField
-                      type="text"
+                    <Field
+                      as={TextInput}
                       required={true}
                       id="guardian.firstName"
                       name="guardian.firstName"
                       label={t(
                         'registration.form.guardian.firstName.input.label'
                       )}
-                      component={InputField}
                       placeholder={t(
                         'registration.form.guardian.firstName.input.placeholder'
                       )}
+                      invalid={
+                        getIn(touched, 'guardian.firstName') &&
+                        getIn(errors, 'guardian.firstName')
+                      }
+                      helperText={t(getIn(errors, 'guardian.firstName'))}
                     />
-                    <EnhancedInputField
-                      type="text"
+                    <Field
+                      as={TextInput}
                       required={true}
                       id="guardian.lastName"
                       name="guardian.lastName"
                       label={t(
                         'registration.form.guardian.lastName.input.label'
                       )}
-                      component={InputField}
                       placeholder={t(
                         'registration.form.guardian.lastName.input.placeholder'
                       )}
+                      invalid={
+                        getIn(touched, 'guardian.lastName') &&
+                        getIn(errors, 'guardian.lastName')
+                      }
+                      helperText={t(getIn(errors, 'guardian.lastName'))}
                     />
                   </div>
 
-                  <EnhancedInputField
-                    value={values.preferLanguage}
+                  <FormikDropdown
+                    default={values.preferLanguage}
                     id="preferLanguage"
                     name="preferLanguage"
                     label={t('registration.form.guardian.language.input.label')}
                     required={true}
-                    component={SelectField}
                     options={[
                       {
                         label: t('common.language.en'),
@@ -267,18 +328,22 @@ const RegistrationForm: FunctionComponent = () => {
                         value: SUPPORT_LANGUAGES.SV,
                       },
                     ]}
+                    onChange={(option: HdsOptionType) =>
+                      setFieldValue('preferLanguage', option.value)
+                    }
                     placeholder={t(
                       'registration.form.guardian.language.input.placeholder'
                     )}
                   />
-                  <EnhancedInputField
+                  <Checkbox
                     className={styles.agreeBtn}
                     type="checkbox"
                     id="agree"
                     name="agree"
+                    checked={checked}
+                    onChange={() => setChecked(!checked)}
                     required={true}
                     label={t('registration.form.agree.input.label')}
-                    component={InputField}
                   />
 
                   <Button

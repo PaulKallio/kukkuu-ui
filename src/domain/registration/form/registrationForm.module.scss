@@ -48,29 +48,16 @@ $plusIconHeight: 2rem;
 }
 
 .submitButton {
-  @include button();
   margin: $largeMargin 0;
 }
 
 .addNewChildButton {
   display: flex;
-
-  button {
-    background: transparent;
-    margin: $baseMargin 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border: none;
-    width: 100%;
-
-    > div {
-      margin-right: $basePadding;
-    }
-    img {
-      transform: rotate(45deg);
-    }
-  }
+  margin: $baseMargin 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  border: none;
 }
 
 .grayBackground,

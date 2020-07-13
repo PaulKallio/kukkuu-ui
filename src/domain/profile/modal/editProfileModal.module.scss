@@ -1,6 +1,7 @@
 @import 'styles/mixins';
 @import 'styles/variables';
 @import 'styles/layout';
+@import 'styles/tokens';
 
 .email {
   label {
@@ -27,21 +28,16 @@
   @include respond-below(sm) {
     grid-row: 2;
   }
-  @include button();
-  button {
-    width: 100%;
-    background-color: var(--color-black-5);
-  }
+
+  width: 100%;
 }
 
 .submitButton {
   @include respond-below(sm) {
     grid-row: 1;
   }
-  @include button();
-  button {
-    width: 100%;
-  }
+
+  width: 100%;
 }
 
 .profileName {

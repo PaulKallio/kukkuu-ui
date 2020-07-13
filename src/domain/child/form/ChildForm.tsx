@@ -1,14 +1,15 @@
 import React, { FunctionComponent } from 'react';
-import { Formik, FieldArray, FormikErrors } from 'formik';
+import { Formik, FieldArray, FormikErrors, Field, getIn } from 'formik';
 import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
+import { Button, TextInput } from 'hds-react';
+import * as yup from 'yup';
 
 import styles from './childForm.module.scss';
 import BirthdateFormField from '../../home/form/partial/BirthdateFormField';
-import EnhancedInputField from '../../../common/components/form/fields/input/EnhancedInputField';
-import InputField from '../../../common/components/form/fields/input/InputField';
-import Button from '../../../common/components/button/Button';
-import SelectField from '../../../common/components/form/fields/select/SelectField';
+import FormikDropdown, {
+  HdsOptionType,
+} from '../../../common/components/form/fields/dropdown/FormikDropdown';
 import { Child } from '../types/ChildTypes';
 import { getTranslatedRelationshipOptions } from '../ChildUtils';
 import {
@@ -17,6 +18,14 @@ import {
 } from '../../../common/components/form/validationUtils';
 import { formatTime, newMoment } from '../../../common/time/utils';
 import { BACKEND_DATE_FORMAT } from '../../../common/time/TimeConstants';
+
+const schema = yup.object().shape({
+  homeCity: yup.string().required('validation.general.required'),
+  postalCode: yup.string().required('validation.general.required'),
+  // relationship: yup.object().shape({
+  //   type: yup.string().required('validation.general.required').nullable(),
+  // }),
+});
 
 export interface Birthdate {
   day: number | string;
@@ -62,6 +71,7 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
 
   const onFormSubmit = (values: ChildFormValues) => {
     setFormIsFilling(false);
+    console.log('onFormSubmit', values);
     const child: Child = Object.assign({}, values, {
       birthdate: formatTime(
         newMoment(
@@ -74,6 +84,7 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
   };
 
   const validateForm = (values: ChildFormValues) => {
+    console.log('validateForm', values);
     const {
       birthdate: { day, month, year },
     } = values;
@@ -96,126 +107,152 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
     return isEditForm && immutableFields.includes(fieldName);
   };
 
+  const relationshipOptions = getTranslatedRelationshipOptions(t);
+
   return (
     <Formik
       validate={validateForm}
       initialValues={initialValues}
+      validationSchema={schema}
       onSubmit={onFormSubmit}
     >
-      {({ isSubmitting, handleSubmit, values }) => (
-        <form onSubmit={handleSubmit} id="childForm">
-          <FieldArray
-            name="birthdate"
-            render={(props) => {
-              const isImmutable = isFieldImmutable('birthdate');
-              return (
-                <BirthdateFormField
-                  values={values['birthdate']}
-                  isImmutable={isImmutable}
-                  {...props}
-                />
-              );
-            }}
-          />
+      {({
+        isSubmitting,
+        handleSubmit,
+        setFieldValue,
+        values,
+        errors,
+        touched,
+      }) => {
+        console.log('VALUES', values);
+        const ind = relationshipOptions.findIndex(
+          (o) => o.value === values.relationship?.type
+        );
+        console.log('ind', ind);
+        return (
+          <form onSubmit={handleSubmit} id="childForm">
+            <FieldArray
+              name="birthdate"
+              render={(props) => {
+                const isImmutable = isFieldImmutable('birthdate');
+                return (
+                  <BirthdateFormField
+                    values={values['birthdate']}
+                    isImmutable={isImmutable}
+                    {...props}
+                  />
+                );
+              }}
+            />
 
-          <div className={styles.childInfo}>
-            <EnhancedInputField
-              className={styles.childHomeCity}
-              id="homeCity"
-              name="homeCity"
-              label={t('homePage.preliminaryForm.childHomeCity.input.label')}
+            <div className={styles.childInfo}>
+              <Field
+                as={TextInput}
+                id="homeCity"
+                name="homeCity"
+                label={t('homePage.preliminaryForm.childHomeCity.input.label')}
+                required={true}
+                invalid={
+                  getIn(touched, 'homeCity') && getIn(errors, 'homeCity')
+                }
+                helperText={t(getIn(errors, 'homeCity'))}
+                placeholder={t(
+                  'homePage.preliminaryForm.childHomeCity.input.placeholder'
+                )}
+              />
+              <Field
+                as={TextInput}
+                id="postalCode"
+                name="postalCode"
+                required={true}
+                invalid={
+                  getIn(touched, 'postalCode') &&
+                  values.postalCode !== undefined &&
+                  validatePostalCode(values.postalCode) !== undefined
+                }
+                helperText={t(validatePostalCode(values.postalCode) || '')}
+                label={t('registration.form.child.postalCode.input.label')}
+                placeholder={t(
+                  'registration.form.child.postalCode.input.placeholder'
+                )}
+              />
+            </div>
+
+            <div className={styles.childName}>
+              <Field
+                as={TextInput}
+                id="firstName"
+                name="firstName"
+                label={t('registration.form.child.firstName.input.label')}
+                autoComplete="new-password"
+                placeholder={t(
+                  'registration.form.child.firstName.input.placeholder'
+                )}
+              />
+              <Field
+                as={TextInput}
+                id="lastName"
+                name="lastName"
+                autoComplete="new-password"
+                label={t('registration.form.child.lastName.input.label')}
+                placeholder={t(
+                  'registration.form.child.lastName.input.placeholder'
+                )}
+              />
+            </div>
+
+            <FormikDropdown
+              name="relationship.type"
+              default={values.relationship?.type || ''}
+              //autoSelect={values.relationship?.type ? false : true}
+              //value={values.relationship}
+              label={t('registration.form.child.relationship.input.label')}
               required={true}
-              component={InputField}
+              options={relationshipOptions}
+              onChange={(option: HdsOptionType) =>
+                setFieldValue('relationship.type', option.value)
+              }
               placeholder={t(
-                'homePage.preliminaryForm.childHomeCity.input.placeholder'
+                'registration.form.child.relationship.input.placeholder'
               )}
             />
 
-            <EnhancedInputField
-              className={styles.childPostalCode}
-              required={true}
-              id="postalCode"
-              name="postalCode"
-              validate={validatePostalCode}
-              label={t('registration.form.child.postalCode.input.label')}
-              component={InputField}
-              placeholder={t(
-                'registration.form.child.postalCode.input.placeholder'
+            <div
+              className={classnames(
+                styles.buttonGroup,
+                isEditForm ? styles.editChildButtons : styles.addChildButtons
               )}
-            />
-          </div>
-
-          <div className={styles.childName}>
-            <EnhancedInputField
-              id="firstName"
-              name="firstName"
-              label={t('registration.form.child.firstName.input.label')}
-              component={InputField}
-              autoComplete="new-password"
-              placeholder={t(
-                'registration.form.child.firstName.input.placeholder'
+            >
+              {isEditForm && (
+                <Button className={styles.cancelButton} onClick={onCancel}>
+                  {t('common.modal.cancel.text')}
+                </Button>
               )}
-            />
-            <EnhancedInputField
-              id="lastName"
-              name="lastName"
-              autoComplete="new-password"
-              label={t('registration.form.child.lastName.input.label')}
-              component={InputField}
-              placeholder={t(
-                'registration.form.child.lastName.input.placeholder'
-              )}
-            />
-          </div>
+              <Button
+                type="submit"
+                className={styles.submitButton}
+                disabled={isSubmitting}
+              >
+                {t(
+                  isEditForm
+                    ? 'common.modal.save.text'
+                    : 'child.form.modal.add.label'
+                )}
+              </Button>
+            </div>
 
-          <EnhancedInputField
-            id="relationship.type"
-            name="relationship.type"
-            label={t('registration.form.child.relationship.input.label')}
-            autoSelect={isChildHavingRelationship}
-            required={true}
-            component={SelectField}
-            options={getTranslatedRelationshipOptions(t)}
-            placeholder={t(
-              'registration.form.child.relationship.input.placeholder'
-            )}
-          />
-
-          <div
-            className={classnames(
-              styles.buttonGroup,
-              isEditForm ? styles.editChildButtons : styles.addChildButtons
-            )}
-          >
             {isEditForm && (
-              <Button className={styles.cancelButton} onClick={onCancel}>
-                {t('common.modal.cancel.text')}
+              <Button
+                className={styles.deleteChild}
+                // ariaLabel={t('profile.child.detail.delete.text')}
+                onClick={onDelete}
+              >
+                {t('profile.child.detail.delete.text')}
               </Button>
             )}
-            <Button
-              type="submit"
-              className={styles.submitButton}
-              disabled={isSubmitting}
-            >
-              {t(
-                isEditForm
-                  ? 'common.modal.save.text'
-                  : 'child.form.modal.add.label'
-              )}
-            </Button>
-          </div>
-
-          {isEditForm && (
-            <Button
-              className={styles.deleteChild}
-              ariaLabel={t('profile.child.detail.delete.text')}
-              onClick={onDelete}
-            >
-              {t('profile.child.detail.delete.text')}
-            </Button>
-          )}
-        </form>
-      )}
+          </form>
+        );
+      }}
     </Formik>
   );
 };

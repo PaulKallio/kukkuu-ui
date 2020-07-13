@@ -1,28 +1,52 @@
 import * as React from 'react';
-import { Formik, FormikErrors } from 'formik';
+import { Formik, FormikErrors, Field, getIn } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/react-hooks';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
+import { Button, TextInput } from 'hds-react';
+import * as yup from 'yup';
 
 import styles from './editProfileModal.module.scss';
 import { ProfileType } from '../type/ProfileTypes';
 import { Guardian } from '../../guardian/types/GuardianTypes';
 import Modal from '../../../common/components/modal/Modal';
-import EnhancedInputField from '../../../common/components/form/fields/input/EnhancedInputField';
-import InputField from '../../../common/components/form/fields/input/InputField';
-import SelectField from '../../../common/components/form/fields/select/SelectField';
 import { SUPPORT_LANGUAGES } from '../../../common/translation/TranslationConstants';
-import Button from '../../../common/components/button/Button';
 import profileQuery from '../queries/ProfileQuery';
 import updateMyProfileMutation from '../mutations/updateMyProfileMutation';
 import { updateMyProfile as UpdateMyProfileData } from '../../api/generatedTypes/updateMyProfile';
 import adultIcon from '../../../assets/icons/svg/adultFaceHappy.svg';
 import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
-import { validateEmail } from '../../../common/components/form/validationUtils';
+import FormikDropdown, {
+  HdsOptionType,
+} from '../../../common/components/form/fields/dropdown/FormikDropdown';
+import {
+  getIsInvalid,
+  getError,
+} from '../../../common/components/form/formikHelper';
 
 export type EditProfileModalValues = Omit<ProfileType, 'children'>;
+
+const schema = yup.object().shape({
+  firstName: yup
+    .string()
+    .required('validation.general.required')
+    .max(255, 'validation.maxLength'),
+  lastName: yup
+    .string()
+    .required('validation.general.required')
+    .max(255, 'validation.maxLength'),
+  email: yup
+    .string()
+    .email('registration.form.guardian.email.input.error')
+    .required('validation.general.required'),
+  phoneNumber: yup
+    .string()
+    .required('validation.general.required')
+    .max(255, 'validation.maxLength'),
+  language: yup.string().max(255, 'validation.maxLength'),
+});
 
 interface EditProfileModalProps {
   initialValues: ProfileType;
@@ -99,60 +123,83 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
           initialValues={initialValues}
           onSubmit={onSubmit}
           validate={validate}
+          validationSchema={schema}
         >
-          {({ isSubmitting, handleSubmit }) => (
+          {({
+            isSubmitting,
+            handleSubmit,
+            setFieldValue,
+            validateField,
+            errors,
+            touched,
+          }) => (
             <form onSubmit={handleSubmit} id="editProfileForm">
-              <EnhancedInputField
+              <Field
+                as={TextInput}
                 id="email"
                 name="email"
-                validate={validateEmail}
                 required={true}
                 label={t('registration.form.guardian.email.input.label')}
-                component={InputField}
                 placeholder={t(
                   'registration.form.guardian.email.input.placeholder'
                 )}
+                invalid={getIn(touched, 'email') && getIn(errors, 'email')}
+                helperText={t(getIn(errors, 'email'))}
               />
-              <EnhancedInputField
+              <Field
+                as={TextInput}
                 id="phoneNumber"
                 name="phoneNumber"
+                type="tel"
+                minLength="6"
+                maxLength="255"
                 required={true}
                 label={t('registration.form.guardian.phoneNumber.input.label')}
-                component={InputField}
                 placeholder={t(
                   'registration.form.guardian.phoneNumber.input.placeholder'
                 )}
+                invalid={
+                  getIn(touched, 'phoneNumber') && getIn(errors, 'phoneNumber')
+                }
+                helperText={t(getIn(errors, 'phoneNumber'))}
               />
               <div className={styles.profileName}>
-                <EnhancedInputField
+                <Field
+                  as={TextInput}
                   type="text"
                   required={true}
                   id="firstName"
                   name="firstName"
                   label={t('registration.form.guardian.firstName.input.label')}
-                  component={InputField}
                   placeholder={t(
                     'registration.form.guardian.firstName.input.placeholder'
                   )}
+                  invalid={
+                    getIn(touched, 'firstName') && getIn(errors, 'firstName')
+                  }
+                  helperText={t(getIn(errors, 'firstName'))}
                 />
-                <EnhancedInputField
+                <Field
+                  as={TextInput}
                   type="text"
                   required={true}
                   id="lastName"
                   name="lastName"
                   label={t('registration.form.guardian.lastName.input.label')}
-                  component={InputField}
                   placeholder={t(
                     'registration.form.guardian.lastName.input.placeholder'
                   )}
+                  invalid={
+                    getIn(touched, 'lastName') && getIn(errors, 'lastName')
+                  }
+                  helperText={t(getIn(errors, 'lastName'))}
                 />
               </div>
-              <EnhancedInputField
+              <FormikDropdown
                 id="language"
                 name="language"
                 label={t('registration.form.guardian.language.input.label')}
                 required={true}
-                component={SelectField}
                 options={[
                   {
                     label: t('common.language.en'),
@@ -167,6 +214,10 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
                     value: SUPPORT_LANGUAGES.SV.toUpperCase(),
                   },
                 ]}
+                default={initialValues.language}
+                onChange={(option: HdsOptionType) =>
+                  setFieldValue('language', option.value)
+                }
                 placeholder={t(
                   'registration.form.guardian.language.input.placeholder'
                 )}
@@ -176,6 +227,7 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
                   onClick={() => {
                     setIsOpen(false);
                   }}
+                  variant="secondary"
                   type="button"
                   className={styles.cancelButton}
                 >

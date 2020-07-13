@@ -1,14 +1,16 @@
-import React, { FunctionComponent, Ref } from 'react';
-import { Formik, FieldArray, FormikErrors } from 'formik';
+import React, { FunctionComponent, Ref, useState } from 'react';
+import { Formik, FieldArray, FormikErrors, Field, getIn } from 'formik';
 import { connect } from 'react-redux';
 import { useTranslation, Trans } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
+import { Button, Checkbox, TextInput } from 'hds-react';
 
 import { loginTunnistamo } from '../../auth/authenticate';
 import styles from './homePreliminaryForm.module.scss';
-import Button from '../../../common/components/button/Button';
-import InputField from '../../../common/components/form/fields/input/InputField';
-import { validateDate } from '../../../common/components/form/validationUtils';
+import {
+  validateDate,
+  validateRequire,
+} from '../../../common/components/form/validationUtils';
 import { isChildEligible } from '../../registration/notEligible/NotEligibleUtils';
 import BirthdateFormField from './partial/BirthdateFormField';
 import { setHomeFormValues } from '../../registration/state/RegistrationActions';
@@ -18,9 +20,11 @@ import { isAuthenticatedSelector } from '../../auth/state/AuthenticationSelector
 import { HomeFormValues, HomeFormPayload } from './types/HomeFormTypes';
 import { convertFormValues } from './HomePreliminaryFormUtils';
 import { newMoment, formatTime } from '../../../common/time/utils';
-import EnhancedInputField from '../../../common/components/form/fields/input/EnhancedInputField';
 import { registrationFormDataSelector } from '../../registration/state/RegistrationSelectors';
 import { BACKEND_DATE_FORMAT } from '../../../common/time/TimeConstants';
+import InputField from '../../../common/components/form/fields/input/InputField';
+import EnhancedInputField from '../../../common/components/form/fields/input/EnhancedInputField';
+
 interface Props {
   isAuthenticated: boolean;
   setHomeFormValues: (values: HomeFormPayload) => void;
@@ -84,6 +88,8 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
     return errors;
   };
 
+  const [checked, setChecked] = useState(false);
+
   return (
     <section className={styles.wrapper} ref={forwardRef}>
       <div className={styles.homeForm}>
@@ -98,7 +104,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
           onSubmit={handleSubmit}
           validate={validate}
         >
-          {({ handleSubmit, isSubmitting }) => {
+          {({ handleSubmit, isSubmitting, errors, touched }) => {
             return (
               <form onSubmit={handleSubmit} id="homePageForm">
                 <div className={styles.inputWrapper}>
@@ -107,7 +113,8 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
                     render={(props) => <BirthdateFormField {...props} />}
                   />
 
-                  <EnhancedInputField
+                  <Field
+                    as={TextInput}
                     className={styles.childHomeCity}
                     name="child.homeCity"
                     aria-label={t(
@@ -117,13 +124,22 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
                       'homePage.preliminaryForm.childHomeCity.input.label'
                     )}
                     required={true}
-                    component={InputField}
                     placeholder={t(
                       'homePage.preliminaryForm.childHomeCity.input.placeholder'
                     )}
+                    validate={validateRequire}
+                    invalid={
+                      getIn(touched, 'child.homeCity') &&
+                      getIn(errors, 'child.homeCity')
+                    }
+                    helperText={
+                      getIn(errors, 'child.homeCity') &&
+                      t('validation.general.required')
+                    }
                   />
                 </div>
-
+                {/* TODO: Migrate to HDS when hds supports helperText for checkbox
+                 */}
                 <EnhancedInputField
                   className={styles.verifyInformationCheckbox}
                   type="checkbox"

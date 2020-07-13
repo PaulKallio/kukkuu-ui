@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
+import { Button } from 'hds-react';
 
 import Modal from '../modal/Modal';
-import Button from '../button/Button';
 import styles from './alertModal.module.scss';
 
 interface AlertModalProps {

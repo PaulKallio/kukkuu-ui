@@ -1,12 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
+import { Dropdown } from 'hds-react';
 
 import Icon from '../../common/components/icon/Icon';
 import styles from './event.module.scss';
 import personIcon from '../../assets/icons/svg/person.svg';
 import EnhancedInputField from '../../common/components/form/fields/input/EnhancedInputField';
-import SelectField from '../../common/components/form/fields/select/SelectField';
 import { eventQuery as EventQueryType } from '../api/generatedTypes/eventQuery';
 import EventOccurrenceList from './EventOccurrenceList';
 import { FilterValues, FilterOptions } from './Event';
@@ -66,20 +66,20 @@ const EventEnrol = ({
                     className={styles.dateField}
                     id="date"
                     name="date"
-                    placeholder="placeholder"
+                    placeholder={t('common.select.default.text')}
                     label="Choose date"
                     options={options.dates}
-                    component={SelectField}
+                    component={Dropdown}
                     value={values.date}
                   />
                   <EnhancedInputField
                     className={styles.timeField}
                     id="time"
                     name="time"
-                    placeholder="placeholdertime"
+                    placeholder={t('common.select.default.text')}
                     label="Choose time"
                     options={options.times}
-                    component={SelectField}
+                    component={Dropdown}
                     value={values.time}
                   />
                 </form>
