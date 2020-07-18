@@ -45,7 +45,7 @@
     "helsinki-utils": "City-of-Helsinki/helsinki-utils-js.git#0.1.0",
     "i18next": "^19.5.1",
     "i18next-browser-languagedetector": "^5.0.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "moment": "^2.27.0",
     "node-sass": "^4.14.1",
     "oidc-client": "^1.10.1",
