@@ -53,15 +53,15 @@
 }
 
 .addChildButtons {
-  border: 2px dotted aqua;
-  display: grid;
+  display: flex;
   justify-content: center;
+  width: 100%;
+}
 
-  button {
-    width: 80%;
-    @include respond-above(sm) {
-      width: 60%;
-    }
+.submitButton {
+  width: 80%;
+  @include respond-above(sm) {
+    width: 60%;
   }
 }
 
