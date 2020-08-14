@@ -45,33 +45,3 @@
   border-top-color: $alt-color;
   animation: spinner 1s linear infinite;
 }
-
-/**
- * A yellow button style which used a lot in the app.
- */
-// TODO: Delete me
-@mixin button() {
-  text-align: center;
-  button {
-    background: var(--color-summer);
-
-    border: none !important;
-
-    &:disabled {
-      background: var(--color-silver);
-      cursor: not-allowed;
-    }
-
-    &:focus {
-      border: 2px solid var(--color-coat-of-arms-blue) !important;
-    }
-
-    @include respond-above(sm) {
-      width: 60%;
-    }
-
-    @include respond-below(sm) {
-      width: 80%;
-    }
-  }
-}
