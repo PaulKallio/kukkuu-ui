@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrayHelpers, Field, getIn } from 'formik';
+import { ArrayHelpers, Field, FormikState, FormikHelpers, getIn } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Button, TextInput } from 'hds-react';
 
@@ -15,39 +15,43 @@ import { validatePostalCode } from '../../../../common/components/form/validatio
 import FormikDropdown, {
   HdsOptionType,
 } from '../../../../common/components/form/fields/dropdown/FormikDropdown';
+import { RegistrationFormValues } from '../../types/RegistrationTypes';
 
-interface ChildFormFieldProps {
+type ChildFormFieldProps = {
   child: Child;
   childIndex: number;
   arrayHelpers: ArrayHelpers;
-  setFieldValue: any;
-  errors: any;
-  touched: any;
-}
+} & Pick<FormikState<RegistrationFormValues>, 'errors' | 'touched'> &
+  Pick<
+    FormikHelpers<RegistrationFormValues>,
+    'setFieldTouched' | 'setFieldValue'
+  >;
 
-const ChildFormField: React.FunctionComponent<ChildFormFieldProps> = ({
+const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
   child,
   childIndex,
   arrayHelpers,
   setFieldValue,
   errors,
   touched,
+  setFieldTouched,
 }) => {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.childField} key={childIndex}>
+    <div className={styles.childFields} key={childIndex}>
       <div className={styles.childInfo}>
         <div className={styles.heading}>
           <Icon src={happyChildIcon} className={styles.childImage} />
           <h2>{t('registration.form.child.info.heading')}</h2>
           {childIndex !== 0 && (
             <Button
+              variant="secondary"
+              iconRight={<Icon src={deleteIcon} />}
               aria-label={t('child.form.modal.delete.label')}
               onClick={() => arrayHelpers.remove(childIndex)}
             >
               {t('child.form.modal.delete.label')}
-              <Icon src={deleteIcon} />
             </Button>
           )}
         </div>
@@ -66,6 +70,7 @@ const ChildFormField: React.FunctionComponent<ChildFormFieldProps> = ({
         <div className={styles.childName}>
           <Field
             as={TextInput}
+            className={styles.formField}
             id={`children[${childIndex}].firstName`}
             name={`children[${childIndex}].firstName`}
             label={t('registration.form.child.firstName.input.label')}
@@ -76,6 +81,7 @@ const ChildFormField: React.FunctionComponent<ChildFormFieldProps> = ({
           />
           <Field
             as={TextInput}
+            className={styles.formField}
             id={`children[${childIndex}].lastName`}
             name={`children[${childIndex}].lastName`}
             autoComplete="new-password"
@@ -88,6 +94,7 @@ const ChildFormField: React.FunctionComponent<ChildFormFieldProps> = ({
 
         <Field
           as={TextInput}
+          className={styles.formField}
           id={`children[${childIndex}].postalCode`}
           name={`children[${childIndex}].postalCode`}
           label={t('registration.form.child.postalCode.input.label')}
@@ -95,9 +102,11 @@ const ChildFormField: React.FunctionComponent<ChildFormFieldProps> = ({
           placeholder={t(
             'registration.form.child.postalCode.input.placeholder'
           )}
-          // TODO: validate postcode
           invalid={
             getIn(touched, `children[${childIndex}].postalCode`) &&
+            `children[${childIndex}].postalCode` !== undefined &&
+            validatePostalCode(`children[${childIndex}].postalCode`) !==
+              undefined &&
             getIn(errors, `children[${childIndex}].postalCode`)
           }
           helperText={
@@ -108,33 +117,30 @@ const ChildFormField: React.FunctionComponent<ChildFormFieldProps> = ({
 
         <Field
           as={FormikDropdown}
+          className={styles.formField}
           id={`children[${childIndex}].relationship.type`}
           name={`children[${childIndex}].relationship.type`}
           label={t('registration.form.child.relationship.input.label')}
           required={true}
           options={getTranslatedRelationshipOptions(t)}
-          onBlur={console.log('TODO: set touched')}
-          onChange={(option: HdsOptionType) =>
+          onBlur={() =>
+            setFieldTouched(`children[${childIndex}].relationship.type`)
+          }
+          onChange={(option: HdsOptionType) => {
+            setFieldTouched(`children[${childIndex}].relationship.type`);
             setFieldValue(
               `children[${childIndex}].relationship.type`,
               option.value
-            )
-          }
-          placeholder={t(
-            'registration.form.child.relationship.input.placeholder'
-          )}
-          invalid={
-            getIn(touched, `children[${childIndex}].relationship.type`) &&
-            getIn(errors, `children[${childIndex}].relationship.type`)
-          }
-          helper={
-            getIn(touched, `children[${childIndex}].relationship.type`) &&
-            t(getIn(errors, `children[${childIndex}].relationship.type`))
-          }
+            );
+          }}
+          placeholder={t('common.select.default.text')}
+          // TODO: Find a way to set this field touched.
+          invalid={getIn(errors, `children[${childIndex}].relationship.type`)}
+          helper={t(getIn(errors, `children[${childIndex}].relationship.type`))}
         />
       </div>
     </div>
   );
 };
 
-export default ChildFormField;
+export default ChildFormFields;

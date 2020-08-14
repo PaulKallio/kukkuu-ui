@@ -14,17 +14,22 @@ exports[`renders snapshot correctly 1`] = `
     <div
       className="backButtonWrapper"
     >
-      <Button
-        aria-label="Palaa"
-        className="backButton"
-        onClick={[Function]}
+      <div
+        className="backButtonInnerWrapper"
       >
-        <Icon
-          alt="Palaa"
-          className="backButtonIcon"
-          src="arrowLeft.svg"
-        />
-      </Button>
+        <ForwardRef
+          aria-label="Palaa"
+          className="backButton"
+          onClick={[Function]}
+          variant="secondary"
+        >
+          <Icon
+            alt="Palaa"
+            className="backButtonIcon"
+            src="arrowLeft.svg"
+          />
+        </ForwardRef>
+      </div>
     </div>
   </div>
   <PageWrapper

@@ -3,7 +3,7 @@ import { Formik, FieldArray, FormikErrors, Field, getIn } from 'formik';
 import { connect } from 'react-redux';
 import { useTranslation, Trans } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
-import { Button, Checkbox, TextInput } from 'hds-react';
+import { Button, TextInput } from 'hds-react';
 
 import { loginTunnistamo } from '../../auth/authenticate';
 import styles from './homePreliminaryForm.module.scss';
@@ -133,6 +133,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
                       getIn(errors, 'child.homeCity')
                     }
                     helperText={
+                      getIn(touched, 'child.homeCity') &&
                       getIn(errors, 'child.homeCity') &&
                       t('validation.general.required')
                     }

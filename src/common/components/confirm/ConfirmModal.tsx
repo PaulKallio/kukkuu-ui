@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
+import { Button } from 'hds-react';
 
 import Modal from '../modal/Modal';
-import Button from '../button/Button';
 import styles from './confirmModal.module.scss';
 
 interface ConfirmModalProps {
@@ -44,7 +44,11 @@ const ConfirmModal: FunctionComponent<ConfirmModalProps> = ({
     >
       {children}
       <div className={styles.buttonGroup}>
-        <Button className={styles.cancelButton} onClick={onCancel}>
+        <Button
+          className={styles.cancelButton}
+          variant="secondary"
+          onClick={onCancel}
+        >
           {cancel}
         </Button>
         <Button className={styles.okButton} onClick={onOk}>

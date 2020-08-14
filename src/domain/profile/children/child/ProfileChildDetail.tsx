@@ -5,6 +5,7 @@ import { useParams, useHistory } from 'react-router';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
+import { Button } from 'hds-react';
 
 import styles from './profileChildDetail.module.scss';
 import PageWrapper from '../../../app/layout/PageWrapper';
@@ -18,7 +19,6 @@ import { formatTime, newMoment } from '../../../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../../../common/time/TimeConstants';
 import { profileSelector } from '../../state/ProfileSelectors';
 import ProfileEvents from '../../events/ProfileEvents';
-import Button from '../../../../common/components/button/Button';
 import ProfileChildDetailEditModal from './modal/ProfileChildDetailEditModal';
 import { deleteChild_deleteChild as DeleteChildPayload } from '../../../api/generatedTypes/deleteChild';
 import { UpdateChildMutationInput as EditChildInput } from '../../../api/generatedTypes/globalTypes';
@@ -75,17 +75,19 @@ const ProfileChildDetail: FunctionComponent = () => {
       title={t('profile.child.detail.page.title')}
     >
       <div className={styles.childDetailWrapper} role="main">
-        <Button
-          aria-label={t('common.backButton.label')}
-          className={styles.backButton}
-          onClick={() => history.goBack()}
-        >
-          <Icon
-            src={backIcon}
-            className={styles.backButtonIcon}
-            alt={t('common.backButton.label')}
-          />
-        </Button>
+        <div className={styles.backButton}>
+          <Button
+            variant={'secondary'}
+            aria-label={t('common.backButton.label')}
+            onClick={() => history.goBack()}
+          >
+            <Icon
+              src={backIcon}
+              className={styles.backButtonIcon}
+              alt={t('common.backButton.label')}
+            />
+          </Button>
+        </div>
         <div className={styles.childWrapper}>
           {child ? (
             <div className={styles.childInfo}>
@@ -102,18 +104,23 @@ const ProfileChildDetail: FunctionComponent = () => {
                       : t('profile.child.default.name.text')}
                   </h1>
                 </div>
-                <Button
-                  ariaLabel={t('profile.edit.button.text')}
-                  className={styles.editChildInfo}
-                  onClick={() => setIsOpen(true)}
-                >
-                  <span>{t('profile.edit.button.text')}</span>
-                  <Icon
-                    src={settingIcon}
-                    className={styles.settingIcon}
-                    alt={t('profile.edit.button.text')}
-                  />
-                </Button>
+                <div className={styles.editChildInfo}>
+                  <Button
+                    className={styles.editChildInfoButton}
+                    variant={'secondary'}
+                    aria-label={t('profile.edit.button.text')}
+                    onClick={() => setIsOpen(true)}
+                    iconRight={
+                      <Icon
+                        src={settingIcon}
+                        className={styles.settingIcon}
+                        alt={t('profile.edit.button.text')}
+                      />
+                    }
+                  >
+                    {t('profile.edit.button.text')}
+                  </Button>
+                </div>
               </div>
               {isOpen && (
                 <ProfileChildDetailEditModal

@@ -78,7 +78,9 @@ const BirthdateFormField: FunctionComponent<BirthdateFormFieldProps> = ({
             getIn(touched, `${name}.day`) && getIn(errors, `${name}.day`)
           }
           helperText={
-            getIn(errors, `${name}.day`) && t('validation.general.required')
+            getIn(touched, `${name}.day`) &&
+            getIn(errors, `${name}.day`) &&
+            t('validation.general.required')
           }
         />
         <div className={styles.dot}>.</div>
@@ -101,7 +103,8 @@ const BirthdateFormField: FunctionComponent<BirthdateFormFieldProps> = ({
             getIn(touched, `${name}.month`) && getIn(errors, `${name}.month`)
           }
           helperText={
-            (getIn(errors, `${name}.month`) &&
+            (getIn(touched, `${name}.month`) &&
+              getIn(errors, `${name}.month`) &&
               t('validation.general.required')) || <></>
           }
         />
@@ -124,7 +127,9 @@ const BirthdateFormField: FunctionComponent<BirthdateFormFieldProps> = ({
             'homePage.preliminaryForm.childBirthdate.input.year.placeholder'
           )}
           helperText={
-            getIn(errors, `${name}.year`) && t('validation.general.required')
+            getIn(touched, `${name}.year`) &&
+            getIn(errors, `${name}.year`) &&
+            t('validation.general.required')
           }
         />
       </div>

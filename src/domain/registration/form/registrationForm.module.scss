@@ -1,7 +1,6 @@
 @import 'styles/fonts';
 @import 'styles/variables';
 @import 'styles/layout';
-@import 'styles/mixins';
 @import './partial/childFormField.module.scss';
 
 $plusIconHeight: 2rem;
@@ -13,6 +12,9 @@ $plusIconHeight: 2rem;
 .registrationWhiteContainer,
 .registrationGrayContainer {
   display: grid;
+  h1 {
+    margin-bottom: auto;
+  }
   @include respond-above(md) {
     grid-template-columns: 1fr minmax(auto, $containerFormMaxWidth) 1fr;
   }
@@ -22,21 +24,8 @@ $plusIconHeight: 2rem;
   }
 }
 
-.childBirthdate,
-.guardianEmail {
-  display: flex;
-  flex-direction: column;
-
-  label {
-    font-size: $font-size-sm;
-    margin-bottom: $baseMargin * 0.25;
-    font-weight: $font-weight-bold;
-  }
-
-  p {
-    padding: 0;
-    margin: 0;
-  }
+.formField {
+  padding-bottom: $basePadding;
 }
 
 .guardianName {
@@ -56,7 +45,7 @@ $plusIconHeight: 2rem;
   margin: $baseMargin 0;
   flex-direction: row;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   border: none;
 }
 

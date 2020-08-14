@@ -1,8 +1,8 @@
 import React, { FunctionComponent, ReactNode, ReactElement } from 'react';
+import { Button } from 'hds-react';
 
 import angleDownIcon from '../../../assets/icons/svg/angleDown.svg';
 import styles from './card.module.scss';
-import Button from '../button/Button';
 import Icon from '../icon/Icon';
 
 interface CardProps {

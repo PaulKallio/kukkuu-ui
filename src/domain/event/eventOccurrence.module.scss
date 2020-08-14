@@ -1,12 +1,12 @@
-@import 'styles/mixins';
+@import 'styles/layout';
 @import 'styles/variables';
 
+.linkButton {
+  text-decoration: none;
+}
 .submitButton,
 .fullButton {
-  @include button();
-  button {
-    width: 100%;
-  }
+  width: 100%;
 }
 
 tr {

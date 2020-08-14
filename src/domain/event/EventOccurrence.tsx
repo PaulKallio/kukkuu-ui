@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { Button } from 'hds-react';
 
 import { eventQuery_event_occurrences_edges_node as OccurrencesEdgeNode } from '../api/generatedTypes/eventQuery';
-import Button from '../../common/components/button/Button';
 import { formatTime, newMoment } from '../../common/time/utils';
 import styles from './eventOccurrence.module.scss';
 
@@ -36,13 +36,16 @@ const EventOccurrence: React.FunctionComponent<EventOccurrenceProps> = ({
         }
 
         {hasCapacity ? (
-          <Link to={`${occurrence.event.id}/occurrence/${occurrence.id}/enrol`}>
+          <Link
+            className={styles.linkButton}
+            to={`${occurrence.event.id}/occurrence/${occurrence.id}/enrol`}
+          >
             <Button type="submit" className={styles.submitButton}>
               {t('event.register.occurrenceTableHeader.buttonText')}
             </Button>
           </Link>
         ) : (
-          <Button className={styles.fullButton} disabled>
+          <Button className={styles.fullButton} disabled={true}>
             {t('enrollment.button.occurenceFull')}
           </Button>
         )}

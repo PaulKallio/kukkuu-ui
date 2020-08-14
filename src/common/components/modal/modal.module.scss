@@ -1,5 +1,4 @@
 @import 'styles/fonts';
-@import 'styles/mixins';
 @import 'styles/layout';
 @import 'styles/variables';
 
@@ -39,20 +38,17 @@ $modalWidthLg: 800px;
 .closeButton {
   display: flex;
   justify-content: flex-end;
-  width: 100%;
+
   @include respond-below(md) {
     z-index: 1;
     position: relative;
   }
+
   button {
     padding: 0;
     border: none;
     height: $largeMargin;
     width: $largeMargin;
-    > div {
-      display: block;
-      margin: 0 auto;
-    }
   }
 }
 

@@ -115,6 +115,9 @@
     "select": {
       "default": {
         "text": "Välj"
+      },
+      "all": {
+        "text": "Visa alla"
       }
     }
   },

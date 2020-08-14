@@ -1,5 +1,5 @@
-@import 'styles/mixins';
 @import 'styles/layout';
+@import 'styles/variables';
 
 .profileWrapper {
   display: grid;
@@ -33,32 +33,31 @@
   }
 
   .editProfile {
-    button {
-      align-items: center;
-    }
-
-    @include respond-below(md) {
-      align-self: start;
-      span {
-        display: none;
-      }
-    }
+    align-self: start;
     @include respond-above(md) {
       align-self: center;
-      span {
-        margin-right: $baseMargin;
-        white-space: nowrap;
-      }
-      button {
+    }
+
+    button {
+      height: $buttonHeight;
+      align-items: center;
+      border: none;
+      @include respond-above(md) {
         display: inline-flex;
         align-items: center;
       }
-    }
-  }
-  button {
-    border: none;
-    &:focus {
-      outline: 1px solid $focusOutline;
+      &:focus {
+        outline: 1px solid var(--color-coat-of-arms-blue);
+      }
+
+      span {
+        display: none;
+        @include respond-above(md) {
+          display: inherit;
+          margin-right: $baseMargin;
+          white-space: nowrap;
+        }
+      }
     }
   }
 }

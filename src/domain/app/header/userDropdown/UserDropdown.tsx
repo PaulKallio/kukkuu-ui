@@ -6,9 +6,9 @@ import { useMatomo } from '@datapunt/matomo-tracker-react';
 import { useQuery } from '@apollo/react-hooks';
 import * as Sentry from '@sentry/browser';
 
+import Dropdown from '../../../../common/components/dropdown/Dropdown';
 import { profileQuery as ProfileQueryType } from '../../../api/generatedTypes/profileQuery';
 import personIcon from '../../../../assets/icons/svg/person.svg';
-import Dropdown from '../../../../common/components/dropdown/Dropdown';
 import { isAuthenticatedSelector } from '../../../auth/state/AuthenticationSelectors';
 import { loginTunnistamo, logoutTunnistamo } from '../../../auth/authenticate';
 import UserMenu from '../userMenu/UserMenu';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Formik, FormikErrors, Field, getIn } from 'formik';
+import { Formik, FormikProps, FormikErrors, Field, getIn } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/react-hooks';
 import { toast } from 'react-toastify';
@@ -132,10 +132,11 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
             validateField,
             errors,
             touched,
-          }) => (
+          }: FormikProps<EditProfileModalValues>) => (
             <form onSubmit={handleSubmit} id="editProfileForm">
               <Field
                 as={TextInput}
+                className={styles.formField}
                 id="email"
                 name="email"
                 required={true}
@@ -144,10 +145,13 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
                   'registration.form.guardian.email.input.placeholder'
                 )}
                 invalid={getIn(touched, 'email') && getIn(errors, 'email')}
-                helperText={t(getIn(errors, 'email'))}
+                helperText={
+                  getIn(touched, 'email') && t(getIn(errors, 'email'))
+                }
               />
               <Field
                 as={TextInput}
+                className={styles.formField}
                 id="phoneNumber"
                 name="phoneNumber"
                 type="tel"
@@ -161,11 +165,15 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
                 invalid={
                   getIn(touched, 'phoneNumber') && getIn(errors, 'phoneNumber')
                 }
-                helperText={t(getIn(errors, 'phoneNumber'))}
+                helperText={
+                  getIn(touched, 'phoneNumber') &&
+                  t(getIn(errors, 'phoneNumber'))
+                }
               />
               <div className={styles.profileName}>
                 <Field
                   as={TextInput}
+                  className={styles.formField}
                   type="text"
                   required={true}
                   id="firstName"
@@ -177,10 +185,13 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
                   invalid={
                     getIn(touched, 'firstName') && getIn(errors, 'firstName')
                   }
-                  helperText={t(getIn(errors, 'firstName'))}
+                  helperText={
+                    getIn(touched, 'firstName') && t(getIn(errors, 'firstName'))
+                  }
                 />
                 <Field
                   as={TextInput}
+                  className={styles.formField}
                   type="text"
                   required={true}
                   id="lastName"
@@ -192,10 +203,13 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
                   invalid={
                     getIn(touched, 'lastName') && getIn(errors, 'lastName')
                   }
-                  helperText={t(getIn(errors, 'lastName'))}
+                  helperText={
+                    getIn(touched, 'lastName') && t(getIn(errors, 'lastName'))
+                  }
                 />
               </div>
               <FormikDropdown
+                className={styles.formField}
                 id="language"
                 name="language"
                 label={t('registration.form.guardian.language.input.label')}

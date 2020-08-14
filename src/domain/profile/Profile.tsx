@@ -16,7 +16,6 @@ import Icon from '../../common/components/icon/Icon';
 import phoneIcon from '../../assets/icons/svg/mobile.svg';
 import emailIcon from '../../assets/icons/svg/envelope.svg';
 import settingsIcon from '../../assets/icons/svg/gear.svg';
-import Button from '../../common/components/button/Button';
 import EditProfileModal from './modal/EditProfileModal';
 import ErrorMessage from '../../common/components/error/Error';
 
@@ -49,14 +48,15 @@ const Profile = () => {
               <h1>
                 {data.myProfile.firstName} {data.myProfile.lastName}
               </h1>
-              <Button
-                className={styles.editProfile}
-                ariaLabel={t('profile.edit.button.text')}
-                onClick={() => setIsOpen(true)}
-              >
-                <span>{t('profile.edit.button.text')}</span>
-                <Icon src={settingsIcon} alt="" />
-              </Button>
+              <div className={styles.editProfile}>
+                <button
+                  aria-label={t('profile.edit.button.text')}
+                  onClick={() => setIsOpen(true)}
+                >
+                  <span>{t('profile.edit.button.text')}</span>
+                  <Icon src={settingsIcon} alt="" />
+                </button>
+              </div>
             </div>
             {isOpen && (
               <EditProfileModal

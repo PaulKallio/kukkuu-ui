@@ -49,6 +49,7 @@
 /**
  * A yellow button style which used a lot in the app.
  */
+// TODO: Delete me
 @mixin button() {
   text-align: center;
   button {
@@ -62,7 +63,7 @@
     }
 
     &:focus {
-      border: 2px solid $focusOutline !important;
+      border: 2px solid var(--color-coat-of-arms-blue) !important;
     }
 
     @include respond-above(sm) {

@@ -28,14 +28,15 @@ exports[`renders snapshot correctly 1`] = `
     className="occurrenceSubmit"
   >
     <Link
+      className="linkButton"
       to="zzaaz/occurrence/T2NjdXJyZW5jZU5vZGU6Mg==/enrol"
     >
-      <Button
+      <ForwardRef
         className="submitButton"
         type="submit"
       >
         Valitse
-      </Button>
+      </ForwardRef>
     </Link>
   </td>
 </tr>

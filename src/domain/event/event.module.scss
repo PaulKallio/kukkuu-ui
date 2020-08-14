@@ -1,6 +1,6 @@
 @import 'styles/variables';
 @import 'styles/fonts';
-@import 'styles/mixins';
+@import 'styles/layout';
 
 @include respond-between(md, xlg) {
   .heroWrapper {
@@ -19,17 +19,14 @@
   display: grid;
   grid-template-columns: 1fr 10fr 1fr;
 }
-.backButton {
+
+.backButtonInnerWrapper {
   grid-column: 1;
   padding-top: 2rem;
   width: $logoWidth;
-  justify-self: left;
   display: flex;
   justify-content: center;
   button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background: white;
     width: 3.9rem;
     height: 3.9rem;
@@ -143,15 +140,13 @@
 .cancelRegistration {
   display: flex;
   justify-content: center;
-  @include respond-above(sm) {
-    justify-content: normal;
-  }
+
   button {
-    border: 2px solid var(--color-summer);
     max-width: 20rem;
     width: 100%;
-    font-weight: $font-weight-normal;
-    background-color: var(--color-white);
-    padding: $basePadding;
+  }
+
+  @include respond-above(sm) {
+    justify-content: normal;
   }
 }

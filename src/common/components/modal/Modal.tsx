@@ -2,9 +2,9 @@ import * as React from 'react';
 import ReactModal from 'react-modal';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
+import { Button } from 'hds-react';
 
 import styles from './modal.module.scss';
-import Button from '../button/Button';
 import Icon from '../icon/Icon';
 import happyChildIcon from '../../../assets/icons/svg/childFaceHappy.svg';
 import closeModalIcon from '../../../assets/icons/svg/closeWithoutCircle.svg';
@@ -49,13 +49,15 @@ const Modal: React.FunctionComponent<ModalProps> = ({
           overlayClassName={styles.overlay}
           shouldCloseOnOverlayClick={false}
         >
-          <Button
-            className={styles.closeButton}
-            onClick={onClose}
-            aria-label={t('common.closeButton.altText')}
-          >
-            <Icon src={closeModalIcon} />
-          </Button>
+          <div className={styles.closeButton}>
+            <Button
+              variant={'secondary'}
+              onClick={onClose}
+              aria-label={t('common.closeButton.altText')}
+            >
+              <Icon src={closeModalIcon} />
+            </Button>
+          </div>
           <div className={classNames(styles.modalContent, className)}>
             {showHeading && (
               <div className={styles.heading}>

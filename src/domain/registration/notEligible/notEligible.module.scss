@@ -1,8 +1,11 @@
-@import '../../home/home.module.scss';
-@import 'styles/mixins';
+@import 'styles/layout';
 @import 'styles/variables';
 
 .notEligible {
+  @include respond-below(md) {
+    margin: 0 $baseMargin $largeMargin $baseMargin;
+  }
+
   font-weight: bold;
   display: flex;
   flex-direction: column;
@@ -18,5 +21,4 @@
 
 .goBackButton {
   margin: 2 * $baseMargin;
-  @include button();
 }

@@ -1,7 +1,10 @@
-@import 'styles/mixins';
 @import 'styles/variables';
 @import 'styles/layout';
 @import 'styles/tokens';
+
+.formField {
+  padding-bottom: $basePadding;
+}
 
 .email {
   label {

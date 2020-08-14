@@ -1,6 +1,5 @@
 @import 'styles/variables';
 @import 'styles/layout';
-@import 'styles/mixins';
 
 .welcome {
   display: flex;
@@ -21,7 +20,8 @@
 }
 
 .submitButton {
-  width: 50%;
-  @include button();
   margin-top: $largeMargin;
+  @include respond-above(md) {
+    width: 50%;
+  }
 }

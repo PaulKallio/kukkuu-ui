@@ -1,15 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Formik } from 'formik';
-import { Dropdown } from 'hds-react';
+import { Formik, Field } from 'formik';
 
 import Icon from '../../common/components/icon/Icon';
 import styles from './event.module.scss';
 import personIcon from '../../assets/icons/svg/person.svg';
-import EnhancedInputField from '../../common/components/form/fields/input/EnhancedInputField';
 import { eventQuery as EventQueryType } from '../api/generatedTypes/eventQuery';
 import EventOccurrenceList from './EventOccurrenceList';
 import { FilterValues, FilterOptions } from './Event';
+import FormikDropdown, {
+  HdsOptionType,
+} from '../../common/components/form/fields/dropdown/FormikDropdown';
 export interface EventEnrolProps {
   data: EventQueryType;
   filterValues: FilterValues;
@@ -40,7 +41,7 @@ const EventEnrol = ({
 
   return (
     <>
-      <div className={styles.register}>
+      <div>
         <h2>{t('event.register.form.header')}</h2>
         <div className={styles.attendees}>
           <Icon
@@ -59,28 +60,40 @@ const EventEnrol = ({
               handleSubmit(values);
             }}
           >
-            {({ handleSubmit, values }) => {
+            {({ handleSubmit, setFieldValue, values }) => {
               return (
                 <form onSubmit={handleSubmit} id="eventPageForm">
-                  <EnhancedInputField
+                  <Field
+                    as={FormikDropdown}
                     className={styles.dateField}
                     id="date"
                     name="date"
                     placeholder={t('common.select.default.text')}
-                    label="Choose date"
-                    options={options.dates}
-                    component={Dropdown}
-                    value={values.date}
+                    onChange={(option: HdsOptionType) =>
+                      setFieldValue('date', option.value)
+                    }
+                    label={t('enrollment.selectDate')}
+                    options={[
+                      { value: '', label: t('common.select.all.text') },
+                      ...options.dates,
+                    ]}
+                    default={values.date}
                   />
-                  <EnhancedInputField
+                  <Field
+                    as={FormikDropdown}
                     className={styles.timeField}
                     id="time"
                     name="time"
                     placeholder={t('common.select.default.text')}
-                    label="Choose time"
-                    options={options.times}
-                    component={Dropdown}
-                    value={values.time}
+                    onChange={(option: HdsOptionType) =>
+                      setFieldValue('time', option.value)
+                    }
+                    label={t('enrollment.selectTime')}
+                    options={[
+                      { value: '', label: t('common.select.all.text') },
+                      ...options.times,
+                    ]}
+                    default={values.time}
                   />
                 </form>
               );

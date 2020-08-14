@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import { Formik, FieldArray, Field, getIn } from 'formik';
+import { Formik, FormikProps, FieldArray, Field, getIn } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { useTranslation } from 'react-i18next';
@@ -15,7 +15,7 @@ import submitChildrenAndGuardianMutation from '../mutations/submitChildrenAndGua
 import { resetFormValues, setFormValues } from '../state/RegistrationActions';
 import { initialFormDataSelector } from './RegistrationFormSelectors';
 import { SUPPORT_LANGUAGES } from '../../../common/translation/TranslationConstants';
-import ChildFormField from './partial/ChildFormField';
+import ChildFormFields from './partial/ChildFormField';
 import AddNewChildFormModal from '../modal/AddNewChildFormModal';
 import Icon from '../../../common/components/icon/Icon';
 import happyAdultIcon from '../../../assets/icons/svg/adultFaceHappy.svg';
@@ -33,6 +33,7 @@ import { GuardianInput, Language } from '../../api/generatedTypes/globalTypes';
 import FormikDropdown, {
   HdsOptionType,
 } from '../../../common/components/form/fields/dropdown/FormikDropdown';
+import { RegistrationFormValues } from '../types/RegistrationTypes';
 
 const schema = yup.object().shape({
   guardian: yup.object().shape({
@@ -111,13 +112,15 @@ const RegistrationForm: FunctionComponent = () => {
         <div className={styles.registrationForm}>
           <Formik
             initialValues={initialValues}
-            validationSchema={schema}
+            // TODO: Fix validationSchema
+            // validationSchema={schema}
             validate={() => {
               if (!isFilling) {
                 setFormIsFilling(true);
               }
+              console.log('validating');
             }}
-            onSubmit={(values) => {
+            onSubmit={(values: RegistrationFormValues) => {
               console.log('submitting', values);
               setFormIsFilling(false);
               dispatch(setFormValues(values));
@@ -171,7 +174,7 @@ const RegistrationForm: FunctionComponent = () => {
               setFieldTouched,
               errors,
               touched,
-            }) => (
+            }: FormikProps<RegistrationFormValues>) => (
               <form onSubmit={handleSubmit} id="registrationForm">
                 <div className={styles.registrationGrayContainer}>
                   <h1>{t('registration.heading')}</h1>
@@ -203,7 +206,7 @@ const RegistrationForm: FunctionComponent = () => {
                           )}
                           {values.children &&
                             values.children.map((child, index) => (
-                              <ChildFormField
+                              <ChildFormFields
                                 key={index}
                                 arrayHelpers={arrayHelpers}
                                 child={child}
@@ -211,6 +214,7 @@ const RegistrationForm: FunctionComponent = () => {
                                 setFieldValue={setFieldValue}
                                 errors={errors}
                                 touched={touched}
+                                setFieldTouched={setFieldTouched}
                               />
                             ))}
                         </>
@@ -241,6 +245,7 @@ const RegistrationForm: FunctionComponent = () => {
                   </div>
                   <Field
                     as={TextInput}
+                    className={styles.formField}
                     id="guardian.email"
                     name="guardian.email"
                     required={true}
@@ -256,6 +261,7 @@ const RegistrationForm: FunctionComponent = () => {
                   />
                   <Field
                     as={TextInput}
+                    className={styles.formField}
                     id="guardian.phoneNumber"
                     name="guardian.phoneNumber"
                     required={true}
@@ -269,11 +275,15 @@ const RegistrationForm: FunctionComponent = () => {
                       getIn(touched, 'guardian.phoneNumber') &&
                       getIn(errors, 'guardian.phoneNumber')
                     }
-                    helperText={t(getIn(errors, 'guardian.phoneNumber'))}
+                    helperText={
+                      getIn(touched, 'guardian.phoneNumber') &&
+                      t(getIn(errors, 'guardian.phoneNumber'))
+                    }
                   />
                   <div className={styles.guardianName}>
                     <Field
                       as={TextInput}
+                      className={styles.formField}
                       required={true}
                       id="guardian.firstName"
                       name="guardian.firstName"
@@ -291,6 +301,7 @@ const RegistrationForm: FunctionComponent = () => {
                     />
                     <Field
                       as={TextInput}
+                      className={styles.formField}
                       required={true}
                       id="guardian.lastName"
                       name="guardian.lastName"
@@ -308,8 +319,10 @@ const RegistrationForm: FunctionComponent = () => {
                     />
                   </div>
 
-                  <FormikDropdown
+                  <Field
+                    as={FormikDropdown}
                     default={values.preferLanguage}
+                    className={styles.formField}
                     id="preferLanguage"
                     name="preferLanguage"
                     label={t('registration.form.guardian.language.input.label')}
@@ -331,6 +344,7 @@ const RegistrationForm: FunctionComponent = () => {
                     onChange={(option: HdsOptionType) =>
                       setFieldValue('preferLanguage', option.value)
                     }
+                    isSubmitting={isSubmitting}
                     placeholder={t(
                       'registration.form.guardian.language.input.placeholder'
                     )}

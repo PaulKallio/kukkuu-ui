@@ -10,6 +10,7 @@ interface ButtonProps extends ReactButton {
   children: ReactNode;
   ariaLabel?: string;
 }
+// TODO: Delete me when HDS buttons can be added without superficial whitespace
 const Button: FunctionComponent<ButtonProps> = ({
   children,
   className,

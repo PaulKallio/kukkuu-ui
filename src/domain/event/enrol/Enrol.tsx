@@ -6,10 +6,10 @@ import * as Sentry from '@sentry/browser';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import joinClassNames from 'classnames';
+import { Button } from 'hds-react';
 
 import PageWrapper from '../../app/layout/PageWrapper';
 import styles from './enrol.module.scss';
-import Button from '../../../common/components/button/Button';
 import occurrenceQuery from '../queries/occurrenceQuery';
 import { occurrenceQuery as OccurrenceQueryType } from '../../api/generatedTypes/occurrenceQuery';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
@@ -124,14 +124,11 @@ const Enrol: FunctionComponent = () => {
         />
 
         <div className={styles.actions}>
-          <Button className={styles.submitButton} onClick={() => enrol()}>
+          <Button onClick={() => enrol()}>
             {t('enrollment.confirmationPage.confirm.button')}
           </Button>
 
-          <Button
-            className={styles.backButton}
-            onClick={() => history.goBack()}
-          >
+          <Button onClick={() => history.goBack()} variant={'secondary'}>
             {t('enrollment.confirmationPage.cancel.button')}
           </Button>
         </div>
