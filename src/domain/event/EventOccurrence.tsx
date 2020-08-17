@@ -45,7 +45,7 @@ const EventOccurrence: React.FunctionComponent<EventOccurrenceProps> = ({
             </Button>
           </Link>
         ) : (
-          <Button className={styles.fullButton} disabled={true}>
+          <Button className={styles.fullButton} disabled>
             {t('enrollment.button.occurenceFull')}
           </Button>
         )}
