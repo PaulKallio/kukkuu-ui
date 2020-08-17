@@ -13,8 +13,12 @@
 .deleteChild {
   margin-bottom: $largeMargin;
   border: none;
-  font-weight: bold;
+  font-weight: 700;
   text-decoration: underline;
+  // Ensure that text is correctly left aligned despite HDS
+  // extra whitespace
+  transform: translateX(calc(var(--spacing-m) * -1));
+  padding-left: 0;
 }
 
 .formField {

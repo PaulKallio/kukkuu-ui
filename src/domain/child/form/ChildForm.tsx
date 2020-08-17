@@ -257,13 +257,13 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
           </div>
 
           {isEditForm && (
-            <button
+            <Button
+              variant="secondary"
               className={styles.deleteChild}
-              // ariaLabel={t('profile.child.detail.delete.text')}
               onClick={onDelete}
             >
               {t('profile.child.detail.delete.text')}
-            </button>
+            </Button>
           )}
         </form>
       )}
