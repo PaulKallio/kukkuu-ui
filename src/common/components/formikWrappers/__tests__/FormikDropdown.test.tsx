@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { Field } from 'formik';
 
 import FormikDropdown from '../FormikDropdown';
-import TestForm from '../../../../../test/TestForm';
+import TestForm from '../../../test/TestForm';
 
 it('renders snapshot correctly', () => {
   const props = {

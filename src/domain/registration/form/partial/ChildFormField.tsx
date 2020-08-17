@@ -14,7 +14,7 @@ import deleteIcon from '../../../../assets/icons/svg/delete.svg';
 import { validatePostalCode } from '../../../../common/components/form/validationUtils';
 import FormikDropdown, {
   HdsOptionType,
-} from '../../../../common/components/form/fields/dropdown/FormikDropdown';
+} from '../../../../common/components/formikWrappers/FormikDropdown';
 import { RegistrationFormValues } from '../../types/RegistrationTypes';
 
 type ChildFormFieldProps = {

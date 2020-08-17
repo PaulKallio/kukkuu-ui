@@ -20,7 +20,7 @@ import adultIcon from '../../../assets/icons/svg/adultFaceHappy.svg';
 import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
 import FormikDropdown, {
   HdsOptionType,
-} from '../../../common/components/form/fields/dropdown/FormikDropdown';
+} from '../../../common/components/formikWrappers/FormikDropdown';
 import {
   getIsInvalid,
   getError,

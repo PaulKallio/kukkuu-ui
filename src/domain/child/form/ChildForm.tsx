@@ -16,7 +16,7 @@ import styles from './childForm.module.scss';
 import BirthdateFormField from '../../home/form/partial/BirthdateFormField';
 import FormikDropdown, {
   HdsOptionType,
-} from '../../../common/components/form/fields/dropdown/FormikDropdown';
+} from '../../../common/components/formikWrappers/FormikDropdown';
 import { Child } from '../types/ChildTypes';
 import { getTranslatedRelationshipOptions } from '../ChildUtils';
 import {

@@ -10,7 +10,7 @@ import EventOccurrenceList from './EventOccurrenceList';
 import { FilterValues, FilterOptions } from './Event';
 import FormikDropdown, {
   HdsOptionType,
-} from '../../common/components/form/fields/dropdown/FormikDropdown';
+} from '../../common/components/formikWrappers/FormikDropdown';
 export interface EventEnrolProps {
   data: EventQueryType;
   filterValues: FilterValues;

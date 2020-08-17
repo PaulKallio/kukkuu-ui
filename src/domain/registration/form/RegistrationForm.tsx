@@ -32,7 +32,7 @@ import NavigationConfirm from '../../../common/components/confirm/NavigationConf
 import { GuardianInput, Language } from '../../api/generatedTypes/globalTypes';
 import FormikDropdown, {
   HdsOptionType,
-} from '../../../common/components/form/fields/dropdown/FormikDropdown';
+} from '../../../common/components/formikWrappers/FormikDropdown';
 import { RegistrationFormValues } from '../types/RegistrationTypes';
 
 const schema = yup.object().shape({
