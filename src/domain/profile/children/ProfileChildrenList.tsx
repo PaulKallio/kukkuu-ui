@@ -86,7 +86,7 @@ const ProfileChildrenList: FunctionComponent = () => {
         )}
       </div>
       <Button
-        variant={'secondary'}
+        variant="secondary"
         aria-label={t('child.form.modal.add.label')}
         className={styles.addChild}
         iconLeft={<IconPlusCircle />}

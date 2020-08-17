@@ -51,7 +51,7 @@ const Modal: React.FunctionComponent<ModalProps> = ({
         >
           <div className={styles.closeButton}>
             <Button
-              variant={'secondary'}
+              variant="secondary"
               onClick={onClose}
               aria-label={t('common.closeButton.altText')}
             >

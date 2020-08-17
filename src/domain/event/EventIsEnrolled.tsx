@@ -57,7 +57,7 @@ const EventIsEnrolled = () => {
       </div>
       <h2>{t('event.cancellation.heading')}</h2>
       <div className={styles.cancelRegistration}>
-        <Button variant={'secondary'} onClick={() => setIsOpen(true)}>
+        <Button variant="secondary" onClick={() => setIsOpen(true)}>
           {t('event.cancellation.buttonText')}
         </Button>
       </div>

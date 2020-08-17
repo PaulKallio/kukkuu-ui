@@ -128,7 +128,7 @@ const Enrol: FunctionComponent = () => {
             {t('enrollment.confirmationPage.confirm.button')}
           </Button>
 
-          <Button onClick={() => history.goBack()} variant={'secondary'}>
+          <Button onClick={() => history.goBack()} variant="secondary">
             {t('enrollment.confirmationPage.cancel.button')}
           </Button>
         </div>

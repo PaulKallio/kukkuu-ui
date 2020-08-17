@@ -77,7 +77,7 @@ const ProfileChildDetail: FunctionComponent = () => {
       <div className={styles.childDetailWrapper} role="main">
         <div className={styles.backButton}>
           <Button
-            variant={'secondary'}
+            variant="secondary"
             aria-label={t('common.backButton.label')}
             onClick={() => history.goBack()}
           >
@@ -107,7 +107,7 @@ const ProfileChildDetail: FunctionComponent = () => {
                 <div className={styles.editChildInfo}>
                   <Button
                     className={styles.editChildInfoButton}
-                    variant={'secondary'}
+                    variant="secondary"
                     aria-label={t('profile.edit.button.text')}
                     onClick={() => setIsOpen(true)}
                     iconRight={
