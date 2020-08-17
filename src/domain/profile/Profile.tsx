@@ -49,6 +49,7 @@ const Profile = () => {
                 {data.myProfile.firstName} {data.myProfile.lastName}
               </h1>
               <div className={styles.editProfile}>
+                {/* Using basic HTML button because HDS buttons add whitespace that break the layout */}
                 <button
                   aria-label={t('profile.edit.button.text')}
                   onClick={() => setIsOpen(true)}

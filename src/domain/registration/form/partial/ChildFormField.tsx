@@ -123,9 +123,6 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
           label={t('registration.form.child.relationship.input.label')}
           required={true}
           options={getTranslatedRelationshipOptions(t)}
-          onBlur={() =>
-            setFieldTouched(`children[${childIndex}].relationship.type`)
-          }
           onChange={(option: HdsOptionType) => {
             setFieldTouched(`children[${childIndex}].relationship.type`);
             setFieldValue(
