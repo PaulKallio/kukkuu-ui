@@ -91,10 +91,11 @@ $imageMaxSize: 300px;
 }
 
 .primaryActionButton {
+  width: 100%;
   min-width: fit-content;
   padding: 0 2rem;
-  @include respond-below(sm) {
-    width: 100%;
+  @include respond-above(sm) {
+    width: auto;
   }
 }
 
