@@ -49,7 +49,7 @@ const Modal: React.FunctionComponent<ModalProps> = ({
           overlayClassName={styles.overlay}
           shouldCloseOnOverlayClick={false}
         >
-          <div className={styles.closeButton}>
+          <div className={styles.closeButtonWrapper}>
             <Button
               variant="secondary"
               onClick={onClose}

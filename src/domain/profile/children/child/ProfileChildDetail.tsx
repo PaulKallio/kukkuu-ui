@@ -75,7 +75,7 @@ const ProfileChildDetail: FunctionComponent = () => {
       title={t('profile.child.detail.page.title')}
     >
       <div className={styles.childDetailWrapper} role="main">
-        <div className={styles.backButton}>
+        <div className={styles.backButtonWrapper}>
           <Button
             variant="secondary"
             aria-label={t('common.backButton.label')}

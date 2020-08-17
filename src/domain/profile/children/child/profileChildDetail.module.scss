@@ -19,7 +19,7 @@ $childHeadingMargin: 0.65rem;
   }
 }
 
-.backButton {
+.backButtonWrapper {
   @include respond-below(sm) {
     display: none;
   }
