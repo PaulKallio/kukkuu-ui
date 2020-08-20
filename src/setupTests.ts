@@ -2,6 +2,8 @@ import Adapter from 'enzyme-adapter-react-16';
 import { configure } from 'enzyme';
 import { GlobalWithFetchMock } from 'jest-fetch-mock';
 import React from 'react';
+
+import setLocale from './common/localization/setLocale';
 import './common/test/testi18nInit';
 React.useLayoutEffect = React.useEffect;
 
@@ -23,3 +25,5 @@ jest.mock('react-router-dom', () => ({
     match: jest.fn(),
   }),
 }));
+
+setLocale('fi');

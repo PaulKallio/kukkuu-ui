@@ -16,7 +16,7 @@ const EventOccurrence: React.FunctionComponent<EventOccurrenceProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const date = formatTime(newMoment(occurrence.time), 'dd l');
+  const date = formatTime(newMoment(occurrence.time), 'dd D.M.YYYY');
   const time = formatTime(newMoment(occurrence.time), 'hh:mm');
 
   const hasCapacity =
