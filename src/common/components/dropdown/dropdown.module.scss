@@ -39,7 +39,6 @@ $navbarIconSize: 1rem;
       padding: $buttonPadding;
       display: flex;
       span {
-        // flex-basis: calc(100% - 1rem);
         text-align: left;
         text-overflow: ellipsis;
         overflow: hidden;

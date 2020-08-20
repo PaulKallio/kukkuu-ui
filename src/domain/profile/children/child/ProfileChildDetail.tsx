@@ -108,7 +108,6 @@ const ProfileChildDetail: FunctionComponent = () => {
                 <Button
                   variant="supplementary"
                   className={styles.editChildInfoButton}
-                  aria-label={t('profile.edit.button.text')}
                   onClick={() => setIsOpen(true)}
                   iconRight={<IconCogwheel />}
                 >

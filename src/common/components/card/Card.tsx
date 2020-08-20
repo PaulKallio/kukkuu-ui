@@ -57,11 +57,7 @@ const Card: FunctionComponent<CardProps> = ({
       </div>
 
       <div className={styles.end}>
-        <Button
-          variant="supplementary"
-          aria-label={actionText}
-          className={styles.actionWrapper}
-        >
+        <Button variant="supplementary" className={styles.actionWrapper}>
           <div className={styles.actionText}>{actionText}</div>
           <Icon src={angleDownIcon} alt={''} className={styles.gotoAction} />
         </Button>
