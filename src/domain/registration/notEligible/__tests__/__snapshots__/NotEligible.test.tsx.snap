@@ -15,12 +15,12 @@ exports[`renders snapshot correctly 1`] = `
       <p>
         Valitettavasti lapsen syntymävuosi tai kotipaikkakunta eivät oikeuta häntä kulttuurin kummilapset toimintaan.
       </p>
-      <ForwardRef
+      <Button
         className="goBackButton"
         onClick={[Function]}
       >
         Löydä lapsille sopivia kulttuuritapahtumia täältä
-      </ForwardRef>
+      </Button>
     </div>
   </div>
 </PageWrapper>

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/react-hooks';
 import { Redirect } from 'react-router-dom';
 import * as Sentry from '@sentry/browser';
+import { IconCogwheel } from 'hds-react';
 
 import { profileQuery as ProfileQueryType } from '../api/generatedTypes/profileQuery';
 import { clearProfile } from './state/ProfileActions';
@@ -15,9 +16,9 @@ import styles from './profile.module.scss';
 import Icon from '../../common/components/icon/Icon';
 import phoneIcon from '../../assets/icons/svg/mobile.svg';
 import emailIcon from '../../assets/icons/svg/envelope.svg';
-import settingsIcon from '../../assets/icons/svg/gear.svg';
 import EditProfileModal from './modal/EditProfileModal';
 import ErrorMessage from '../../common/components/error/Error';
+import Button from '../../common/components/button/Button';
 
 const Profile = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -48,16 +49,15 @@ const Profile = () => {
               <h1>
                 {data.myProfile.firstName} {data.myProfile.lastName}
               </h1>
-              <div className={styles.editProfile}>
-                {/* Using basic HTML button because HDS buttons add whitespace that break the layout */}
-                <button
-                  aria-label={t('profile.edit.button.text')}
-                  onClick={() => setIsOpen(true)}
-                >
-                  <span>{t('profile.edit.button.text')}</span>
-                  <Icon src={settingsIcon} alt="" />
-                </button>
-              </div>
+              <Button
+                variant="supplementary"
+                className={styles.editProfileButton}
+                aria-label={t('profile.edit.button.text')}
+                iconRight={<IconCogwheel />}
+                onClick={() => setIsOpen(true)}
+              >
+                {t('profile.edit.button.text')}
+              </Button>
             </div>
             {isOpen && (
               <EditProfileModal

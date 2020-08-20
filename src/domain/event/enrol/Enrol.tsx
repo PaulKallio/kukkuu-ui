@@ -6,7 +6,6 @@ import * as Sentry from '@sentry/browser';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import joinClassNames from 'classnames';
-import { Button } from 'hds-react';
 
 import PageWrapper from '../../app/layout/PageWrapper';
 import styles from './enrol.module.scss';
@@ -23,6 +22,7 @@ import profileQuery from '../../profile/queries/ProfileQuery';
 import { childByIdQuery } from '../../child/queries/ChildQueries';
 import { saveChildEvents, justEnrolled } from '../state/EventActions';
 import ErrorMessage from '../../../common/components/error/Error';
+import Button from '../../../common/components/button/Button';
 
 const Enrol: FunctionComponent = () => {
   const history = useHistory();

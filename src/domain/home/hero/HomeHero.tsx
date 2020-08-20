@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
-import { Button } from 'hds-react';
 
 import styles from './hero.module.scss';
 import { loginTunnistamo } from '../../auth/authenticate';
+import Button from '../../../common/components/button/Button';
 
 type HomeHero = {
   userHasProfile: boolean;

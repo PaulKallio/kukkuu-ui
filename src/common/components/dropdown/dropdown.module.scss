@@ -5,26 +5,10 @@ $navbarIconSize: 1rem;
 .dropdownWrapper {
   float: left;
   position: relative;
-  button {
-    display: flex;
-    justify-items: center;
-    border: none;
-    background-color: inherit;
-    margin: 0;
-    align-items: center;
+}
 
-    span {
-      margin-right: 0.25rem;
-      font-weight: 500;
-    }
-
-    div {
-      img {
-        height: $navbarIconSize;
-        width: $navbarIconSize;
-      }
-    }
-  }
+.dropdownButton {
+  border: none;
 }
 
 .dropdownContent {
@@ -34,9 +18,19 @@ $navbarIconSize: 1rem;
   background: var(--color-white);
   z-index: 1;
   width: 256px;
+
   .dropdownContentOption {
     &:not(:last-child) {
       border-bottom: 1px solid var(--color-black-30);
+    }
+    border: 1px solid var(--color-black);
+    width: 100%;
+    color: var(--color-black);
+    background-color: var(--color-white);
+    text-align: center;
+    height: $buttonHeight;
+    &:focus {
+      outline: 1px solid var(--color-coat-of-arms-blue);
     }
 
     button {
@@ -45,7 +39,7 @@ $navbarIconSize: 1rem;
       padding: $buttonPadding;
       display: flex;
       span {
-        flex-basis: calc(100% - 1rem);
+        // flex-basis: calc(100% - 1rem);
         text-align: left;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -53,7 +47,6 @@ $navbarIconSize: 1rem;
       }
     }
 
-    display: block;
     &:hover {
       background-color: var(--color-black-30);
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrayHelpers, Field, FormikState, FormikHelpers, getIn } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { Button, TextInput } from 'hds-react';
+import { TextInput } from 'hds-react';
 
 import styles from './childFormField.module.scss';
 import { formatTime, newMoment } from '../../../../common/time/utils';
@@ -16,6 +16,7 @@ import FormikDropdown, {
   HdsOptionType,
 } from '../../../../common/components/formikWrappers/FormikDropdown';
 import { RegistrationFormValues } from '../../types/RegistrationTypes';
+import Button from '../../../../common/components/button/Button';
 
 type ChildFormFieldProps = {
   child: Child;

@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import * as Sentry from '@sentry/browser';
 import { useQuery } from '@apollo/react-hooks';
-import { Button } from 'hds-react';
 
 import styles from './event.module.scss';
 import occurrenceQuery from './queries/occurrenceQuery';
@@ -16,6 +15,7 @@ import Paragraph from '../../common/components/paragraph/Paragraph';
 import EventPage from './EventPage';
 import SuccessToast from './enrol/SuccessToast';
 import ErrorMessage from '../../common/components/error/Error';
+import Button from '../../common/components/button/Button';
 
 const EventIsEnrolled = () => {
   const { t } = useTranslation();

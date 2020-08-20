@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
-import { Button, IconPlusCircle } from 'hds-react';
+import { IconPlusCircle } from 'hds-react';
 
 import styles from './profileChildrenList.module.scss';
 import ProfileChild from './child/ProfileChild';
@@ -17,6 +17,7 @@ import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import profileQuery from '../queries/ProfileQuery';
 import { getProjectsFromProfileQuery } from '../ProfileUtil';
 import { UpdateChildMutationInput } from '../../api/generatedTypes/globalTypes';
+import Button from '../../../common/components/button/Button';
 
 const ProfileChildrenList: FunctionComponent = () => {
   const { t } = useTranslation();

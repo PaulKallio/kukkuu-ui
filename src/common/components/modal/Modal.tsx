@@ -2,12 +2,12 @@ import * as React from 'react';
 import ReactModal from 'react-modal';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
-import { Button } from 'hds-react';
 
 import styles from './modal.module.scss';
 import Icon from '../icon/Icon';
 import happyChildIcon from '../../../assets/icons/svg/childFaceHappy.svg';
 import closeModalIcon from '../../../assets/icons/svg/closeWithoutCircle.svg';
+import Button from '../button/Button';
 
 interface ModalProps {
   isOpen: boolean;

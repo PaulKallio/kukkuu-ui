@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Button } from 'hds-react';
 
 import { eventQuery_event_occurrences_edges_node as OccurrencesEdgeNode } from '../api/generatedTypes/eventQuery';
 import { formatTime, newMoment } from '../../common/time/utils';
 import styles from './eventOccurrence.module.scss';
+import Button from '../../common/components/button/Button';
 
 interface EventOccurrenceProps {
   occurrence: OccurrencesEdgeNode;

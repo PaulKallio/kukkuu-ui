@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from 'hds-react';
 
 import styles from './notEligible.module.scss';
 import adultFaceIcon from '../../../assets/icons/svg/adultFace.svg';
 import Icon from '../../../common/components/icon/Icon';
 import PageWrapper from '../../app/layout/PageWrapper';
+import Button from '../../../common/components/button/Button';
 
 const NotEligible: FunctionComponent = () => {
   const { t } = useTranslation();

@@ -3,7 +3,7 @@ import { Formik, FieldArray, FormikErrors, Field, getIn } from 'formik';
 import { connect } from 'react-redux';
 import { useTranslation, Trans } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
-import { Button, TextInput } from 'hds-react';
+import { TextInput } from 'hds-react';
 
 import { loginTunnistamo } from '../../auth/authenticate';
 import styles from './homePreliminaryForm.module.scss';
@@ -24,6 +24,7 @@ import { registrationFormDataSelector } from '../../registration/state/Registrat
 import { BACKEND_DATE_FORMAT } from '../../../common/time/TimeConstants';
 import InputField from '../../../common/components/form/fields/input/InputField';
 import EnhancedInputField from '../../../common/components/form/fields/input/EnhancedInputField';
+import Button from '../../../common/components/button/Button';
 
 interface Props {
   isAuthenticated: boolean;

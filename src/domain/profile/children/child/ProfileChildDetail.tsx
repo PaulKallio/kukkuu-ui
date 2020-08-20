@@ -5,7 +5,7 @@ import { useParams, useHistory } from 'react-router';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
-import { Button } from 'hds-react';
+import { IconCogwheel } from 'hds-react';
 
 import styles from './profileChildDetail.module.scss';
 import PageWrapper from '../../../app/layout/PageWrapper';
@@ -13,7 +13,6 @@ import backIcon from '../../../../assets/icons/svg/arrowLeft.svg';
 import personIcon from '../../../../assets/icons/svg/person.svg';
 import childIcon from '../../../../assets/icons/svg/childFaceHappy.svg';
 import birthdateIcon from '../../../../assets/icons/svg/birthdayCake.svg';
-import settingIcon from '../../../../assets/icons/svg/gear.svg';
 import Icon from '../../../../common/components/icon/Icon';
 import { formatTime, newMoment } from '../../../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../../../common/time/TimeConstants';
@@ -32,6 +31,7 @@ import { childByIdQuery } from '../../../child/queries/ChildQueries';
 import LoadingSpinner from '../../../../common/components/spinner/LoadingSpinner';
 import { childByIdQuery as ChildByIdResponse } from '../../../api/generatedTypes/childByIdQuery';
 import ErrorMessage from '../../../../common/components/error/Error';
+import Button from '../../../../common/components/button/Button';
 export type ChildDetailEditModalPayload = Omit<EditChildInput, 'id'>;
 
 const ProfileChildDetail: FunctionComponent = () => {
@@ -104,23 +104,16 @@ const ProfileChildDetail: FunctionComponent = () => {
                       : t('profile.child.default.name.text')}
                   </h1>
                 </div>
-                <div className={styles.editChildInfo}>
-                  <Button
-                    className={styles.editChildInfoButton}
-                    variant="secondary"
-                    aria-label={t('profile.edit.button.text')}
-                    onClick={() => setIsOpen(true)}
-                    iconRight={
-                      <Icon
-                        src={settingIcon}
-                        className={styles.settingIcon}
-                        alt={t('profile.edit.button.text')}
-                      />
-                    }
-                  >
-                    {t('profile.edit.button.text')}
-                  </Button>
-                </div>
+
+                <Button
+                  variant="supplementary"
+                  className={styles.editChildInfoButton}
+                  aria-label={t('profile.edit.button.text')}
+                  onClick={() => setIsOpen(true)}
+                  iconRight={<IconCogwheel />}
+                >
+                  {t('profile.edit.button.text')}
+                </Button>
               </div>
               {isOpen && (
                 <ProfileChildDetailEditModal

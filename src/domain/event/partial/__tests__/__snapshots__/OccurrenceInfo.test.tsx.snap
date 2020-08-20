@@ -87,7 +87,7 @@ exports[`renders snapshot correctly 1`] = `
       <div
         className="backButtonInnerWrapper"
       >
-        <ForwardRef
+        <Button
           aria-label="Palaa"
           className="backButton"
           onClick={[Function]}
@@ -98,7 +98,7 @@ exports[`renders snapshot correctly 1`] = `
             className="backButtonIcon"
             src="arrowLeft.svg"
           />
-        </ForwardRef>
+        </Button>
       </div>
     </div>
   </div>

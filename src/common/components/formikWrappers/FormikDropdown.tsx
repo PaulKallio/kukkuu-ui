@@ -2,8 +2,6 @@ import React from 'react';
 import { Dropdown, DropdownProps } from 'hds-react';
 import { Field, FieldProps } from 'formik';
 
-// TODO: Rename this file to something sensible
-
 type Props = {
   name: string;
   default?: string;

@@ -1,7 +1,6 @@
 import React, { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
-import { Button } from 'hds-react';
 
 import Icon from '../../common/components/icon/Icon';
 import styles from './event.module.scss';
@@ -9,6 +8,7 @@ import PageWrapper from '../app/layout/PageWrapper';
 import backIcon from '../../assets/icons/svg/arrowLeft.svg';
 import { eventQuery_event as EventQueryType } from '../api/generatedTypes/eventQuery';
 import { occurrenceQuery_occurrence_event as OccurrenceQueryType } from '../api/generatedTypes/occurrenceQuery';
+import Button from '../../common/components/button/Button';
 
 type EventProps = {
   event: EventQueryType | OccurrenceQueryType;

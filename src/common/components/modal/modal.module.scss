@@ -8,6 +8,9 @@ $modalWidthLg: 800px;
 .modal {
   background-color: var(--color-white);
   position: relative;
+  &:focus {
+    outline: none;
+  }
 
   // Make tab-key jump between fields
   @include respond-below(md) {
@@ -55,6 +58,7 @@ $modalWidthLg: 800px;
 .modalContent {
   background-color: var(--color-white);
   padding: $basePadding $largePadding;
+
   @include respond-below(md) {
     // Ensure that modal is vertically scrollable on mobile
     position: absolute;

@@ -32,31 +32,24 @@
     margin: 0;
   }
 
-  .editProfile {
-    align-self: start;
+  .editProfileButton {
+    padding: 0;
+    background: transparent;
+    height: $buttonHeight;
+    align-items: center;
+    border: none;
     @include respond-above(md) {
-      align-self: center;
-    }
-
-    button {
-      height: $buttonHeight;
+      display: inline-flex;
       align-items: center;
-      border: none;
+    }
+    // HDS adds unwanted margin to icon
+    div {
+      margin-right: 0;
+    }
+    span {
+      display: none;
       @include respond-above(md) {
-        display: inline-flex;
-        align-items: center;
-      }
-      &:focus {
-        outline: 1px solid var(--color-coat-of-arms-blue);
-      }
-
-      span {
-        display: none;
-        @include respond-above(md) {
-          display: inherit;
-          margin-right: $baseMargin;
-          white-space: nowrap;
-        }
+        display: inherit;
       }
     }
   }

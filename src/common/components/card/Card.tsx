@@ -1,9 +1,9 @@
 import React, { FunctionComponent, ReactNode, ReactElement } from 'react';
-import { Button } from 'hds-react';
 
 import angleDownIcon from '../../../assets/icons/svg/angleDown.svg';
 import styles from './card.module.scss';
 import Icon from '../icon/Icon';
+import Button from '../button/Button';
 
 interface CardProps {
   action: () => void;
@@ -57,10 +57,14 @@ const Card: FunctionComponent<CardProps> = ({
       </div>
 
       <div className={styles.end}>
-        <button aria-label={actionText} className={styles.actionWrapper}>
+        <Button
+          variant="supplementary"
+          aria-label={actionText}
+          className={styles.actionWrapper}
+        >
           <div className={styles.actionText}>{actionText}</div>
           <Icon src={angleDownIcon} alt={''} className={styles.gotoAction} />
-        </button>
+        </Button>
       </div>
     </div>
   );

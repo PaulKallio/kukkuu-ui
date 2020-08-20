@@ -9,7 +9,7 @@ import {
 } from 'formik';
 import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
-import { Button, TextInput } from 'hds-react';
+import { TextInput } from 'hds-react';
 import * as yup from 'yup';
 
 import styles from './childForm.module.scss';
@@ -25,6 +25,7 @@ import {
 } from '../../../common/components/form/validationUtils';
 import { formatTime, newMoment } from '../../../common/time/utils';
 import { BACKEND_DATE_FORMAT } from '../../../common/time/TimeConstants';
+import Button from '../../../common/components/button/Button';
 
 const schema = yup.object().shape({
   homeCity: yup.string().required('validation.general.required'),

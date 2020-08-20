@@ -7,7 +7,7 @@ import { useHistory, Redirect } from 'react-router-dom';
 import classnames from 'classnames';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
-import { Button, Checkbox, TextInput, IconPlusCircle } from 'hds-react';
+import { Checkbox, TextInput, IconPlusCircle } from 'hds-react';
 import * as yup from 'yup';
 
 import styles from './registrationForm.module.scss';
@@ -34,6 +34,7 @@ import FormikDropdown, {
   HdsOptionType,
 } from '../../../common/components/formikWrappers/FormikDropdown';
 import { RegistrationFormValues } from '../types/RegistrationTypes';
+import Button from '../../../common/components/button/Button';
 
 const schema = yup.object().shape({
   guardian: yup.object().shape({

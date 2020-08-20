@@ -31,7 +31,9 @@ $childHeadingMargin: 0.65rem;
     background: transparent;
     width: 100%;
     border: 0;
-    &:hover {
+    &:hover,
+    &:focus,
+    &:hover:focus {
       background: var(--color-white);
       border-radius: 50%;
     }
@@ -84,21 +86,20 @@ $childHeadingMargin: 0.65rem;
         align-self: center;
       }
     }
-
-    .editChildInfo {
-      display: grid;
-      align-self: baseline;
-
-      .editChildInfoButton {
-        border: none;
-        height: 3rem;
-
-        span {
-          display: none;
-          @include respond-above(md) {
-            display: inline;
-            white-space: nowrap;
-          }
+    .editChildInfoButton {
+      border: none;
+      padding: 0;
+      background: transparent;
+      height: $buttonHeight;
+      // HDS adds unwanted margin to icon
+      div {
+        margin-right: 0;
+      }
+      span {
+        display: none;
+        @include respond-above(md) {
+          display: inline;
+          white-space: nowrap;
         }
       }
     }

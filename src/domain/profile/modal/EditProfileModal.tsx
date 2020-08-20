@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
-import { Button, TextInput } from 'hds-react';
+import { TextInput } from 'hds-react';
 import * as yup from 'yup';
 
 import styles from './editProfileModal.module.scss';
@@ -25,6 +25,7 @@ import {
   getIsInvalid,
   getError,
 } from '../../../common/components/form/formikHelper';
+import Button from '../../../common/components/button/Button';
 
 export type EditProfileModalValues = Omit<ProfileType, 'children'>;
 

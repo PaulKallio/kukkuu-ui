@@ -1,12 +1,12 @@
 import React, { FunctionComponent } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button } from 'hds-react';
 
 import tadaImage from '../../../assets/icons/svg/tada.svg';
 import Icon from '../../../common/components/icon/Icon';
 import styles from './welcome.module.scss';
 import PageWrapper from '../../app/layout/PageWrapper';
+import Button from '../../../common/components/button/Button';
 
 const Welcome: FunctionComponent = () => {
   const { t } = useTranslation();

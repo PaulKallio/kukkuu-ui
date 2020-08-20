@@ -41,12 +41,15 @@ $plusIconHeight: 2rem;
 }
 
 .addNewChildButton {
+  background: transparent;
   display: flex;
   margin: $baseMargin 0;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   border: none;
+  // Left-align with form fields
+  transform: translateX(calc(var(--spacing-m) * -1));
 }
 
 .grayBackground,

@@ -14,6 +14,7 @@ $buttonLabelMargin: 0.2rem;
 
 .addChild {
   border: none;
+  background: transparent;
   // Left-align plus icon with child cards above
   transform: translateX(calc(var(--spacing-m) * -1));
   span {

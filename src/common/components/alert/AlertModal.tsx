@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
-import { Button } from 'hds-react';
 
 import Modal from '../modal/Modal';
 import styles from './alertModal.module.scss';
+import Button from '../button/Button';
 
 interface AlertModalProps {
   isOpen: boolean;
