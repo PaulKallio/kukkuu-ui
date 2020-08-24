@@ -1,7 +1,9 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode } from 'react';
 import { Dropdown, DropdownProps as HDSDropdownProps } from 'hds-react';
 import { Field, FieldProps, useField } from 'formik';
 import { useTranslation } from 'react-i18next';
+
+import styles from './formikInputs.module.scss';
 
 type SimulatedEvent = {
   target: {
@@ -32,16 +34,6 @@ type Props = {
   helper?: string;
 } & DropdownProps;
 
-export type OptionType = {
-  value: string;
-  label: string;
-};
-
-export type HdsOptionType = {
-  //eslint-disable-next-line
-  [key: string]: any;
-};
-
 function FormikDropdown({
   name,
   id,
@@ -54,10 +46,8 @@ function FormikDropdown({
 }: Props) {
   const { t } = useTranslation();
   const [field, meta, helpers] = useField(name);
-  const [isInvalid, setIsInvalid] = useState(false); // Lol where do we call this
 
   const handleChange = (selectedItem: any) => {
-    console.log(selectedItem);
     helpers.setValue(selectedItem.value);
   };
   const defaultValue = options.find((option) => option.value === value);
@@ -67,11 +57,12 @@ function FormikDropdown({
       {(fieldProps: FieldProps<string>) => (
         <Dropdown
           {...field}
+          className={styles.formField}
           defaultValue={defaultValue}
           options={options}
           onChange={handleChange}
-          invalid={isInvalid}
-          helper={isInvalid && t(meta.error || '')}
+          invalid={Boolean(meta.error)}
+          helper={Boolean(meta.error) && t(meta.error || '')}
           multiselect={false}
           {...rest}
         />
