@@ -18,13 +18,7 @@ import updateMyProfileMutation from '../mutations/updateMyProfileMutation';
 import { updateMyProfile as UpdateMyProfileData } from '../../api/generatedTypes/updateMyProfile';
 import adultIcon from '../../../assets/icons/svg/adultFaceHappy.svg';
 import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
-import FormikDropdown, {
-  HdsOptionType,
-} from '../../../common/components/formikWrappers/FormikDropdown';
-import {
-  getIsInvalid,
-  getError,
-} from '../../../common/components/form/formikHelper';
+import FormikDropdown from '../../../common/components/formikWrappers/FormikDropdown';
 import Button from '../../../common/components/button/Button';
 
 export type EditProfileModalValues = Omit<ProfileType, 'children'>;
@@ -213,6 +207,7 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
                 className={styles.formField}
                 id="language"
                 name="language"
+                value={initialValues.language}
                 label={t('registration.form.guardian.language.input.label')}
                 required={true}
                 options={[
@@ -229,10 +224,6 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
                     value: SUPPORT_LANGUAGES.SV.toUpperCase(),
                   },
                 ]}
-                default={initialValues.language}
-                onChange={(option: HdsOptionType) =>
-                  setFieldValue('language', option.value)
-                }
                 placeholder={t(
                   'registration.form.guardian.language.input.placeholder'
                 )}

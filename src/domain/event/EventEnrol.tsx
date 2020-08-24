@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Formik, Field } from 'formik';
+import { Formik } from 'formik';
 
 import Icon from '../../common/components/icon/Icon';
 import styles from './event.module.scss';
@@ -63,24 +63,20 @@ const EventEnrol = ({
             {({ handleSubmit, setFieldValue, values }) => {
               return (
                 <form onSubmit={handleSubmit} id="eventPageForm">
-                  <Field
-                    as={FormikDropdown}
+                  <FormikDropdown
                     className={styles.dateField}
                     id="date"
                     name="date"
-                    placeholder={t('common.select.default.text')}
-                    onChange={(option: HdsOptionType) =>
-                      setFieldValue('date', option.value)
-                    }
+                    value={values.date || ''}
                     label={t('enrollment.selectDate')}
+                    placeholder={t('common.select.default.text')}
                     options={[
                       { value: '', label: t('common.select.all.text') },
                       ...options.dates,
                     ]}
                     default={values.date}
                   />
-                  <Field
-                    as={FormikDropdown}
+                  <FormikDropdown
                     className={styles.timeField}
                     id="time"
                     name="time"
@@ -94,6 +90,7 @@ const EventEnrol = ({
                       ...options.times,
                     ]}
                     default={values.time}
+                    value={values.time || ''}
                   />
                 </form>
               );

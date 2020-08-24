@@ -14,9 +14,7 @@ import * as yup from 'yup';
 
 import styles from './childForm.module.scss';
 import BirthdateFormField from '../../home/form/partial/BirthdateFormField';
-import FormikDropdown, {
-  HdsOptionType,
-} from '../../../common/components/formikWrappers/FormikDropdown';
+import FormikDropdown from '../../../common/components/formikWrappers/FormikDropdown';
 import { Child } from '../types/ChildTypes';
 import { getTranslatedRelationshipOptions } from '../ChildUtils';
 import {
@@ -30,9 +28,10 @@ import Button from '../../../common/components/button/Button';
 const schema = yup.object().shape({
   homeCity: yup.string().required('validation.general.required'),
   postalCode: yup.string().required('validation.general.required'),
-  // relationship: yup.object().shape({
-  //   type: yup.string().required('validation.general.required').nullable(),
-  // }),
+  // birthdate is validated in validateForm
+  relationship: yup.object().shape({
+    type: yup.string().required('validation.general.required').nullable(),
+  }),
 });
 
 export interface Birthdate {
@@ -41,7 +40,7 @@ export interface Birthdate {
   year: number | string;
 }
 
-export interface ChildFormValues extends Omit<Child, 'birthdate'> {
+interface ChildFormValues extends Omit<Child, 'birthdate'> {
   birthdate: Birthdate;
   childBirthdate?: string;
 }
@@ -73,13 +72,8 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
   const { t } = useTranslation();
   const isEditForm = formType === CHILD_FORM_TYPES.EDIT;
 
-  // Child who already have relationship can not go back to have empty relationship anymore
-  // Why ? Ask backend guys.
-  const isChildHavingRelationship = !!initialValues.relationship?.type;
-
   const onFormSubmit = (values: ChildFormValues) => {
     setFormIsFilling(false);
-    console.log('onFormSubmit', values);
     const child: Child = Object.assign({}, values, {
       birthdate: formatTime(
         newMoment(
@@ -91,12 +85,18 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
     onSubmit(child);
   };
 
+  /**
+   * Validate form
+   *
+   * Using both this validation function and yup schema is torta-på-torta,
+   * TODO: Refactor birthdate field to work with a yup schema.
+   * @param values
+   */
   const validateForm = (values: ChildFormValues) => {
-    console.log('validateForm', values);
+    setFormIsFilling(true);
     const {
       birthdate: { day, month, year },
     } = values;
-    setFormIsFilling(true);
 
     const errors: FormikErrors<ChildFormValues> = {};
 
@@ -127,11 +127,9 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
       {({
         isSubmitting,
         handleSubmit,
-        setFieldValue,
         values,
         errors,
         touched,
-        handleBlur,
       }: FormikProps<ChildFormValues>) => (
         <form onSubmit={handleSubmit} id="childForm">
           <FieldArray
@@ -147,7 +145,6 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
               );
             }}
           />
-
           <div className={styles.childInfo}>
             <Field
               as={TextInput}
@@ -185,7 +182,6 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
               )}
             />
           </div>
-
           <div className={styles.childName}>
             <Field
               as={TextInput}
@@ -210,25 +206,16 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
               )}
             />
           </div>
-
-          <Field
-            as={FormikDropdown}
+          <FormikDropdown
             className={styles.formField}
             name="relationship.type"
-            default={values.relationship?.type || ''}
-            //autoSelect={values.relationship?.type ? false : true}
-            //value={values.relationship}
+            id="relationship.type"
+            value={values.relationship?.type || ''}
             label={t('registration.form.child.relationship.input.label')}
             required={true}
             options={relationshipOptions}
-            onChange={(option: HdsOptionType) =>
-              setFieldValue('relationship.type', option.value)
-            }
-            invalid={getIn(errors, 'relationship.type')}
-            helper={t(getIn(errors, `relationship.type`))}
             placeholder={t('common.select.default.text')}
           />
-
           <div
             className={classnames(
               styles.buttonGroup,
@@ -256,7 +243,6 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
               )}
             </Button>
           </div>
-
           {isEditForm && (
             <Button
               variant="secondary"

@@ -320,8 +320,7 @@ const RegistrationForm: FunctionComponent = () => {
                     />
                   </div>
 
-                  <Field
-                    as={FormikDropdown}
+                  <FormikDropdown
                     default={values.preferLanguage}
                     className={styles.formField}
                     id="preferLanguage"

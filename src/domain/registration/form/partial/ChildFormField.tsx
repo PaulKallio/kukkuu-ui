@@ -116,12 +116,11 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
           }
         />
 
-        <Field
-          as={FormikDropdown}
+        <FormikDropdown
           className={styles.formField}
           id={`children[${childIndex}].relationship.type`}
           name={`children[${childIndex}].relationship.type`}
-          label={t('registration.form.child.relationship.input.label')}
+          labelText={t('registration.form.child.relationship.input.label')}
           required={true}
           options={getTranslatedRelationshipOptions(t)}
           onChange={(option: HdsOptionType) => {
