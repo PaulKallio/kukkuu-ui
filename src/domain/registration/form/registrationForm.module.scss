@@ -24,10 +24,6 @@ $plusIconHeight: 2rem;
   }
 }
 
-.formField {
-  padding-bottom: $basePadding;
-}
-
 .guardianName {
   @include respond-above(md) {
     display: grid;

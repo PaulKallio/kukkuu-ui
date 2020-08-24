@@ -12,9 +12,7 @@ import Icon from '../../../../common/components/icon/Icon';
 import happyChildIcon from '../../../../assets/icons/svg/childFaceHappy.svg';
 import deleteIcon from '../../../../assets/icons/svg/delete.svg';
 import { validatePostalCode } from '../../../../common/components/form/validationUtils';
-import FormikDropdown, {
-  HdsOptionType,
-} from '../../../../common/components/formikWrappers/FormikDropdown';
+import FormikDropdown from '../../../../common/components/formikWrappers/FormikDropdown';
 import { RegistrationFormValues } from '../../types/RegistrationTypes';
 import Button from '../../../../common/components/button/Button';
 
@@ -32,10 +30,8 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
   child,
   childIndex,
   arrayHelpers,
-  setFieldValue,
   errors,
   touched,
-  setFieldTouched,
 }) => {
   const { t } = useTranslation();
 
@@ -120,20 +116,11 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
           className={styles.formField}
           id={`children[${childIndex}].relationship.type`}
           name={`children[${childIndex}].relationship.type`}
-          labelText={t('registration.form.child.relationship.input.label')}
+          value={child.relationship?.type || undefined}
+          label={t('registration.form.child.relationship.input.label')}
           required={true}
           options={getTranslatedRelationshipOptions(t)}
-          onChange={(option: HdsOptionType) => {
-            setFieldTouched(`children[${childIndex}].relationship.type`);
-            setFieldValue(
-              `children[${childIndex}].relationship.type`,
-              option.value
-            );
-          }}
           placeholder={t('common.select.default.text')}
-          // TODO: Find a way to set this field touched.
-          invalid={getIn(errors, `children[${childIndex}].relationship.type`)}
-          helper={t(getIn(errors, `children[${childIndex}].relationship.type`))}
         />
       </div>
     </div>

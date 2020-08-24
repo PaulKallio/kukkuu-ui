@@ -7,7 +7,7 @@ import { useHistory, Redirect } from 'react-router-dom';
 import classnames from 'classnames';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
-import { Checkbox, TextInput, IconPlusCircle } from 'hds-react';
+import { Checkbox, IconPlusCircle } from 'hds-react';
 import * as yup from 'yup';
 
 import styles from './registrationForm.module.scss';
@@ -30,11 +30,10 @@ import { profileQuery as ProfileQueryType } from '../../api/generatedTypes/profi
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
 import { GuardianInput, Language } from '../../api/generatedTypes/globalTypes';
-import FormikDropdown, {
-  HdsOptionType,
-} from '../../../common/components/formikWrappers/FormikDropdown';
+import FormikDropdown from '../../../common/components/formikWrappers/FormikDropdown';
 import { RegistrationFormValues } from '../types/RegistrationTypes';
 import Button from '../../../common/components/button/Button';
+import FormikTextInput from '../../../common/components/formikWrappers/FormikTextInput';
 
 const schema = yup.object().shape({
   guardian: yup.object().shape({
@@ -58,10 +57,13 @@ const schema = yup.object().shape({
   }),
   children: yup.array().of(
     yup.object().shape({
-      postalCode: yup.string().required('validation.general.required'),
-      // relationship: yup.object().shape({
-      //   type: yup.string().required('validation.general.required').nullable(),
-      // }),
+      postalCode: yup
+        .string()
+        .required('validation.general.required')
+        .matches(/\b\d{5}\b/g, 'validation.postalCode.invalidFormat'),
+      relationship: yup.object().shape({
+        type: yup.string().required('validation.general.required').nullable(),
+      }),
     })
   ),
   agree: yup.boolean().oneOf([true], 'validation.required'),
@@ -83,6 +85,8 @@ const RegistrationForm: FunctionComponent = () => {
     refetchQueries: [{ query: profileQuery }],
   });
   // For new users preferLanguage defaults to their chosen UI language.
+  // FIXME or ignore: If you have the form open for a long time, and silent renew fails, you get a error from redux:
+  // Invariant failed: A state mutation was detected between dispatches, in the path 'registration.formValues.preferLanguage'.
   initialValues.preferLanguage = initialValues.preferLanguage || currentLocale;
 
   // isFilling is true when user has started filling out the form.
@@ -113,16 +117,13 @@ const RegistrationForm: FunctionComponent = () => {
         <div className={styles.registrationForm}>
           <Formik
             initialValues={initialValues}
-            // TODO: Fix validationSchema
-            // validationSchema={schema}
+            validationSchema={schema}
             validate={() => {
               if (!isFilling) {
                 setFormIsFilling(true);
               }
-              console.log('validating');
             }}
             onSubmit={(values: RegistrationFormValues) => {
-              console.log('submitting', values);
               setFormIsFilling(false);
               dispatch(setFormValues(values));
 
@@ -244,9 +245,7 @@ const RegistrationForm: FunctionComponent = () => {
                     <Icon src={happyAdultIcon} className={styles.childImage} />
                     <h2>{t('registration.form.guardian.info.heading')}</h2>
                   </div>
-                  <Field
-                    as={TextInput}
-                    className={styles.formField}
+                  <FormikTextInput
                     id="guardian.email"
                     name="guardian.email"
                     required={true}
@@ -254,15 +253,8 @@ const RegistrationForm: FunctionComponent = () => {
                     placeholder={t(
                       'registration.form.guardian.email.input.placeholder'
                     )}
-                    invalid={
-                      getIn(touched, 'guardian.email') &&
-                      getIn(errors, 'guardian.email')
-                    }
-                    helperText={t(getIn(errors, 'guardian.email'))}
                   />
-                  <Field
-                    as={TextInput}
-                    className={styles.formField}
+                  <FormikTextInput
                     id="guardian.phoneNumber"
                     name="guardian.phoneNumber"
                     required={true}
@@ -272,19 +264,9 @@ const RegistrationForm: FunctionComponent = () => {
                     placeholder={t(
                       'registration.form.guardian.phoneNumber.input.placeholder'
                     )}
-                    invalid={
-                      getIn(touched, 'guardian.phoneNumber') &&
-                      getIn(errors, 'guardian.phoneNumber')
-                    }
-                    helperText={
-                      getIn(touched, 'guardian.phoneNumber') &&
-                      t(getIn(errors, 'guardian.phoneNumber'))
-                    }
                   />
                   <div className={styles.guardianName}>
-                    <Field
-                      as={TextInput}
-                      className={styles.formField}
+                    <FormikTextInput
                       required={true}
                       id="guardian.firstName"
                       name="guardian.firstName"
@@ -294,15 +276,8 @@ const RegistrationForm: FunctionComponent = () => {
                       placeholder={t(
                         'registration.form.guardian.firstName.input.placeholder'
                       )}
-                      invalid={
-                        getIn(touched, 'guardian.firstName') &&
-                        getIn(errors, 'guardian.firstName')
-                      }
-                      helperText={t(getIn(errors, 'guardian.firstName'))}
                     />
-                    <Field
-                      as={TextInput}
-                      className={styles.formField}
+                    <FormikTextInput
                       required={true}
                       id="guardian.lastName"
                       name="guardian.lastName"
@@ -321,10 +296,9 @@ const RegistrationForm: FunctionComponent = () => {
                   </div>
 
                   <FormikDropdown
-                    default={values.preferLanguage}
-                    className={styles.formField}
                     id="preferLanguage"
                     name="preferLanguage"
+                    value={values.preferLanguage}
                     label={t('registration.form.guardian.language.input.label')}
                     required={true}
                     options={[
@@ -341,9 +315,6 @@ const RegistrationForm: FunctionComponent = () => {
                         value: SUPPORT_LANGUAGES.SV,
                       },
                     ]}
-                    onChange={(option: HdsOptionType) =>
-                      setFieldValue('preferLanguage', option.value)
-                    }
                     isSubmitting={isSubmitting}
                     placeholder={t(
                       'registration.form.guardian.language.input.placeholder'

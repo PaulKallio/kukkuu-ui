@@ -123,8 +123,6 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
           {({
             isSubmitting,
             handleSubmit,
-            setFieldValue,
-            validateField,
             errors,
             touched,
           }: FormikProps<EditProfileModalValues>) => (

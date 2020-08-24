@@ -2,7 +2,6 @@ import React, { FunctionComponent } from 'react';
 import { FieldArrayRenderProps, getIn, Field } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { TextInput } from 'hds-react';
-import * as yup from 'yup';
 
 import styles from './birthdateFormField.module.scss';
 import { validateRequire } from '../../../../common/components/form/validationUtils';
@@ -13,13 +12,6 @@ import {
 } from '../../../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../../../common/time/TimeConstants';
 import { Birthdate } from '../../../child/form/ChildForm';
-
-const schema = yup.object().shape({
-  firstName: yup
-    .string()
-    .required('validation.general.required')
-    .max(255, 'validation.maxLength'),
-});
 interface BirthdateFormFieldProps extends FieldArrayRenderProps {
   isImmutable?: boolean;
   values?: Birthdate;
