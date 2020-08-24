@@ -208,8 +208,8 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
           </div>
           <FormikDropdown
             className={styles.formField}
-            name="relationship.type"
             id="relationship.type"
+            name="relationship.type"
             value={values.relationship?.type || ''}
             label={t('registration.form.child.relationship.input.label')}
             required={true}

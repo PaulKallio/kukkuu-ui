@@ -8,9 +8,7 @@ import personIcon from '../../assets/icons/svg/person.svg';
 import { eventQuery as EventQueryType } from '../api/generatedTypes/eventQuery';
 import EventOccurrenceList from './EventOccurrenceList';
 import { FilterValues, FilterOptions } from './Event';
-import FormikDropdown, {
-  HdsOptionType,
-} from '../../common/components/formikWrappers/FormikDropdown';
+import FormikDropdown from '../../common/components/formikWrappers/FormikDropdown';
 export interface EventEnrolProps {
   data: EventQueryType;
   filterValues: FilterValues;
@@ -80,17 +78,14 @@ const EventEnrol = ({
                     className={styles.timeField}
                     id="time"
                     name="time"
-                    placeholder={t('common.select.default.text')}
-                    onChange={(option: HdsOptionType) =>
-                      setFieldValue('time', option.value)
-                    }
+                    value={values.time || ''}
                     label={t('enrollment.selectTime')}
+                    placeholder={t('common.select.default.text')}
                     options={[
                       { value: '', label: t('common.select.all.text') },
                       ...options.times,
                     ]}
                     default={values.time}
-                    value={values.time || ''}
                   />
                 </form>
               );
