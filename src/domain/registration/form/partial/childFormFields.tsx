@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrayHelpers, FormikState, FormikHelpers } from 'formik';
 import { useTranslation } from 'react-i18next';
 
-import styles from './childFormField.module.scss';
+import styles from './childFormFields.module.scss';
 import { formatTime, newMoment } from '../../../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../../../common/time/TimeConstants';
 import { Child } from '../../../child/types/ChildTypes';

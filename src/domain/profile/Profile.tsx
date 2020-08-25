@@ -52,7 +52,6 @@ const Profile = () => {
               <Button
                 variant="supplementary"
                 className={styles.editProfileButton}
-                aria-label={t('profile.edit.button.text')}
                 iconRight={<IconCogwheel />}
                 onClick={() => setIsOpen(true)}
               >

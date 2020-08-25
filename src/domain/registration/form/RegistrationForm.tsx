@@ -15,7 +15,6 @@ import submitChildrenAndGuardianMutation from '../mutations/submitChildrenAndGua
 import { resetFormValues, setFormValues } from '../state/RegistrationActions';
 import { initialFormDataSelector } from './RegistrationFormSelectors';
 import { SUPPORT_LANGUAGES } from '../../../common/translation/TranslationConstants';
-import ChildFormFields from './partial/ChildFormField';
 import AddNewChildFormModal from '../modal/AddNewChildFormModal';
 import Icon from '../../../common/components/icon/Icon';
 import happyAdultIcon from '../../../assets/icons/svg/adultFaceHappy.svg';
@@ -35,6 +34,7 @@ import { RegistrationFormValues } from '../types/RegistrationTypes';
 import Button from '../../../common/components/button/Button';
 import FormikTextInput from '../../../common/components/formikWrappers/FormikTextInput';
 import TermsField from '../../../common/components/form/fields/terms/TermsField';
+import ChildFormFields from './partial/childFormFields';
 
 const schema = yup.object().shape({
   guardian: yup.object().shape({
