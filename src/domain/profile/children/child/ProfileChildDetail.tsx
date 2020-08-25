@@ -81,11 +81,7 @@ const ProfileChildDetail: FunctionComponent = () => {
             aria-label={t('common.backButton.label')}
             onClick={() => history.goBack()}
           >
-            <Icon
-              src={backIcon}
-              className={styles.backButtonIcon}
-              alt={t('common.backButton.label')}
-            />
+            <Icon src={backIcon} className={styles.backButtonIcon} />
           </Button>
         </div>
         <div className={styles.childWrapper}>
