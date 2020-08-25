@@ -93,7 +93,7 @@ const ProfileChildrenList: FunctionComponent = () => {
         iconLeft={<IconPlusCircle />}
         onClick={() => setIsOpen(true)}
       >
-        <span>{t('child.form.modal.add.label')}</span>
+        {t('child.form.modal.add.label')}
       </Button>
     </>
   );

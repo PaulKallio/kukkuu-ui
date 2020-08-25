@@ -1,7 +1,3 @@
-@import 'styles/fonts';
-@import 'styles/layout';
-@import 'styles/variables';
-
 $buttonLabelMargin: 0.2rem;
 
 .childrenList {
@@ -17,9 +13,6 @@ $buttonLabelMargin: 0.2rem;
   background: transparent;
   // Left-align plus icon with child cards above
   transform: translateX(calc(var(--spacing-m) * -1));
-  span {
-    font-weight: $font-weight-bold;
-  }
   &:hover {
     background: transparent;
   }
