@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Formik, FormikProps, FormikErrors, getIn } from 'formik';
+import { Formik, FormikProps, FormikErrors } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/react-hooks';
 import { toast } from 'react-toastify';
@@ -40,7 +40,10 @@ const schema = yup.object().shape({
     .string()
     .required('validation.general.required')
     .max(255, 'validation.maxLength'),
-  language: yup.string().max(255, 'validation.maxLength'),
+  language: yup
+    .string()
+    .required('validation.general.required')
+    .max(255, 'validation.maxLength'),
 });
 
 interface EditProfileModalProps {
@@ -142,8 +145,8 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
                 id="phoneNumber"
                 name="phoneNumber"
                 type="tel"
-                //minLength="6"
-                //maxLength="255"
+                minLength={5}
+                maxLength={255}
                 required={true}
                 label={t('registration.form.guardian.phoneNumber.input.label')}
                 placeholder={t(

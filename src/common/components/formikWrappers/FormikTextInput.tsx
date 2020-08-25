@@ -1,22 +1,9 @@
-import React, { ReactEventHandler } from 'react';
+import React from 'react';
 import { useField } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { TextInput, TextInputProps } from 'hds-react';
 
 import styles from './formikInputs.module.scss';
-
-export type InputProps = {
-  name: string;
-  id: string;
-  value: string;
-  invalid?: boolean;
-  helperText?: string;
-  labelText: string;
-  required?: boolean;
-  onChange?: ReactEventHandler<HTMLInputElement>;
-  onBlur?: ReactEventHandler<HTMLInputElement>;
-  onFocus?: ReactEventHandler<HTMLInputElement>;
-};
 
 type Props = {
   name: string;
