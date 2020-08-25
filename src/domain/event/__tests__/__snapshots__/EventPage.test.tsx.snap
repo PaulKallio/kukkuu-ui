@@ -24,7 +24,6 @@ exports[`renders snapshot correctly 1`] = `
           variant="secondary"
         >
           <Icon
-            alt="Palaa"
             className="backButtonIcon"
             src="arrowLeft.svg"
           />

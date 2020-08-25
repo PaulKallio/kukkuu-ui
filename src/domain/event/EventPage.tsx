@@ -43,11 +43,7 @@ const EventPage = ({ event, children, success }: EventProps) => {
               className={styles.backButton}
               onClick={() => history.goBack()}
             >
-              <Icon
-                src={backIcon}
-                className={styles.backButtonIcon}
-                alt={t('common.backButton.label')}
-              />
+              <Icon src={backIcon} className={styles.backButtonIcon} />
             </Button>
           </div>
         </div>
