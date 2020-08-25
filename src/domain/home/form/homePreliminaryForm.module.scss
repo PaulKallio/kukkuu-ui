@@ -11,8 +11,7 @@
 
   .inputWrapper {
     display: grid;
-    justify-content: start;
-    align-self: start;
+    align-items: baseline;
     @include respond-above(md) {
       grid-template-columns: 1fr 1fr;
       gap: 0 $baseMargin;

@@ -1,12 +1,8 @@
 .birthdateField {
   text-align: left;
-  display: grid;
 
-  // fixme: The buttons jump up and down when fields are invalid
   label {
-    color: var(--label-color-default);
     display: block;
-    font-size: var(--fontsize-subtitle);
     font-weight: 700;
     margin-bottom: var(--spacing-3-xs);
   }
