@@ -7,7 +7,7 @@ exports[`renders snapshot correctly 1`] = `
   <td
     className="occurrenceDate"
   >
-    Su 3/8/2020
+    su 8.3.2020
   </td>
   <td
     className="occurrenceTime"
