@@ -15,10 +15,6 @@ $childIconHeight: 4rem;
   margin-bottom: $largeMargin;
 }
 
-.formField {
-  padding-bottom: $basePadding;
-}
-
 .childName,
 .childFixedInfo {
   @include respond-above(md) {

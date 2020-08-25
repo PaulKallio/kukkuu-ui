@@ -80,7 +80,6 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
 
     if (day && month && year) {
       errors.childBirthdate = validateDate(`${day}.${month}.${year}`);
-
       if (!errors.childBirthdate) {
         // Delete the property manually so form will be valid when this is undefined.
         delete errors.childBirthdate;

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Dropdown, DropdownProps as HDSDropdownProps } from 'hds-react';
-import { Field, FieldProps, useField } from 'formik';
+import { useField } from 'formik';
 import { useTranslation } from 'react-i18next';
 
 import styles from './formikInputs.module.scss';
@@ -53,21 +53,17 @@ function FormikDropdown({
   const defaultValue = options.find((option) => option.value === value);
 
   return (
-    <Field name={name}>
-      {(fieldProps: FieldProps<string>) => (
-        <Dropdown
-          {...field}
-          className={styles.formField}
-          defaultValue={defaultValue}
-          options={options}
-          onChange={handleChange}
-          invalid={Boolean(meta.error)}
-          helper={Boolean(meta.error) && t(meta.error || '')}
-          multiselect={false}
-          {...rest}
-        />
-      )}
-    </Field>
+    <Dropdown
+      {...field}
+      className={styles.formField}
+      defaultValue={defaultValue}
+      options={options}
+      onChange={handleChange}
+      invalid={Boolean(meta.error)}
+      helper={Boolean(meta.error) && t(meta.error || '')}
+      multiselect={false}
+      {...rest}
+    />
   );
 }
 

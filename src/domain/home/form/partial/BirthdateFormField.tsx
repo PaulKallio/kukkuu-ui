@@ -54,6 +54,7 @@ const BirthdateFormField: FunctionComponent<BirthdateFormFieldProps> = ({
         <Field
           as={TextInput}
           type="number"
+          id={`${name}.day`}
           name={`${name}.day`}
           aria-label={t(
             'homePage.preliminaryForm.childBirthdate.input.day.placeholder'
@@ -125,6 +126,9 @@ const BirthdateFormField: FunctionComponent<BirthdateFormFieldProps> = ({
           }
         />
       </div>
+      {/* Only display error after field array is touched */}
+      {/* Error is typically that the date is in the future */}
+      {fieldTouched && <div className={styles.error}>{t(error)}</div>}
     </div>
   );
 };

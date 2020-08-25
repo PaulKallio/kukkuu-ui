@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import { Formik, FormikProps, FieldArray, Field, getIn } from 'formik';
+import { Formik, FormikProps, FieldArray } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { useTranslation } from 'react-i18next';
@@ -66,7 +66,7 @@ const schema = yup.object().shape({
       }),
     })
   ),
-  agree: yup.boolean().oneOf([true], 'validation.required'),
+  // agree: yup.boolean().oneOf([true], 'validation.required'),
 });
 
 const RegistrationForm: FunctionComponent = () => {
@@ -287,11 +287,6 @@ const RegistrationForm: FunctionComponent = () => {
                       placeholder={t(
                         'registration.form.guardian.lastName.input.placeholder'
                       )}
-                      invalid={
-                        getIn(touched, 'guardian.lastName') &&
-                        getIn(errors, 'guardian.lastName')
-                      }
-                      helperText={t(getIn(errors, 'guardian.lastName'))}
                     />
                   </div>
 

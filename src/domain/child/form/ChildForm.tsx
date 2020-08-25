@@ -1,15 +1,7 @@
 import React, { FunctionComponent } from 'react';
-import {
-  Formik,
-  FieldArray,
-  FormikErrors,
-  Field,
-  getIn,
-  FormikProps,
-} from 'formik';
+import { Formik, FieldArray, FormikErrors, FormikProps } from 'formik';
 import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
-import { TextInput } from 'hds-react';
 import * as yup from 'yup';
 
 import styles from './childForm.module.scss';
@@ -17,18 +9,18 @@ import BirthdateFormField from '../../home/form/partial/BirthdateFormField';
 import FormikDropdown from '../../../common/components/formikWrappers/FormikDropdown';
 import { Child } from '../types/ChildTypes';
 import { getTranslatedRelationshipOptions } from '../ChildUtils';
-import {
-  validatePostalCode,
-  validateDate,
-} from '../../../common/components/form/validationUtils';
+import { validateDate } from '../../../common/components/form/validationUtils';
 import { formatTime, newMoment } from '../../../common/time/utils';
 import { BACKEND_DATE_FORMAT } from '../../../common/time/TimeConstants';
 import Button from '../../../common/components/button/Button';
+import FormikTextInput from '../../../common/components/formikWrappers/FormikTextInput';
 
 const schema = yup.object().shape({
   homeCity: yup.string().required('validation.general.required'),
   postalCode: yup.string().required('validation.general.required'),
-  // birthdate is validated in validateForm
+  birthdate: yup.object().shape({
+    day: yup.string().required('validation.general.required'),
+  }),
   relationship: yup.object().shape({
     type: yup.string().required('validation.general.required').nullable(),
   }),
@@ -146,36 +138,20 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
             }}
           />
           <div className={styles.childInfo}>
-            <Field
-              as={TextInput}
-              className={styles.formField}
+            <FormikTextInput
               id="homeCity"
               name="homeCity"
               label={t('homePage.preliminaryForm.childHomeCity.input.label')}
               required={true}
-              invalid={getIn(touched, 'homeCity') && getIn(errors, 'homeCity')}
-              helperText={
-                getIn(touched, 'homeCity') && t(getIn(errors, 'homeCity'))
-              }
               placeholder={t(
                 'homePage.preliminaryForm.childHomeCity.input.placeholder'
               )}
             />
-            <Field
-              as={TextInput}
+            <FormikTextInput
               className={styles.formField}
               id="postalCode"
               name="postalCode"
               required={true}
-              invalid={
-                getIn(touched, 'postalCode') &&
-                values.postalCode !== undefined &&
-                validatePostalCode(values.postalCode) !== undefined
-              }
-              helperText={
-                getIn(touched, 'postalCode') &&
-                t(validatePostalCode(values.postalCode) || '')
-              }
               label={t('registration.form.child.postalCode.input.label')}
               placeholder={t(
                 'registration.form.child.postalCode.input.placeholder'
@@ -183,8 +159,7 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
             />
           </div>
           <div className={styles.childName}>
-            <Field
-              as={TextInput}
+            <FormikTextInput
               className={styles.formField}
               id="firstName"
               name="firstName"
@@ -194,8 +169,7 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
                 'registration.form.child.firstName.input.placeholder'
               )}
             />
-            <Field
-              as={TextInput}
+            <FormikTextInput
               className={styles.formField}
               id="lastName"
               name="lastName"

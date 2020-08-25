@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { Formik, FormikProps, FormikErrors, Field, getIn } from 'formik';
+import { Formik, FormikProps, FormikErrors, getIn } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/react-hooks';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
-import { TextInput } from 'hds-react';
 import * as yup from 'yup';
 
 import styles from './editProfileModal.module.scss';
@@ -20,6 +19,7 @@ import adultIcon from '../../../assets/icons/svg/adultFaceHappy.svg';
 import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
 import FormikDropdown from '../../../common/components/formikWrappers/FormikDropdown';
 import Button from '../../../common/components/button/Button';
+import FormikTextInput from '../../../common/components/formikWrappers/FormikTextInput';
 
 export type EditProfileModalValues = Omit<ProfileType, 'children'>;
 
@@ -127,8 +127,7 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
             touched,
           }: FormikProps<EditProfileModalValues>) => (
             <form onSubmit={handleSubmit} id="editProfileForm">
-              <Field
-                as={TextInput}
+              <FormikTextInput
                 className={styles.formField}
                 id="email"
                 name="email"
@@ -137,35 +136,22 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
                 placeholder={t(
                   'registration.form.guardian.email.input.placeholder'
                 )}
-                invalid={getIn(touched, 'email') && getIn(errors, 'email')}
-                helperText={
-                  getIn(touched, 'email') && t(getIn(errors, 'email'))
-                }
               />
-              <Field
-                as={TextInput}
+              <FormikTextInput
                 className={styles.formField}
                 id="phoneNumber"
                 name="phoneNumber"
                 type="tel"
-                minLength="6"
-                maxLength="255"
+                //minLength="6"
+                //maxLength="255"
                 required={true}
                 label={t('registration.form.guardian.phoneNumber.input.label')}
                 placeholder={t(
                   'registration.form.guardian.phoneNumber.input.placeholder'
                 )}
-                invalid={
-                  getIn(touched, 'phoneNumber') && getIn(errors, 'phoneNumber')
-                }
-                helperText={
-                  getIn(touched, 'phoneNumber') &&
-                  t(getIn(errors, 'phoneNumber'))
-                }
               />
               <div className={styles.profileName}>
-                <Field
-                  as={TextInput}
+                <FormikTextInput
                   className={styles.formField}
                   type="text"
                   required={true}
@@ -175,15 +161,8 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
                   placeholder={t(
                     'registration.form.guardian.firstName.input.placeholder'
                   )}
-                  invalid={
-                    getIn(touched, 'firstName') && getIn(errors, 'firstName')
-                  }
-                  helperText={
-                    getIn(touched, 'firstName') && t(getIn(errors, 'firstName'))
-                  }
                 />
-                <Field
-                  as={TextInput}
+                <FormikTextInput
                   className={styles.formField}
                   type="text"
                   required={true}
@@ -193,12 +172,6 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
                   placeholder={t(
                     'registration.form.guardian.lastName.input.placeholder'
                   )}
-                  invalid={
-                    getIn(touched, 'lastName') && getIn(errors, 'lastName')
-                  }
-                  helperText={
-                    getIn(touched, 'lastName') && t(getIn(errors, 'lastName'))
-                  }
                 />
               </div>
               <FormikDropdown

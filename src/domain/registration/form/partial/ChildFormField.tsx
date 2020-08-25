@@ -1,7 +1,6 @@
 import React from 'react';
-import { ArrayHelpers, Field, FormikState, FormikHelpers, getIn } from 'formik';
+import { ArrayHelpers, FormikState, FormikHelpers } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { TextInput } from 'hds-react';
 
 import styles from './childFormField.module.scss';
 import { formatTime, newMoment } from '../../../../common/time/utils';
@@ -11,10 +10,10 @@ import { getTranslatedRelationshipOptions } from '../../../child/ChildUtils';
 import Icon from '../../../../common/components/icon/Icon';
 import happyChildIcon from '../../../../assets/icons/svg/childFaceHappy.svg';
 import deleteIcon from '../../../../assets/icons/svg/delete.svg';
-import { validatePostalCode } from '../../../../common/components/form/validationUtils';
 import FormikDropdown from '../../../../common/components/formikWrappers/FormikDropdown';
 import { RegistrationFormValues } from '../../types/RegistrationTypes';
 import Button from '../../../../common/components/button/Button';
+import FormikTextInput from '../../../../common/components/formikWrappers/FormikTextInput';
 
 type ChildFormFieldProps = {
   child: Child;
@@ -30,8 +29,6 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
   child,
   childIndex,
   arrayHelpers,
-  errors,
-  touched,
 }) => {
   const { t } = useTranslation();
 
@@ -65,9 +62,7 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
         </div>
 
         <div className={styles.childName}>
-          <Field
-            as={TextInput}
-            className={styles.formField}
+          <FormikTextInput
             id={`children[${childIndex}].firstName`}
             name={`children[${childIndex}].firstName`}
             label={t('registration.form.child.firstName.input.label')}
@@ -76,9 +71,7 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
               'registration.form.child.firstName.input.placeholder'
             )}
           />
-          <Field
-            as={TextInput}
-            className={styles.formField}
+          <FormikTextInput
             id={`children[${childIndex}].lastName`}
             name={`children[${childIndex}].lastName`}
             autoComplete="new-password"
@@ -89,9 +82,7 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
           />
         </div>
 
-        <Field
-          as={TextInput}
-          className={styles.formField}
+        <FormikTextInput
           id={`children[${childIndex}].postalCode`}
           name={`children[${childIndex}].postalCode`}
           label={t('registration.form.child.postalCode.input.label')}
@@ -99,21 +90,9 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
           placeholder={t(
             'registration.form.child.postalCode.input.placeholder'
           )}
-          invalid={
-            getIn(touched, `children[${childIndex}].postalCode`) &&
-            `children[${childIndex}].postalCode` !== undefined &&
-            validatePostalCode(`children[${childIndex}].postalCode`) !==
-              undefined &&
-            getIn(errors, `children[${childIndex}].postalCode`)
-          }
-          helperText={
-            getIn(touched, `children[${childIndex}].postalCode`) &&
-            t(getIn(errors, `children[${childIndex}].postalCode`))
-          }
         />
 
         <FormikDropdown
-          className={styles.formField}
           id={`children[${childIndex}].relationship.type`}
           name={`children[${childIndex}].relationship.type`}
           value={child.relationship?.type || undefined}

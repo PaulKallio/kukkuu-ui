@@ -1,8 +1,3 @@
-@import 'styles/layout';
-@import 'styles/variables';
-@import 'styles/fonts';
-@import 'styles/colors';
-
 .birthdateField {
   text-align: left;
   display: grid;
@@ -45,5 +40,10 @@
     height: 48px;
     display: grid;
     align-content: center;
+  }
+
+  .error {
+    text-align: left;
+    color: var(--color-error);
   }
 }

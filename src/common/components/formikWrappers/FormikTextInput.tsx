@@ -1,5 +1,5 @@
 import React, { ReactEventHandler } from 'react';
-import { Field, FieldProps, useField } from 'formik';
+import { useField } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { TextInput, TextInputProps } from 'hds-react';
 
@@ -36,23 +36,19 @@ function FormikTextInput({
 }: Props) {
   const { t } = useTranslation();
   // eslint-disable-next-line react/destructuring-assignment
-  const [field, meta, helpers] = useField(name);
+  const [field, meta] = useField(name);
 
   return (
-    <Field name={name}>
-      {(fieldProps: FieldProps<string>) => (
-        <TextInput
-          {...field}
-          id={id}
-          className={styles.formField}
-          invalid={Boolean(meta.error)}
-          helperText={t(meta.error || '')}
-          labelText={labelText}
-          required={required}
-          {...rest}
-        />
-      )}
-    </Field>
+    <TextInput
+      {...field}
+      id={id}
+      className={styles.formField}
+      invalid={meta.touched && Boolean(meta.error)}
+      helperText={(Boolean(meta.touched) && t(meta.error || '')) || undefined}
+      labelText={labelText}
+      required={required}
+      {...rest}
+    />
   );
 }
 
