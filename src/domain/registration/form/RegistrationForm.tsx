@@ -7,7 +7,7 @@ import { useHistory, Redirect } from 'react-router-dom';
 import classnames from 'classnames';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
-import { Checkbox, IconPlusCircle } from 'hds-react';
+import { IconPlusCircle } from 'hds-react';
 import * as yup from 'yup';
 
 import styles from './registrationForm.module.scss';
@@ -34,6 +34,7 @@ import FormikDropdown from '../../../common/components/formikWrappers/FormikDrop
 import { RegistrationFormValues } from '../types/RegistrationTypes';
 import Button from '../../../common/components/button/Button';
 import FormikTextInput from '../../../common/components/formikWrappers/FormikTextInput';
+import TermsField from '../../../common/components/form/fields/terms/TermsField';
 
 const schema = yup.object().shape({
   guardian: yup.object().shape({
@@ -66,7 +67,7 @@ const schema = yup.object().shape({
       }),
     })
   ),
-  // agree: yup.boolean().oneOf([true], 'validation.required'),
+  agree: yup.boolean().oneOf([true], 'validation.general.required'),
 });
 
 const RegistrationForm: FunctionComponent = () => {
@@ -75,7 +76,6 @@ const RegistrationForm: FunctionComponent = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
-  const [checked, setChecked] = useState(false);
 
   const initialValues = useSelector(initialFormDataSelector);
   const { loading, error, data } = useQuery<ProfileQueryType>(profileQuery);
@@ -315,13 +315,11 @@ const RegistrationForm: FunctionComponent = () => {
                       'registration.form.guardian.language.input.placeholder'
                     )}
                   />
-                  <Checkbox
+                  <TermsField
                     className={styles.agreeBtn}
                     type="checkbox"
                     id="agree"
                     name="agree"
-                    checked={checked}
-                    onChange={() => setChecked(!checked)}
                     required={true}
                     label={t('registration.form.agree.input.label')}
                   />
