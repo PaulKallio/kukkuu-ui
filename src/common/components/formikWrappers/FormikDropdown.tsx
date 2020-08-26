@@ -53,17 +53,23 @@ function FormikDropdown({
   const defaultValue = options.find((option) => option.value === value);
 
   return (
-    <Dropdown
-      {...field}
-      className={styles.formField}
-      defaultValue={defaultValue}
-      options={options}
-      onChange={handleChange}
-      invalid={Boolean(meta.error)}
-      helper={Boolean(meta.error) && t(meta.error || '')}
-      multiselect={false}
-      {...rest}
-    />
+    <div
+      onBlur={() => {
+        helpers.setTouched(true);
+      }}
+    >
+      <Dropdown
+        {...field}
+        className={styles.formField}
+        defaultValue={defaultValue}
+        options={options}
+        onChange={handleChange}
+        invalid={meta.touched && Boolean(meta.error)}
+        helper={meta.touched && Boolean(meta.error) && t(meta.error || '')}
+        multiselect={false}
+        {...rest}
+      />
+    </div>
   );
 }
 
