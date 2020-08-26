@@ -57,11 +57,18 @@
     }
     .authenticateButton {
       background: transparent;
-      border: 1px solid var(--color-white);
+      border-color: var(--color-white);
+      &:hover,
+      &:focus,
+      &:hover:focus {
+        background-color: var(--color-summer-dark-50);
+        border-color: var(--color-white);
+      }
     }
 
     .registerButton {
       color: var(--color-black-90);
+      border-color: var(--color-white);
       &:hover {
         background-color: var(--color-summer-light-20);
       }
