@@ -12,6 +12,7 @@ const kukkuuSupplementaryButtonStyles = {
   '--background-color-hover': 'transparent',
   '--background-color-focus': 'transparent',
   '--background-color-hover-focus': 'transparent',
+  '--border-color': 'none',
 };
 
 const kukkuuButtonStyles = {

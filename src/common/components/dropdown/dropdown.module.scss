@@ -7,14 +7,10 @@ $navbarIconSize: 1rem;
   position: relative;
 }
 
-.dropdownButton {
-  border: none;
-}
-
 .dropdownContent {
   position: absolute;
   right: 0;
-  border: 1px solid var(--color-black-30);
+  border: 1px solid var(--color-black-30) !important;
   background: var(--color-white);
   z-index: 1;
   width: 256px;

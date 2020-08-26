@@ -74,6 +74,7 @@ const Dropdown: FunctionComponent<DropdownProps> = ({
                 return (
                   <Button
                     id={option.id}
+                    variant="supplementary"
                     className={styles.dropdownContentOption}
                     key={index}
                     iconRight={

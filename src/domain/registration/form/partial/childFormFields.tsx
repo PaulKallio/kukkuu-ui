@@ -40,7 +40,7 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
           <h2>{t('registration.form.child.info.heading')}</h2>
           {childIndex !== 0 && (
             <Button
-              variant="secondary"
+              variant="supplementary"
               iconRight={<Icon src={deleteIcon} />}
               aria-label={t('child.form.modal.delete.label')}
               onClick={() => arrayHelpers.remove(childIndex)}
