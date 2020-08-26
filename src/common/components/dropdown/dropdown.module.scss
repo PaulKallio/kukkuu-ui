@@ -19,7 +19,6 @@ $navbarIconSize: 1rem;
     border-color: transparent;
     width: 100%;
     color: var(--color-black);
-    background-color: var(--color-white);
     text-align: center;
     height: $buttonHeight;
 
@@ -44,7 +43,7 @@ $navbarIconSize: 1rem;
       background-color: var(--color-black-30);
     }
     &:not(:last-child) {
-      border-bottom: 1px solid var(--color-black-30);
+      border-bottom: 1px solid var(--color-black-30) !important;
     }
   }
 }
