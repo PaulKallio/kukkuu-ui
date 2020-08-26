@@ -226,7 +226,7 @@ const RegistrationForm: FunctionComponent = () => {
                 </div>
                 <div className={styles.registrationGrayContainer}>
                   <Button
-                    variant="secondary"
+                    variant="supplementary"
                     aria-label={t('child.form.modal.add.label')}
                     className={styles.addNewChildButton}
                     iconLeft={<IconPlusCircle />}
