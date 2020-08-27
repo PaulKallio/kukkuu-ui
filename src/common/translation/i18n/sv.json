@@ -181,10 +181,12 @@
     },
     "participantsPerInviteEnum": {
       "CHILD_AND_GUARDIAN": "1 barn + 1 närstående",
+      "CHILD_AND_1_OR_2_GUARDIANS": "1 barn + 1–2 närstående",
       "FAMILY": "Familj"
     },
     "participantsPerInviteEnumLong": {
       "CHILD_AND_GUARDIAN": "En vuxen kan delta tillsammans med ett fadderbarn per anmälan",
+      "CHILD_AND_1_OR_2_GUARDIANS": "En eller två vuxna kan delta tillsammans med ett fadderbarn per anmälan",
       "FAMILY": "Hela familjen kan delta tillsammans med ett fadderbarn per anmälan"
     },
     "register": {
