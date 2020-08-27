@@ -54,8 +54,16 @@ function FormikDropdown({
 
   return (
     <div
-      onBlur={() => {
-        helpers.setTouched(true);
+      // unknown to work around typing error:
+      // Argument of type 'EventTarget | null' is not assignable to parameter of type 'Node | null'.
+      // Type 'EventTarget' is missing the following properties from type 'Node': baseURI, (...) and 44 more.
+      onBlur={(e: unknown) => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        if (e && !e.currentTarget.contains(e.relatedTarget)) {
+          // The check above equals 'focusleave'
+          helpers.setTouched(true);
+        }
       }}
     >
       <Dropdown
