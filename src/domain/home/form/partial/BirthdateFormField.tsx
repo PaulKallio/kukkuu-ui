@@ -1,11 +1,10 @@
 import React, { FunctionComponent } from 'react';
-import { FieldArrayRenderProps, getIn } from 'formik';
+import { FieldArrayRenderProps, getIn, Field } from 'formik';
 import { useTranslation } from 'react-i18next';
+import { TextInput } from 'hds-react';
 
 import styles from './birthdateFormField.module.scss';
 import { validateRequire } from '../../../../common/components/form/validationUtils';
-import EnhancedInputField from '../../../../common/components/form/fields/input/EnhancedInputField';
-import NumberInputField from '../../../../common/components/form/fields/input/NumberInputField';
 import {
   formatTime,
   newMoment,
@@ -13,7 +12,6 @@ import {
 } from '../../../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../../../common/time/TimeConstants';
 import { Birthdate } from '../../../child/form/ChildForm';
-
 interface BirthdateFormFieldProps extends FieldArrayRenderProps {
   isImmutable?: boolean;
   values?: Birthdate;
@@ -53,9 +51,11 @@ const BirthdateFormField: FunctionComponent<BirthdateFormFieldProps> = ({
         'homePage.preliminaryForm.childBirthdate.input.label'
       )}*`}</label>
       <div className={styles.inputWrapper}>
-        <EnhancedInputField
+        <Field
+          as={TextInput}
+          type="number"
+          id={`${name}.day`}
           name={`${name}.day`}
-          component={NumberInputField}
           aria-label={t(
             'homePage.preliminaryForm.childBirthdate.input.day.placeholder'
           )}
@@ -66,12 +66,22 @@ const BirthdateFormField: FunctionComponent<BirthdateFormFieldProps> = ({
           min={1}
           max={31}
           maxLength={2}
+          validate={(value: number) => validateRequire(value)}
+          invalid={
+            getIn(touched, `${name}.day`) && getIn(errors, `${name}.day`)
+          }
+          helperText={
+            getIn(touched, `${name}.day`) &&
+            getIn(errors, `${name}.day`) &&
+            t('validation.general.required')
+          }
         />
         <div className={styles.dot}>.</div>
-        <EnhancedInputField
+        <Field
+          as={TextInput}
+          type="number"
           name={`${name}.month`}
           required={true}
-          component={NumberInputField}
           aria-label={t(
             'homePage.preliminaryForm.childBirthdate.input.month.placeholder'
           )}
@@ -81,24 +91,43 @@ const BirthdateFormField: FunctionComponent<BirthdateFormFieldProps> = ({
           min={1}
           max={12}
           maxLength={2}
+          validate={(value: number) => validateRequire(value)}
+          invalid={
+            getIn(touched, `${name}.month`) && getIn(errors, `${name}.month`)
+          }
+          helperText={
+            (getIn(touched, `${name}.month`) &&
+              getIn(errors, `${name}.month`) &&
+              t('validation.general.required')) || <></>
+          }
         />
         <div className={styles.dot}>.</div>
-        <EnhancedInputField
+        <Field
+          as={TextInput}
+          type="number"
           required={true}
           name={`${name}.year`}
           maxLength={4}
           min={2019}
-          component={NumberInputField}
           validate={(value: number) => validateRequire(value)}
+          invalid={
+            getIn(touched, `${name}.year`) && getIn(errors, `${name}.year`)
+          }
           aria-label={t(
             'homePage.preliminaryForm.childBirthdate.input.year.placeholder'
           )}
           placeholder={t(
             'homePage.preliminaryForm.childBirthdate.input.year.placeholder'
           )}
+          helperText={
+            getIn(touched, `${name}.year`) &&
+            getIn(errors, `${name}.year`) &&
+            t('validation.general.required')
+          }
         />
       </div>
-      {/* not to display error at first render until input got touched */}
+      {/* Only display error after field array is touched */}
+      {/* Error is typically that the date is in the future */}
       {fieldTouched && <div className={styles.error}>{t(error)}</div>}
     </div>
   );

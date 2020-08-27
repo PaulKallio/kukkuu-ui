@@ -6,8 +6,6 @@ import { useHistory } from 'react-router-dom';
 
 import { loginTunnistamo } from '../../auth/authenticate';
 import styles from './homePreliminaryForm.module.scss';
-import Button from '../../../common/components/button/Button';
-import InputField from '../../../common/components/form/fields/input/InputField';
 import { validateDate } from '../../../common/components/form/validationUtils';
 import { isChildEligible } from '../../registration/notEligible/NotEligibleUtils';
 import BirthdateFormField from './partial/BirthdateFormField';
@@ -18,9 +16,12 @@ import { isAuthenticatedSelector } from '../../auth/state/AuthenticationSelector
 import { HomeFormValues, HomeFormPayload } from './types/HomeFormTypes';
 import { convertFormValues } from './HomePreliminaryFormUtils';
 import { newMoment, formatTime } from '../../../common/time/utils';
-import EnhancedInputField from '../../../common/components/form/fields/input/EnhancedInputField';
 import { registrationFormDataSelector } from '../../registration/state/RegistrationSelectors';
 import { BACKEND_DATE_FORMAT } from '../../../common/time/TimeConstants';
+import Button from '../../../common/components/button/Button';
+import TermsField from '../../../common/components/form/fields/terms/TermsField';
+import FormikTextInput from '../../../common/components/formikWrappers/FormikTextInput';
+
 interface Props {
   isAuthenticated: boolean;
   setHomeFormValues: (values: HomeFormPayload) => void;
@@ -71,11 +72,19 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
         birthdate: { day, month, year },
       },
     } = values;
-    const errors: FormikErrors<HomeFormValues> = {};
+    let errors: FormikErrors<HomeFormValues> = {};
 
+    if (!values.verifyInformation)
+      errors.verifyInformation = 'validation.general.required';
+    if (!values.child.homeCity) {
+      errors = Object.assign(errors, {
+        child: { homeCity: 'validation.general.required' },
+      });
+    }
+
+    // Special validation for date input fields.
     if (day && month && year) {
       errors.childBirthdate = validateDate(`${day}.${month}.${year}`);
-
       if (!errors.childBirthdate) {
         // Delete the property manually so form will be valid when this is undefined.
         delete errors.childBirthdate;
@@ -98,7 +107,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
           onSubmit={handleSubmit}
           validate={validate}
         >
-          {({ handleSubmit, isSubmitting }) => {
+          {({ handleSubmit, isSubmitting, errors, touched }) => {
             return (
               <form onSubmit={handleSubmit} id="homePageForm">
                 <div className={styles.inputWrapper}>
@@ -107,34 +116,23 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
                     render={(props) => <BirthdateFormField {...props} />}
                   />
 
-                  <EnhancedInputField
-                    className={styles.childHomeCity}
+                  <FormikTextInput
                     name="child.homeCity"
-                    aria-label={t(
-                      'homePage.preliminaryForm.childHomeCity.input.label'
-                    )}
+                    id="child.homeCity"
                     label={t(
                       'homePage.preliminaryForm.childHomeCity.input.label'
                     )}
                     required={true}
-                    component={InputField}
                     placeholder={t(
                       'homePage.preliminaryForm.childHomeCity.input.placeholder'
                     )}
                   />
                 </div>
-
-                <EnhancedInputField
-                  className={styles.verifyInformationCheckbox}
-                  type="checkbox"
-                  label={t(
-                    'homePage.preliminaryForm.verifyInformation.checkbox.label'
-                  )}
+                <TermsField
                   name="verifyInformation"
-                  required={true}
-                  component={InputField}
+                  id="verifyInformation"
+                  required
                 />
-
                 <Button
                   type="submit"
                   className={styles.submitButton}

@@ -115,6 +115,9 @@
     "select": {
       "default": {
         "text": "Valitse"
+      },
+      "all": {
+        "text": "Näytä kaikki"
       }
     }
   },

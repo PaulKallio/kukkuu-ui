@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import { Formik, FieldArray } from 'formik';
+import { Formik, FormikProps, FieldArray } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { useTranslation } from 'react-i18next';
@@ -7,20 +7,16 @@ import { useHistory, Redirect } from 'react-router-dom';
 import classnames from 'classnames';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
+import { IconPlusCircle } from 'hds-react';
+import * as yup from 'yup';
 
 import styles from './registrationForm.module.scss';
-import Button from '../../../common/components/button/Button';
-import InputField from '../../../common/components/form/fields/input/InputField';
-import SelectField from '../../../common/components/form/fields/select/SelectField';
 import submitChildrenAndGuardianMutation from '../mutations/submitChildrenAndGuardianMutation';
 import { resetFormValues, setFormValues } from '../state/RegistrationActions';
 import { initialFormDataSelector } from './RegistrationFormSelectors';
-import EnhancedInputField from '../../../common/components/form/fields/input/EnhancedInputField';
 import { SUPPORT_LANGUAGES } from '../../../common/translation/TranslationConstants';
-import ChildFormField from './partial/ChildFormField';
 import AddNewChildFormModal from '../modal/AddNewChildFormModal';
 import Icon from '../../../common/components/icon/Icon';
-import addIcon from '../../../assets/icons/svg/delete.svg';
 import happyAdultIcon from '../../../assets/icons/svg/adultFaceHappy.svg';
 import PageWrapper from '../../app/layout/PageWrapper';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
@@ -33,7 +29,46 @@ import { profileQuery as ProfileQueryType } from '../../api/generatedTypes/profi
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
 import { GuardianInput, Language } from '../../api/generatedTypes/globalTypes';
-import { validateEmail } from '../../../common/components/form/validationUtils';
+import FormikDropdown from '../../../common/components/formikWrappers/FormikDropdown';
+import { RegistrationFormValues } from '../types/RegistrationTypes';
+import Button from '../../../common/components/button/Button';
+import FormikTextInput from '../../../common/components/formikWrappers/FormikTextInput';
+import TermsField from '../../../common/components/form/fields/terms/TermsField';
+import ChildFormFields from './partial/childFormFields';
+
+const schema = yup.object().shape({
+  guardian: yup.object().shape({
+    firstName: yup
+      .string()
+      .required('validation.general.required')
+      .max(255, 'validation.maxLength'),
+    lastName: yup
+      .string()
+      .required('validation.general.required')
+      .max(255, 'validation.maxLength'),
+    email: yup
+      .string()
+      .email('registration.form.guardian.email.input.error')
+      .required('validation.general.required'),
+    phoneNumber: yup
+      .string()
+      .required('validation.general.required')
+      .max(255, 'validation.maxLength'),
+    language: yup.string().max(255, 'validation.maxLength'),
+  }),
+  children: yup.array().of(
+    yup.object().shape({
+      postalCode: yup
+        .string()
+        .required('validation.general.required')
+        .matches(/\b\d{5}\b/g, 'validation.postalCode.invalidFormat'),
+      relationship: yup.object().shape({
+        type: yup.string().required('validation.general.required').nullable(),
+      }),
+    })
+  ),
+  agree: yup.boolean().oneOf([true], 'validation.general.required'),
+});
 
 const RegistrationForm: FunctionComponent = () => {
   const { i18n, t } = useTranslation();
@@ -50,6 +85,8 @@ const RegistrationForm: FunctionComponent = () => {
     refetchQueries: [{ query: profileQuery }],
   });
   // For new users preferLanguage defaults to their chosen UI language.
+  // FIXME or ignore: If you have the form open for a long time, and silent renew fails, you get a error from redux:
+  // Invariant failed: A state mutation was detected between dispatches, in the path 'registration.formValues.preferLanguage'.
   initialValues.preferLanguage = initialValues.preferLanguage || currentLocale;
 
   // isFilling is true when user has started filling out the form.
@@ -80,12 +117,13 @@ const RegistrationForm: FunctionComponent = () => {
         <div className={styles.registrationForm}>
           <Formik
             initialValues={initialValues}
+            validationSchema={schema}
             validate={() => {
               if (!isFilling) {
                 setFormIsFilling(true);
               }
             }}
-            onSubmit={(values) => {
+            onSubmit={(values: RegistrationFormValues) => {
               setFormIsFilling(false);
               dispatch(setFormValues(values));
 
@@ -130,7 +168,15 @@ const RegistrationForm: FunctionComponent = () => {
                 });
             }}
           >
-            {({ values, isSubmitting, handleSubmit }) => (
+            {({
+              values,
+              isSubmitting,
+              handleSubmit,
+              setFieldValue,
+              setFieldTouched,
+              errors,
+              touched,
+            }: FormikProps<RegistrationFormValues>) => (
               <form onSubmit={handleSubmit} id="registrationForm">
                 <div className={styles.registrationGrayContainer}>
                   <h1>{t('registration.heading')}</h1>
@@ -162,11 +208,15 @@ const RegistrationForm: FunctionComponent = () => {
                           )}
                           {values.children &&
                             values.children.map((child, index) => (
-                              <ChildFormField
+                              <ChildFormFields
                                 key={index}
                                 arrayHelpers={arrayHelpers}
                                 child={child}
                                 childIndex={index}
+                                setFieldValue={setFieldValue}
+                                errors={errors}
+                                touched={touched}
+                                setFieldTouched={setFieldTouched}
                               />
                             ))}
                         </>
@@ -176,11 +226,12 @@ const RegistrationForm: FunctionComponent = () => {
                 </div>
                 <div className={styles.registrationGrayContainer}>
                   <Button
+                    variant="supplementary"
                     aria-label={t('child.form.modal.add.label')}
                     className={styles.addNewChildButton}
+                    iconLeft={<IconPlusCircle />}
                     onClick={() => setIsOpen(true)}
                   >
-                    <Icon className={styles.plusIcon} src={addIcon} />
                     {t('child.form.modal.add.label')}
                   </Button>
                 </div>
@@ -194,65 +245,57 @@ const RegistrationForm: FunctionComponent = () => {
                     <Icon src={happyAdultIcon} className={styles.childImage} />
                     <h2>{t('registration.form.guardian.info.heading')}</h2>
                   </div>
-                  <EnhancedInputField
+                  <FormikTextInput
                     id="guardian.email"
                     name="guardian.email"
                     required={true}
-                    validate={validateEmail}
                     label={t('registration.form.guardian.email.input.label')}
-                    component={InputField}
                     placeholder={t(
                       'registration.form.guardian.email.input.placeholder'
                     )}
                   />
-                  <EnhancedInputField
+                  <FormikTextInput
                     id="guardian.phoneNumber"
                     name="guardian.phoneNumber"
                     required={true}
                     label={t(
                       'registration.form.guardian.phoneNumber.input.label'
                     )}
-                    component={InputField}
                     placeholder={t(
                       'registration.form.guardian.phoneNumber.input.placeholder'
                     )}
                   />
                   <div className={styles.guardianName}>
-                    <EnhancedInputField
-                      type="text"
+                    <FormikTextInput
                       required={true}
                       id="guardian.firstName"
                       name="guardian.firstName"
                       label={t(
                         'registration.form.guardian.firstName.input.label'
                       )}
-                      component={InputField}
                       placeholder={t(
                         'registration.form.guardian.firstName.input.placeholder'
                       )}
                     />
-                    <EnhancedInputField
-                      type="text"
+                    <FormikTextInput
                       required={true}
                       id="guardian.lastName"
                       name="guardian.lastName"
                       label={t(
                         'registration.form.guardian.lastName.input.label'
                       )}
-                      component={InputField}
                       placeholder={t(
                         'registration.form.guardian.lastName.input.placeholder'
                       )}
                     />
                   </div>
 
-                  <EnhancedInputField
-                    value={values.preferLanguage}
+                  <FormikDropdown
                     id="preferLanguage"
                     name="preferLanguage"
+                    value={values.preferLanguage}
                     label={t('registration.form.guardian.language.input.label')}
                     required={true}
-                    component={SelectField}
                     options={[
                       {
                         label: t('common.language.en'),
@@ -267,18 +310,18 @@ const RegistrationForm: FunctionComponent = () => {
                         value: SUPPORT_LANGUAGES.SV,
                       },
                     ]}
+                    isSubmitting={isSubmitting}
                     placeholder={t(
                       'registration.form.guardian.language.input.placeholder'
                     )}
                   />
-                  <EnhancedInputField
+                  <TermsField
                     className={styles.agreeBtn}
                     type="checkbox"
                     id="agree"
                     name="agree"
                     required={true}
                     label={t('registration.form.agree.input.label')}
-                    component={InputField}
                   />
 
                   <Button

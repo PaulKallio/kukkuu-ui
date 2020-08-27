@@ -38,6 +38,7 @@ const SmallScreenNav = () => {
   return (
     <div className={styles.smallScreenNav}>
       <Button
+        variant="supplementary"
         aria-label={ariaLabel}
         aria-expanded={isOpen}
         onClick={() => toggleNavMenu(!isOpen)}

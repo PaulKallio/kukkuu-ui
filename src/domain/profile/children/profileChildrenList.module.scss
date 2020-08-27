@@ -1,7 +1,3 @@
-@import 'styles/fonts';
-@import 'styles/mixins';
-@import 'styles/layout';
-
 $buttonLabelMargin: 0.2rem;
 
 .childrenList {
@@ -13,22 +9,6 @@ $buttonLabelMargin: 0.2rem;
 }
 
 .addChild {
-  button {
-    align-items: center;
-    display: inline-flex;
-
-    background: transparent;
-    border: 0;
-    &:focus {
-      outline: 1px solid $focusOutline;
-    }
-  }
-
-  span {
-    margin-left: $buttonLabelMargin;
-    font-weight: $font-weight-bold;
-  }
-  img {
-    transform: rotate(45deg);
-  }
+  // Left-align plus icon with child cards above
+  transform: translateX(calc(var(--spacing-m) * -1));
 }

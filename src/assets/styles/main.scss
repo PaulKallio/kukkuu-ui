@@ -7,12 +7,6 @@
   font-family: $font-family-base;
 }
 
-button {
-  &:focus {
-    outline: 1px solid $focusOutline;
-  }
-}
-
 p,
 span,
 li {

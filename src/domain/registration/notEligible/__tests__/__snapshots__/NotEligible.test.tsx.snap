@@ -4,38 +4,23 @@ exports[`renders snapshot correctly 1`] = `
 <PageWrapper
   title="Voi harmi!"
 >
-  <div
-    className="home"
-  >
+  <div>
     <div
-      className="hero"
+      className="notEligible"
     >
-      <div
-        className="heroContainer"
+      <Icon
+        className="notEligibleFace"
+        src="adultFace.svg"
+      />
+      <p>
+        Valitettavasti lapsen syntymävuosi tai kotipaikkakunta eivät oikeuta häntä kulttuurin kummilapset toimintaan.
+      </p>
+      <Button
+        className="goBackButton"
+        onClick={[Function]}
       >
-        <div
-          className="notEligible"
-        >
-          <Icon
-            className="notEligibleFace"
-            src="adultFace.svg"
-          />
-          <p>
-            Valitettavasti lapsen syntymävuosi tai kotipaikkakunta eivät oikeuta häntä kulttuurin kummilapset toimintaan.
-          </p>
-        </div>
-        <div
-          className="goBackButton"
-        >
-          <a
-            href="https://www.myhelsinki.fi/fi/search?tags=lapset&category=events"
-          >
-            <Button>
-              Löydä lapsille sopivia kulttuuritapahtumia täältä
-            </Button>
-          </a>
-        </div>
-      </div>
+        Löydä lapsille sopivia kulttuuritapahtumia täältä
+      </Button>
     </div>
   </div>
 </PageWrapper>

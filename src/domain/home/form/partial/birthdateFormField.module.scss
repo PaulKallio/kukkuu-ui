@@ -1,17 +1,10 @@
-@import 'styles/layout';
-@import 'styles/variables';
-@import 'styles/fonts';
-@import 'styles/colors';
-
 .birthdateField {
   text-align: left;
-  display: grid;
 
   label {
-    font-size: $font-size-sm;
-    font-weight: $font-weight-bold;
-    margin-bottom: $baseMargin * 0.25;
-    display: inline-block;
+    display: block;
+    font-weight: 700;
+    margin-bottom: var(--spacing-3-xs);
   }
 
   .immutableField {
@@ -22,7 +15,6 @@
   .inputWrapper {
     display: grid;
     grid-template-columns: 1fr 0.2fr 1fr 0.2fr 1fr;
-    align-items: baseline;
 
     input[type='number'] {
       -moz-appearance: textfield;
@@ -38,13 +30,15 @@
   }
 
   .dot {
+    // Todo: Check if HDS has a height variable
     text-align: center;
+    height: 48px;
+    display: grid;
+    align-content: center;
   }
 
   .error {
     text-align: left;
     color: var(--color-error);
-    margin-top: $sm-margin;
-    font-size: $font-size-sm;
   }
 }

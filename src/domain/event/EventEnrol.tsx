@@ -5,11 +5,10 @@ import { Formik } from 'formik';
 import Icon from '../../common/components/icon/Icon';
 import styles from './event.module.scss';
 import personIcon from '../../assets/icons/svg/person.svg';
-import EnhancedInputField from '../../common/components/form/fields/input/EnhancedInputField';
-import SelectField from '../../common/components/form/fields/select/SelectField';
 import { eventQuery as EventQueryType } from '../api/generatedTypes/eventQuery';
 import EventOccurrenceList from './EventOccurrenceList';
 import { FilterValues, FilterOptions } from './Event';
+import FormikDropdown from '../../common/components/formikWrappers/FormikDropdown';
 export interface EventEnrolProps {
   data: EventQueryType;
   filterValues: FilterValues;
@@ -40,7 +39,7 @@ const EventEnrol = ({
 
   return (
     <>
-      <div className={styles.register}>
+      <div>
         <h2>{t('event.register.form.header')}</h2>
         <div className={styles.attendees}>
           <Icon
@@ -59,28 +58,34 @@ const EventEnrol = ({
               handleSubmit(values);
             }}
           >
-            {({ handleSubmit, values }) => {
+            {({ handleSubmit, setFieldValue, values }) => {
               return (
                 <form onSubmit={handleSubmit} id="eventPageForm">
-                  <EnhancedInputField
+                  <FormikDropdown
                     className={styles.dateField}
                     id="date"
                     name="date"
-                    placeholder="placeholder"
-                    label="Choose date"
-                    options={options.dates}
-                    component={SelectField}
-                    value={values.date}
+                    value={values.date || ''}
+                    label={t('enrollment.selectDate')}
+                    placeholder={t('common.select.default.text')}
+                    options={[
+                      { value: '', label: t('common.select.all.text') },
+                      ...options.dates,
+                    ]}
+                    default={values.date}
                   />
-                  <EnhancedInputField
+                  <FormikDropdown
                     className={styles.timeField}
                     id="time"
                     name="time"
-                    placeholder="placeholdertime"
-                    label="Choose time"
-                    options={options.times}
-                    component={SelectField}
-                    value={values.time}
+                    value={values.time || ''}
+                    label={t('enrollment.selectTime')}
+                    placeholder={t('common.select.default.text')}
+                    options={[
+                      { value: '', label: t('common.select.all.text') },
+                      ...options.times,
+                    ]}
+                    default={values.time}
                   />
                 </form>
               );

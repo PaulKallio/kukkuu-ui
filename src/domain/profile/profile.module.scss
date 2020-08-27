@@ -1,5 +1,5 @@
-@import 'styles/mixins';
 @import 'styles/layout';
+@import 'styles/variables';
 
 .profileWrapper {
   display: grid;
@@ -32,33 +32,25 @@
     margin: 0;
   }
 
-  .editProfile {
-    button {
+  .editProfileButton {
+    padding: 0;
+    background: transparent;
+    height: $buttonHeight;
+    align-items: center;
+    border: none;
+    @include respond-above(md) {
+      display: inline-flex;
       align-items: center;
     }
-
-    @include respond-below(md) {
-      align-self: start;
-      span {
-        display: none;
-      }
+    // HDS adds unwanted margin to icon
+    div {
+      margin-right: 0;
     }
-    @include respond-above(md) {
-      align-self: center;
-      span {
-        margin-right: $baseMargin;
-        white-space: nowrap;
+    span {
+      display: none;
+      @include respond-above(md) {
+        display: inherit;
       }
-      button {
-        display: inline-flex;
-        align-items: center;
-      }
-    }
-  }
-  button {
-    border: none;
-    &:focus {
-      outline: 1px solid $focusOutline;
     }
   }
 }

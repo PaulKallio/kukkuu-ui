@@ -9,7 +9,6 @@ import joinClassNames from 'classnames';
 
 import PageWrapper from '../../app/layout/PageWrapper';
 import styles from './enrol.module.scss';
-import Button from '../../../common/components/button/Button';
 import occurrenceQuery from '../queries/occurrenceQuery';
 import { occurrenceQuery as OccurrenceQueryType } from '../../api/generatedTypes/occurrenceQuery';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
@@ -23,6 +22,7 @@ import profileQuery from '../../profile/queries/ProfileQuery';
 import { childByIdQuery } from '../../child/queries/ChildQueries';
 import { saveChildEvents, justEnrolled } from '../state/EventActions';
 import ErrorMessage from '../../../common/components/error/Error';
+import Button from '../../../common/components/button/Button';
 
 const Enrol: FunctionComponent = () => {
   const history = useHistory();
@@ -124,14 +124,11 @@ const Enrol: FunctionComponent = () => {
         />
 
         <div className={styles.actions}>
-          <Button className={styles.submitButton} onClick={() => enrol()}>
+          <Button onClick={() => enrol()}>
             {t('enrollment.confirmationPage.confirm.button')}
           </Button>
 
-          <Button
-            className={styles.backButton}
-            onClick={() => history.goBack()}
-          >
+          <Button onClick={() => history.goBack()} variant="secondary">
             {t('enrollment.confirmationPage.cancel.button')}
           </Button>
         </div>

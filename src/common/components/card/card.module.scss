@@ -1,5 +1,6 @@
-@import 'styles/mixins';
 @import 'styles/fonts';
+@import 'styles/layout';
+@import 'styles/variables';
 
 $columnMargin: 2rem;
 $cardMargin: 2rem;
@@ -90,16 +91,12 @@ $imageMaxSize: 300px;
 }
 
 .primaryActionButton {
-  @include button();
-  button {
-    white-space: nowrap;
-    min-width: fit-content;
-    padding: 0 2rem;
-    @include respond-below(sm) {
-      width: 100%;
-    }
+  width: 100%;
+  min-width: fit-content;
+  padding: 0 2rem;
+  @include respond-above(sm) {
+    width: auto;
   }
-  text-align: left;
 }
 
 .actionWrapper {

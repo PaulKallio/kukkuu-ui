@@ -50,6 +50,14 @@ const Dropdown: FunctionComponent<DropdownProps> = ({
       {isDropdown && (
         <>
           <Button
+            className={styles.dropdownButton}
+            variant="supplementary"
+            iconRight={
+              <Icon
+                src={itemDisplayedOnNavbar.icon ?? angleDownIcon}
+                alt={t('navbar.menuButton.label')}
+              />
+            }
             aria-label={t(
               isOpen ? 'common.menu.closeMenuText' : 'common.menu.openMenuText'
             )}
@@ -58,11 +66,7 @@ const Dropdown: FunctionComponent<DropdownProps> = ({
               toggleDropdown(!isOpen);
             }}
           >
-            <span>{itemDisplayedOnNavbar.label}</span>
-            <Icon
-              src={itemDisplayedOnNavbar.icon ?? angleDownIcon}
-              alt={t('navbar.menuButton.label')}
-            />
+            {itemDisplayedOnNavbar.label}
           </Button>
           {isOpen && (
             <div className={styles.dropdownContent}>
@@ -70,15 +74,18 @@ const Dropdown: FunctionComponent<DropdownProps> = ({
                 return (
                   <Button
                     id={option.id}
+                    variant="supplementary"
                     className={styles.dropdownContentOption}
                     key={index}
+                    iconRight={
+                      option.icon ? <Icon src={option.icon} /> : undefined
+                    }
                     onClick={() => {
                       toggleDropdown(!isOpen);
                       option.onClick && option.onClick();
                     }}
                   >
                     <span>{option.label}</span>
-                    {option.icon && <Icon src={option.icon} />}
                   </Button>
                 );
               })}
@@ -90,16 +97,20 @@ const Dropdown: FunctionComponent<DropdownProps> = ({
       {!isDropdown && (
         <Button
           id={itemDisplayedOnNavbar.id}
+          className={styles.dropdownButton}
           aria-label={itemDisplayedOnNavbar.label}
+          variant="supplementary"
+          iconRight={
+            <Icon
+              src={itemDisplayedOnNavbar.icon ?? angleDownIcon}
+              alt={t('navbar.menuButton.label')}
+            />
+          }
           onClick={() => {
             itemDisplayedOnNavbar?.onClick && itemDisplayedOnNavbar.onClick();
           }}
         >
-          <span>{itemDisplayedOnNavbar.label}</span>
-          <Icon
-            src={itemDisplayedOnNavbar.icon ?? angleDownIcon}
-            alt={t('navbar.menuButton.label')}
-          />
+          {itemDisplayedOnNavbar.label}
         </Button>
       )}
     </div>

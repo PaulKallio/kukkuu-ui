@@ -115,6 +115,9 @@
     "select": {
       "default": {
         "text": "Choose"
+      },
+      "all": {
+        "text": "Show all"
       }
     }
   },

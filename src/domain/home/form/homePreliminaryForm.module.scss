@@ -1,6 +1,5 @@
 @import 'styles/variables';
 @import 'styles/layout';
-@import 'styles/mixins';
 
 .homeForm {
   padding: 2 * $largeMargin 0;
@@ -12,7 +11,7 @@
 
   .inputWrapper {
     display: grid;
-
+    align-items: baseline;
     @include respond-above(md) {
       grid-template-columns: 1fr 1fr;
       gap: 0 $baseMargin;
@@ -29,7 +28,11 @@
 }
 
 .submitButton {
-  @include button();
+  width: 80%;
+  @include respond-above(sm) {
+    width: 60%;
+  }
+  justify-self: center;
 }
 
 .heading {

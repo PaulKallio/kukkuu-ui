@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
 
 import styles from './hero.module.scss';
-import Button from '../../../common/components/button/Button';
 import { loginTunnistamo } from '../../auth/authenticate';
+import Button from '../../../common/components/button/Button';
 
 type HomeHero = {
   userHasProfile: boolean;
@@ -42,6 +42,7 @@ const HomeHero: React.FunctionComponent<HomeHero> = ({
             )}
             {!userIsAuthenticated && (
               <Button
+                variant="secondary"
                 className={styles.authenticateButton}
                 onClick={() => loginTunnistamo()}
               >

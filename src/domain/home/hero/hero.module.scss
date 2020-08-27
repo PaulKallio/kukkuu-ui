@@ -1,6 +1,5 @@
 @import 'styles/layout';
 @import 'styles/variables';
-@import 'styles/mixins';
 
 .heroWrapper {
   background-color: var(--color-summer);
@@ -49,20 +48,33 @@
   }
 
   .buttonGroup {
-    @include button();
     margin: 0 auto;
-
+    button {
+      width: 80%;
+      @include respond-above(sm) {
+        width: 60%;
+      }
+    }
     .authenticateButton {
-      button {
-        border: 1px solid var(--color-white) !important;
+      background: transparent;
+      border-color: var(--color-white);
+      &:hover,
+      &:focus,
+      &:hover:focus {
+        background-color: var(--color-summer-dark-50);
+        border-color: var(--color-white);
       }
     }
 
     .registerButton {
-      button {
-        background-color: var(--color-white);
-        margin-bottom: $baseMargin;
+      color: var(--color-black-90);
+      border-color: var(--color-white);
+      &:hover {
+        background-color: var(--color-summer-light-20);
       }
+
+      background-color: var(--color-white);
+      margin-bottom: $baseMargin;
     }
   }
 }
