@@ -1,6 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`converts newlines to brs 1`] = `
+exports[`converts CRLFs to brs 1`] = `
+Array [
+  <p>
+    a
+  </p>,
+  <p>
+    b
+  </p>,
+]
+`;
+
+exports[`converts LFs to brs 1`] = `
 Array [
   <p>
     a
