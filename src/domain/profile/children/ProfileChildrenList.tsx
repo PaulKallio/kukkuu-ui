@@ -59,7 +59,7 @@ const ProfileChildrenList: FunctionComponent = () => {
       </div>
 
       <div className={styles.childrenList}>
-        {children.edges ? (
+        {children?.edges ? (
           <>
             {getProjectsFromProfileQuery(children).map((project) => (
               <Fragment key={project.id}>
