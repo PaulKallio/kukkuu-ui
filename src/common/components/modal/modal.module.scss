@@ -31,7 +31,8 @@ $modalWidthLg: 800px;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(var(--color-black-30), 0.75);
+  // Cannot use var(--color-black-30) here because browsers don't support rgba-ing it.
+  background-color: rgba(#b2b2b2, 0.75);
   display: flex;
   align-items: center;
   justify-content: center;
