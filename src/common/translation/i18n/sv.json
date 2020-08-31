@@ -180,8 +180,8 @@
       "paragraph": "Kom ihåg att avboka din plats Ifall du inte kan delta i evenemanget. Då kan får ett annat barn möjligheten att delta istället. Tack för din omtanke!"
     },
     "participantsPerInviteEnum": {
-      "CHILD_AND_GUARDIAN": "1 barn + 1 närstående",
-      "CHILD_AND_1_OR_2_GUARDIANS": "1 barn + 1–2 närstående",
+      "CHILD_AND_GUARDIAN": "1 barn + 1 vuxen",
+      "CHILD_AND_1_OR_2_GUARDIANS": "1 barn + 1–2 vuxna",
       "FAMILY": "Familj"
     },
     "participantsPerInviteEnumLong": {
