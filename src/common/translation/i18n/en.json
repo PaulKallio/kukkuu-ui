@@ -180,8 +180,8 @@
       "paragraph": "Please remember to cancel your participation in case you are not able to attend the event so that another child is able to take your place. Thank you!"
     },
     "participantsPerInviteEnum": {
-      "CHILD_AND_GUARDIAN": "1 child + 1 guardian",
-      "CHILD_AND_1_OR_2_GUARDIANS": "1 child + 1–2 guardians",
+      "CHILD_AND_GUARDIAN": "1 child + 1 adult",
+      "CHILD_AND_1_OR_2_GUARDIANS": "1 child + 1–2 adults",
       "FAMILY": "Family"
     },
     "participantsPerInviteEnumLong": {
