@@ -1,5 +1,22 @@
 # Change Log
 
+# 1.3.0
+
+### Added
+
+- [#279](https://github.com/City-of-Helsinki/kukkuu-ui/pull/279) Enable event participants CHILD_AND_1_OR_2_GUARDIANS choice
+
+### Changed
+
+- [#273](https://github.com/City-of-Helsinki/kukkuu-ui/pull/273) Refactor from our custom form components to HDS
+- [#280](https://github.com/City-of-Helsinki/kukkuu-ui/pull/280) Make modal background semi-transparent grey
+
+### Fixed
+
+- [#277](https://github.com/City-of-Helsinki/kukkuu-ui/pull/277) Use Finnish time format
+- [#278](https://github.com/City-of-Helsinki/kukkuu-ui/pull/278) Allow also LF as a line break in text content coming from API
+- [#281](https://github.com/City-of-Helsinki/kukkuu-ui/pull/281) Fix a TypeScript error on profile page
+
 # 1.2.1
 
 ### Fixed
