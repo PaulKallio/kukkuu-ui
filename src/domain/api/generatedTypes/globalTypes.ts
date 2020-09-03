@@ -8,6 +8,7 @@
 //==============================================================
 
 export enum EventParticipantsPerInvite {
+  CHILD_AND_1_OR_2_GUARDIANS = "CHILD_AND_1_OR_2_GUARDIANS",
   CHILD_AND_GUARDIAN = "CHILD_AND_GUARDIAN",
   FAMILY = "FAMILY",
 }
@@ -34,6 +35,7 @@ export interface AddChildMutationInput {
   birthdate: any;
   postalCode: string;
   relationship?: RelationshipInput | null;
+  languagesSpokenAtHome?: string[] | null;
   clientMutationId?: string | null;
 }
 
@@ -43,6 +45,7 @@ export interface ChildInput {
   birthdate: any;
   postalCode: string;
   relationship?: RelationshipInput | null;
+  languagesSpokenAtHome?: string[] | null;
 }
 
 export interface DeleteChildMutationInput {
@@ -81,6 +84,7 @@ export interface UpdateChildMutationInput {
   birthdate?: any | null;
   postalCode?: string | null;
   relationship?: RelationshipInput | null;
+  languagesSpokenAtHome?: string[] | null;
   clientMutationId?: string | null;
 }
 

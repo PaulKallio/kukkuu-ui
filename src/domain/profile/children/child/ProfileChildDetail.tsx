@@ -5,6 +5,7 @@ import { useParams, useHistory } from 'react-router';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
+import { IconCogwheel } from 'hds-react';
 
 import styles from './profileChildDetail.module.scss';
 import PageWrapper from '../../../app/layout/PageWrapper';
@@ -12,13 +13,11 @@ import backIcon from '../../../../assets/icons/svg/arrowLeft.svg';
 import personIcon from '../../../../assets/icons/svg/person.svg';
 import childIcon from '../../../../assets/icons/svg/childFaceHappy.svg';
 import birthdateIcon from '../../../../assets/icons/svg/birthdayCake.svg';
-import settingIcon from '../../../../assets/icons/svg/gear.svg';
 import Icon from '../../../../common/components/icon/Icon';
 import { formatTime, newMoment } from '../../../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../../../common/time/TimeConstants';
 import { profileSelector } from '../../state/ProfileSelectors';
 import ProfileEvents from '../../events/ProfileEvents';
-import Button from '../../../../common/components/button/Button';
 import ProfileChildDetailEditModal from './modal/ProfileChildDetailEditModal';
 import { deleteChild_deleteChild as DeleteChildPayload } from '../../../api/generatedTypes/deleteChild';
 import { UpdateChildMutationInput as EditChildInput } from '../../../api/generatedTypes/globalTypes';
@@ -32,6 +31,7 @@ import { childByIdQuery } from '../../../child/queries/ChildQueries';
 import LoadingSpinner from '../../../../common/components/spinner/LoadingSpinner';
 import { childByIdQuery as ChildByIdResponse } from '../../../api/generatedTypes/childByIdQuery';
 import ErrorMessage from '../../../../common/components/error/Error';
+import Button from '../../../../common/components/button/Button';
 export type ChildDetailEditModalPayload = Omit<EditChildInput, 'id'>;
 
 const ProfileChildDetail: FunctionComponent = () => {
@@ -75,17 +75,15 @@ const ProfileChildDetail: FunctionComponent = () => {
       title={t('profile.child.detail.page.title')}
     >
       <div className={styles.childDetailWrapper} role="main">
-        <Button
-          aria-label={t('common.backButton.label')}
-          className={styles.backButton}
-          onClick={() => history.goBack()}
-        >
-          <Icon
-            src={backIcon}
-            className={styles.backButtonIcon}
-            alt={t('common.backButton.label')}
-          />
-        </Button>
+        <div className={styles.backButtonWrapper}>
+          <Button
+            variant="secondary"
+            aria-label={t('common.backButton.label')}
+            onClick={() => history.goBack()}
+          >
+            <Icon src={backIcon} className={styles.backButtonIcon} />
+          </Button>
+        </div>
         <div className={styles.childWrapper}>
           {child ? (
             <div className={styles.childInfo}>
@@ -102,17 +100,14 @@ const ProfileChildDetail: FunctionComponent = () => {
                       : t('profile.child.default.name.text')}
                   </h1>
                 </div>
+
                 <Button
-                  ariaLabel={t('profile.edit.button.text')}
-                  className={styles.editChildInfo}
+                  variant="supplementary"
+                  className={styles.editChildInfoButton}
                   onClick={() => setIsOpen(true)}
+                  iconRight={<IconCogwheel />}
                 >
-                  <span>{t('profile.edit.button.text')}</span>
-                  <Icon
-                    src={settingIcon}
-                    className={styles.settingIcon}
-                    alt={t('profile.edit.button.text')}
-                  />
+                  {t('profile.edit.button.text')}
                 </Button>
               </div>
               {isOpen && (

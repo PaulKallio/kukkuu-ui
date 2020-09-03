@@ -1,5 +1,4 @@
 @import 'styles/fonts';
-@import 'styles/mixins';
 @import 'styles/layout';
 @import 'styles/variables';
 
@@ -9,6 +8,9 @@ $modalWidthLg: 800px;
 .modal {
   background-color: var(--color-white);
   position: relative;
+  &:focus {
+    outline: none;
+  }
 
   // Make tab-key jump between fields
   @include respond-below(md) {
@@ -29,36 +31,35 @@ $modalWidthLg: 800px;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(var(--color-black-30), 0.75);
+  // Cannot use var(--color-black-30) here because browsers don't support rgba-ing it.
+  background-color: rgba(#b2b2b2, 0.75);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10;
 }
 
-.closeButton {
+.closeButtonWrapper {
   display: flex;
   justify-content: flex-end;
-  width: 100%;
+
   @include respond-below(md) {
     z-index: 1;
     position: relative;
   }
+
   button {
     padding: 0;
     border: none;
     height: $largeMargin;
     width: $largeMargin;
-    > div {
-      display: block;
-      margin: 0 auto;
-    }
   }
 }
 
 .modalContent {
   background-color: var(--color-white);
   padding: $basePadding $largePadding;
+
   @include respond-below(md) {
     // Ensure that modal is vertically scrollable on mobile
     position: absolute;

@@ -1,28 +1,50 @@
 import * as React from 'react';
-import { Formik, FormikErrors } from 'formik';
+import { Formik, FormikProps, FormikErrors } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/react-hooks';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
+import * as yup from 'yup';
 
 import styles from './editProfileModal.module.scss';
 import { ProfileType } from '../type/ProfileTypes';
 import { Guardian } from '../../guardian/types/GuardianTypes';
 import Modal from '../../../common/components/modal/Modal';
-import EnhancedInputField from '../../../common/components/form/fields/input/EnhancedInputField';
-import InputField from '../../../common/components/form/fields/input/InputField';
-import SelectField from '../../../common/components/form/fields/select/SelectField';
 import { SUPPORT_LANGUAGES } from '../../../common/translation/TranslationConstants';
-import Button from '../../../common/components/button/Button';
 import profileQuery from '../queries/ProfileQuery';
 import updateMyProfileMutation from '../mutations/updateMyProfileMutation';
 import { updateMyProfile as UpdateMyProfileData } from '../../api/generatedTypes/updateMyProfile';
 import adultIcon from '../../../assets/icons/svg/adultFaceHappy.svg';
 import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
-import { validateEmail } from '../../../common/components/form/validationUtils';
+import FormikDropdown from '../../../common/components/formikWrappers/FormikDropdown';
+import Button from '../../../common/components/button/Button';
+import FormikTextInput from '../../../common/components/formikWrappers/FormikTextInput';
 
 export type EditProfileModalValues = Omit<ProfileType, 'children'>;
+
+const schema = yup.object().shape({
+  firstName: yup
+    .string()
+    .required('validation.general.required')
+    .max(255, 'validation.maxLength'),
+  lastName: yup
+    .string()
+    .required('validation.general.required')
+    .max(255, 'validation.maxLength'),
+  email: yup
+    .string()
+    .email('registration.form.guardian.email.input.error')
+    .required('validation.general.required'),
+  phoneNumber: yup
+    .string()
+    .required('validation.general.required')
+    .max(255, 'validation.maxLength'),
+  language: yup
+    .string()
+    .required('validation.general.required')
+    .max(255, 'validation.maxLength'),
+});
 
 interface EditProfileModalProps {
   initialValues: ProfileType;
@@ -99,60 +121,69 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
           initialValues={initialValues}
           onSubmit={onSubmit}
           validate={validate}
+          validationSchema={schema}
         >
-          {({ isSubmitting, handleSubmit }) => (
+          {({
+            isSubmitting,
+            handleSubmit,
+            errors,
+            touched,
+          }: FormikProps<EditProfileModalValues>) => (
             <form onSubmit={handleSubmit} id="editProfileForm">
-              <EnhancedInputField
+              <FormikTextInput
+                className={styles.formField}
                 id="email"
                 name="email"
-                validate={validateEmail}
                 required={true}
                 label={t('registration.form.guardian.email.input.label')}
-                component={InputField}
                 placeholder={t(
                   'registration.form.guardian.email.input.placeholder'
                 )}
               />
-              <EnhancedInputField
+              <FormikTextInput
+                className={styles.formField}
                 id="phoneNumber"
                 name="phoneNumber"
+                type="tel"
+                minLength={5}
+                maxLength={255}
                 required={true}
                 label={t('registration.form.guardian.phoneNumber.input.label')}
-                component={InputField}
                 placeholder={t(
                   'registration.form.guardian.phoneNumber.input.placeholder'
                 )}
               />
               <div className={styles.profileName}>
-                <EnhancedInputField
+                <FormikTextInput
+                  className={styles.formField}
                   type="text"
                   required={true}
                   id="firstName"
                   name="firstName"
                   label={t('registration.form.guardian.firstName.input.label')}
-                  component={InputField}
                   placeholder={t(
                     'registration.form.guardian.firstName.input.placeholder'
                   )}
                 />
-                <EnhancedInputField
+                <FormikTextInput
+                  className={styles.formField}
                   type="text"
                   required={true}
                   id="lastName"
                   name="lastName"
                   label={t('registration.form.guardian.lastName.input.label')}
-                  component={InputField}
                   placeholder={t(
                     'registration.form.guardian.lastName.input.placeholder'
                   )}
                 />
               </div>
-              <EnhancedInputField
+              <FormikDropdown
+                className={styles.formField}
                 id="language"
                 name="language"
+                value={initialValues.language}
                 label={t('registration.form.guardian.language.input.label')}
                 required={true}
-                component={SelectField}
                 options={[
                   {
                     label: t('common.language.en'),
@@ -176,6 +207,7 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
                   onClick={() => {
                     setIsOpen(false);
                   }}
+                  variant="secondary"
                   type="button"
                   className={styles.cancelButton}
                 >

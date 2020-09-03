@@ -1,5 +1,4 @@
 @import 'styles/variables';
-@import 'styles/mixins';
 @import 'styles/layout';
 
 $childHeadingMargin: 0.65rem;
@@ -20,34 +19,32 @@ $childHeadingMargin: 0.65rem;
   }
 }
 
-.backButton {
+.backButtonWrapper {
   @include respond-below(sm) {
     display: none;
   }
-
   height: $largeMargin;
   width: $largeMargin;
   margin-top: $baseMargin;
 
   button {
+    background: transparent;
     width: 100%;
     border: 0;
-    background: transparent;
+    &:hover,
+    &:focus,
+    &:hover:focus {
+      background: var(--color-white);
+      border-radius: 50%;
+    }
   }
 
   .backButtonIcon {
     height: inherit;
     width: inherit;
-    display: grid;
-    align-items: center;
-    justify-items: center;
     img {
       height: $baseMargin;
       width: $baseMargin;
-    }
-    &:hover {
-      background: var(--color-white);
-      border-radius: 50%;
     }
   }
 }
@@ -89,30 +86,25 @@ $childHeadingMargin: 0.65rem;
         align-self: center;
       }
     }
-
-    .editChildInfo {
-      display: grid;
-      align-self: baseline;
-
-      button {
-        display: inline-flex;
-        border: none;
-        align-items: center;
-        justify-items: right;
-
-        span {
-          @include respond-above(md) {
-            white-space: nowrap;
-            margin-right: $baseMargin;
-          }
-
-          @include respond-below(md) {
-            display: none;
-          }
+    .editChildInfoButton {
+      border: none;
+      padding: 0;
+      background: transparent;
+      height: $buttonHeight;
+      // HDS adds unwanted margin to icon
+      div {
+        margin-right: 0;
+      }
+      span {
+        display: none;
+        @include respond-above(md) {
+          display: inline;
+          white-space: nowrap;
         }
       }
     }
   }
+
   .childInfoRow {
     padding-bottom: $baseMargin;
     display: grid;

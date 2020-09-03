@@ -115,6 +115,9 @@
     "select": {
       "default": {
         "text": "Choose"
+      },
+      "all": {
+        "text": "Show all"
       }
     }
   },
@@ -177,11 +180,13 @@
       "paragraph": "Please remember to cancel your participation in case you are not able to attend the event so that another child is able to take your place. Thank you!"
     },
     "participantsPerInviteEnum": {
-      "CHILD_AND_GUARDIAN": "1 child + 1 guardian",
+      "CHILD_AND_GUARDIAN": "1 child + 1 adult",
+      "CHILD_AND_1_OR_2_GUARDIANS": "1 child + 1–2 adults",
       "FAMILY": "Family"
     },
     "participantsPerInviteEnumLong": {
       "CHILD_AND_GUARDIAN": "One adult can accompany a child in this registration",
+      "CHILD_AND_1_OR_2_GUARDIANS": "One or two adults can accompany a child in this registration",
       "FAMILY": "The whole faily is welcome to this event with this registration"
     },
     "register": {

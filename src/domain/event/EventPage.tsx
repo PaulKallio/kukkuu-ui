@@ -6,9 +6,9 @@ import Icon from '../../common/components/icon/Icon';
 import styles from './event.module.scss';
 import PageWrapper from '../app/layout/PageWrapper';
 import backIcon from '../../assets/icons/svg/arrowLeft.svg';
-import Button from '../../common/components/button/Button';
 import { eventQuery_event as EventQueryType } from '../api/generatedTypes/eventQuery';
 import { occurrenceQuery_occurrence_event as OccurrenceQueryType } from '../api/generatedTypes/occurrenceQuery';
+import Button from '../../common/components/button/Button';
 
 type EventProps = {
   event: EventQueryType | OccurrenceQueryType;
@@ -36,17 +36,16 @@ const EventPage = ({ event, children, success }: EventProps) => {
       >
         {success}
         <div className={styles.backButtonWrapper}>
-          <Button
-            aria-label={t('common.backButton.label')}
-            className={styles.backButton}
-            onClick={() => history.goBack()}
-          >
-            <Icon
-              src={backIcon}
-              className={styles.backButtonIcon}
-              alt={t('common.backButton.label')}
-            />
-          </Button>
+          <div className={styles.backButtonInnerWrapper}>
+            <Button
+              variant="secondary"
+              aria-label={t('common.backButton.label')}
+              className={styles.backButton}
+              onClick={() => history.goBack()}
+            >
+              <Icon src={backIcon} className={styles.backButtonIcon} />
+            </Button>
+          </div>
         </div>
       </div>
 

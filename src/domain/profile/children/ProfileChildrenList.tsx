@@ -5,20 +5,19 @@ import { useMutation } from '@apollo/react-hooks';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
+import { IconPlusCircle } from 'hds-react';
 
 import styles from './profileChildrenList.module.scss';
 import ProfileChild from './child/ProfileChild';
 import { profileChildrenSelector } from '../state/ProfileSelectors';
-import Icon from '../../../common/components/icon/Icon';
-import addIcon from '../../../assets/icons/svg/delete.svg';
 import AddNewChildFormModal from '../../registration/modal/AddNewChildFormModal';
 import { addChildMutation } from '../../child/mutation/ChildMutation';
 import { getSupportedChildData } from '../../child/ChildUtils';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import profileQuery from '../queries/ProfileQuery';
-import Button from '../../../common/components/button/Button';
 import { getProjectsFromProfileQuery } from '../ProfileUtil';
 import { UpdateChildMutationInput } from '../../api/generatedTypes/globalTypes';
+import Button from '../../../common/components/button/Button';
 
 const ProfileChildrenList: FunctionComponent = () => {
   const { t } = useTranslation();
@@ -60,7 +59,7 @@ const ProfileChildrenList: FunctionComponent = () => {
       </div>
 
       <div className={styles.childrenList}>
-        {children.edges ? (
+        {children?.edges ? (
           <>
             {getProjectsFromProfileQuery(children).map((project) => (
               <Fragment key={project.id}>
@@ -88,16 +87,13 @@ const ProfileChildrenList: FunctionComponent = () => {
         )}
       </div>
       <Button
+        variant="supplementary"
         aria-label={t('child.form.modal.add.label')}
         className={styles.addChild}
+        iconLeft={<IconPlusCircle />}
         onClick={() => setIsOpen(true)}
       >
-        <Icon
-          src={addIcon}
-          alt={t('child.form.modal.add.label')}
-          className={styles.addChildIcon}
-        />
-        <span>{t('child.form.modal.add.label')}</span>
+        {t('child.form.modal.add.label')}
       </Button>
     </>
   );

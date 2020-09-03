@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import { eventQuery_event_occurrences_edges_node as OccurrencesEdgeNode } from '../api/generatedTypes/eventQuery';
-import Button from '../../common/components/button/Button';
 import { formatTime, newMoment } from '../../common/time/utils';
 import styles from './eventOccurrence.module.scss';
+import Button from '../../common/components/button/Button';
 
 interface EventOccurrenceProps {
   occurrence: OccurrencesEdgeNode;
@@ -16,7 +16,7 @@ const EventOccurrence: React.FunctionComponent<EventOccurrenceProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const date = formatTime(newMoment(occurrence.time), 'dd l');
+  const date = formatTime(newMoment(occurrence.time), 'dd D.M.YYYY');
   const time = formatTime(newMoment(occurrence.time), 'hh:mm');
 
   const hasCapacity =
@@ -36,7 +36,10 @@ const EventOccurrence: React.FunctionComponent<EventOccurrenceProps> = ({
         }
 
         {hasCapacity ? (
-          <Link to={`${occurrence.event.id}/occurrence/${occurrence.id}/enrol`}>
+          <Link
+            className={styles.linkButton}
+            to={`${occurrence.event.id}/occurrence/${occurrence.id}/enrol`}
+          >
             <Button type="submit" className={styles.submitButton}>
               {t('event.register.occurrenceTableHeader.buttonText')}
             </Button>

@@ -5,7 +5,6 @@ import * as Sentry from '@sentry/browser';
 import { useQuery } from '@apollo/react-hooks';
 
 import styles from './event.module.scss';
-import Button from '../../common/components/button/Button';
 import occurrenceQuery from './queries/occurrenceQuery';
 import { occurrenceQuery as OccurrenceQueryType } from '../api/generatedTypes/occurrenceQuery';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
@@ -16,6 +15,7 @@ import Paragraph from '../../common/components/paragraph/Paragraph';
 import EventPage from './EventPage';
 import SuccessToast from './enrol/SuccessToast';
 import ErrorMessage from '../../common/components/error/Error';
+import Button from '../../common/components/button/Button';
 
 const EventIsEnrolled = () => {
   const { t } = useTranslation();
@@ -56,12 +56,11 @@ const EventIsEnrolled = () => {
         )}
       </div>
       <h2>{t('event.cancellation.heading')}</h2>
-      <Button
-        className={styles.cancelRegistration}
-        onClick={() => setIsOpen(true)}
-      >
-        {t('event.cancellation.buttonText')}
-      </Button>
+      <div className={styles.cancelButtonWrapper}>
+        <Button variant="secondary" onClick={() => setIsOpen(true)}>
+          {t('event.cancellation.buttonText')}
+        </Button>
+      </div>
       <VenueFeatures venue={data.occurrence.venue} />
       {isOpen && (
         <UnenrolModal

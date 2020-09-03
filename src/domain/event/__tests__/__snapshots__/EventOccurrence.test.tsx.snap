@@ -7,7 +7,7 @@ exports[`renders snapshot correctly 1`] = `
   <td
     className="occurrenceDate"
   >
-    Su 3/8/2020
+    su 8.3.2020
   </td>
   <td
     className="occurrenceTime"
@@ -28,6 +28,7 @@ exports[`renders snapshot correctly 1`] = `
     className="occurrenceSubmit"
   >
     <Link
+      className="linkButton"
       to="zzaaz/occurrence/T2NjdXJyZW5jZU5vZGU6Mg==/enrol"
     >
       <Button

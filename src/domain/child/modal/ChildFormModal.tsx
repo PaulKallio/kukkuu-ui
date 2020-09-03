@@ -2,7 +2,6 @@ import React, { FunctionComponent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Modal from '../../../common/components/modal/Modal';
-import styles from './childFormModal.module.scss';
 import { Child } from '../types/ChildTypes';
 import ChildForm from '../form/ChildForm';
 import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
@@ -46,7 +45,7 @@ const ChildFormModal: FunctionComponent<ChildFormModalProps> = ({
   const [isFilling, setFormIsFilling] = useState(false);
 
   return (
-    <div className={styles.childFormModalWrapper}>
+    <div>
       {isOpen && (
         // FIXME: Edit data -> Close modal -> Refresh
         <NavigationConfirm

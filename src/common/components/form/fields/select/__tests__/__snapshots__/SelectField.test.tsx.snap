@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`renders snapshot correctly 1`] = `"<div class=\\"selectFieldWrapper\\"><div class=\\"selectWrapper\\"><label>select label</label><select id=\\"fooSelect\\"><option value=\\"\\">Valitse</option><option value=\\"foo\\">foo_label</option><option value=\\"bar\\">bar_label</option></select></div><div class=\\"selectError\\">[object Object]</div></div>"`;

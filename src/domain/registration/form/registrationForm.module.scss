@@ -1,8 +1,6 @@
-@import 'styles/fonts';
 @import 'styles/variables';
 @import 'styles/layout';
-@import 'styles/mixins';
-@import './partial/childFormField.module.scss';
+@import './partial/childFormFields.module.scss';
 
 $plusIconHeight: 2rem;
 
@@ -13,29 +11,15 @@ $plusIconHeight: 2rem;
 .registrationWhiteContainer,
 .registrationGrayContainer {
   display: grid;
+  h1 {
+    margin-bottom: auto;
+  }
   @include respond-above(md) {
     grid-template-columns: 1fr minmax(auto, $containerFormMaxWidth) 1fr;
   }
 
   @include respond-below(md) {
     grid-template-columns: 1fr 10fr 1fr;
-  }
-}
-
-.childBirthdate,
-.guardianEmail {
-  display: flex;
-  flex-direction: column;
-
-  label {
-    font-size: $font-size-sm;
-    margin-bottom: $baseMargin * 0.25;
-    font-weight: $font-weight-bold;
-  }
-
-  p {
-    padding: 0;
-    margin: 0;
   }
 }
 
@@ -48,29 +32,17 @@ $plusIconHeight: 2rem;
 }
 
 .submitButton {
-  @include button();
   margin: $largeMargin 0;
 }
 
 .addNewChildButton {
   display: flex;
-
-  button {
-    background: transparent;
-    margin: $baseMargin 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border: none;
-    width: 100%;
-
-    > div {
-      margin-right: $basePadding;
-    }
-    img {
-      transform: rotate(45deg);
-    }
-  }
+  margin: $baseMargin 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start !important;
+  // Left-align with form fields
+  transform: translateX(calc(var(--spacing-m) * -1));
 }
 
 .grayBackground,

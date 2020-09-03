@@ -115,6 +115,9 @@
     "select": {
       "default": {
         "text": "Valitse"
+      },
+      "all": {
+        "text": "Näytä kaikki"
       }
     }
   },
@@ -177,11 +180,13 @@
       "paragraph": "Mikäli et pysty osallistumaan tapahtumaan, muistathan perua sen, jotta joku muu pääsee halutessaan osallistumaan tapahtumaan. Kiitos :)"
     },
     "participantsPerInviteEnum": {
-      "CHILD_AND_GUARDIAN": "1 lapsi + 1 huoltaja",
+      "CHILD_AND_GUARDIAN": "1 lapsi + 1 aikuinen",
+      "CHILD_AND_1_OR_2_GUARDIANS": "1 lapsi + 1–2 aikuista",
       "FAMILY": "Perhe"
     },
     "participantsPerInviteEnumLong": {
       "CHILD_AND_GUARDIAN": "Tällä ilmoittautumisella tapahtumaan voi kummilapsen lisäksi osallistua 1 aikuinen",
+      "CHILD_AND_1_OR_2_GUARDIANS": "Tällä ilmoittautumisella tapahtumaan voi kummilapsen lisäksi osallistua 1–2 aikuista",
       "FAMILY": "Tällä ilmoittautumisella tapahtumaan voi kummilapsen lisäksi osallistua koko perhe"
     },
     "register": {
