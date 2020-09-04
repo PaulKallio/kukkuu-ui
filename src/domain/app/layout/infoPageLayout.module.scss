@@ -1,0 +1,39 @@
+@import 'styles/layout';
+@import 'styles/variables';
+
+.infoPageLayout {
+  @include respond-below(md) {
+    margin: 0 $baseMargin $largeMargin $baseMargin;
+  }
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: $color-black-90;
+
+  .infoPageLayoutFace {
+    height: $spacing-5-xl;
+    width: $spacing-5-xl;
+    margin: $spacing-l 0;
+  }
+
+  .infoPageLayoutTitle {
+    font-size: $fontsize-heading-xl;
+  }
+
+  .infoPageLayoutDescription {
+    max-width: $container-width-m;
+    margin-top: 0;
+
+    font-size: $fontsize-body-l;
+    text-align: center;
+  }
+}
+
+.callToActionButton {
+  margin: 2 * $baseMargin;
+  width: 100%;
+  max-width: $container-width-s;
+}
