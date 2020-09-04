@@ -22,7 +22,7 @@ const ProfileRoute = () => {
         isAuthorized={() => queryIsChildOfProfile(match?.params.childId)}
         redirectTo="/wrong-login-method"
         component={ProfileChildRoutes}
-        path={`/${currentLocale}/profile/child/:childId`}
+        path={childRoutePath}
       />
     </Switch>
   );
