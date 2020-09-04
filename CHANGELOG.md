@@ -1,5 +1,11 @@
 # Change Log
 
+# Unreleased
+
+### Added
+
+- When users access a child's information that is not attached to their account, they are redirected into a view that asks them to authenticate again
+
 # 1.2.1
 
 ### Fixed

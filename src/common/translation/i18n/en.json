@@ -575,5 +575,11 @@
         "heading": "WCs and child care facilities"
       }
     }
+  },
+  "auth": {
+    "wrongLoginMethod": {
+      "title": "Oops!",
+      "description": "It seems like you have registered to the service using another login method. Please log out of the service and try a different login method."
+    }
   }
 }
