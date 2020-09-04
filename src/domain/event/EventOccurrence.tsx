@@ -6,6 +6,10 @@ import { eventQuery_event_occurrences_edges_node as OccurrencesEdgeNode } from '
 import { formatTime, newMoment } from '../../common/time/utils';
 import styles from './eventOccurrence.module.scss';
 import Button from '../../common/components/button/Button';
+import {
+  DEFAULT_TIME_FORMAT,
+  DEFAULT_DATE_FORMAT,
+} from '../../common/time/TimeConstants';
 
 interface EventOccurrenceProps {
   occurrence: OccurrencesEdgeNode;
@@ -16,8 +20,11 @@ const EventOccurrence: React.FunctionComponent<EventOccurrenceProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const date = formatTime(newMoment(occurrence.time), 'dd D.M.YYYY');
-  const time = formatTime(newMoment(occurrence.time), 'hh:mm');
+  const date = formatTime(
+    newMoment(occurrence.time),
+    `dd ${DEFAULT_DATE_FORMAT}`
+  );
+  const time = formatTime(newMoment(occurrence.time), DEFAULT_TIME_FORMAT);
 
   const hasCapacity =
     occurrence.remainingCapacity && occurrence.remainingCapacity > 0;

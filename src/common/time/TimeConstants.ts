@@ -2,7 +2,7 @@
 export const SUPPORTED_START_BIRTHDATE = '2020-01-01';
 
 // Finnish display time format
-export const DEFAULT_DATE_FORMAT = 'DD.MM.YYYY';
+export const DEFAULT_DATE_FORMAT = 'D.M.YYYY';
 
 // Backend allowed time format
 export const BACKEND_DATE_FORMAT = 'YYYY-MM-DD';
