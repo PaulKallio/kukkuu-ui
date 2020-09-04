@@ -15,7 +15,11 @@ import {
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import { formatOccurrenceTime } from './EventUtils';
 import { formatTime, newMoment } from '../../common/time/utils';
-import { DEFAULT_DATE_FORMAT } from '../../common/time/TimeConstants';
+import {
+  BACKEND_DATE_FORMAT,
+  DEFAULT_DATE_FORMAT,
+  DEFAULT_TIME_FORMAT,
+} from '../../common/time/TimeConstants';
 import EventEnrol from './EventEnrol';
 import EventPage from './EventPage';
 import Paragraph from '../../common/components/paragraph/Paragraph';
@@ -124,7 +128,10 @@ const Event = () => {
     .map((occurrence) => {
       return occurrence?.node?.id && occurrence.node.time
         ? {
-            value: formatTime(newMoment(occurrence.node.time), 'YYYY-MM-DD'),
+            value: formatTime(
+              newMoment(occurrence.node.time),
+              BACKEND_DATE_FORMAT
+            ),
             label: formatTime(
               newMoment(occurrence.node.time),
               DEFAULT_DATE_FORMAT
@@ -139,7 +146,10 @@ const Event = () => {
     .map((occurrence) => {
       return occurrence?.node?.id && occurrence.node.time
         ? {
-            value: formatTime(newMoment(occurrence.node.time), 'HH:mm'),
+            value: formatTime(
+              newMoment(occurrence.node.time),
+              DEFAULT_TIME_FORMAT
+            ),
             label: formatOccurrenceTime(
               occurrence.node.time,
               data.event?.duration || null
