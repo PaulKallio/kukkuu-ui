@@ -8,4 +8,4 @@ export const DEFAULT_DATE_FORMAT = 'D.M.YYYY';
 export const BACKEND_DATE_FORMAT = 'YYYY-MM-DD';
 
 // HH.MM
-export const DEFAULT_TIME_FORMAT = 'HH.mm';
+export const DEFAULT_TIME_FORMAT = 'HH:mm';
