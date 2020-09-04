@@ -7,6 +7,7 @@ import Home from '../home/Home';
 import NotFound from './notFound/NotFound';
 import NotEligible from '../registration/notEligible/NotEligible';
 import PrivateRoute from '../auth/route/PrivateRoute';
+import WrongLoginMethod from '../auth/WrongLoginMethod';
 import RegistrationForm from '../registration/form/RegistrationForm';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import {
@@ -66,6 +67,11 @@ const App = () => {
           exact
           path={`/${locale}/registration/not-eligible`}
           component={NotEligible}
+        />
+        <Route
+          exact
+          path={`/${locale}/wrong-login-method`}
+          component={WrongLoginMethod}
         />
         <Route
           exact

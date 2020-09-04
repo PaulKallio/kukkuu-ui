@@ -1,44 +1,28 @@
-import React, { FunctionComponent } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React from 'react';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import Profile from '../Profile';
-import Event from '../../event/Event';
-import ProfileChildDetail from '../children/child/ProfileChildDetail';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
-import Enrol from '../../event/enrol/Enrol';
-import EventIsEnrolled from '../../event/EventIsEnrolled';
+import ProtectedRoute from '../../auth/route/ProtectedRoute';
+import ProfileChildRoutes from './ProfileChildRoutes';
+import useIsChildOfProfile from './useIsChildOfProfile';
 
-const ProfileRoute: FunctionComponent = () => {
+const ProfileRoute = () => {
   const { i18n } = useTranslation();
   const currentLocale = getCurrentLanguage(i18n);
+  const childRoutePath = `/${currentLocale}/profile/child/:childId`;
+  const match = useRouteMatch<{ childId: string }>(childRoutePath);
+  const [queryIsChildOfProfile] = useIsChildOfProfile();
+
   return (
     <Switch>
-      <Route
-        exact
-        component={ProfileChildDetail}
-        path={`/${currentLocale}/profile/child/:childId`}
-      />
       <Route component={Profile} exact path={`/${currentLocale}/profile`} />
-      <Route
-        exact
-        component={Event}
-        path={`/${currentLocale}/profile/child/:childId/event/:eventId`}
-      />
-      <Route
-        exact
-        component={Event}
-        path={`/${currentLocale}/profile/child/:childId/event/:eventId/past`}
-      />
-      <Route
-        exact
-        component={EventIsEnrolled}
-        path={`/${currentLocale}/profile/child/:childId/occurrence/:occurrenceId`}
-      />
-      <Route
-        exact
-        component={Enrol}
-        path={`/${currentLocale}/profile/child/:childId/event/:eventId/occurrence/:occurrenceId/enrol`}
+      <ProtectedRoute
+        isAuthorized={() => queryIsChildOfProfile(match?.params.childId)}
+        redirectTo="/wrong-login-method"
+        component={ProfileChildRoutes}
+        path={`/${currentLocale}/profile/child/:childId`}
       />
     </Switch>
   );
