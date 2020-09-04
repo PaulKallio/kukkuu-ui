@@ -22,7 +22,7 @@ const EventOccurrence: React.FunctionComponent<EventOccurrenceProps> = ({
 
   const date = formatTime(
     newMoment(occurrence.time),
-    `dd ${DEFAULT_DATE_FORMAT}`
+    `ddd ${DEFAULT_DATE_FORMAT}`
   );
   const time = formatTime(newMoment(occurrence.time), DEFAULT_TIME_FORMAT);
 
