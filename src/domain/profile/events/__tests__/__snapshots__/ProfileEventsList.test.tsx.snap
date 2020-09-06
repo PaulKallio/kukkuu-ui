@@ -40,7 +40,7 @@ exports[`Renders snapshot correctly 1`] = `
             className="label"
             iconAlt="Päivämäärä"
             iconSrc="calendar.svg"
-            label="24.02.2020"
+            label="24.2.2020"
           />
           <InfoItem
             className="label"

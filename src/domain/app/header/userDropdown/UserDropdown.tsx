@@ -10,9 +10,9 @@ import Dropdown from '../../../../common/components/dropdown/Dropdown';
 import { profileQuery as ProfileQueryType } from '../../../api/generatedTypes/profileQuery';
 import personIcon from '../../../../assets/icons/svg/person.svg';
 import { isAuthenticatedSelector } from '../../../auth/state/AuthenticationSelectors';
-import { loginTunnistamo, logoutTunnistamo } from '../../../auth/authenticate';
+import { loginTunnistamo } from '../../../auth/authenticate';
+import useLogout from '../../../auth/useLogout';
 import UserMenu from '../userMenu/UserMenu';
-import { flushAllState } from '../../../auth/state/AuthenticationUtils';
 import profileQuery from '../../../profile/queries/ProfileQuery';
 import { saveProfile } from '../../../profile/state/ProfileActions';
 import {
@@ -32,6 +32,7 @@ const UserDropdown: FunctionComponent<UserDropdownProps> = ({
   const history = useHistory();
   const isAuthenticated = useSelector(isAuthenticatedSelector);
   const dispatch = useDispatch();
+  const doLogout = useLogout();
 
   const { loading, error, data } = useQuery<ProfileQueryType>(profileQuery, {
     skip: !isAuthenticated,
@@ -55,13 +56,7 @@ const UserDropdown: FunctionComponent<UserDropdownProps> = ({
     label: t('authentication.logout.text'),
     id: 'logoutButton',
     onClick: () => {
-      trackEvent({ category: 'action', action: 'Log out' });
-
-      // Flush all cached state
-      flushAllState({});
-
-      // Log out
-      logoutTunnistamo();
+      doLogout();
     },
   };
 

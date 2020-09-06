@@ -575,5 +575,11 @@
         "heading": "WC-tilat ja lastenhoitohuone"
       }
     }
+  },
+  "auth": {
+    "wrongLoginMethod": {
+      "title": "Hupsista!",
+      "description": "Vaikuttaisi siltä, että olet käyttänyt eri tunnistautumistapaa rekisteröityessäsi palveluun. Kirjaudu ulos palvelusta ja koita sitten kirjautua uudestaan käyttäen jotain toista tunnistautumistapaa."
+    }
   }
 }

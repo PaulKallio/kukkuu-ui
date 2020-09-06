@@ -9,7 +9,7 @@ exports[`renders childByIdQuery occurrence snapshot correctly 1`] = `
     iconAlt="Päivämäärä"
     iconSrc="calendar.svg"
     key="0"
-    label="08.03.2020"
+    label="8.3.2020"
   />
   <InfoItem
     className="label"
@@ -44,7 +44,7 @@ exports[`renders occurrence snapshot correctly 1`] = `
     iconAlt="Päivämäärä"
     iconSrc="calendar.svg"
     key="0"
-    label="08.03.2020"
+    label="8.3.2020"
   />
   <InfoItem
     className="label"
