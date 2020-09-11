@@ -6,6 +6,11 @@
 
 - When users access a child's information that is not attached to their account, they are redirected into a view that asks them to authenticate again
 
+### Changed
+
+- Event invitation card to only have one link on mobile
+- Event invitation card to list button as its last element
+
 # 1.3.0
 
 ### Added
