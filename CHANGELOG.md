@@ -14,6 +14,7 @@
 ### Fixed
 
 - Registration form final approval text
+- Provide better accessible name for profile menu
 
 # 1.3.0
 

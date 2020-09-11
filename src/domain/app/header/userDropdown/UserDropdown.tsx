@@ -66,6 +66,7 @@ const UserDropdown: FunctionComponent<UserDropdownProps> = ({
       ? data?.myProfile?.firstName
       : t('navbar.profileDropdown.profile.text'),
     icon: personIcon,
+    iconLabel: t('navbar.profileDropdown.icon.label'),
   };
 
   const frontPage = {
