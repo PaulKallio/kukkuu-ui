@@ -16,7 +16,7 @@ exports[`renders childByIdQuery occurrence snapshot correctly 1`] = `
     iconAlt="Kellonaika"
     iconSrc="clock.svg"
     key="1"
-    label="06.00 - 06.12"
+    label="04:00 - 04:12"
   />
   <InfoItem
     className="label"
@@ -51,7 +51,7 @@ exports[`renders occurrence snapshot correctly 1`] = `
     iconAlt="Kellonaika"
     iconSrc="clock.svg"
     key="1"
-    label="06.00 - 06.12"
+    label="04:00 - 04:12"
   />
   <InfoItem
     className="label"
