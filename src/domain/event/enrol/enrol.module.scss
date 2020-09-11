@@ -35,12 +35,20 @@ h1 {
 }
 
 .occurrenceInfo {
+  box-sizing: border-box;
   background: var(--color-black-5);
   padding: $basePadding;
+  width: 100%;
+
+  @include respond-above(sm) {
+    width: unset;
+  }
 }
 
 .actions {
-  width: 60%;
+  @include respond-above(sm) {
+    width: 60%;
+  }
   button {
     margin-top: $baseMargin;
     width: 100%;
