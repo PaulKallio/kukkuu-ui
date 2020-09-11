@@ -18,7 +18,7 @@ function OidcCallback(props: RouteChildrenProps) {
   });
 
   const onSuccess = (user: User) => {
-    if (user.state.path) props.history.push(user.state.path);
+    if (user.state.path) props.history.replace(user.state.path);
     else props.history.replace('/profile');
   };
 
