@@ -69,7 +69,10 @@
   form {
     display: grid;
     grid-gap: $baseMargin;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
+    @include respond-above(xs) {
+      grid-template-columns: auto auto;
+    }
     @include respond-above(md) {
       grid-template-columns: 2fr 1fr 50%;
     }
