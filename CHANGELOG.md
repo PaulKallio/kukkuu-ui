@@ -11,6 +11,10 @@
 - Event invitation card to only have one link on mobile
 - Event invitation card to list button as its last element
 
+### Fixed
+
+- Registration form final approval text
+
 # 1.3.0
 
 ### Added

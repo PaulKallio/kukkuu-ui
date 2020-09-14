@@ -126,7 +126,7 @@
     "url": "https://www.hel.fi/helsinki/sv/stad-och-forvaltning/information/dataskydd"
   },
   "descriptionOfTheFile": {
-    "title": "Registerbeskrivning",
+    "title": "Integritetspolicy",
     "url": "https://www.hel.fi/static/liitteet/kanslia/rekisteriselosteet/Kuva/Kuva-EU-Kulttuurin-Kummilapset-kummiperherekisteri-SV.pdf"
   },
   "email": {
@@ -346,6 +346,9 @@
       "openCityProfile": {
         "text": "Open user profile on omaHelsinki"
       },
+      "icon": {
+        "label": "Profilmeny"
+      },
       "profile": {
         "text": "Fadderbarnsprofil"
       }
@@ -434,8 +437,8 @@
     "form": {
       "agree": {
         "input": {
-          "label": "Jag godkänner tjänstens användarvillkor",
-          "placeholder": "Godkänn användarvillkoren för att gå vidare"
+          "label": "Jag har läst <0>sekretesspolicyn för denna tjänst</0> och <1>stadens dataskyddsprinciper</1>. Jag kan kontaktas med hjälp av den information jag har gett.",
+          "placeholder": "Godkänn för att gå vidare"
         }
       },
       "child": {

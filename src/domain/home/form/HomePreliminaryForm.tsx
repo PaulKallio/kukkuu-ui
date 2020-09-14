@@ -131,6 +131,9 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
                 <TermsField
                   name="verifyInformation"
                   id="verifyInformation"
+                  label={
+                    <Trans i18nKey="homePage.preliminaryForm.verifyInformation.checkbox.label" />
+                  }
                   required
                 />
                 <Button
