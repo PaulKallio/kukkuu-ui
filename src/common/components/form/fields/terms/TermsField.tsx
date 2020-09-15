@@ -1,7 +1,7 @@
 import React from 'react';
 import { Checkbox, CheckboxProps } from 'hds-react';
 import { useField } from 'formik';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import styles from './termsField.module.scss';
 
@@ -34,11 +34,7 @@ function TermsField(props: Props) {
         type="checkbox"
         style={kukkuuCheckboxStyles}
         checked={Boolean(field.value)}
-        label={
-          <span className={styles.listLabel}>
-            <Trans i18nKey="homePage.preliminaryForm.verifyInformation.checkbox.label" />
-          </span>
-        }
+        label={<span className={styles.listLabel}>{props.label}</span>}
       />
       {meta.error && meta.touched && (
         <p className={styles.errorText}>{t(meta.error)}</p>
