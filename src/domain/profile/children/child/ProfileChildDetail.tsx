@@ -1,6 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { toast } from 'react-toastify';
@@ -16,7 +15,7 @@ import birthdateIcon from '../../../../assets/icons/svg/birthdayCake.svg';
 import Icon from '../../../../common/components/icon/Icon';
 import { formatTime, newMoment } from '../../../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../../../common/time/TimeConstants';
-import { profileSelector } from '../../state/ProfileSelectors';
+import useProfile from '../../hooks/useProfile';
 import ProfileEvents from '../../events/ProfileEvents';
 import ProfileChildDetailEditModal from './modal/ProfileChildDetailEditModal';
 import { deleteChild_deleteChild as DeleteChildPayload } from '../../../api/generatedTypes/deleteChild';
@@ -37,7 +36,7 @@ export type ChildDetailEditModalPayload = Omit<EditChildInput, 'id'>;
 const ProfileChildDetail: FunctionComponent = () => {
   const { t } = useTranslation();
   const params = useParams<{ childId: string }>();
-  const guardian = useSelector(profileSelector);
+  const { data: guardian } = useProfile();
   const history = useHistory();
   const { loading, error, data } = useQuery<ChildByIdResponse>(childByIdQuery, {
     variables: {

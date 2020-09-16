@@ -16,6 +16,7 @@
 - Registration form final approval text
 - Provide better accessible name for profile menu
 - Mobile layout for event enrollment
+- Profile view missing children on mobile
 
 # 1.3.0
 

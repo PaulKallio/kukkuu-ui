@@ -1,25 +1,16 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
-import { useQuery } from '@apollo/react-hooks';
-import * as Sentry from '@sentry/browser';
 
 import Dropdown from '../../../../common/components/dropdown/Dropdown';
-import { profileQuery as ProfileQueryType } from '../../../api/generatedTypes/profileQuery';
 import personIcon from '../../../../assets/icons/svg/person.svg';
 import { isAuthenticatedSelector } from '../../../auth/state/AuthenticationSelectors';
 import { loginTunnistamo } from '../../../auth/authenticate';
 import useLogout from '../../../auth/useLogout';
 import UserMenu from '../userMenu/UserMenu';
-import profileQuery from '../../../profile/queries/ProfileQuery';
-import { saveProfile } from '../../../profile/state/ProfileActions';
-import {
-  clearEvent,
-  saveChildrenEvents,
-} from '../../../event/state/EventActions';
-import { defaultProfileData } from '../../../profile/state/ProfileReducers';
+import useProfile from '../../../profile/hooks/useProfile';
 
 export interface UserDropdownProps {
   isSmallScreen: boolean;
@@ -31,26 +22,12 @@ const UserDropdown: FunctionComponent<UserDropdownProps> = ({
   const { t } = useTranslation();
   const history = useHistory();
   const isAuthenticated = useSelector(isAuthenticatedSelector);
-  const dispatch = useDispatch();
   const doLogout = useLogout();
 
-  const { loading, error, data } = useQuery<ProfileQueryType>(profileQuery, {
-    skip: !isAuthenticated,
-  });
+  const { loading, data } = useProfile();
   const { trackEvent } = useMatomo();
 
-  useEffect(() => {
-    dispatch(saveProfile(data?.myProfile || defaultProfileData));
-    dispatch(clearEvent());
-    dispatch(saveChildrenEvents(data?.myProfile?.children || undefined));
-  }, [data, dispatch]);
-
   if (loading) return <></>;
-  if (error) {
-    // eslint-disable-next-line no-console
-    console.error(error);
-    Sentry.captureException(error);
-  }
 
   const logout = {
     label: t('authentication.logout.text'),
@@ -62,8 +39,8 @@ const UserDropdown: FunctionComponent<UserDropdownProps> = ({
 
   const user = {
     id: 'userButton',
-    label: data?.myProfile?.firstName
-      ? data?.myProfile?.firstName
+    label: data?.firstName
+      ? data?.firstName
       : t('navbar.profileDropdown.profile.text'),
     icon: personIcon,
     iconLabel: t('navbar.profileDropdown.icon.label'),
