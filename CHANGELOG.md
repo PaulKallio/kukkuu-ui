@@ -1,10 +1,18 @@
 # Change Log
 
-# Unreleased
+# 1.3.1
 
 ### Added
 
-- When users access a child's information that is not attached to their account, they are redirected into a view that asks them to authenticate again
+- [#285](https://github.com/City-of-Helsinki/kukkuu-ui/pull/285) When users access a child's information that is not attached to their account, they are redirected into a view that asks them to authenticate again
+
+### Changed
+
+- [#284](https://github.com/City-of-Helsinki/kukkuu-ui/pull/284) Use three letter week day abbreviations in English and Swedish
+
+### Fixed
+
+- [#284](https://github.com/City-of-Helsinki/kukkuu-ui/pull/284) Use the same date and time format everywhere with leading zeros removed
 
 ### Changed
 
