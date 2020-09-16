@@ -1,5 +1,21 @@
 # Change Log
 
+# Unreleased
+
+# 1.4.0
+
+### Changed
+
+- [#289](https://github.com/City-of-Helsinki/kukkuu-ui/pull/289) Event invitation card to only have one link on mobile
+- [#289](https://github.com/City-of-Helsinki/kukkuu-ui/pull/289) Event invitation card to list button as its last element
+
+### Fixed
+
+- [#293](https://github.com/City-of-Helsinki/kukkuu-ui/pull/293) Registration form final approval text
+- [#291](https://github.com/City-of-Helsinki/kukkuu-ui/pull/291) Provide better accessible name for profile menu
+- [#290](https://github.com/City-of-Helsinki/kukkuu-ui/pull/290) Mobile layout for event enrollment
+- [#294](https://github.com/City-of-Helsinki/kukkuu-ui/pull/294) Profile view missing children on mobile
+
 # 1.3.1
 
 ### Added
@@ -13,18 +29,6 @@
 ### Fixed
 
 - [#284](https://github.com/City-of-Helsinki/kukkuu-ui/pull/284) Use the same date and time format everywhere with leading zeros removed
-
-### Changed
-
-- Event invitation card to only have one link on mobile
-- Event invitation card to list button as its last element
-
-### Fixed
-
-- Registration form final approval text
-- Provide better accessible name for profile menu
-- Mobile layout for event enrollment
-- Profile view missing children on mobile
 
 # 1.3.0
 
