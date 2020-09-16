@@ -2,7 +2,7 @@ import React, { FunctionComponent, useState } from 'react';
 import { Formik, FormikProps, FieldArray } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation, useQuery } from '@apollo/react-hooks';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import { useHistory, Redirect } from 'react-router-dom';
 import classnames from 'classnames';
 import { toast } from 'react-toastify';
@@ -321,7 +321,27 @@ const RegistrationForm: FunctionComponent = () => {
                     id="agree"
                     name="agree"
                     required={true}
-                    label={t('registration.form.agree.input.label')}
+                    label={
+                      <Trans
+                        i18nKey="registration.form.agree.input.label"
+                        components={[
+                          // These components receive content in the
+                          // translation definition.
+                          // eslint-disable-next-line jsx-a11y/anchor-has-content
+                          <a
+                            href={t('descriptionOfTheFile.url')}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          />,
+                          // eslint-disable-next-line jsx-a11y/anchor-has-content
+                          <a
+                            href={t('dataProtection.url')}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          />,
+                        ]}
+                      />
+                    }
                   />
 
                   <Button

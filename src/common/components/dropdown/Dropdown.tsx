@@ -10,6 +10,10 @@ interface DropdownOption {
   id: string;
   label: string;
   icon?: string;
+  // If the icon is something else than decorative, a label should be
+  // provided for it that can be used to communicate its meaning to
+  // screen readers.
+  iconLabel?: string;
   onClick?: () => void;
 }
 
@@ -58,10 +62,11 @@ const Dropdown: FunctionComponent<DropdownProps> = ({
                 alt={t('navbar.menuButton.label')}
               />
             }
-            aria-label={t(
-              isOpen ? 'common.menu.closeMenuText' : 'common.menu.openMenuText'
-            )}
             aria-expanded={isOpen}
+            aria-haspopup="true"
+            aria-label={`${itemDisplayedOnNavbar.label} ${
+              itemDisplayedOnNavbar.iconLabel || ''
+            }`}
             onClick={() => {
               toggleDropdown(!isOpen);
             }}

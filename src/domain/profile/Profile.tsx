@@ -1,14 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { useQuery } from '@apollo/react-hooks';
 import { Redirect } from 'react-router-dom';
 import * as Sentry from '@sentry/browser';
 import { IconCogwheel } from 'hds-react';
 
-import { profileQuery as ProfileQueryType } from '../api/generatedTypes/profileQuery';
 import { clearProfile } from './state/ProfileActions';
-import profileQuery from './queries/ProfileQuery';
+import useProfile from './hooks/useProfile';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import ProfileChildrenList from './children/ProfileChildrenList';
 import PageWrapper from '../app/layout/PageWrapper';
@@ -22,7 +20,7 @@ import Button from '../../common/components/button/Button';
 
 const Profile = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const { loading, error, data } = useQuery<ProfileQueryType>(profileQuery);
+  const { loading, error, data } = useProfile();
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
@@ -35,7 +33,7 @@ const Profile = () => {
     return <ErrorMessage message={t('api.errorMessage')} />;
   }
 
-  if (!data?.myProfile) {
+  if (!data) {
     // User has logged in, but not created a profile, send them to front page for registration.
     return <Redirect to="/" />;
   }
@@ -47,7 +45,7 @@ const Profile = () => {
           <div className={styles.profileContent}>
             <div className={styles.heading}>
               <h1>
-                {data.myProfile.firstName} {data.myProfile.lastName}
+                {data.firstName} {data.lastName}
               </h1>
               <Button
                 variant="supplementary"
@@ -62,7 +60,7 @@ const Profile = () => {
               <EditProfileModal
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
-                initialValues={data.myProfile}
+                initialValues={data}
               />
             )}
             <div className={styles.guardianInfo}>
@@ -71,14 +69,14 @@ const Profile = () => {
                   src={emailIcon}
                   alt={t('registration.form.guardian.email.input.label')}
                 />
-                <span>{data.myProfile.email}</span>
+                <span>{data.email}</span>
               </div>
               <div className={styles.guardianInfoRow}>
                 <Icon
                   src={phoneIcon}
                   alt={t('profile.child.detail.phoneNumber')}
                 />
-                <span>{data.myProfile.phoneNumber}</span>
+                <span>{data.phoneNumber}</span>
               </div>
             </div>
             <ProfileChildrenList />

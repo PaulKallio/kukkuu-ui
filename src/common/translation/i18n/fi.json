@@ -346,6 +346,9 @@
       "openCityProfile": {
         "text": "Open user profile on omaHelsinki"
       },
+      "icon": {
+        "label": "Profiilivalikko"
+      },
       "profile": {
         "text": "Kummilapsiprofiili"
       }
@@ -434,8 +437,8 @@
     "form": {
       "agree": {
         "input": {
-          "label": "Hyväksyn palvelun käyttöehdot",
-          "placeholder": "Hyväksy palvelun käyttöehdot jatkaaksesi"
+          "label": "Olen tutustunut <0>tämän palvelun rekisteriselosteeseen</0> ja <1>kaupungin tietosuojakäytäntöön</1>. Minuun voidaan olla yhteydessä antamieni tietojen avulla.",
+          "placeholder": "Hyväksy jatkaaksesi"
         }
       },
       "child": {

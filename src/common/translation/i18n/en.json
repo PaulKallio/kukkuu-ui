@@ -126,7 +126,7 @@
     "url": "https://www.hel.fi/helsinki/en/administration/information/data-protection"
   },
   "descriptionOfTheFile": {
-    "title": "Description of the File",
+    "title": "Privacy policy",
     "url": "https://www.hel.fi/static/liitteet/kanslia/rekisteriselosteet/Kuva/Kuva-EU-Kulttuurin-Kummilapset-kummiperherekisteri.pdf"
   },
   "email": {
@@ -346,6 +346,9 @@
       "openCityProfile": {
         "text": "Open user profile in omaHelsinki"
       },
+      "icon": {
+        "label": "Profile menu"
+      },
       "profile": {
         "text": "Culture Kids Profile"
       }
@@ -434,7 +437,7 @@
     "form": {
       "agree": {
         "input": {
-          "label": "I accept the terms and conditions of the service",
+          "label": "I have read <0>the privacy policy of this service</0> and <1>the city's data protection principles</1>. I can be contacted using the information I have given.",
           "placeholder": "Accept to continue"
         }
       },

@@ -72,7 +72,10 @@ $imageMaxSize: 300px;
 }
 
 .end {
+  display: none;
+
   @include respond-above(sm) {
+    display: block;
     justify-self: center;
     & .actionText {
       display: none;
