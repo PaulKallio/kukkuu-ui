@@ -2,6 +2,10 @@
 
 # Unreleased
 
+### Fixed
+
+- Redirect to registration for users who don't have a profile yet
+
 # 1.4.0
 
 ### Fixed

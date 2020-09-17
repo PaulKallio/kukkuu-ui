@@ -82,6 +82,7 @@ const RegistrationForm: FunctionComponent = () => {
   const [submitChildrenAndGuardian] = useMutation<
     SubmitChildrenAndGuardianData
   >(submitChildrenAndGuardianMutation, {
+    awaitRefetchQueries: true,
     refetchQueries: [{ query: profileQuery }],
   });
   // For new users preferLanguage defaults to their chosen UI language.
