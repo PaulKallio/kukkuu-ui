@@ -4,6 +4,10 @@
 
 # 1.4.0
 
+### Fixed
+
+- Child list not showing changes without a refresh
+
 ### Changed
 
 - [#289](https://github.com/City-of-Helsinki/kukkuu-ui/pull/289) Event invitation card to only have one link on mobile
