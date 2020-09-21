@@ -2,6 +2,10 @@
 
 # Unreleased
 
+### Added
+
+- Error handling for child already enrolled error
+
 ### Changed
 
 - Show no other button than log out for logged in unregistered users

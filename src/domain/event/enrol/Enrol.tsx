@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/react-hooks';
@@ -6,6 +6,7 @@ import * as Sentry from '@sentry/browser';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import joinClassNames from 'classnames';
+import { GraphQLError } from 'graphql';
 
 import PageWrapper from '../../app/layout/PageWrapper';
 import styles from './enrol.module.scss';
@@ -24,7 +25,20 @@ import { saveChildEvents, justEnrolled } from '../state/EventActions';
 import ErrorMessage from '../../../common/components/error/Error';
 import Button from '../../../common/components/button/Button';
 
-const Enrol: FunctionComponent = () => {
+function check<D>(data: D, resultFactory: (data: D) => boolean): boolean {
+  return resultFactory(data);
+}
+
+function containsAlreadyJoinedError(
+  errors: ReadonlyArray<GraphQLError>
+): boolean {
+  return errors.some(
+    (error: GraphQLError) =>
+      error.extensions?.code === 'CHILD_ALREADY_JOINED_EVENT_ERROR'
+  );
+}
+
+const Enrol = () => {
   const history = useHistory();
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -70,6 +84,16 @@ const Enrol: FunctionComponent = () => {
         dispatch(justEnrolled());
       }
     },
+    onError: (error) => {
+      if (check(error.graphQLErrors, containsAlreadyJoinedError)) {
+        toast.warning(t('enrollment.enroll.error.childAlreadyJoined'));
+      } else {
+        // eslint-disable-next-line no-console
+        console.error(error);
+        // Unknown errors are sent to Sentry
+        Sentry.captureException(error);
+      }
+    },
   });
 
   if (loading) return <LoadingSpinner isLoading={true} />;
@@ -81,26 +105,31 @@ const Enrol: FunctionComponent = () => {
     return <ErrorMessage message={t('api.errorMessage')} />;
   }
   if (!data?.occurrence?.id) return <div>no data</div>;
-  const enrol = async () => {
-    try {
-      if (!data?.occurrence?.id) throw Error('No result');
-      await enrolOccurrence({
-        variables: {
-          input: {
-            occurrenceId: data.occurrence.id,
-            childId: params.childId,
-          },
-        },
-      });
 
-      history.replace(
-        `/profile/child/${params.childId}/occurrence/${data.occurrence.id}`
-      );
-    } catch (error) {
+  const enrol = async () => {
+    if (!data?.occurrence?.id) {
+      const noOccurrenceError = Error('No result');
+
       // eslint-disable-next-line no-console
-      console.error(error);
+      console.error(noOccurrenceError);
       toast.error(t('registration.submitMutation.errorMessage'));
+      Sentry.captureException(noOccurrenceError);
+
+      return;
     }
+
+    await enrolOccurrence({
+      variables: {
+        input: {
+          occurrenceId: data.occurrence.id,
+          childId: params.childId,
+        },
+      },
+    });
+
+    history.replace(
+      `/profile/child/${params.childId}/occurrence/${data.occurrence.id}`
+    );
   };
 
   return (

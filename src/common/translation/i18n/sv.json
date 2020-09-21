@@ -149,6 +149,9 @@
       "text": "Kontrollera att informationen nedan motsvarar de evenemang du vill delta i."
     },
     "enroll": {
+      "error": {
+        "childAlreadyJoined": "Detta barn har redan anmält sig till detta evenemang."
+      },
       "buttonText": "Anmäl dig till evenemanget"
     },
     "heading": "Anmäl dig",
