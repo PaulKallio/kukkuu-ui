@@ -95,7 +95,9 @@ const AccessibilityStatementEn: FunctionComponent = () => {
         City of Helsinki, Culture and Leisure Division
         <br /> Culture Kids
         <br />
-        kulttuurin.kummilapset@hel.fi
+        <a href="mailto:kulttuurin.kummilapset@hel.fi">
+          kulttuurin.kummilapset@hel.fi
+        </a>
       </p>
 
       <h3>Reporting non-accessible content</h3>
