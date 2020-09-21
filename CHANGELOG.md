@@ -2,6 +2,10 @@
 
 # Unreleased
 
+### Changed
+
+- Update accessibility statement
+
 # 1.4.0
 
 ### Fixed
