@@ -2,6 +2,14 @@
 
 # Unreleased
 
+### Changed
+
+- Show no other button than log out for logged in unregistered users
+
+### Fixed
+
+- Redirect to registration for users who don't have a profile yet
+
 # 1.4.0
 
 ### Fixed
