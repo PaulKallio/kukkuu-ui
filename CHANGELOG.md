@@ -5,6 +5,7 @@
 ### Changed
 
 - Show no other button than log out for logged in unregistered users
+- Update accessibility statement
 
 ### Fixed
 
