@@ -6,7 +6,7 @@ import Icon from '../icon/Icon';
 import angleDownIcon from '../../../assets/icons/svg/angleDown.svg';
 import styles from './dropdown.module.scss';
 
-interface DropdownOption {
+export interface DropdownOption {
   id: string;
   label: string;
   icon?: string;
@@ -106,10 +106,12 @@ const Dropdown: FunctionComponent<DropdownProps> = ({
           aria-label={itemDisplayedOnNavbar.label}
           variant="supplementary"
           iconRight={
-            <Icon
-              src={itemDisplayedOnNavbar.icon ?? angleDownIcon}
-              alt={t('navbar.menuButton.label')}
-            />
+            itemDisplayedOnNavbar.icon ? (
+              <Icon
+                src={itemDisplayedOnNavbar.icon}
+                alt={t('navbar.menuButton.label')}
+              />
+            ) : undefined
           }
           onClick={() => {
             itemDisplayedOnNavbar?.onClick && itemDisplayedOnNavbar.onClick();

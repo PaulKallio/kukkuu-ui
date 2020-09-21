@@ -94,7 +94,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
   };
 
   return (
-    <section className={styles.wrapper} ref={forwardRef}>
+    <section id="register" className={styles.wrapper} ref={forwardRef}>
       <div className={styles.homeForm}>
         <div className={styles.heading}>
           <h2>{t('registration.heading')}</h2>
