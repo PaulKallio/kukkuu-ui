@@ -24,6 +24,7 @@ import { childByIdQuery } from '../../child/queries/ChildQueries';
 import { saveChildEvents, justEnrolled } from '../state/EventActions';
 import ErrorMessage from '../../../common/components/error/Error';
 import Button from '../../../common/components/button/Button';
+import { GQLErrors } from './EnrolConstants';
 
 function check<D>(data: D, resultFactory: (data: D) => boolean): boolean {
   return resultFactory(data);
@@ -34,7 +35,7 @@ function containsAlreadyJoinedError(
 ): boolean {
   return errors.some(
     (error: GraphQLError) =>
-      error.extensions?.code === 'CHILD_ALREADY_JOINED_EVENT_ERROR'
+      error.extensions?.code === GQLErrors.CHILD_ALREADY_JOINED_EVENT_ERROR
   );
 }
 
