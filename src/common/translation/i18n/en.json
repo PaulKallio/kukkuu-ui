@@ -149,6 +149,9 @@
       "text": "Check that the information below is correct for the event you wish to attend."
     },
     "enroll": {
+      "error": {
+        "childAlreadyJoined": "This child has already been enrolled in this event."
+      },
       "buttonText": "Register for event"
     },
     "heading": "Register",

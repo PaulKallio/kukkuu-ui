@@ -149,6 +149,9 @@
       "text": "Tarkista, että alla olevat tiedot vastaavat tapahtumaa, johon haluat osallistua."
     },
     "enroll": {
+      "error": {
+        "childAlreadyJoined": "Lapsi on jo ilmoittautunut tapahtumaan."
+      },
       "buttonText": "Ilmoittaudu tapahtumaan"
     },
     "heading": "Ilmoittaudu",
