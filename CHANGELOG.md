@@ -2,16 +2,16 @@
 
 # Unreleased
 
-- Show events as upcoming events also for a while after they have started
-
 ### Added
 
 - Error handling for child already enrolled error
+- Logo of Finnish National Gallery to the home page
 
 ### Changed
 
 - Show no other button than log out for logged in unregistered users
 - Update accessibility statement
+- Show events as upcoming events also for a while after they have started
 
 ### Fixed
 
