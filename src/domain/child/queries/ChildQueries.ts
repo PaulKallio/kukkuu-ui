@@ -13,7 +13,7 @@ export const childByIdQuery = gql`
         name
         year
       }
-      occurrences(upcoming: true) {
+      occurrences(upcomingWithLeeway: true) {
         edges {
           node {
             id
