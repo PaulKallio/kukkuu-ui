@@ -2,6 +2,8 @@
 
 # Unreleased
 
+- Show events as upcoming events also for a while after they have started
+
 ### Added
 
 - Error handling for child already enrolled error
