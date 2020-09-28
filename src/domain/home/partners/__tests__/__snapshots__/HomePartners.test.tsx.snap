@@ -75,6 +75,14 @@ exports[`renders snapshot correctly 1`] = `
               "name": "hurjaruuth",
             },
             Object {
+              "altLangIcons": Object {
+                "en": "Finnish_National_Gallery_Logo_EN.svg",
+                "sv": "Finnish_National_Gallery_Logo_SV.svg",
+              },
+              "icon": "Finnish_National_Gallery_Logo_FI.svg",
+              "name": "kansallisgalleria",
+            },
+            Object {
               "icon": "kansallismuseo.png",
               "name": "kansallismuseo",
             },
