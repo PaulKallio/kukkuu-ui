@@ -74,15 +74,18 @@ const ProfileChildrenList = () => {
                     {project.year} {project.name}
                   </h3>
                 </div>
-                {children.edges.map((childEdge) =>
-                  childEdge?.node?.id &&
-                  childEdge.node.project.year === project.year ? (
-                    <ProfileChild
-                      key={childEdge.node.id}
-                      child={childEdge.node}
-                    />
-                  ) : null
-                )}
+                {children.edges.map((childEdge) => {
+                  const child = childEdge?.node;
+                  const childYear = childEdge?.node?.project.year;
+                  const projectYear = project?.year;
+
+                  return child &&
+                    childYear &&
+                    projectYear &&
+                    childYear === projectYear ? (
+                    <ProfileChild key={child.id} child={child} />
+                  ) : null;
+                })}
               </Fragment>
             ))}
           </>
