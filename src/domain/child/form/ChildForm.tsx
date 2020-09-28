@@ -17,7 +17,10 @@ import FormikTextInput from '../../../common/components/formikWrappers/FormikTex
 
 const schema = yup.object().shape({
   homeCity: yup.string().required('validation.general.required'),
-  postalCode: yup.string().required('validation.general.required'),
+  postalCode: yup
+    .string()
+    .length(5, 'registration.form.child.postalCode.input.error.length')
+    .required('validation.general.required'),
   birthdate: yup.object().shape({
     day: yup.string().required('validation.general.required'),
   }),

@@ -474,6 +474,9 @@
         },
         "postalCode": {
           "input": {
+            "error": {
+              "length": "Postinumeron täytyy olla 5 merkkiä pitkä"
+            },
             "label": "Lapsen postinumero",
             "placeholder": "Lisää lapsen postinumero"
           }
