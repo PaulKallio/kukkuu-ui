@@ -16,6 +16,7 @@
 ### Fixed
 
 - Redirect to registration for users who don't have a profile yet
+- Postal code validation
 
 # 1.4.0
 

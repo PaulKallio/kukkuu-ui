@@ -61,6 +61,7 @@ const schema = yup.object().shape({
       postalCode: yup
         .string()
         .required('validation.general.required')
+        .length(5, 'registration.form.child.postalCode.input.error.length')
         .matches(/\b\d{5}\b/g, 'validation.postalCode.invalidFormat'),
       relationship: yup.object().shape({
         type: yup.string().required('validation.general.required').nullable(),

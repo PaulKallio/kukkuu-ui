@@ -474,6 +474,9 @@
         },
         "postalCode": {
           "input": {
+            "error": {
+              "length": "Postnummer måste vara 5 tecken långt"
+            },
             "label": "Barnets postnummer",
             "placeholder": "Ange barnets postnummer"
           }
