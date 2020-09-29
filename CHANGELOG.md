@@ -18,6 +18,7 @@
 - Redirect to registration for users who don't have a profile yet
 - Postal code validation
 - Crashes on iPhones with iOS version older than 11.3
+- Can not read property year of undefined error
 
 # 1.4.0
 
