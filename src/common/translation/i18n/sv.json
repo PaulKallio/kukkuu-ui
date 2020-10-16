@@ -70,6 +70,11 @@
       }
     }
   },
+  "combobox": {
+    "clearButtonAriaLabel": "Rensa alla val",
+    "selectedItemSrLabel": "Valt sak {value}",
+    "selectedItemRemoveButtonAriaLabel": "Ta bort sak {value}"
+  },
   "common": {
     "backButton": {
       "label": "Tillbaka"
@@ -134,9 +139,11 @@
   },
   "enrollment": {
     "button": {
-      "occurenceFull": "Fullt",
+      "cancelNotificationSubscription": "Avbryt avisering",
+      "occurrenceFullSubscribeToNotifications": "Fullt - Prenumerera på aviseringar",
       "queue": "Ställ dig i kö",
-      "selectOccurence": "Välj"
+      "selectOccurence": "Välj",
+      "subscribeToNotifications": "Prenumerera på aviseringar"
     },
     "confirmationPage": {
       "cancel": {
@@ -145,10 +152,20 @@
       "confirm": {
         "button": "Anmäl dig till evenemanget"
       },
-      "heading": "Anmäl dig till evenemanget",
-      "text": "Kontrollera att informationen nedan motsvarar de evenemang du vill delta i."
+      "heading": {
+        "text": "Anmäl dig till evenemanget",
+        "full": "Registreringen för händelsen {{eventName}} misslyckades"
+      },
+      "description": {
+        "text": "Kontrollera att informationen nedan motsvarar de evenemang du vill delta i.",
+        "full": "Tyvärr är det här evenemanget fullt. Prenumerera för att få ett meddelande om tillgängliga platser."
+      }
     },
     "enroll": {
+      "error": {
+        "capacityHasChanged": "Evenemangets kapacitet har förändrats. Uppdatera din webbläsare.",
+        "childAlreadyJoined": "Detta barn har redan anmält sig till detta evenemang."
+      },
       "buttonText": "Anmäl dig till evenemanget"
     },
     "heading": "Anmäl dig",
@@ -158,6 +175,12 @@
     "selectTime": "Välj klockslag",
     "showEventInfo": {
       "buttonText": "Visa evenemangets information"
+    },
+    "notificationSubscriptionModal": {
+      "cancel": "Avbryt",
+      "description": "Du kommer att få ett meddelande via e-post när platser blir tillgängliga för evenemanget <b> {{eventName}} {{date}} kl. {{time}} </b>. Tillgängliga platser anges i den ordning de har registrerats.",
+      "subscribe": "Prenumerera",
+      "title": "Prenumerera för att få ett meddelande om tillgängliga platser"
     },
     "successToast": {
       "heading": "Din anmälan till evenemanget lyckades!",
@@ -192,6 +215,9 @@
     "register": {
       "form": {
         "header": "Anmäl dig"
+      },
+      "occurrenceTableBody": {
+        "full": "FULLT"
       },
       "occurrenceTableHeader": {
         "buttonText": "Välj",
@@ -463,6 +489,12 @@
         "info": {
           "heading": "Uppgifter om barnet"
         },
+        "languagesSpokenAtHome": {
+          "input": {
+            "helper": "Vilket språk eller vilka språk talar ni hemma? Välj “Annat språk” om ditt språk inte finns med.",
+            "label": "Språk som talas hemma"
+          }
+        },
         "lastName": {
           "input": {
             "label": "Barnets efternamn",
@@ -471,6 +503,9 @@
         },
         "postalCode": {
           "input": {
+            "error": {
+              "length": "Postnummer måste vara 5 tecken långt"
+            },
             "label": "Barnets postnummer",
             "placeholder": "Ange barnets postnummer"
           }

@@ -1,7 +1,7 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams, useHistory } from 'react-router';
-import { useMutation, useQuery } from '@apollo/react-hooks';
+import { useMutation, useQuery } from '@apollo/client';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import { IconCogwheel } from 'hds-react';
@@ -33,7 +33,7 @@ import ErrorMessage from '../../../../common/components/error/Error';
 import Button from '../../../../common/components/button/Button';
 export type ChildDetailEditModalPayload = Omit<EditChildInput, 'id'>;
 
-const ProfileChildDetail: FunctionComponent = () => {
+const ProfileChildDetail = () => {
   const { t } = useTranslation();
   const params = useParams<{ childId: string }>();
   const { data: guardian } = useProfile();
@@ -166,7 +166,7 @@ const ProfileChildDetail: FunctionComponent = () => {
                   src={personIcon}
                   alt={t('profile.child.detail.guardiansName')}
                 />
-                <span>{`${guardian.firstName} ${guardian.lastName}`}</span>
+                <span>{`${guardian?.firstName} ${guardian?.lastName}`}</span>
               </div>
 
               <div className={styles.eventWrapper}>

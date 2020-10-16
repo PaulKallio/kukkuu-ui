@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { Formik, FormikProps, FormikErrors } from 'formik';
+import { Formik, FormikProps, FormikErrors, Form } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 import * as yup from 'yup';
 
 import styles from './editProfileModal.module.scss';
-import { ProfileType } from '../type/ProfileTypes';
-import { Guardian } from '../../guardian/types/GuardianTypes';
+import { ProfileType, LanguagesSpokenAtHomeNode } from '../type/ProfileTypes';
+import { UpdateMyProfileMutationInput } from '../../guardian/types/GuardianTypes';
 import Modal from '../../../common/components/modal/Modal';
 import { SUPPORT_LANGUAGES } from '../../../common/translation/TranslationConstants';
 import profileQuery from '../queries/ProfileQuery';
@@ -20,8 +20,8 @@ import NavigationConfirm from '../../../common/components/confirm/NavigationConf
 import FormikDropdown from '../../../common/components/formikWrappers/FormikDropdown';
 import Button from '../../../common/components/button/Button';
 import FormikTextInput from '../../../common/components/formikWrappers/FormikTextInput';
-
-export type EditProfileModalValues = Omit<ProfileType, 'children'>;
+import LanguagesCombobox from '../../languages/LanguagesCombobox';
+import RelayList from '../../api/relayList';
 
 const schema = yup.object().shape({
   firstName: yup
@@ -46,6 +46,20 @@ const schema = yup.object().shape({
     .max(255, 'validation.maxLength'),
 });
 
+const LanguagesSpokenAtHome = RelayList<LanguagesSpokenAtHomeNode>();
+
+function getInitialValues({
+  languagesSpokenAtHome,
+  ...rest
+}: ProfileType): UpdateMyProfileMutationInput {
+  return {
+    ...rest,
+    languagesSpokenAtHome: LanguagesSpokenAtHome(
+      languagesSpokenAtHome
+    ).items.map((language) => language.id),
+  };
+}
+
 interface EditProfileModalProps {
   initialValues: ProfileType;
   isOpen: boolean;
@@ -57,6 +71,7 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
   isOpen,
   setIsOpen,
 }) => {
+  const { t } = useTranslation();
   const { trackEvent } = useMatomo();
 
   const [isFilling, setFormIsFilling] = React.useState(false);
@@ -67,7 +82,7 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
     }
   );
 
-  const onSubmit = async (payload: Guardian) => {
+  const onSubmit = async (payload: UpdateMyProfileMutationInput) => {
     setFormIsFilling(false);
     try {
       await updateMyProfile({
@@ -78,9 +93,11 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
             phoneNumber: payload.phoneNumber,
             language: payload.language,
             email: payload.email,
+            languagesSpokenAtHome: payload.languagesSpokenAtHome,
           },
         },
       });
+
       trackEvent({ category: 'action', action: 'Edit profile' });
       setIsOpen(false);
     } catch (error) {
@@ -94,11 +111,9 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
       setFormIsFilling(true);
     }
 
-    const errors: FormikErrors<EditProfileModalValues> = {};
+    const errors: FormikErrors<UpdateMyProfileMutationInput> = {};
     return errors;
   };
-
-  const { t } = useTranslation();
 
   return (
     <div>
@@ -118,18 +133,13 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
         }}
       >
         <Formik
-          initialValues={initialValues}
+          initialValues={getInitialValues(initialValues)}
           onSubmit={onSubmit}
           validate={validate}
           validationSchema={schema}
         >
-          {({
-            isSubmitting,
-            handleSubmit,
-            errors,
-            touched,
-          }: FormikProps<EditProfileModalValues>) => (
-            <form onSubmit={handleSubmit} id="editProfileForm">
+          {({ isSubmitting }: FormikProps<UpdateMyProfileMutationInput>) => (
+            <Form id="editProfileForm">
               <FormikTextInput
                 className={styles.formField}
                 id="email"
@@ -181,7 +191,6 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
                 className={styles.formField}
                 id="language"
                 name="language"
-                value={initialValues.language}
                 label={t('registration.form.guardian.language.input.label')}
                 required={true}
                 options={[
@@ -201,6 +210,18 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
                 placeholder={t(
                   'registration.form.guardian.language.input.placeholder'
                 )}
+              />
+              <LanguagesCombobox
+                helper={t(
+                  'registration.form.child.languagesSpokenAtHome.input.helper'
+                )}
+                id="languagesSpokenAtHome"
+                label={t(
+                  'registration.form.child.languagesSpokenAtHome.input.label'
+                )}
+                name="languagesSpokenAtHome"
+                // Block escape from closing the modal
+                catchEscapeKey
               />
               <div className={styles.buttonsWrapper}>
                 <Button
@@ -222,7 +243,7 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
                   {t('common.modal.save.text')}
                 </Button>
               </div>
-            </form>
+            </Form>
           )}
         </Formik>
       </Modal>

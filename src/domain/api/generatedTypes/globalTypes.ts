@@ -65,13 +65,26 @@ export interface GuardianInput {
   phoneNumber?: string | null;
   language: Language;
   email?: string | null;
+  languagesSpokenAtHome?: string[] | null;
 }
 
 export interface RelationshipInput {
   type?: RelationshipTypeEnum | null;
 }
 
+export interface SubscribeToFreeSpotNotificationMutationInput {
+  occurrenceId: string;
+  childId: string;
+  clientMutationId?: string | null;
+}
+
 export interface UnenrolOccurrenceMutationInput {
+  occurrenceId: string;
+  childId: string;
+  clientMutationId?: string | null;
+}
+
+export interface UnsubscribeFromFreeSpotNotificationMutationInput {
   occurrenceId: string;
   childId: string;
   clientMutationId?: string | null;
@@ -94,6 +107,7 @@ export interface UpdateMyProfileMutationInput {
   phoneNumber?: string | null;
   language?: Language | null;
   email?: string | null;
+  languagesSpokenAtHome?: string[] | null;
   clientMutationId?: string | null;
 }
 

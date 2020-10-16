@@ -1,43 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders snapshot correctly 1`] = `
-<tr
-  className="occurrence"
->
-  <td
-    className="occurrenceDate"
-  >
-    su 8.3.2020
-  </td>
-  <td
-    className="occurrenceTime"
-  >
-    04:00
-  </td>
-  <td
-    className="occurrenceVenue"
-  >
-    Musiikkitalo
-  </td>
-  <td
-    className="remainingCapacity"
-  >
-    99
-  </td>
-  <td
-    className="occurrenceSubmit"
-  >
-    <Link
-      className="linkButton"
-      to="zzaaz/occurrence/T2NjdXJyZW5jZU5vZGU6Mg==/enrol"
-    >
-      <Button
-        className="submitButton"
-        type="submit"
+<div>
+  <table>
+    <tbody>
+      <tr
+        class="occurrence"
       >
-        Valitse
-      </Button>
-    </Link>
-  </td>
-</tr>
+        <td
+          class="occurrenceDate"
+        >
+          su 8.3.2020
+        </td>
+        <td
+          class="occurrenceTime"
+        >
+          04:00
+        </td>
+        <td
+          class="occurrenceVenue"
+        >
+          Musiikkitalo
+        </td>
+        <td
+          class="remainingCapacity"
+        >
+          99
+        </td>
+        <td
+          class="occurrenceSubmit"
+        >
+          <a
+            class="linkButton"
+            href="/zzaaz/occurrence/T2NjdXJyZW5jZU5vZGU6Mg==/enrol"
+          >
+            <button
+              class="Button-module_button__3wgee button_hds-button__2A0je Button-module_primary__3bo_T button_hds-button--primary__2NVvO submitButton"
+              type="submit"
+            >
+              <span
+                class="Button-module_label__2zMLC button_hds-button__label__2EQa-"
+              >
+                Valitse
+              </span>
+            </button>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 `;

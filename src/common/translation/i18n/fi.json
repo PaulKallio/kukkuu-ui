@@ -70,6 +70,11 @@
       }
     }
   },
+  "combobox": {
+    "clearButtonAriaLabel": "Tyhjennä kaikki valinnat",
+    "selectedItemSrLabel": "Valittu kohde {value}",
+    "selectedItemRemoveButtonAriaLabel": "Poista kohde {value}"
+  },
   "common": {
     "backButton": {
       "label": "Palaa"
@@ -134,9 +139,11 @@
   },
   "enrollment": {
     "button": {
-      "occurenceFull": "Täynnä",
+      "cancelNotificationSubscription": "Peru ilmoituksen tilaus",
+      "occurrenceFullSubscribeToNotifications": "Täynnä - Tilaa ilmoitus",
       "queue": "Jonoon",
-      "selectOccurence": "Valitse"
+      "selectOccurence": "Valitse",
+      "subscribeToNotifications": "Tilaa ilmoitus"
     },
     "confirmationPage": {
       "cancel": {
@@ -145,10 +152,20 @@
       "confirm": {
         "button": "Ilmoittaudu tapahtumaan"
       },
-      "heading": "Ilmoittaudu tapahtumaan",
-      "text": "Tarkista, että alla olevat tiedot vastaavat tapahtumaa, johon haluat osallistua."
+      "heading": {
+        "text": "Ilmoittaudu tapahtumaan",
+        "full": "Ilmottautumien tapahtumaan {{eventName}} epäonnistui"
+      },
+      "description": {
+        "text": "Tarkista, että alla olevat tiedot vastaavat tapahtumaa, johon haluat osallistua.",
+        "full": "Valitettavasti tämä tapahtuma on täynnä. Tilaa ilmoitus vapautuvista paikoista."
+      }
     },
     "enroll": {
+      "error": {
+        "capacityHasChanged": "Tapahtuman vapaa kapasiteetti on muuttunut. Ole hyvä ja päivitä tämä sivu.",
+        "childAlreadyJoined": "Lapsi on jo ilmoittautunut tapahtumaan."
+      },
       "buttonText": "Ilmoittaudu tapahtumaan"
     },
     "heading": "Ilmoittaudu",
@@ -158,6 +175,12 @@
     "selectTime": "Valitse kellonaika",
     "showEventInfo": {
       "buttonText": "Näytä tapahtuman tiedot"
+    },
+    "notificationSubscriptionModal": {
+      "cancel": "Peruuta",
+      "description": "Saat ilmoituksen sähköpostiisi, kun tapahtumaan <b>{{eventName}} {{date}} klo {{time}}</b> vapautuu paikkoja. Vapautuvat paikat menevät niihin ensiksi ilmoittautuneelle.",
+      "subscribe": "Tilaa ilmoitus",
+      "title": "Tilaa ilmoitus vapautuvista paikoista"
     },
     "successToast": {
       "heading": "Tapahtumaan ilmoittautuminen onnistui! ",
@@ -192,6 +215,9 @@
     "register": {
       "form": {
         "header": "Ilmoittaudu"
+      },
+      "occurrenceTableBody": {
+        "full": "TÄYNNÄ"
       },
       "occurrenceTableHeader": {
         "buttonText": "Valitse",
@@ -463,6 +489,12 @@
         "info": {
           "heading": "Lapsen tiedot"
         },
+        "languagesSpokenAtHome": {
+          "input": {
+            "helper": "Mitä kieltä tai kieliä puhutte kotona? Jos kieli ei ole listassa, valitse “muu kieli”.",
+            "label": "Kotona puhutut kielet"
+          }
+        },
         "lastName": {
           "input": {
             "label": "Lapsen sukunimi",
@@ -471,6 +503,9 @@
         },
         "postalCode": {
           "input": {
+            "error": {
+              "length": "Postinumeron täytyy olla 5 merkkiä pitkä"
+            },
             "label": "Lapsen postinumero",
             "placeholder": "Lisää lapsen postinumero"
           }

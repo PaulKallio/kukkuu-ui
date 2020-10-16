@@ -1,11 +1,25 @@
-import { Provider } from 'react-redux';
 import { mount, shallow } from 'enzyme';
 import React, { ReactElement } from 'react';
+import { MockedResponse } from '@apollo/client/testing';
 
-import { store } from '../../domain/app/state/AppStore';
+import TestProviders from './TestProviders';
 
-export const mountWithProvider = (children: ReactElement) =>
-  mount(<Provider store={store}>{children}</Provider>);
+export const mountWithProvider = (
+  children: ReactElement,
+  mocks?: MockedResponse[]
+) =>
+  mount(children, {
+    wrappingComponent: TestProviders,
+    wrappingComponentProps: {
+      mocks,
+    },
+  });
 
-export const shallowWithProvider = (children: ReactElement) =>
-  shallow(<Provider store={store}>{children}</Provider>);
+export const shallowWithProvider = (
+  children: ReactElement,
+  mocks?: MockedResponse[]
+) =>
+  shallow(
+    // For some reason using wrappingComponent does not work here
+    <TestProviders mocks={mocks}>{children}</TestProviders>
+  );

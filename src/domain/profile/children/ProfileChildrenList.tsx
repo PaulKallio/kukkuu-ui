@@ -1,27 +1,33 @@
-import React, { FunctionComponent, Fragment, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 import { IconPlusCircle } from 'hds-react';
 
+import { profileQuery_myProfile_children as Children } from '../../api/generatedTypes/profileQuery';
 import styles from './profileChildrenList.module.scss';
 import ProfileChild from './child/ProfileChild';
-import { profileChildrenSelector } from '../state/ProfileSelectors';
 import AddNewChildFormModal from '../../registration/modal/AddNewChildFormModal';
 import { addChildMutation } from '../../child/mutation/ChildMutation';
 import { getSupportedChildData } from '../../child/ChildUtils';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import profileQuery from '../queries/ProfileQuery';
+import useProfile, { ProfileQueryResult } from '../hooks/useProfile';
 import { getProjectsFromProfileQuery } from '../ProfileUtil';
 import { UpdateChildMutationInput } from '../../api/generatedTypes/globalTypes';
 import Button from '../../../common/components/button/Button';
 
-const ProfileChildrenList: FunctionComponent = () => {
+function getChildrenFromProfile({
+  data,
+}: ProfileQueryResult): Children | null | undefined {
+  return data?.children;
+}
+
+const ProfileChildrenList = () => {
   const { t } = useTranslation();
-  const children = useSelector(profileChildrenSelector);
+  const children = getChildrenFromProfile(useProfile());
   const [isOpen, setIsOpen] = useState(false);
   const [addChild, { loading: mutationLoading }] = useMutation(
     addChildMutation,
@@ -68,15 +74,18 @@ const ProfileChildrenList: FunctionComponent = () => {
                     {project.year} {project.name}
                   </h3>
                 </div>
-                {children.edges.map((childEdge) =>
-                  childEdge?.node?.id &&
-                  childEdge.node.project.year === project.year ? (
-                    <ProfileChild
-                      key={childEdge.node.id}
-                      child={childEdge.node}
-                    />
-                  ) : null
-                )}
+                {children.edges.map((childEdge) => {
+                  const child = childEdge?.node;
+                  const childYear = childEdge?.node?.project.year;
+                  const projectYear = project?.year;
+
+                  return child &&
+                    childYear &&
+                    projectYear &&
+                    childYear === projectYear ? (
+                    <ProfileChild key={child.id} child={child} />
+                  ) : null;
+                })}
               </Fragment>
             ))}
           </>
