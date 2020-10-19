@@ -6,9 +6,9 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 
-import userManager from './userManager';
 import PageWrapper from '../app/layout/PageWrapper';
 import ErrorMessage from '../../common/components/error/Error';
+import userManager from './userManager';
 
 function OidcCallback(props: RouteChildrenProps) {
   const { t } = useTranslation();
@@ -22,7 +22,7 @@ function OidcCallback(props: RouteChildrenProps) {
     else props.history.replace('/profile');
   };
 
-  const onError = (error: Error) => {
+  const onError = async (error: Error) => {
     let message = <ErrorMessage message={t('authentication.errorMessage')} />;
     let shortMessage = t('authentication.errorMessage');
 
@@ -45,6 +45,31 @@ function OidcCallback(props: RouteChildrenProps) {
         <ErrorMessage message={t('authentication.permRequestDenied.message')} />
       );
       shortMessage = t('authentication.permRequestDenied.shortMessage');
+    } else if (error.message === 'No matching state found in storage') {
+      // This error message has persisted and we haven't been able to
+      // pinpoint a clear cause. Our current hypothesis is that users
+      // go back to Tunnistamo and login again. When this happens
+      // Tunnistamo reuses the state parameter that has already been
+      // consumed and therefore no state can be found.
+
+      // In order to test the hypothesis, we are letting Sentry know
+      // whether OIDC already knws about a user. If a user exists then
+      // it's likely that the root issue is something relating to this
+      // interaction. We are using a tag to make it easy to see how many
+      // instances of this error have or do not have a user.
+      try {
+        const user = await userManager.getUser();
+
+        Sentry.withScope((scope) => {
+          scope.setTag('oidc.user.exists', String(user !== null));
+          Sentry.captureException(error);
+        });
+      } catch (e) {
+        Sentry.withScope((scope) => {
+          scope.setExtra('oidc.user.exists', 'unknown');
+          Sentry.captureException(error);
+        });
+      }
     } else {
       // Send other errors to Sentry for analysis - they might be bugs:
       Sentry.captureException(error);

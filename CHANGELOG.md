@@ -1,5 +1,11 @@
 # Change Log
 
+# [Unreleased]
+
+### Added
+
+- More context information to "No matching state found" error
+
 # 1.5.0
 
 ### Added
