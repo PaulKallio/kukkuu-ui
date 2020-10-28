@@ -6,6 +6,10 @@
 
 - More context information to "No matching state found" error
 
+### Changed
+
+- Hide clear all button from languages spoken at home
+
 # 1.5.0
 
 ### Added

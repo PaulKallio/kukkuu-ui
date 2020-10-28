@@ -24,7 +24,7 @@ const LanguagesCombobox = (props: Props) => {
     return <LoadingSpinner isLoading={true} />;
   }
 
-  return <Combobox {...props} options={languageOptions} />;
+  return <Combobox {...props} clearable={false} options={languageOptions} />;
 };
 
 export default LanguagesCombobox;
