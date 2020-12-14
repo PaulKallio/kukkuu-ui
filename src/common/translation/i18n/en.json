@@ -73,7 +73,8 @@
   "combobox": {
     "clearButtonAriaLabel": "Clear all selections",
     "selectedItemSrLabel": "Selected item {value}",
-    "selectedItemRemoveButtonAriaLabel": "Remove item {value}"
+    "selectedItemRemoveButtonAriaLabel": "Remove item {value}",
+    "toggleButtonAriaLabel": "Open the combobox"
   },
   "common": {
     "backButton": {
@@ -427,7 +428,8 @@
         "text": "New invitation!"
       },
       "navigateToDetail": {
-        "buttonLabel": "Navigate to child detail"
+        "buttonLabel": "Navigate to {{childName}} detail",
+        "buttonLabelWithoutName": "Navigate to child detail"
       }
     },
     "children": {
@@ -618,6 +620,12 @@
     "wrongLoginMethod": {
       "title": "Oops!",
       "description": "It seems like you have registered to the service using another login method. Please log out of the service and try a different login method."
+    }
+  },
+  "feedback": {
+    "giveFeedback": {
+      "label": "Give feedback of the Culture Kids service",
+      "link": "https://docs.google.com/forms/d/e/1FAIpQLSfpPCeAdiT9pcMRazxqA9DW-mbqoN2kNwaV53XydjzHWdyFKw/viewform?usp=pp_url&entry.1982410290=Kulttuurin%20kummilapset"
     }
   }
 }

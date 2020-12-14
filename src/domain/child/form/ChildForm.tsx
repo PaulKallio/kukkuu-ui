@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Formik, FieldArray, FormikErrors, FormikProps } from 'formik';
+import { Formik, FieldArray, FormikErrors, FormikProps, Form } from 'formik';
 import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
 import * as yup from 'yup';
@@ -119,14 +119,8 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
       validationSchema={schema}
       onSubmit={onFormSubmit}
     >
-      {({
-        isSubmitting,
-        handleSubmit,
-        values,
-        errors,
-        touched,
-      }: FormikProps<ChildFormValues>) => (
-        <form onSubmit={handleSubmit} id="childForm">
+      {({ isSubmitting, values }: FormikProps<ChildFormValues>) => (
+        <Form id="childForm" noValidate>
           <FieldArray
             name="birthdate"
             render={(props) => {
@@ -141,15 +135,17 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
             }}
           />
           <div className={styles.childInfo}>
-            <FormikTextInput
-              id="homeCity"
-              name="homeCity"
-              label={t('homePage.preliminaryForm.childHomeCity.input.label')}
-              required={true}
-              placeholder={t(
-                'homePage.preliminaryForm.childHomeCity.input.placeholder'
-              )}
-            />
+            {!isEditForm && (
+              <FormikTextInput
+                id="homeCity"
+                name="homeCity"
+                label={t('homePage.preliminaryForm.childHomeCity.input.label')}
+                required={true}
+                placeholder={t(
+                  'homePage.preliminaryForm.childHomeCity.input.placeholder'
+                )}
+              />
+            )}
             <FormikTextInput
               className={styles.formField}
               id="postalCode"
@@ -229,7 +225,7 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
               {t('profile.child.detail.delete.text')}
             </Button>
           )}
-        </form>
+        </Form>
       )}
     </Formik>
   );

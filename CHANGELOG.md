@@ -1,5 +1,28 @@
 # Change Log
 
+# [Unreleased]
+
+# 1.5.1
+
+### Added
+
+- [#318](https://github.com/City-of-Helsinki/kukkuu-ui/pull/318) More context information to "No matching state found" error
+- [#326](https://github.com/City-of-Helsinki/kukkuu-ui/pull/326) Temporary link for giving feedback
+
+### Changed
+
+- [#319](https://github.com/City-of-Helsinki/kukkuu-ui/pull/319) Hide clear all button from languages spoken at home
+- [#325](https://github.com/City-of-Helsinki/kukkuu-ui/pull/325) Child forms are no longer validate with browser validation
+- [#328](https://github.com/City-of-Helsinki/kukkuu-ui/pull/328) Use GitHub actions instead of Travis
+
+### Fixed
+
+- [#320](https://github.com/City-of-Helsinki/kukkuu-ui/pull/320) Missing ResizeObserver throwing an error on some platforms
+- [#324](https://github.com/City-of-Helsinki/kukkuu-ui/pull/324) Profile link being visible on home page when user was not authenticated
+- [#329](https://github.com/City-of-Helsinki/kukkuu-ui/pull/329) Broken error styles for some forms
+- [#329](https://github.com/City-of-Helsinki/kukkuu-ui/pull/329) Overflowing time picker in event details view
+- [#329](https://github.com/City-of-Helsinki/kukkuu-ui/pull/329) Occurrence info visual glitch in occurrence detail page
+
 # 1.5.0
 
 ### Added

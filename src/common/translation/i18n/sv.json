@@ -73,7 +73,8 @@
   "combobox": {
     "clearButtonAriaLabel": "Rensa alla val",
     "selectedItemSrLabel": "Valt sak {value}",
-    "selectedItemRemoveButtonAriaLabel": "Ta bort sak {value}"
+    "selectedItemRemoveButtonAriaLabel": "Ta bort sak {value}",
+    "toggleButtonAriaLabel": "Öppna kombinationsrutan"
   },
   "common": {
     "backButton": {
@@ -427,7 +428,8 @@
         "text": "Ny inbjudan!"
       },
       "navigateToDetail": {
-        "buttonLabel": "Visa Fadderbarnets uppgifter"
+        "buttonLabel": "Visa Fadderbarnets {{childName}} uppgifter",
+        "buttonLabelWithoutName": "Visa Fadderbarnets uppgifter"
       }
     },
     "children": {
@@ -618,6 +620,12 @@
     "wrongLoginMethod": {
       "title": "Hoppsan!",
       "description": "Det verkar som om du har använt en annan autentiseringsmetod när du registrerar dig för tjänsten. Logga ut från tjänsten och försök sedan logga in igen med en annan autentiseringsmetod."
+    }
+  },
+  "feedback": {
+    "giveFeedback": {
+      "label": "Ge respons om Kulturens fadderbarn tjänsten",
+      "link": "https://docs.google.com/forms/d/e/1FAIpQLSf0mf1gIUZ-k768RkOdBQm3bjp6TCDWQa1Wc1r_3WiYbDXLAA/viewform?usp=pp_url&entry.1982410290=Kulttuurin%20kummilapset"
     }
   }
 }
