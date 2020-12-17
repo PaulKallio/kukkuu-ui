@@ -2,6 +2,13 @@
 
 # [Unreleased]
 
+# 1.6.0
+
+### Added
+
+- [#330](https://github.com/City-of-Helsinki/kukkuu-ui/pull/330) Support for event groups
+- [#332](https://github.com/City-of-Helsinki/kukkuu-ui/pull/332) Logo of Kaapeli to the home page
+
 # 1.5.1
 
 ### Added
