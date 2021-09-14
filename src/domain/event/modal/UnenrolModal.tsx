@@ -57,6 +57,7 @@ const UnenrolModal = ({
         },
       },
     ],
+    awaitRefetchQueries: true,
     onCompleted: (data) => {
       if (data.unenrolOccurrence?.child?.occurrences.edges) {
         dispatch(
