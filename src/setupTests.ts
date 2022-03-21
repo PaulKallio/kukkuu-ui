@@ -6,6 +6,7 @@ import '@testing-library/jest-dom/extend-expect';
 
 import setLocale from './common/localization/setLocale';
 import './common/test/testi18nInit';
+import { server } from './test/msw/server';
 React.useLayoutEffect = React.useEffect;
 
 // Suppress useLayoutEffect warning from Formik
@@ -28,3 +29,13 @@ jest.mock('react-router-dom', () => ({
 }));
 
 setLocale('fi');
+
+beforeAll(() => {
+  server.listen();
+});
+afterEach(() => {
+  server.resetHandlers();
+});
+afterAll(() => {
+  server.close();
+});
