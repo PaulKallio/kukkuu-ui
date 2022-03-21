@@ -24,6 +24,11 @@
     "src"
   ],
   "exclude": [
-    "src/domain/api/generatedTypes/**/*.ts"
+    "**/__mocks__/*",
+    "src/**/*.stories.*",
+    "**/*.test.*",
+    "src/test/**",
+    "src/domain/api/generatedTypes/**/*.ts",
+    "src/utils/cmsMockDataUtils.ts"
   ]
 }
